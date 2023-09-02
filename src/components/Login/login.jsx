@@ -33,13 +33,14 @@ function Login() {
         demoButton.addEventListener('click', () => {
             emailField.value = 'demo@example.com';
             passwordField.value = 'demopassword';
-
-            const loginForm = document.querySelector('.login');
-            // loginForm.submit();
         });
 
         return () => {
             demoButton.removeEventListener('click', () => {});
+            loginButton.removeEventListener('click', () => {});
+            links.forEach(link => {
+                link.removeEventListener('click', () => {});
+            });
         };
     }, []);
 

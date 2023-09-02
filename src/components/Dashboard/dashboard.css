@@ -1,0 +1,8 @@
+.dashboard {
+  width: 100vw;
+  height: 100vh;
+  display: grid;
+  grid-template-rows: 5% 95%;
+  grid-template-columns: 10% 90%;
+  overflow: hidden;
+}/*# sourceMappingURL=dashboard.css.map */

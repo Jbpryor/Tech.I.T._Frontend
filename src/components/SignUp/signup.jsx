@@ -8,7 +8,7 @@ function SignUp() {
 
     useEffect(() => {
 
-        const forms = document.querySelector('.forms');
+        // const forms = document.querySelector('.forms');
         const links = document.querySelectorAll('.link');
         // const emailField = document.querySelector('.email');
         // const passwordField = document.querySelector('.password');
@@ -19,6 +19,12 @@ function SignUp() {
                 navigate('/login');
             })
         });
+
+        return () => {
+            links.forEach(link => {
+                link.removeEventListener('click', () => {});
+            })
+        };
     }, []);
 
     return (          

@@ -1,12 +1,13 @@
 import Header from "../Header/header";
 import SideBar from "../Side Bar/sideBar";
+import './dashboard.scss'
 
 function Dashboard() {
     return (
-        <>
-            <Header />
+        <section className="dashboard">            
             <SideBar />
-        </>
+            <Header />
+        </section>
     )
 }
 

@@ -155,28 +155,9 @@ form {
   opacity: 0.6;
   color: #232836;
 }
-.media-options a.demo {
-  border: 1px solid #CACACA;
-}
-.media-options a.demo .demo-icon {
-  color: #0171d3;
-  font-size: 30px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: absolute;
-  top: 50%;
-  left: 10px;
-  transform: translateY(-50%);
-}
-.media-options a.demo span {
-  font-weight: 500;
-  opacity: 0.6;
-  color: #232836;
-}
 
 @media screen and (max-width: 400px) {
   .form {
     padding: 15px;
   }
-}/*# sourceMappingURL=login.css.map */
+}/*# sourceMappingURL=signup.css.map */

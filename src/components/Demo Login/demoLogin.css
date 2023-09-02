@@ -1,0 +1,82 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
+* {
+  font-family: "Poppins", sans-serif;
+  padding: 0;
+  box-sizing: border-box;
+  margin: 0;
+}
+
+.container {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(to top, rgb(6, 6, 6), rgb(34, 33, 34), rgb(22, 19, 35), rgb(9, 13, 24), rgb(15, 43, 44));
+  -moz-column-gap: 30px;
+       column-gap: 30px;
+}
+
+header {
+  font-size: 28px;
+  font-weight: 600;
+  color: #232836;
+  text-align: center;
+  padding: 10px;
+}
+
+.user-content {
+  position: absolute;
+  border-radius: 6px;
+  background: #fff;
+  padding: 20px;
+  width: 100%;
+  max-width: 430px;
+  pointer-events: auto;
+}
+.user-content .users {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  margin: 20px;
+  padding-top: 20px;
+  border-top: 1px solid #CACACA;
+}
+.user-content .users .user a {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 2px;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  padding: 20px;
+}
+.user-content .users .user a span {
+  font-weight: 500;
+  opacity: 0.6;
+  text-align: center;
+  color: #232836;
+  padding-top: 5px;
+}
+.user-content .users .user a i {
+  font-size: 65px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: filter 0.3s;
+}
+.user-content .users .user a i:hover {
+  filter: brightness(0.7);
+}
+.user-content .users .user a.admin .admin-icon {
+  color: rgb(1, 182, 1);
+}
+.user-content .users .user a.project .project-icon {
+  color: orange;
+}
+.user-content .users .user a.developer .developer-icon {
+  color: rgb(232, 232, 15);
+}
+.user-content .users .user a.submitter .submitter-icon {
+  color: rgb(224, 1, 1);
+}/*# sourceMappingURL=demoLogin.css.map */

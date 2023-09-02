@@ -35,11 +35,7 @@ form {
     padding: 30px;
     width: 100%;
     max-width: 430px;
-
-    &.signup {
-        opacity: 0;
-        pointer-events: none;
-    }
+    pointer-events: auto;
 
     .field {
         position: relative;
@@ -81,21 +77,6 @@ form {
         }
     }
 }
-
-.forms {
-    &.show-signup {
-        .form.signup {
-            opacity: 1;
-            pointer-events: auto;
-        }
-  
-        .form.login {
-            opacity: 0;
-            pointer-events: none;
-        }
-    }
- }
-
 
 .form-link {
     text-align: center;

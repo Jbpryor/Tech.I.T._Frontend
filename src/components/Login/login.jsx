@@ -8,7 +8,7 @@ function Login() {
 
     useEffect(() => {
 
-        const forms = document.querySelector('.forms');
+        // const forms = document.querySelector('.forms');
         const links = document.querySelectorAll('.link');
         const emailField = document.querySelector('.email');
         const passwordField = document.querySelector('.password');
@@ -16,6 +16,8 @@ function Login() {
         const loginButton = document.querySelector('.login-button');
         loginButton.addEventListener('click', () => {
             if (emailField.value === 'demo@example.com' && passwordField.value === 'demopassword') {
+                navigate('/demoLogin')
+            } else if (emailField.value ==='demo@example.com' && passwordField.value === 'demopassword') {
                 navigate('/dashboard')
             }
         })
@@ -23,7 +25,7 @@ function Login() {
         links.forEach(link => {
             link.addEventListener('click', event => {
                 event.preventDefault();
-                forms.classList.toggle('show-signup');
+                navigate('/signup');
             })
         });
 
@@ -33,18 +35,11 @@ function Login() {
             passwordField.value = 'demopassword';
 
             const loginForm = document.querySelector('.login');
-            loginForm.submit();
+            // loginForm.submit();
         });
 
         return () => {
             demoButton.removeEventListener('click', () => {});
-
-            links.forEach(link => {
-                link.addEventListener('click', event => {
-                    event.preventDefault();
-                    forms.classList.toggle('show-signup')
-                });
-            });
         };
     }, []);
 
@@ -60,7 +55,6 @@ function Login() {
 
                         <div className="field input-field">
                             <input type="password" placeholder="Password" className="password"></input>
-                            {/* <i className='bx bx-hide eye-icon'></i> */}
                         </div>
 
                         <div className="form-link">
@@ -73,59 +67,6 @@ function Login() {
                     </form> 
                     <div className="form-link">
                         <span>Already have an account? <a href="#" className="link signup-link">Signup</a></span>
-                    </div>
-                </div>
-                
-                <div className="line"></div>
-
-                <div className="media-options">
-                    <a href="#" className="field facebook">
-                        <i className='bx bxl-facebook facebook-icon'></i>
-                        <span>Login with Facebook</span>
-                    </a>                  
-                </div>
-
-                <div className="media-options">
-                    <a href="#" className="field google">
-                        <img src="images/google.png" alt="" className="google-img"></img>
-                        <span>Login with Google</span>
-                    </a>                  
-                </div>
-
-                <div className="media-options">
-                    <a href="#" className="field demo">
-                        <i className='bx bxs-user-circle demo-icon'></i>
-                        <span>Login as Demo User</span>
-                    </a>                  
-                </div>
-            </div>
-
-            {/* Signup Form */}
-            
-            <div className="form signup">
-                <div className="form-content">
-                    <header>Signup</header>
-                    <form action="#">
-                        <div className="field input-field">
-                            <input type="email" placeholder="Email" className="email"></input>
-                        </div>
-
-                        <div className="field input-field">
-                            <input type="password" placeholder="Password" className="password"></input>
-                            {/* <i className='bx bx-hide eye-icon'></i> */}
-                        </div>
-
-                        <div className="field input-field">
-                            <input type="password" placeholder="Password" className="password"></input>
-                            {/* <i className='bx bx-hide eye-icon'></i> */}
-                        </div>
-
-                        <div className="field signup-button">
-                            <button>Signup</button>
-                        </div>                
-                    </form> 
-                    <div className="form-link">
-                        <span>Already have an account? <a href="#" className="link login-link">Login</a></span>
                     </div>
                 </div>
                 

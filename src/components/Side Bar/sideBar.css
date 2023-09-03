@@ -22,6 +22,30 @@
   padding: 5%;
   font-size: 18px;
   cursor: pointer;
+  width: 100%;
+  text-align: center;
+  transition: filter 0.3s;
+}
+.sideBar .sideBar-links ul li:hover {
+  color: rgb(86, 86, 2);
+  border: 1px solid rgba(86, 86, 2, 0.05);
+  background-color: rgba(86, 86, 2, 0.02);
+}
+.sideBar .settings-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.sideBar .settings-container i {
+  font-size: 30px;
+  padding: 2px;
+  cursor: pointer;
+  transition: filter 0.2s;
+}
+.sideBar .settings-container i:hover {
+  color: rgb(86, 86, 2);
 }
 .sideBar .user-container {
   display: flex;
@@ -29,11 +53,16 @@
   align-items: center;
   justify-content: center;
   text-align: center;
+  transition: filter 0.3s;
 }
 .sideBar .user-container i {
   color: rgb(224, 1, 1);
   font-size: 25px;
   padding: 2px;
+  cursor: pointer;
+}
+.sideBar .user-container i:hover {
+  filter: brightness(0.7);
 }
 .sideBar .user-container .user-name {
   font-size: 12px;

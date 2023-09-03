@@ -18,7 +18,7 @@ function Login() {
             if (emailField.value === 'demo@example.com' && passwordField.value === 'demopassword') {
                 navigate('/demoLogin')
             } else if (emailField.value ==='demo@example.com' && passwordField.value === 'demopassword') {
-                navigate('/dashboard')
+                navigate('/layout')
             }
         })
 

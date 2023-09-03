@@ -18,16 +18,16 @@ function DemoLogin() {
                 event.preventDefault();
 
                 if (admin) {
-                    navigate('/dashboard')
+                    navigate('/layout')
                 };
                 if (project) {
-                    navigate('/dashboard')
+                    navigate('/layout')
                 };
                 if (developer) {
-                    navigate('/dashboard')
+                    navigate('/layout')
                 };
                 if (submitter) {
-                    navigate('/dashboard')
+                    navigate('/layout')
                 };
             });
         });

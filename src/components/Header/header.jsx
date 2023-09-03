@@ -9,6 +9,10 @@ function Header() {
         const searchBar = document.querySelector('.search-bar');
         const searchInput = document.querySelector('.search-input');
         const searchButton = document.querySelector('.search-button');
+        const gridIcon = document.querySelector('.grid-icon');
+        const gridContainer = document.querySelector('.grid-container');
+        const listContainer = document.querySelector('.list-container');
+        const listIcon = document.querySelector('.list-icon');
 
         searchIcon.addEventListener('click', () => {
         searchBar.style.display = 'flex';
@@ -22,9 +26,21 @@ function Header() {
         searchInput.value = '';
         });
 
+        gridIcon.addEventListener('click', () => {
+            listContainer.style.display = 'flex';
+            gridContainer.style.display = 'none';
+        })
+
+        listIcon.addEventListener('click', () => {
+            gridContainer.style.display = 'flex';
+            listContainer.style.display = 'none';
+        })
+
         return () => {
             searchIcon.removeEventListener('click', () => {});
             searchButton.removeEventListener('click', () => {});
+            gridIcon.removeEventListener('click', () => {});
+            listIcon.removeEventListener('click', () => {});
         }
 
 
@@ -36,9 +52,20 @@ function Header() {
             <div className="header-links">
                 <ul>
                     <li className="home">Home</li>
-                    <li className="page1">Page1</li>
-                    <li className="page2">Page2</li>
-                    <li className="page3">Page3</li>
+                    <div className="new-container">
+                        <button className='new-button'>Add New +</button>
+                    </div>
+                    <div className="notification-container">
+                        <i className='bx bxs-bell notification-icon' ></i>
+                    </div>
+                    <div className="view-container">
+                        <div className="grid-container">
+                            <i className='bx bxs-grid-alt grid-icon' ></i>
+                        </div>
+                        <div className="list-container">
+                            <i className='bx bx-list-ul list-icon' ></i>
+                        </div>
+                    </div>
                     <div className="search-container">
                         <div className="icon-container">
                             <i className='bx bx-search-alt-2 search-icon'></i>

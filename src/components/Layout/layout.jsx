@@ -1,14 +1,14 @@
 import Header from "../Header/header";
 import SideBar from "../Side Bar/sideBar";
-import './dashboard.scss'
+import './layout.scss'
 
-function Dashboard() {
+function Layout() {
     return (
-        <section className="dashboard">            
+        <section className="layout">            
             <SideBar />
             <Header />
         </section>
     )
 }
 
-export default Dashboard;
+export default Layout;

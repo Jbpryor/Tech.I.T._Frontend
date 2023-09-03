@@ -20,6 +20,55 @@
   text-align: center;
   padding: 0 5%;
 }
+.header .header-links ul .new-container {
+  text-align: center;
+  padding: 0 5%;
+}
+.header .header-links ul .new-container .new-button {
+  cursor: pointer;
+  padding: 2px;
+  border: none;
+  font-size: 17px;
+}
+.header .header-links ul .new-container .new-button:hover {
+  color: rgb(86, 86, 2);
+}
+.header .header-links ul .notification-container {
+  text-align: center;
+  padding: 0 5%;
+  margin-bottom: -1%;
+}
+.header .header-links ul .notification-container .notification-icon {
+  cursor: pointer;
+  font-size: 23px;
+}
+.header .header-links ul .notification-container .notification-icon:hover {
+  color: rgb(86, 86, 2);
+}
+.header .header-links ul .view-container {
+  text-align: center;
+  padding: 0 5%;
+}
+.header .header-links ul .view-container .grid-container {
+  display: none;
+}
+.header .header-links ul .view-container .grid-container .grid-icon {
+  cursor: pointer;
+  font-size: 28px;
+}
+.header .header-links ul .view-container .grid-container .grid-icon:hover {
+  color: rgb(86, 86, 2);
+}
+.header .header-links ul .view-container .list-container {
+  display: flex;
+}
+.header .header-links ul .view-container .list-container .list-icon {
+  cursor: pointer;
+  font-size: 28px;
+}
+.header .header-links ul .view-container .list-container .list-icon:hover {
+  color: rgb(86, 86, 2);
+}
 .header .header-links ul .search-container {
   text-align: center;
   padding: 0 5%;
@@ -29,7 +78,10 @@
 }
 .header .header-links ul .search-container .icon-container .search-icon {
   cursor: pointer;
-  font-size: 18px;
+  font-size: 23px;
+}
+.header .header-links ul .search-container .icon-container .search-icon:hover {
+  color: rgb(86, 86, 2);
 }
 .header .header-links ul .search-bar {
   display: none;
@@ -46,4 +98,7 @@
 }
 .header .header-links ul .search-bar .search-button {
   cursor: pointer;
+}
+.header .header-links ul .search-bar .search-button:hover {
+  color: rgb(86, 86, 2);
 }/*# sourceMappingURL=header.css.map */

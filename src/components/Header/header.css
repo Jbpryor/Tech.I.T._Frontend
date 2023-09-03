@@ -36,7 +36,7 @@
 .header .header-links ul .notification-container {
   text-align: center;
   padding: 0 5%;
-  margin-bottom: -1%;
+  margin-bottom: -6px;
 }
 .header .header-links ul .notification-container .notification-icon {
   cursor: pointer;

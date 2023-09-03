@@ -53,7 +53,7 @@ function Header() {
                 <ul>
                     <li className="home">Home</li>
                     <div className="new-container">
-                        <button className='new-button'>Add New +</button>
+                        <button className='new-button'>New +</button>
                     </div>
                     <div className="notification-container">
                         <i className='bx bxs-bell notification-icon' ></i>

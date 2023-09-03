@@ -50,32 +50,29 @@ function Header() {
     return (
         <section className="header">
             <div className="header-links">
-                <ul>
-                    <li className="home">Home</li>
-                    <div className="new-container">
-                        <button className='new-button'>New +</button>
+                <div className="search-container">
+                    <div className="icon-container">
+                        <i className='bx bx-search-alt-2 search-icon'></i>
                     </div>
-                    <div className="notification-container">
-                        <i className='bx bxs-bell notification-icon' ></i>
+                    <div className="search-bar">
+                        <input className='search-input' type="text" placeholder="Search..." />
+                        <button className='search-button'>Search</button>
                     </div>
-                    <div className="view-container">
-                        <div className="grid-container">
-                            <i className='bx bxs-grid-alt grid-icon' ></i>
-                        </div>
-                        <div className="list-container">
-                            <i className='bx bx-list-ul list-icon' ></i>
-                        </div>
+                </div>
+                <div className="new-container">
+                    <button className='new-button'>New +</button>
+                </div>
+                <div className="notification-container">
+                    <i className='bx bxs-bell notification-icon' ></i>
+                </div>
+                <div className="view-container">
+                    <div className="grid-container">
+                        <i className='bx bxs-grid-alt grid-icon' ></i>
                     </div>
-                    <div className="search-container">
-                        <div className="icon-container">
-                            <i className='bx bx-search-alt-2 search-icon'></i>
-                        </div>
-                        <div className="search-bar">
-                            <input className='search-input' type="text" placeholder="Search..." />
-                            <button className='search-button'>Search</button>
-                        </div>
+                    <div className="list-container">
+                        <i className='bx bx-list-ul list-icon' ></i>
                     </div>
-                </ul>
+                </div>
             </div>
         </section>
     )

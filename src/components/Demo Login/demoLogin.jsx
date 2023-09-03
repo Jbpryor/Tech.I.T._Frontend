@@ -8,26 +8,26 @@ function DemoLogin() {
 
     useEffect(() => {
         const users = document.querySelectorAll('.user');
-        const admin = document.querySelectorAll('.admin');
-        const project = document.querySelectorAll('.project');
-        const developer = document.querySelectorAll('.developer');
-        const submitter = document.querySelectorAll('.submitter');
+        const admin = document.querySelector('.admin');
+        const project = document.querySelector('.project');
+        const developer = document.querySelector('.developer');
+        const submitter = document.querySelector('.submitter');
 
         users.forEach(user => {
             user.addEventListener('click', event => {
                 event.preventDefault();
 
                 if (admin) {
-                    navigate('/layout')
+                    navigate('/Dashboard')
                 };
                 if (project) {
-                    navigate('/layout')
+                    navigate('/Dashboard')
                 };
                 if (developer) {
-                    navigate('/layout')
+                    navigate('/Dashboard')
                 };
                 if (submitter) {
-                    navigate('/layout')
+                    navigate('/Dashboard')
                 };
             });
         });

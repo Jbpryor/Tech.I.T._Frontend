@@ -12,8 +12,9 @@ function Login() {
         const links = document.querySelectorAll('.link');
         const emailField = document.querySelector('.email');
         const passwordField = document.querySelector('.password');
-
         const loginButton = document.querySelector('.login-button');
+        const demoButton = document.querySelector('.field.demo');
+
         loginButton.addEventListener('click', () => {
             if (emailField.value === 'demo@example.com' && passwordField.value === 'demopassword') {
                 navigate('/demoLogin')
@@ -28,8 +29,7 @@ function Login() {
                 navigate('/signup');
             })
         });
-
-        const demoButton = document.querySelector('.field.demo');
+        
         demoButton.addEventListener('click', () => {
             emailField.value = 'demo@example.com';
             passwordField.value = 'demopassword';

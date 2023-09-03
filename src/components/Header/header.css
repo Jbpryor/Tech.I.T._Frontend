@@ -5,100 +5,92 @@
 }
 .header .header-links {
   height: 100%;
-}
-.header .header-links ul {
   list-style: none;
   display: flex;
-  justify-content: center;
+  justify-content: end;
   align-items: center;
-  padding: 0 5%;
+  padding: 0 1%;
   height: 100%;
 }
-.header .header-links ul li {
-  font-size: 18px;
+.header .header-links .search-container {
+  text-align: center;
+  padding: 0 1%;
+}
+.header .header-links .search-container .icon-container {
+  display: flex;
+}
+.header .header-links .search-container .icon-container .search-icon {
   cursor: pointer;
-  text-align: center;
-  padding: 0 5%;
+  font-size: 23px;
 }
-.header .header-links ul .new-container {
-  text-align: center;
-  padding: 0 5%;
+.header .header-links .search-container .icon-container .search-icon:hover {
+  color: rgb(86, 86, 2);
 }
-.header .header-links ul .new-container .new-button {
+.header .header-links .search-bar {
+  display: none;
+}
+.header .header-links .search-bar .search-input::-moz-placeholder {
+  padding-left: 5px;
+  color: #848484;
+  font-weight: 400;
+}
+.header .header-links .search-bar .search-input::placeholder {
+  padding-left: 5px;
+  color: #848484;
+  font-weight: 400;
+}
+.header .header-links .search-bar .search-button {
+  cursor: pointer;
+}
+.header .header-links .search-bar .search-button:hover {
+  color: rgb(86, 86, 2);
+}
+.header .header-links .new-container {
+  text-align: center;
+  padding: 0 1%;
+}
+.header .header-links .new-container .new-button {
   cursor: pointer;
   padding: 2px;
   border: none;
   font-size: 17px;
 }
-.header .header-links ul .new-container .new-button:hover {
+.header .header-links .new-container .new-button:hover {
   color: rgb(86, 86, 2);
 }
-.header .header-links ul .notification-container {
+.header .header-links .notification-container {
   text-align: center;
-  padding: 0 5%;
+  padding: 0 1%;
   margin-bottom: -6px;
 }
-.header .header-links ul .notification-container .notification-icon {
+.header .header-links .notification-container .notification-icon {
   cursor: pointer;
   font-size: 23px;
 }
-.header .header-links ul .notification-container .notification-icon:hover {
+.header .header-links .notification-container .notification-icon:hover {
   color: rgb(86, 86, 2);
 }
-.header .header-links ul .view-container {
+.header .header-links .view-container {
   text-align: center;
-  padding: 0 5%;
+  padding: 0 1%;
 }
-.header .header-links ul .view-container .grid-container {
+.header .header-links .view-container .grid-container {
   display: none;
 }
-.header .header-links ul .view-container .grid-container .grid-icon {
+.header .header-links .view-container .grid-container .grid-icon {
   cursor: pointer;
   font-size: 28px;
 }
-.header .header-links ul .view-container .grid-container .grid-icon:hover {
+.header .header-links .view-container .grid-container .grid-icon:hover {
   color: rgb(86, 86, 2);
 }
-.header .header-links ul .view-container .list-container {
+.header .header-links .view-container .list-container {
   display: flex;
 }
-.header .header-links ul .view-container .list-container .list-icon {
+.header .header-links .view-container .list-container .list-icon {
   cursor: pointer;
   font-size: 28px;
 }
-.header .header-links ul .view-container .list-container .list-icon:hover {
-  color: rgb(86, 86, 2);
-}
-.header .header-links ul .search-container {
-  text-align: center;
-  padding: 0 5%;
-}
-.header .header-links ul .search-container .icon-container {
-  display: flex;
-}
-.header .header-links ul .search-container .icon-container .search-icon {
-  cursor: pointer;
-  font-size: 23px;
-}
-.header .header-links ul .search-container .icon-container .search-icon:hover {
-  color: rgb(86, 86, 2);
-}
-.header .header-links ul .search-bar {
-  display: none;
-}
-.header .header-links ul .search-bar .search-input::-moz-placeholder {
-  padding-left: 5px;
-  color: #848484;
-  font-weight: 400;
-}
-.header .header-links ul .search-bar .search-input::placeholder {
-  padding-left: 5px;
-  color: #848484;
-  font-weight: 400;
-}
-.header .header-links ul .search-bar .search-button {
-  cursor: pointer;
-}
-.header .header-links ul .search-bar .search-button:hover {
+.header .header-links .view-container .list-container .list-icon:hover {
   color: rgb(86, 86, 2);
 }/*# sourceMappingURL=header.css.map */

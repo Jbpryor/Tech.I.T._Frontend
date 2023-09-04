@@ -26,9 +26,6 @@
 .header .header-links .search-container .icon-container .search-icon:hover {
   color: rgb(86, 86, 2);
 }
-.header .header-links .search-bar {
-  display: none;
-}
 .header .header-links .search-bar .search-input::-moz-placeholder {
   padding-left: 5px;
   color: #848484;
@@ -48,6 +45,7 @@
 .header .header-links .new-container {
   text-align: center;
   padding: 0 1%;
+  display: flex;
 }
 .header .header-links .new-container .new-button {
   cursor: pointer;
@@ -61,7 +59,7 @@
 .header .header-links .notification-container {
   text-align: center;
   padding: 0 1%;
-  margin-bottom: -6px;
+  display: flex;
 }
 .header .header-links .notification-container .notification-icon {
   cursor: pointer;
@@ -75,7 +73,7 @@
   padding: 0 1%;
 }
 .header .header-links .view-container .grid-container {
-  display: none;
+  display: flex;
 }
 .header .header-links .view-container .grid-container .grid-icon {
   cursor: pointer;

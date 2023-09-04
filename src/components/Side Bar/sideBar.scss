@@ -14,7 +14,7 @@
 
     .sideBar-links {
         padding-top: 20%;
-        li {
+        .nav-link {
             display: flex;
             flex-direction: column;
             list-style-type: none;
@@ -26,6 +26,8 @@
             width: 100%;
             text-align: center;
             transition: filter 0.3s;
+            text-decoration: none;
+            color: rgb(19, 18, 18);
 
             &:hover {
                 color: rgb(86, 86, 2);
@@ -45,7 +47,7 @@
         i {
             font-size: 30px;
             padding: 2px;
-            cursor: pointer;
+            color: rgb(19, 18, 18);
             transition: filter 0.2s ;
 
             &:hover {

@@ -13,7 +13,7 @@
 .sideBar .sideBar-links {
   padding-top: 20%;
 }
-.sideBar .sideBar-links li {
+.sideBar .sideBar-links .nav-link {
   display: flex;
   flex-direction: column;
   list-style-type: none;
@@ -25,8 +25,10 @@
   width: 100%;
   text-align: center;
   transition: filter 0.3s;
+  text-decoration: none;
+  color: rgb(19, 18, 18);
 }
-.sideBar .sideBar-links li:hover {
+.sideBar .sideBar-links .nav-link:hover {
   color: rgb(86, 86, 2);
   border: 1px solid rgba(86, 86, 2, 0.05);
   background-color: rgba(86, 86, 2, 0.02);
@@ -41,7 +43,7 @@
 .sideBar .settings-container i {
   font-size: 30px;
   padding: 2px;
-  cursor: pointer;
+  color: rgb(19, 18, 18);
   transition: filter 0.2s;
 }
 .sideBar .settings-container i:hover {

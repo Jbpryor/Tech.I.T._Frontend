@@ -1,77 +1,61 @@
-import './header.scss'
-import React, { useEffect } from 'react';
+import './header.scss';
+import React, { useState } from 'react';
+import { NavLink } from 'react-router-dom';
 
 function Header() {
+    const [isSearchBarVisible, setSearchBarVisible] = useState(false);
+    const [isGridVisible, setGridVisible] = useState(true);
 
-    useEffect (() => {
-        const searchIcon = document.querySelector('.search-icon');
-        const iconContainer = document.querySelector('.icon-container');
-        const searchBar = document.querySelector('.search-bar');
-        const searchInput = document.querySelector('.search-input');
-        const searchButton = document.querySelector('.search-button');
-        const gridIcon = document.querySelector('.grid-icon');
-        const gridContainer = document.querySelector('.grid-container');
-        const listContainer = document.querySelector('.list-container');
-        const listIcon = document.querySelector('.list-icon');
+    const handleSearchIconClick = () => {
+        setSearchBarVisible(!isSearchBarVisible);
+    }
 
-        searchIcon.addEventListener('click', () => {
-        searchBar.style.display = 'flex';
-        iconContainer.style.display = 'none';
-        searchInput.focus();
-        });
+    const handleSearchButtonClick = () => {
+        setSearchBarVisible(false);
+    }
 
-        searchButton.addEventListener('click', () => {
-        searchBar.style.display = 'none';
-        iconContainer.style.display = 'flex';
-        searchInput.value = '';
-        });
+    const handleGridIconClick = () => {
+        setGridVisible(false);
+    }
 
-        gridIcon.addEventListener('click', () => {
-            listContainer.style.display = 'flex';
-            gridContainer.style.display = 'none';
-        })
-
-        listIcon.addEventListener('click', () => {
-            gridContainer.style.display = 'flex';
-            listContainer.style.display = 'none';
-        })
-
-        return () => {
-            searchIcon.removeEventListener('click', () => {});
-            searchButton.removeEventListener('click', () => {});
-            gridIcon.removeEventListener('click', () => {});
-            listIcon.removeEventListener('click', () => {});
-        }
-
-
-    }, []);
-    
+    const handleListIconClick = () => {
+        setGridVisible(true);
+    }
 
     return (
         <section className="header">
             <div className="header-links">
                 <div className="search-container">
-                    <div className="icon-container">
-                        <i className='bx bx-search-alt-2 search-icon'></i>
-                    </div>
-                    <div className="search-bar">
-                        <input className='search-input' type="text" placeholder="Search..." />
-                        <button className='search-button'>Search</button>
-                    </div>
+                    {isSearchBarVisible ? (
+                        <div className="search-bar">
+                            <input className='search-input' type="text" placeholder="Search..." />
+                            <button className='search-button' onClick={handleSearchButtonClick}>Search</button>
+                        </div>
+                    ) : (
+                        <div className="icon-container">
+                            <i className='bx bx-search-alt-2 search-icon' onClick={handleSearchIconClick}></i>
+                        </div>
+                    )}
                 </div>
                 <div className="new-container">
-                    <button className='new-button'>New +</button>
+                    <NavLink to='/NewTicket'>
+                        <button className='new-button'>New +</button>
+                    </NavLink>
                 </div>
                 <div className="notification-container">
                     <i className='bx bxs-bell notification-icon' ></i>
                 </div>
-                <div className="view-container">
-                    <div className="grid-container">
-                        <i className='bx bxs-grid-alt grid-icon' ></i>
+                <div className="view-container">{isGridVisible ? (
+                    <div className='grid-container'>
+                        <i className='bx bxs-grid-alt grid-icon' onClick={handleGridIconClick}></i>
                     </div>
-                    <div className="list-container">
-                        <i className='bx bx-list-ul list-icon' ></i>
+                    ) : (
+                    <div className='list-container'>
+                        <i className='bx bx-list-ul list-icon' onClick={handleListIconClick}></i>
                     </div>
+                    )}
+
+ 
                 </div>
             </div>
         </section>
@@ -79,3 +63,4 @@ function Header() {
 }
 
 export default Header;
+

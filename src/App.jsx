@@ -16,6 +16,7 @@ function App() {
   return (
     <Router>
       <Routes>
+        <Route index element={<Login />} />
         <Route path="/login" element={<Login />} />
           <Route path="/demoLogin" element={<DemoLogin />} />
 
@@ -28,25 +29,7 @@ function App() {
               <Route path="tickets" element={<Tickets />} />
             </Route>
 
-
-
-            {/* <Route path="/dashboard" element={<Layout />} >
-              <Route index element={<Dashboard />} />
-            </Route>
-            <Route path="/details" element={<Layout />} >
-              <Route index element={<Details />} />
-            </Route>
-            <Route path="/projectUsers" element={<Layout />} >
-              <Route index element={<ProjectUsers />} />
-            </Route>
-            <Route path="/roleAssignment" element={<Layout />} >
-              <Route index element={<RoleAssignment />} />
-            </Route>
-            <Route path="/tickets" element={<Layout />} >
-              <Route index element={<Tickets />} />
-            </Route> */}
         <Route path="/signup" element={<SignUp />} />
-        <Route path="*" element={<Navigate to="login" />} />
       </Routes>
     </Router>
   );

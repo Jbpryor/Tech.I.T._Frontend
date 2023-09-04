@@ -32,7 +32,6 @@
         }
 
         .search-bar {
-            display: none;
 
             .search-input {
 
@@ -55,6 +54,7 @@
         .new-container {
             text-align: center;
             padding: 0 1%;
+            display: flex;
 
             .new-button {
                 cursor: pointer;
@@ -72,7 +72,7 @@
         .notification-container {
             text-align: center;
             padding: 0 1%;
-            margin-bottom: -6px;
+            display: flex;
 
             .notification-icon {
                 cursor: pointer;
@@ -89,7 +89,7 @@
             padding: 0 1%;
 
             .grid-container {
-                display: none;
+                display: flex;
 
                 .grid-icon {
                     cursor: pointer;

@@ -3,15 +3,15 @@ import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 
 function Header() {
-    const [isSearchBarVisible, setSearchBarVisible] = useState(false);
+    const [isSearchIconVisible, setSearchIconVisible] = useState(true);
     const [isGridVisible, setGridVisible] = useState(true);
 
     const handleSearchIconClick = () => {
-        setSearchBarVisible(!isSearchBarVisible);
+        setSearchIconVisible(false);
     }
 
     const handleSearchButtonClick = () => {
-        setSearchBarVisible(false);
+        setSearchIconVisible(true);
     }
 
     const handleGridIconClick = () => {
@@ -22,19 +22,23 @@ function Header() {
         setGridVisible(true);
     }
 
+    const handleNotificationClick = () => {
+
+    }
+
     return (
         <section className="header">
             <div className="header-links">
                 <div className="search-container">
-                    {isSearchBarVisible ? (
-                        <div className="search-bar">
-                            <input className='search-input' type="text" placeholder="Search..." />
-                            <button className='search-button' onClick={handleSearchButtonClick}>Search</button>
-                        </div>
-                    ) : (
-                        <div className="icon-container">
-                            <i className='bx bx-search-alt-2 search-icon' onClick={handleSearchIconClick}></i>
-                        </div>
+                    {isSearchIconVisible ? (
+                     <div className="icon-container">
+                        <i className='bx bx-search-alt-2 search-icon' onClick={handleSearchIconClick}></i>
+                    </div>
+                    ) : (   
+                    <div className="search-bar">
+                        <input className='search-input' type="text" placeholder="Search..." />
+                        <button className='search-button' onClick={handleSearchButtonClick}>Search</button>
+                    </div>
                     )}
                 </div>
                 <div className="new-container">
@@ -43,7 +47,7 @@ function Header() {
                     </NavLink>
                 </div>
                 <div className="notification-container">
-                    <i className='bx bxs-bell notification-icon' ></i>
+                    <i className='bx bxs-bell notification-icon' onClick={handleNotificationClick}></i>
                 </div>
                 <div className="view-container">{isGridVisible ? (
                     <div className='grid-container'>
@@ -63,4 +67,3 @@ function Header() {
 }
 
 export default Header;
-

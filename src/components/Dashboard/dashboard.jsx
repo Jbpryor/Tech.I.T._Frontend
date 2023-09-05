@@ -1,9 +1,10 @@
 import './dashboard.scss'
+import Tickets from '../Tickets/tickets';
 
 function Dashboard() {
     return (
         <section className='dashboard'>
-            <div className="hello">hello</div>
+            <Tickets />
         </section>
     )
 }

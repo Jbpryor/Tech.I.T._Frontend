@@ -1,10 +1,16 @@
 import './dashboard.scss'
-import Tickets from '../Tickets/tickets';
+import Issues from '../Issues/issues';
+import Projects from '../Projects/projects';
+import Reports from '../Reports/reports';
 
 function Dashboard() {
     return (
         <section className='dashboard'>
-            <Tickets />
+            <div className="dashboard-container">
+                <Issues />
+                <Projects />
+                <Reports />
+            </div>
         </section>
     )
 }

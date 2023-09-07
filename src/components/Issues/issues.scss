@@ -1,0 +1,15 @@
+.issues {
+    display: flex;
+    flex-direction: column;
+    border: 2px solid green;
+    justify-content: center;
+    align-items: center;
+
+
+    .issues-container {
+        display: grid;
+        grid-template-columns: 50% 50%;
+    }
+}
+
+

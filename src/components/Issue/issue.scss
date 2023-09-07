@@ -1,0 +1,24 @@
+.issue {
+    display: flex;
+}
+
+.issue-container {
+    margin: 2%;
+    border: 1px solid #ccc;
+    background-color: white;
+    width: 300px;
+    border-radius: 2%;
+    text-align: center;
+
+    .issue-title {
+        padding: 2%;
+        font-weight: bold;
+        background-color: rgba(231, 231, 231, 0.5);
+    }
+
+    .issue-contents {
+        padding: 2%;
+        width: 100%;
+    }
+
+}

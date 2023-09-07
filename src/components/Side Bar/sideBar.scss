@@ -21,7 +21,7 @@
             align-items: center;
             margin: 0;
             padding: 5%;
-            font-size: 18px;
+            font-size: 15px;
             cursor: pointer;
             width: 100%;
             text-align: center;
@@ -35,6 +35,11 @@
                 background-color: rgb(86, 86, 2, 0.02);
             }
         
+        }
+
+        .active {
+            color: rgb(86, 86, 2);
+            border: 1px solid rgb(86, 86, 2, 0.05);
         }
     }
 

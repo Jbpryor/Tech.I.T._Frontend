@@ -3,7 +3,7 @@
 
 function Projects() {
     return (
-        <></>
+        'projects'
     )
 }
 

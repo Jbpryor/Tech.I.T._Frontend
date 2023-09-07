@@ -9,7 +9,7 @@ import Dashboard from './components/Dashboard/dashboard'
 import Details from "./components/Details/details";
 import ProjectUsers from "./components/Project Users/projectUsers";
 import RoleAssignment from "./components/Role Assignment/roleAssignment";
-import Tickets from "./components/Tickets/tickets";
+import Issues from "./components/Issues/issues";
 
 function App() {
 
@@ -19,18 +19,8 @@ function App() {
         <Route index element={<Login />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
-
           <Route path="/demoLogin" element={<DemoLogin />} />
-
-            <Route path="/*" element={<Layout />}>
-              <Route index element={<Dashboard />} />
-              <Route path="dashboard" element={<Dashboard />} />
-              <Route path="details" element={<Details />} />
-              <Route path="projectUsers" element={<ProjectUsers />} />
-              <Route path="roleAssignment" element={<RoleAssignment />} />
-              <Route path="tickets" element={<Tickets />} />
-            </Route>   
-
+            <Route path="/*" element={<Layout />} />
       </Routes>
     </Router>
   );

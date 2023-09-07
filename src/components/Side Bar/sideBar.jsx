@@ -11,17 +11,17 @@ function SideBar() {
         </div>
       </div>
       <div className="sideBar-links">
-        <NavLink to="/Dashboard" className="nav-link dashboard">
+        <NavLink to="/Dashboard" activeclassname='active' className="nav-link dashboard-link">
           Dashboard
         </NavLink>
-        <NavLink to="/ProjectUsers" className="nav-link project-users">
-          Project Users
+        <NavLink to="/Issues" activeclassname='active' className="nav-link issues-link">
+          Issues
         </NavLink>
-        <NavLink to="/RoleAssignment" className="nav-link role-assignment">
-          Role Assignment
+        <NavLink to="/Projects" activeclassname='active' className="nav-link projects-link">
+          Projects
         </NavLink>
-        <NavLink to="/Tickets" className="nav-link tickets">
-          Tickets
+        <NavLink to="/Reports" activeclassname='active' className="nav-link reports-link">
+          Reports
         </NavLink>
       </div>
       <div className="settings-container">

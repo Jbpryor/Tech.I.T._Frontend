@@ -1,14 +1,13 @@
 import React from "react";
-// import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom'
+import { Routes, Route } from 'react-router-dom';
+import './layout.scss';
 import Header from "../Header/header";
 import SideBar from "../Side Bar/sideBar";
-// import Dashboard from "../Dashboard/dashboard";
-// import Details from "../Details/details";
-// import ProjectUsers from "../Project Users/projectUsers";
-// import RoleAssignment from "../Role Assignment/roleAssignment";
-// import Ticket from "../Ticket/ticket";
-import { Outlet } from 'react-router-dom';
-import './layout.scss'
+// import { Outlet } from 'react-router-dom';
+import Dashboard from "../Dashboard/dashboard";
+import Issues from "../Issues/issues";
+import Projects from "../Projects/projects";
+import Reports from "../Reports/reports";
 
 function Layout() {
     return (
@@ -17,7 +16,13 @@ function Layout() {
             <Header />
             <div className="main-content">
 
-                <Outlet />
+                <Routes>
+                    <Route index element={<Dashboard />} />
+                    <Route path="/dashboard" element={<Dashboard />} />
+                    <Route path='/Issues' element={<Issues />} />
+                    <Route path='/Projects' element={<Projects />} />
+                    <Route path='/Reports' element={<Reports />} />
+                </Routes>
 
             </div>
         </section>

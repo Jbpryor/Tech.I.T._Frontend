@@ -1,15 +1,28 @@
 .issues {
     display: flex;
     flex-direction: column;
-    border: 2px solid green;
-    justify-content: center;
     align-items: center;
+    padding: 0.5%;
+
+    .issues-title {
+        font-size: 15px;
+        font-weight: 600;
+        padding: 1%;
+
+        &.active {
+            display: none;
+        }
+    }
 
 
     .issues-container {
         display: grid;
         grid-template-columns: 50% 50%;
+
+        &.active {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-start;
+        }  
     }
 }
-
-

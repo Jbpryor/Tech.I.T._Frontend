@@ -1,11 +1,8 @@
 .dashboard {
-    border: 2px solid red;
-    // height: 100%;
 
     .dashboard-container {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         width: 100%;
-        border: 2px solid yellow;
     }
 }

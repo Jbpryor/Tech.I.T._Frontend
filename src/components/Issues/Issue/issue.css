@@ -1,0 +1,66 @@
+.issue {
+  display: flex;
+}
+
+.issue-container {
+  margin: 3%;
+  padding: 2% 1%;
+  border: 1px solid #ccc;
+  background-color: rgb(255, 255, 255);
+  width: 300px;
+  text-align: center;
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 12px 0 rgba(0, 0, 0, 0.19);
+  transition: transform 0.3s ease-in-out;
+  cursor: pointer;
+}
+.issue-container:hover {
+  transform: scale(1.01);
+}
+.issue-container .issue-title {
+  font-size: 15px;
+  padding: 2%;
+  font-weight: 800;
+  text-transform: capitalize;
+  position: relative;
+}
+.issue-container .issue-title::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 10%;
+  width: 80%;
+  height: 2px;
+  background-color: rgba(231, 231, 231, 0.5);
+}
+.issue-container .issue-contents {
+  padding: 4%;
+}
+.issue-container .issue-contents .issue-name {
+  padding: 1%;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 50% 50%;
+  font-size: 14px;
+}
+.issue-container .issue-contents .issue-name .issue-left {
+  font-weight: 500;
+  text-align: left;
+  padding-left: 5%;
+  text-transform: capitalize;
+}
+.issue-container .issue-contents .issue-name .issue-right {
+  text-align: right;
+  padding-right: 5%;
+  text-transform: capitalize;
+}
+.issue-container Button {
+  cursor: pointer;
+  background-color: transparent;
+  width: 80%;
+  border: 1px solid rgba(86, 86, 2, 0.05);
+  background-color: rgba(86, 86, 2, 0.05);
+  transition: transform 3s ease-in-out;
+}
+.issue-container Button:hover {
+  color: rgb(86, 86, 2);
+}/*# sourceMappingURL=issue.css.map */

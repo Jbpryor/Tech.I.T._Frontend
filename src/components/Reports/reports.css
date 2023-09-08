@@ -1,23 +1,23 @@
-.issues {
+.reports {
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 0.5%;
 }
-.issues .issues-title {
+.reports .reports-title {
   font-size: 15px;
   font-weight: 600;
   padding: 1%;
 }
-.issues .issues-title.active {
+.reports .reports-title.active {
   display: none;
 }
-.issues .issues-container {
+.reports .reports-container {
   display: grid;
   grid-template-columns: 50% 50%;
 }
-.issues .issues-container.active {
+.reports .reports-container.active {
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
-}/*# sourceMappingURL=issues.css.map */
+}/*# sourceMappingURL=reports.css.map */

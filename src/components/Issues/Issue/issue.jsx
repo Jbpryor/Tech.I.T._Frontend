@@ -61,6 +61,18 @@ export const issues = [
     priority: "High",
     type: "Bug",
     updated: "2023-08-30",
+  },
+    {
+    title: 'issue-6',
+    developer: "John",
+    project: "Project A",
+    status: "In Progress",
+    created: "2023-08-29",
+    description: "Lorem ipsum...",
+    submitter: "Alice",
+    priority: "High",
+    type: "Bug",
+    updated: "2023-08-30",
   }
 ];
 
@@ -68,19 +80,21 @@ export const issues = [
 function Issue({ issue }) {
     return (
         <section className="issue">
-            <div className="issue-container">
+            <div className="issue-container">       
                 <div className="issue-title">{issue.title}</div>
-                <div className="issue-contents">                
-                    <div className="issue-developer">{issue.developer}</div>
-                    <div className="issue-project">{issue.project}</div>
-                    <div className="issue-status">{issue.status}</div>
-                    <div className="issue-created">{issue.created}</div>
-                    <div className="issue-description">{issue.description}</div>
-                    <div className="issue-submitter">{issue.submitter}</div>
-                    <div className="issue-priority">{issue.priority}</div>
-                    <div className="issue-type">{issue.type}</div>
-                    <div className="issue-updated">{issue.updated}</div>
+                <div className="issue-contents">
+                    {Object.entries(issue).map(([key, value]) => (
+                        key !== 'title' && (                  
+                            <div className="issue-name" key={key}>
+                                <div className="issue-left">{key}:</div>
+                                <div className="issue-right">{value}</div>
+                            </div>
+                        )
+                    ))}
                 </div>
+                <div className="issue-button">
+                  <button>Comment +</button>
+                </div>    
             </div>
         </section>
     )

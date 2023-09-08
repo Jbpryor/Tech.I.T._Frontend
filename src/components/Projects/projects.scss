@@ -1,0 +1,27 @@
+.projects {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0.5%;
+
+    .projects-title {
+        font-size: 15px;
+        font-weight: 600;
+        padding: 1%;        
+
+        &.active {
+            display: none;
+        }
+    }
+
+    .projects-container {
+        display: grid;
+        grid-template-columns: 50% 50%;
+
+        &.active {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-start;
+        }  
+    }
+}

@@ -8,6 +8,7 @@ import Dashboard from "../Dashboard/dashboard";
 import Issues from "../Issues/issues";
 import Projects from "../Projects/projects";
 import Reports from "../Reports/reports";
+import Users from "../Users/users";
 
 function Layout() {
     return (
@@ -19,8 +20,9 @@ function Layout() {
                 <Routes>
                     <Route index element={<Dashboard />} />
                     <Route path="/dashboard" element={<Dashboard />} />
-                    <Route path='/Issues' element={<Issues />} />
+                    <Route path='/users' element={<Users />}  />
                     <Route path='/Projects' element={<Projects />} />
+                    <Route path='/Issues' element={<Issues />} />
                     <Route path='/Reports' element={<Reports />} />
                 </Routes>
 

@@ -6,7 +6,7 @@
   margin: 0;
 }
 
-.container {
+.login-container {
   height: 100vh;
   width: 100%;
   display: flex;
@@ -17,18 +17,18 @@
        column-gap: 30px;
 }
 
-header {
+.login-title {
   font-size: 28px;
   font-weight: 600;
   color: #232836;
   text-align: center;
 }
 
-form {
+.login-form-container {
   margin-top: 30px;
 }
 
-.form {
+.login-form {
   position: absolute;
   border-radius: 6px;
   background: #fff;
@@ -37,15 +37,15 @@ form {
   max-width: 430px;
   pointer-events: auto;
 }
-.form .field {
+.login-form .field {
   position: relative;
   height: 50px;
   width: 100%;
   margin-top: 20px;
   border-radius: 6px;
 }
-.form .field input,
-.form .field button {
+.login-form .field input,
+.login-form .field button {
   height: 100%;
   width: 100%;
   border: none;
@@ -53,21 +53,21 @@ form {
   font-weight: 400;
   border-radius: 6px;
 }
-.form .field input {
+.login-form .field input {
   outline: none;
   padding: 0 15px;
   border: 1px solid #CACACA;
 }
-.form .field input:focus {
+.login-form .field input:focus {
   border-bottom-width: 2px;
 }
-.form .field button {
+.login-form .field button {
   background-color: #0171d3;
   color: #fff;
   transition: all 0.3s ease;
   cursor: pointer;
 }
-.form .field button:hover {
+.login-form .field button:hover {
   background-color: #016dcb;
   color: #fff;
 }
@@ -90,7 +90,7 @@ form {
   text-decoration: underline;
 }
 
-.form-content a:hover {
+.login-content a:hover {
   text-decoration: underline;
 }
 

@@ -1,6 +1,6 @@
 import React from "react";
 import './project.scss';
-import ProjectUsers from "../../Project Users/projectUsers";
+import User from '../../Users/User/user'
 
 
 function Project() {
@@ -18,10 +18,13 @@ function Project() {
                 <div className="project-name"></div>
             </div>
             <div className="project-users">
-                <ProjectUsers />
+                <User />
             </div>
         </section>
     );
 }
 
 export default Project;
+
+// need to add a status field that contains issues
+// resolved to unresolved

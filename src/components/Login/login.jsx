@@ -36,11 +36,12 @@ function Login() {
     }
 
     return (
-        <section className='login container'>
-            <div className="form login">
-                <div className="form-content">
-                    <header>Login</header>
-                    <form action="#">
+        // need to change the login container to login-container
+        <section className='login-container'>
+            <div className="login-form">
+                <div className="login-content">
+                    <div className='login-title'>Login</div>
+                    <form className='login-form-container' action="#">
                         <div className="field input-field">
                             <input type="email" placeholder="Email" className="email" value={email} onChange={(event) => setEmail(event.target.value)}></input>
                         </div>

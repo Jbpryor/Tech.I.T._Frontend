@@ -7,7 +7,7 @@ import DemoLogin from './components/Demo Login/demoLogin'
 import Layout from './components/Layout/layout'
 import Dashboard from './components/Dashboard/dashboard'
 import Details from "./components/Details/details";
-import ProjectUsers from "./components/Project Users/projectUsers";
+import ProjectUsers from "./components/Users/users";
 import RoleAssignment from "./components/Role Assignment/roleAssignment";
 import Issues from "./components/Issues/issues";
 

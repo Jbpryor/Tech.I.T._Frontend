@@ -7,114 +7,272 @@
     .users-container {
         display: grid;
         grid-template-columns: 50% 50%;
-        grid-template-rows: repeat(2, auto);
+        grid-template-rows: repeat(3, auto);
         grid-template-areas: 
         'add table'
-        'manage table';
+        'manage table'
+        'delete table';
         width: 100%;
         height: 100%;
         justify-content: center;
 
-        .add-users-container {
+        .manage-users-content {
                 align-items: center;
                 margin: 10% 25%;
- 
-            .add-users-content {
 
-                .add-users-title {
-                    padding: 3% 0;
-                    font-size: 20px;
-                    font-weight: 800;
-                }
+            .add-users-container {                
 
-                display: flex;
-                flex-direction: column;
-                padding: 5%;
-                border: 1px solid #ccc;
-                background-color: rgb(255, 255, 255);
-                box-shadow: inset 0 4px 4px 0 rgba(0, 0, 0, 0.2), inset 0 6px 12px 0 rgba(0, 0, 0, 0.19);
+                .add-users-button-container {
+                    display: flex;
+                    justify-content: center;
+                    width: 100%;
 
-                .first,
-                .last,
-                .email,
-                .user-drop-down,
-                .add-user {
-                    padding: 1%;
-                    margin: 2%;
-                    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 12px 0 rgba(0, 0, 0, 0.19);
-                    border: none;
-                }
-
-                .add-user {
-                    cursor: pointer;
-                    background-color: transparent;
-                    border: 1px solid rgb(86, 86, 2, 0.05);
-                    background-color: rgb(86, 86, 2, 0.05);
-                    transition: transform 3s ease-in-out;
-            
-                    &:hover {
-                        color: rgb(86, 86, 2);
-                    }
-                }
-            }
-
-            .manage-user {
-                display: flex;
-                flex-direction: column;
-                padding: 5%;
-                border: 1px solid #ccc;
-                background-color: rgb(255, 255, 255);
-                box-shadow: inset 0 4px 4px 0 rgba(0, 0, 0, 0.2), inset 0 6px 12px 0 rgba(0, 0, 0, 0.19);
-
-                .manage-user-title {
-                    padding: 3% 0;
-                    font-size: 20px;
-                    font-weight: 800;
-                }
-
-                .user-selection,
-                .change-roll-drop-down,
-                .user-role,
-                .user-submit {
-                    padding: 1%;
-                    margin: 2%;
-                    box-shadow:  0 4px 4px 0 rgba(0, 0, 0, 0.2),  0 6px 12px 0 rgba(0, 0, 0, 0.19);
-                    border: none;
-                }
-
-                .user-submit {
-                    cursor: pointer;
-                    background-color: transparent;
-                    border: 1px solid rgb(86, 86, 2, 0.05);
-                    background-color: rgb(86, 86, 2, 0.05);
-                    transition: transform 3s ease-in-out;
-            
-                    &:hover {
-                        color: rgb(86, 86, 2);
-                    }
-                }
-
-                .user-role {
-                    display: grid;
-                    grid-template-columns: repeat(2, 1fr);
-                    padding: 1%;
-                    font-size: 14px;
-                    align-items: center;
-                    &.hidden{
-                        display: none;
-                    }
-                    .user-current-role-left {
-                        padding: 1%;
-                        
-                    }
-
-                    .user-current-role-right {
+                    
+                    .add-users-button {
                         display: flex;
-                        justify-content: flex-end;
-                        padding: 1% 10%;
+                        justify-content: center;
+                        width: 60%;
+                        padding: 3%;
+                        margin-top: 5%;
+                        font-size: 15px;
+                        font-weight: 800;
+                        border-radius: 2%;
+                        border: 1px solid rgba(0, 0, 0, 0.143);
+                        box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 4px 6px 0 rgba(0, 0, 0, 0.19);
+                        background-color: rgb(255, 255, 255);;
+                        cursor: pointer;
+                        z-index: 1;
+
+                        &.active {
+                            display: none;
+                        }
+            
+                        &:hover {
+                            color: rgb(86, 86, 2);
+                            border: 2px solid rgb(86, 86, 2, 0.05);
+                        }
+                    }
+                }
+
+
+                .add-users-form {
+                    display: none;
+                    flex-direction: column;
+                    padding: 5%;
+                    border: 1px solid #ccc;
+                    background-color: rgb(255, 255, 255);
+                    box-shadow: inset 0 4px 4px 0 rgba(0, 0, 0, 0.2), inset 0 6px 12px 0 rgba(0, 0, 0, 0.19);
+                    display: none;
+
+                    &.active {
+                        display: flex;
+                    }
+    
+                    .add-users-title {
+                        padding: 3% 0;
+                        font-size: 20px;
+                        font-weight: 800;
+                    }
+    
+    
+                    .first,
+                    .last,
+                    .email,
+                    .user-drop-down,
+                    .add-user {
+                        padding: 1%;
+                        margin: 2%;
+                        box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 12px 0 rgba(0, 0, 0, 0.19);
+                        border: none;
+                    }
+    
+                    .add-user {
+                        cursor: pointer;
+                        background-color: rgb(255, 255, 255);;
+                        border: 1px solid rgb(86, 86, 2, 0.05);
+                        transition: transform 3s ease-in-out;
+                
+                        &:hover {
+                            color: rgb(86, 86, 2);
+                        }
                     }
                 }
             }
+
+            .change-users-container {
+
+                .change-users-button-container {
+                    display: flex;
+                    justify-content: center;
+                    width: 100%;
+                    
+                    .change-users-button {
+                        display: flex;
+                        justify-content: center;
+                        width: 60%;
+                        padding: 3%;
+                        margin-top: 5%;
+                        font-size: 15px;
+                        font-weight: 800;
+                        border-radius: 2%;
+                        border: 1px solid rgba(0, 0, 0, 0.143);
+                        box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 4px 6px 0 rgba(0, 0, 0, 0.19);
+                        background-color: rgb(255, 255, 255);;
+                        cursor: pointer;
+                        z-index: 1;
+
+                        &.active {
+                            display: none;
+                        }
+            
+                        &:hover {
+                            color: rgb(86, 86, 2);
+                            border: 2px solid rgb(86, 86, 2, 0.05);
+                        }
+                    }
+                }
+
+
+                .change-user-form {
+                    display: none;
+                    flex-direction: column;
+                    padding: 5%;
+                    border: 1px solid #ccc;
+                    background-color: rgb(255, 255, 255);
+                    box-shadow: inset 0 4px 4px 0 rgba(0, 0, 0, 0.2), inset 0 6px 12px 0 rgba(0, 0, 0, 0.19);
+                    
+                    &.active {
+                        display: flex;
+                    }
+
+                    .change-user-title {
+                        padding: 3% 0;
+                        font-size: 20px;
+                        font-weight: 800;
+                    }
+    
+                    .user-selection,
+                    .change-roll-drop-down,
+                    .user-role,
+                    .user-submit {
+                        padding: 1%;
+                        margin: 2%;
+                        box-shadow:  0 4px 4px 0 rgba(0, 0, 0, 0.2),  0 6px 12px 0 rgba(0, 0, 0, 0.19);
+                        border: none;
+                    }
+    
+                    .user-submit {
+                        cursor: pointer;
+                        background-color: rgb(255, 255, 255);;
+                        border: 1px solid rgb(86, 86, 2, 0.05);
+                        transition: transform 3s ease-in-out;
+                
+                        &:hover {
+                            color: rgb(86, 86, 2);
+                        }
+                    }
+    
+                    .user-role {
+                        display: grid;
+                        grid-template-columns: repeat(2, 1fr);
+                        padding: 1%;
+                        font-size: 14px;
+                        align-items: center;
+                        &.hidden{
+                            display: none;
+                        }
+                        .user-current-role-left {
+                            padding: 1%;
+                            
+                        }
+    
+                        .user-current-role-right {
+                            display: flex;
+                            justify-content: flex-end;
+                            padding: 1% 10%;
+                        }
+                    }
+                }
+
+            }
+
+            .remove-users-container {
+
+                .remove-users-button-container {
+                    display: flex;
+                    justify-content: center;
+                    width: 100%;
+
+                    .remove-users-button {
+                        display: flex;
+                        justify-content: center;
+                        width: 60%;
+                        padding: 3%;
+                        margin-top: 5%;
+                        font-size: 15px;
+                        font-weight: 800;
+                        border-radius: 2%;
+                        border: 1px solid rgba(0, 0, 0, 0.143);
+                        box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 4px 6px 0 rgba(0, 0, 0, 0.19);
+                        background-color: rgb(255, 255, 255);;
+                        cursor: pointer;
+                        z-index: 1;
+
+                        &.active {
+                            display: none;
+                        }
+            
+                        &:hover {
+                            color: rgb(86, 86, 2);
+                            border: 2px solid rgb(86, 86, 2, 0.05);
+                        }
+
+                    }
+                }
+
+                .remove-user-form {
+                    flex-direction: column;
+                    padding: 5%;
+                    border: 1px solid #ccc;
+                    background-color: rgb(255, 255, 255);
+                    box-shadow: inset 0 4px 4px 0 rgba(0, 0, 0, 0.2), inset 0 6px 12px 0 rgba(0, 0, 0, 0.19);
+                    display: none;
+
+                    &.active {
+                        display: flex;
+                    }
+    
+                    .remove-user-title {
+                        padding: 3% 0;
+                        font-size: 20px;
+                        font-weight: 800;
+                    }
+    
+                    .remove-user-selection,
+                    .remove-user-button {
+                        padding: 1%;
+                        margin: 2%;
+                        box-shadow:  0 4px 4px 0 rgba(0, 0, 0, 0.2),  0 6px 12px 0 rgba(0, 0, 0, 0.19);
+                        border: none;    
+                    }
+    
+                    .remove-user-button {
+                        cursor: pointer;
+                        background-color: rgb(255, 255, 255);;
+                        border: 1px solid rgb(86, 86, 2, 0.05);
+                        transition: transform 3s ease-in-out;
+                
+                        &:hover {
+                            color: rgb(86, 86, 2);
+                        }
+                    }
+    
+                }
+            }
+
+
+
+
         }
 
         .all-users-table-container {

@@ -45,9 +45,7 @@
 }
 .issue .issue-container .issue-contents .issue-buttons-container {
   display: flex;
-  flex-direction: row;
-  margin: 4%;
-  gap: 2%;
+  margin-top: 4%;
   align-items: center;
   justify-content: center;
 }

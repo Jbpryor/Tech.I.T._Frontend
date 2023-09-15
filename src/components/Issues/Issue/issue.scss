@@ -52,38 +52,61 @@
                     }
                 }
             }
-       }
 
-       .issue-buttons-container {
+            .issue-buttons-container {
+                display: flex;
+                flex-direction: row;
+                margin: 4%;
+                gap: 2%;
+                align-items: center;
+                justify-content: center;
+    
+                button {
+                    margin: 0 5%;
+                    width: 150px;
+                    border-radius: 5%;
+                    border: 2px solid rgba(0, 0, 0, 0.143);
+                    box-shadow: 0 6px 8px 0 rgba(0, 0, 0, 0.2), 0 8px 12px 0 rgba(0, 0, 0, 0.19);
+                    font-size: 100%;
+                    background-color: white;
+                    cursor: pointer;
+                    z-index: 1;
+    
+    
+                    &:hover {
+                        color: rgb(86, 86, 2);
+                        border: 2px solid rgb(86, 86, 2, 0.05);
+                    }
+                }
+            }
 
-        display: flex;
-        flex-direction: row;
-        margin: 4%;
-        gap: 2%;
-        align-items: center;
-        justify-content: center;
- 
-        &.active {
-            grid-template-columns: repeat(3, 1fr);
         }
 
-        button {
-            margin: 0 5%;
-            width: 150px;
-            border-radius: 5%;
-            border: 2px solid rgba(0, 0, 0, 0.143);
-            box-shadow: 0 6px 8px 0 rgba(0, 0, 0, 0.2), 0 8px 12px 0 rgba(0, 0, 0, 0.19);
-            font-size: 100%;
-            background-color: white;
-            cursor: pointer;
-            z-index: 1;
+        .new-issue-link-container {
+            display: flex;
+            justify-content: center;
 
-            &:hover {
-                color: rgb(86, 86, 2);
-                border: 2px solid rgb(86, 86, 2, 0.05);
+            .new-issue-link {
+                margin: 0 5%;
+                width: 150px;
+                border-radius: 5%;
+                border: 2px solid rgba(0, 0, 0, 0.143);
+                box-shadow: 0 6px 8px 0 rgba(0, 0, 0, 0.2), 0 8px 12px 0 rgba(0, 0, 0, 0.19);
+                font-size: 100%;
+                background-color: white;
+                cursor: pointer;
+                z-index: 1;
+                text-decoration: none;
+                color: inherit;
+                text-align: center;
+
+
+                &:hover {
+                    color: rgb(86, 86, 2);
+                    border: 2px solid rgb(86, 86, 2, 0.05);
+                }                
             }
         }
-       }
 
 
     }

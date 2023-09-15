@@ -10,6 +10,7 @@ import Projects from "../Projects/projects";
 import Reports from "../Reports/reports";
 import Users from "../Users/users";
 import Issue from '../Issues/Issue/issue'
+import NewIssue from "../Issues/New Issue/newIssue";
 
 function Layout() {
     return (
@@ -25,6 +26,7 @@ function Layout() {
                     <Route path='/Projects' element={<Projects />} />
                     <Route path='/Issues' element={<Issues />} />
                     <Route path='/issues/:issueId' element={<Issue />} />
+                    <Route path='/issues/newIssue' element={<NewIssue />} />
                     <Route path='/Reports' element={<Reports />} />
                 </Routes>
 

@@ -43,7 +43,7 @@
   color: rgb(86, 86, 2);
   border: 2px solid rgba(86, 86, 2, 0.05);
 }
-.issue .issue-container .issue-buttons-container {
+.issue .issue-container .issue-contents .issue-buttons-container {
   display: flex;
   flex-direction: row;
   margin: 4%;
@@ -51,10 +51,7 @@
   align-items: center;
   justify-content: center;
 }
-.issue .issue-container .issue-buttons-container.active {
-  grid-template-columns: repeat(3, 1fr);
-}
-.issue .issue-container .issue-buttons-container button {
+.issue .issue-container .issue-contents .issue-buttons-container button {
   margin: 0 5%;
   width: 150px;
   border-radius: 5%;
@@ -65,7 +62,29 @@
   cursor: pointer;
   z-index: 1;
 }
-.issue .issue-container .issue-buttons-container button:hover {
+.issue .issue-container .issue-contents .issue-buttons-container button:hover {
+  color: rgb(86, 86, 2);
+  border: 2px solid rgba(86, 86, 2, 0.05);
+}
+.issue .issue-container .new-issue-link-container {
+  display: flex;
+  justify-content: center;
+}
+.issue .issue-container .new-issue-link-container .new-issue-link {
+  margin: 0 5%;
+  width: 150px;
+  border-radius: 5%;
+  border: 2px solid rgba(0, 0, 0, 0.143);
+  box-shadow: 0 6px 8px 0 rgba(0, 0, 0, 0.2), 0 8px 12px 0 rgba(0, 0, 0, 0.19);
+  font-size: 100%;
+  background-color: white;
+  cursor: pointer;
+  z-index: 1;
+  text-decoration: none;
+  color: inherit;
+  text-align: center;
+}
+.issue .issue-container .new-issue-link-container .new-issue-link:hover {
   color: rgb(86, 86, 2);
   border: 2px solid rgba(86, 86, 2, 0.05);
 }

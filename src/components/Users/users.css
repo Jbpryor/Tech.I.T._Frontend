@@ -7,98 +7,216 @@
 .users .users-container {
   display: grid;
   grid-template-columns: 50% 50%;
-  grid-template-rows: repeat(2, auto);
-  grid-template-areas: "add table" "manage table";
+  grid-template-rows: repeat(3, auto);
+  grid-template-areas: "add table" "manage table" "delete table";
   width: 100%;
   height: 100%;
   justify-content: center;
 }
-.users .users-container .add-users-container {
+.users .users-container .manage-users-content {
   align-items: center;
   margin: 10% 25%;
 }
-.users .users-container .add-users-container .add-users-content {
+.users .users-container .manage-users-content .add-users-container .add-users-button-container {
   display: flex;
+  justify-content: center;
+  width: 100%;
+}
+.users .users-container .manage-users-content .add-users-container .add-users-button-container .add-users-button {
+  display: flex;
+  justify-content: center;
+  width: 60%;
+  padding: 3%;
+  margin-top: 5%;
+  font-size: 15px;
+  font-weight: 800;
+  border-radius: 2%;
+  border: 1px solid rgba(0, 0, 0, 0.143);
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 4px 6px 0 rgba(0, 0, 0, 0.19);
+  background-color: rgb(255, 255, 255);
+  cursor: pointer;
+  z-index: 1;
+}
+.users .users-container .manage-users-content .add-users-container .add-users-button-container .add-users-button.active {
+  display: none;
+}
+.users .users-container .manage-users-content .add-users-container .add-users-button-container .add-users-button:hover {
+  color: rgb(86, 86, 2);
+  border: 2px solid rgba(86, 86, 2, 0.05);
+}
+.users .users-container .manage-users-content .add-users-container .add-users-form {
+  display: none;
+  flex-direction: column;
+  padding: 5%;
+  border: 1px solid #ccc;
+  background-color: rgb(255, 255, 255);
+  box-shadow: inset 0 4px 4px 0 rgba(0, 0, 0, 0.2), inset 0 6px 12px 0 rgba(0, 0, 0, 0.19);
+  display: none;
+}
+.users .users-container .manage-users-content .add-users-container .add-users-form.active {
+  display: flex;
+}
+.users .users-container .manage-users-content .add-users-container .add-users-form .add-users-title {
+  padding: 3% 0;
+  font-size: 20px;
+  font-weight: 800;
+}
+.users .users-container .manage-users-content .add-users-container .add-users-form .first,
+.users .users-container .manage-users-content .add-users-container .add-users-form .last,
+.users .users-container .manage-users-content .add-users-container .add-users-form .email,
+.users .users-container .manage-users-content .add-users-container .add-users-form .user-drop-down,
+.users .users-container .manage-users-content .add-users-container .add-users-form .add-user {
+  padding: 1%;
+  margin: 2%;
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 12px 0 rgba(0, 0, 0, 0.19);
+  border: none;
+}
+.users .users-container .manage-users-content .add-users-container .add-users-form .add-user {
+  cursor: pointer;
+  background-color: rgb(255, 255, 255);
+  border: 1px solid rgba(86, 86, 2, 0.05);
+  transition: transform 3s ease-in-out;
+}
+.users .users-container .manage-users-content .add-users-container .add-users-form .add-user:hover {
+  color: rgb(86, 86, 2);
+}
+.users .users-container .manage-users-content .change-users-container .change-users-button-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+.users .users-container .manage-users-content .change-users-container .change-users-button-container .change-users-button {
+  display: flex;
+  justify-content: center;
+  width: 60%;
+  padding: 3%;
+  margin-top: 5%;
+  font-size: 15px;
+  font-weight: 800;
+  border-radius: 2%;
+  border: 1px solid rgba(0, 0, 0, 0.143);
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 4px 6px 0 rgba(0, 0, 0, 0.19);
+  background-color: rgb(255, 255, 255);
+  cursor: pointer;
+  z-index: 1;
+}
+.users .users-container .manage-users-content .change-users-container .change-users-button-container .change-users-button.active {
+  display: none;
+}
+.users .users-container .manage-users-content .change-users-container .change-users-button-container .change-users-button:hover {
+  color: rgb(86, 86, 2);
+  border: 2px solid rgba(86, 86, 2, 0.05);
+}
+.users .users-container .manage-users-content .change-users-container .change-user-form {
+  display: none;
   flex-direction: column;
   padding: 5%;
   border: 1px solid #ccc;
   background-color: rgb(255, 255, 255);
   box-shadow: inset 0 4px 4px 0 rgba(0, 0, 0, 0.2), inset 0 6px 12px 0 rgba(0, 0, 0, 0.19);
 }
-.users .users-container .add-users-container .add-users-content .add-users-title {
-  padding: 3% 0;
-  font-size: 20px;
-  font-weight: 800;
-}
-.users .users-container .add-users-container .add-users-content .first,
-.users .users-container .add-users-container .add-users-content .last,
-.users .users-container .add-users-container .add-users-content .email,
-.users .users-container .add-users-container .add-users-content .user-drop-down,
-.users .users-container .add-users-container .add-users-content .add-user {
-  padding: 1%;
-  margin: 2%;
-  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 12px 0 rgba(0, 0, 0, 0.19);
-  border: none;
-}
-.users .users-container .add-users-container .add-users-content .add-user {
-  cursor: pointer;
-  background-color: transparent;
-  border: 1px solid rgba(86, 86, 2, 0.05);
-  background-color: rgba(86, 86, 2, 0.05);
-  transition: transform 3s ease-in-out;
-}
-.users .users-container .add-users-container .add-users-content .add-user:hover {
-  color: rgb(86, 86, 2);
-}
-.users .users-container .add-users-container .manage-user {
+.users .users-container .manage-users-content .change-users-container .change-user-form.active {
   display: flex;
-  flex-direction: column;
-  padding: 5%;
-  border: 1px solid #ccc;
-  background-color: rgb(255, 255, 255);
-  box-shadow: inset 0 4px 4px 0 rgba(0, 0, 0, 0.2), inset 0 6px 12px 0 rgba(0, 0, 0, 0.19);
 }
-.users .users-container .add-users-container .manage-user .manage-user-title {
+.users .users-container .manage-users-content .change-users-container .change-user-form .change-user-title {
   padding: 3% 0;
   font-size: 20px;
   font-weight: 800;
 }
-.users .users-container .add-users-container .manage-user .user-selection,
-.users .users-container .add-users-container .manage-user .change-roll-drop-down,
-.users .users-container .add-users-container .manage-user .user-role,
-.users .users-container .add-users-container .manage-user .user-submit {
+.users .users-container .manage-users-content .change-users-container .change-user-form .user-selection,
+.users .users-container .manage-users-content .change-users-container .change-user-form .change-roll-drop-down,
+.users .users-container .manage-users-content .change-users-container .change-user-form .user-role,
+.users .users-container .manage-users-content .change-users-container .change-user-form .user-submit {
   padding: 1%;
   margin: 2%;
   box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 12px 0 rgba(0, 0, 0, 0.19);
   border: none;
 }
-.users .users-container .add-users-container .manage-user .user-submit {
+.users .users-container .manage-users-content .change-users-container .change-user-form .user-submit {
   cursor: pointer;
-  background-color: transparent;
+  background-color: rgb(255, 255, 255);
   border: 1px solid rgba(86, 86, 2, 0.05);
-  background-color: rgba(86, 86, 2, 0.05);
   transition: transform 3s ease-in-out;
 }
-.users .users-container .add-users-container .manage-user .user-submit:hover {
+.users .users-container .manage-users-content .change-users-container .change-user-form .user-submit:hover {
   color: rgb(86, 86, 2);
 }
-.users .users-container .add-users-container .manage-user .user-role {
+.users .users-container .manage-users-content .change-users-container .change-user-form .user-role {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   padding: 1%;
   font-size: 14px;
   align-items: center;
 }
-.users .users-container .add-users-container .manage-user .user-role.hidden {
+.users .users-container .manage-users-content .change-users-container .change-user-form .user-role.hidden {
   display: none;
 }
-.users .users-container .add-users-container .manage-user .user-role .user-current-role-left {
+.users .users-container .manage-users-content .change-users-container .change-user-form .user-role .user-current-role-left {
   padding: 1%;
 }
-.users .users-container .add-users-container .manage-user .user-role .user-current-role-right {
+.users .users-container .manage-users-content .change-users-container .change-user-form .user-role .user-current-role-right {
   display: flex;
   justify-content: flex-end;
   padding: 1% 10%;
+}
+.users .users-container .manage-users-content .remove-users-container .remove-users-button-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+.users .users-container .manage-users-content .remove-users-container .remove-users-button-container .remove-users-button {
+  display: flex;
+  justify-content: center;
+  width: 60%;
+  padding: 3%;
+  margin-top: 5%;
+  font-size: 15px;
+  font-weight: 800;
+  border-radius: 2%;
+  border: 1px solid rgba(0, 0, 0, 0.143);
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 4px 6px 0 rgba(0, 0, 0, 0.19);
+  background-color: rgb(255, 255, 255);
+  cursor: pointer;
+  z-index: 1;
+}
+.users .users-container .manage-users-content .remove-users-container .remove-users-button-container .remove-users-button.active {
+  display: none;
+}
+.users .users-container .manage-users-content .remove-users-container .remove-users-button-container .remove-users-button:hover {
+  color: rgb(86, 86, 2);
+  border: 2px solid rgba(86, 86, 2, 0.05);
+}
+.users .users-container .manage-users-content .remove-users-container .remove-user-form {
+  flex-direction: column;
+  padding: 5%;
+  border: 1px solid #ccc;
+  background-color: rgb(255, 255, 255);
+  box-shadow: inset 0 4px 4px 0 rgba(0, 0, 0, 0.2), inset 0 6px 12px 0 rgba(0, 0, 0, 0.19);
+  display: none;
+}
+.users .users-container .manage-users-content .remove-users-container .remove-user-form.active {
+  display: flex;
+}
+.users .users-container .manage-users-content .remove-users-container .remove-user-form .remove-user-title {
+  padding: 3% 0;
+  font-size: 20px;
+  font-weight: 800;
+}
+.users .users-container .manage-users-content .remove-users-container .remove-user-form .remove-user-selection,
+.users .users-container .manage-users-content .remove-users-container .remove-user-form .remove-user-button {
+  padding: 1%;
+  margin: 2%;
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 12px 0 rgba(0, 0, 0, 0.19);
+  border: none;
+}
+.users .users-container .manage-users-content .remove-users-container .remove-user-form .remove-user-button {
+  cursor: pointer;
+  background-color: rgb(255, 255, 255);
+  border: 1px solid rgba(86, 86, 2, 0.05);
+  transition: transform 3s ease-in-out;
+}
+.users .users-container .manage-users-content .remove-users-container .remove-user-form .remove-user-button:hover {
+  color: rgb(86, 86, 2);
 }
 .users .users-container .all-users-table-container {
   height: 80%;

@@ -27,6 +27,8 @@ header {
 
 .user-content {
     position: absolute;
+    display: flex;
+    flex-direction: column;
     border-radius: 6px;
     background-color: rgb(255, 255, 255);
     padding: 20px;
@@ -36,21 +38,23 @@ header {
 
     .users {
         display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        margin: 20px;
+        grid-template-columns: 50% 50%;
+        margin: 20px 0;
         padding-top: 20px;
         border-top: 1px solid rgb(202, 202, 202);
 
+
         .user {
             a {
-                display: grid;
-                grid-template-columns: repeat(1, 1fr);
+                display: flex;
+                flex-direction: column;
                 gap: 2px;
                 position: relative;
                 align-items: center;
                 justify-content: center;
                 text-decoration: none;
                 padding: 20px;
+
 
                 span {
                     font-weight: 500;

@@ -1,0 +1,49 @@
+.new-issue {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.new-issue .new-issue-container {
+  display: flex;
+  flex-direction: column;
+  padding: 3%;
+  margin: 4%;
+  width: 60%;
+  border: 2px solid rgba(0, 0, 0, 0.143);
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 12px 0 rgba(0, 0, 0, 0.19);
+}
+.new-issue .new-issue-container .new-issue-title {
+  font-size: 20px;
+  font-weight: 800;
+}
+.new-issue .new-issue-container .new-issue-form {
+  margin: 4%;
+}
+.new-issue .new-issue-container .new-issue-form .new-issue-details {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  padding: 1%;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.129);
+}
+.new-issue .new-issue-container .new-issue-form .new-issue-details .new-issue-detail {
+  padding-left: 2%;
+}
+.new-issue .new-issue-container .new-issue-form .new-issue-details .new-issue-input {
+  padding-left: 2%;
+  border: none;
+}
+.new-issue .new-issue-container .new-issue-button button {
+  margin: 0 5%;
+  width: 150px;
+  border-radius: 5%;
+  border: 2px solid rgba(0, 0, 0, 0.143);
+  box-shadow: 0 6px 8px 0 rgba(0, 0, 0, 0.2), 0 8px 12px 0 rgba(0, 0, 0, 0.19);
+  font-size: 100%;
+  background-color: white;
+  cursor: pointer;
+  z-index: 1;
+}
+.new-issue .new-issue-container .new-issue-button button:hover {
+  color: rgb(86, 86, 2);
+  border: 2px solid rgba(86, 86, 2, 0.05);
+}/*# sourceMappingURL=newIssue.css.map */

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import './issue.scss';
-import { useParams } from "react-router-dom/dist";
+import { useParams, Link } from "react-router-dom/dist";
 
 export const issues = [
     {
@@ -89,19 +89,10 @@ function Issue() {
     const { issueId } = useParams();
     const [ isEditMode, setEditMode ] = useState({});
     const [ showSaveButton, setShowSaveButton ] = useState(false);
-    const [ showCancelButton, setShowCancelButton ] = useState(false);
     const [ editedDetail, setEditedDetail ] = useState({});
     // const issues = useSelector((state) => state.issues.issue);
 
     const issue = issues.find((issue) => issue.id === issueId)
-
-    if (!issue) {
-      return (
-        <div>
-          <h2>Issue not found</h2>
-        </div>
-      );
-    }
 
     const handleEdit = (detail) => {
       setEditMode({ ...isEditMode, [detail]: true })
@@ -128,6 +119,10 @@ function Issue() {
       setShowSaveButton(false);
       // updatedIssue.updated = new Date().toISOString();
     };
+
+    const handleDeleteIssue = () => {
+
+    }
 
     return (      
       <section className="issue">
@@ -158,7 +153,6 @@ function Issue() {
                   ) : isEditMode[detail] ? 
                   (
                     <input className='issue-detail' type='text' value={editedDetail[detail] || issue[detail]} onChange={(event) => handleDetailChange(event, detail)} />
-
                   ) :
                   (
                     <div className="issue-detail">{editedDetail[detail] || issue[detail]}</div>
@@ -172,12 +166,14 @@ function Issue() {
                 ))
               )
             }
-          </div>
-          <div className={`issue-buttons-container ${showSaveButton ? 'active' : ''}`}>
-              {showSaveButton && <button className="save" onClick={saveEditedIssue}>Save</button> }
-              <button>New +</button> 
-              <button>Delete</button>
-          </div>
+            <div className='issue-buttons-container'>
+              {!showSaveButton && <button onClick={handleDeleteIssue}>Delete</button>}
+              {showSaveButton && <button className="save" onClick={saveEditedIssue}>Save</button>}
+            </div>
+          </div>         
+          <div className="new-issue-link-container">
+            <Link to='/issues/newIssue' className="new-issue-link">New Issue +</Link>
+          </div> 
         </div>
         <div className="issue-comments-container">
           <div className="issue-comments-title">Comments</div>

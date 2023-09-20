@@ -15,7 +15,8 @@
 .issues .issues-container {
   display: grid;
   grid-template-columns: 50% 50%;
-  gap: 0.75%;
+  gap: 1.75%;
+  margin: 1%;
 }
 .issues .issues-container.active {
   display: flex;
@@ -27,7 +28,6 @@
   color: inherit;
 }
 .issues .issues-container .issue-link .issue-container {
-  margin: 3%;
   padding: 2% 1%;
   border: 1px solid #ccc;
   background-color: rgb(255, 255, 255);
@@ -76,15 +76,4 @@
   text-align: right;
   padding-right: 5%;
   text-transform: capitalize;
-}
-.issues .issues-container .issue-link .issue-container Button {
-  cursor: pointer;
-  background-color: transparent;
-  width: 80%;
-  border: 1px solid rgba(86, 86, 2, 0.05);
-  background-color: rgba(86, 86, 2, 0.05);
-  transition: transform 3s ease-in-out;
-}
-.issues .issues-container .issue-link .issue-container Button:hover {
-  color: rgb(86, 86, 2);
 }/*# sourceMappingURL=issues.css.map */

@@ -2,12 +2,15 @@ import React from 'react';
 import { useLocation } from 'react-router-dom';
 import './issues.scss'
 // import Issue from './Issue/issue';
-import { issues } from './Issue/issue'
+// import { issues } from './Issue/issue'
 import { Link } from 'react-router-dom/dist';
+import { useSelector, useDispatch } from 'react-redux';
 
 function Issues() {
     const location = useLocation();
     const isIssuesActive = location.pathname === '/Issues';
+    const issues = useSelector((state) => state.issue.issues);
+
 
 
     return (
@@ -28,9 +31,6 @@ function Issues() {
                                 )
                             ))}
                         </div>
-                        <div className="issue-button">
-                        <button>Comment +</button>
-                        </div>    
                     </div>
                 </Link>
             ))}

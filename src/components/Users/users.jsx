@@ -1,14 +1,19 @@
 import React from "react";
-import DataTable from "react-data-table-component";
+// import DataTable from "react-data-table-component";
 import { useState, useEffect } from "react";
 import './users.scss';
 import 'boxicons/css/boxicons.min.css';
+import UsersTable from "./Users Table/usersTable";
+import TablePagination from "./Table Pagination/tablePagination";
+import { useDispatch, useSelector } from "react-redux";
+import { addUser, changeUserRole, removeUser } from '../../Store/userSlice'
 
 
 function Users() {
 
-    const LOCAL_STORAGE_KEY = 'users';
+    const dispatch = useDispatch();
 
+    // const LOCAL_STORAGE_KEY = 'users';
 
     // const [data, setData] = useState([]);
     // const [loading, setLoading] = useState(false);
@@ -16,30 +21,32 @@ function Users() {
 
     const userFullName = (user) => `${user.name.first} ${user.name.last}`;
 
-    const columns = [
-        {
-            name: 'User Name',
-            selector: (row) => row.name.first + ' ' + row.name.last,
-            sortable: true,
-        },
-        {
-            name: 'Email',
-            selector: (row) => row.email,
-            sortable: true,
-        },
-        {
-            name: 'Role',
-            selector: (row) => row.role,
-            sortable: true
-        }
-    ];
+    // const columns = [
+    //     {
+    //         name: 'User Name',
+    //         selector: (row) => row.name.first + ' ' + row.name.last,
+    //         sortable: true,
+    //     },
+    //     {
+    //         name: 'Email',
+    //         selector: (row) => row.email,
+    //         sortable: true,
+    //     },
+    //     {
+    //         name: 'Role',
+    //         selector: (row) => row.role,
+    //         sortable: true
+    //     }
+    // ];
 
     const roles = [ 'Admin', 'Project Manager', 'Developer', 'Submitter' ];
 
-    const [ users, setUsers ] = useState(() => {
-        const storedUsersData = localStorage.getItem(LOCAL_STORAGE_KEY);
-        return storedUsersData ? JSON.parse(storedUsersData) : [];
-    });
+    // const [ users, setUsers ] = useState(() => {
+    //     const storedUsersData = localStorage.getItem(LOCAL_STORAGE_KEY);
+    //     return storedUsersData ? JSON.parse(storedUsersData) : [];
+    // });
+
+    const users = useSelector((state) => state.user.users);
 
     const [ selectedUser, setSelectedUser ] = useState(null);
     const [ addUserInput, setAddUserInput ] = useState({
@@ -77,9 +84,11 @@ function Users() {
             role: addUserInput.selectedRole,
         };
 
-        const updatedUsers = [...users, newUser];
-        localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(updatedUsers));
-        setUsers(updatedUsers);
+        // const updatedUsers = [...users, newUser];
+        // localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(updatedUsers));
+        // setUsers(updatedUsers);
+
+        dispatch(addUser(newUser));
 
         setAddUserInput({
             firstName: '',
@@ -105,6 +114,7 @@ function Users() {
 
         const selectedUserName = event.target.value;
         const user = users.find((user) => userFullName(user) === selectedUserName);
+        dispatch(changeUserRole({ selectedUser, selectedRole }));
         setSelectedUser(user);
         setChangeUserInput({
             selectedUser: '',
@@ -146,20 +156,107 @@ function Users() {
     const handleRemoveUser = (event) => {
         event.preventDefault();
     
-        const updatedUsers = users.filter((user) => userFullName(user) !== userFullName(selectedUser));
+        // const updatedUsers = users.filter((user) => userFullName(user) !== userFullName(selectedUser));
     
-        localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(updatedUsers));
-        setUsers(updatedUsers);
+        // localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(updatedUsers));
+        // setUsers(updatedUsers);
+
+        dispatch(removeUser({ selectedUser: userFullName(selectedUser) }));
+
         setSelectedUser(null);
     
         setRemoveUserInput({
             selectedUser: '',
         });
+
+        setIsRemoveFormActive(false)
     };
 
+    const onDelete = (index) => {
+        // const newData = users.slice(0, users.length)
+        // newData.splice(index, 1)
+        // setUsers(newData)
+
+        const selectedUser = users[index];
+        dispatch(removeUser({ selectedUser: userFullName(selectedUser) }));
+    }
+
+    const [ userRotate, setUserRotate ] = useState(false);
+    const [ emailRotate, setEmailRotate ] = useState(false);
+    const [ roleRotate, setRoleRotate ] = useState(false);
+//   const [ isColumnActive, setIsColumnActive ] = useState(false);
+
+    const handleRotate = (column) => {
+    if (column === 'user') {
+        setUserRotate(!userRotate);
+    }
+    if (column === 'email') {
+        setEmailRotate(!emailRotate);
+    }
+    if (column === 'role') {
+        setRoleRotate(!roleRotate);
+    }
+    }
+
+    const [ userColumnActive, setUserColumnActive ] = useState(false);
+    const [ emailColumnActive, setEmailColumnActive ] = useState(false);
+    const [ roleColumnActive, setRoleColumnActive ] = useState(false);
 
 
+    const handleActiveColumn = (column) => {
+    if (column === 'user') {
+        setUserColumnActive(true);
+        setEmailColumnActive(false);
+        setRoleColumnActive(false);
+    }
+    if (column === 'email') {
+        setUserColumnActive(false);
+        setEmailColumnActive(true);
+        setRoleColumnActive(false);        
+    }
+    if (column === 'role') {
+        setUserColumnActive(false);
+        setEmailColumnActive(false);
+        setRoleColumnActive(true);        
+    }
+    }
+
+    const [ascending, setAscending] = useState(true);
+
+    const handleSort = (key) => {
+    const sortedUsers = [...users].sort((a, b) => {
+        if (key === 'user') {
+        const fullNameA = `${a.name.first} ${a.name.last}`.toLowerCase();
+        const fullNameB = `${b.name.first} ${b.name.last}`.toLowerCase();
     
+        if (fullNameA < fullNameB) return ascending ? -1 : 1;
+        if (fullNameA > fullNameB) return ascending ? 1 : -1;
+        return 0;
+        } else {
+        const valueA = a[key].toLowerCase();
+        const valueB = b[key].toLowerCase();
+    
+        if (valueA < valueB) return ascending ? -1 : 1;
+        if (valueA > valueB) return ascending ? 1 : -1;
+        return 0;
+        }
+    });
+    
+    setUsers(sortedUsers);
+    setAscending(!ascending);
+    };
+
+    const usersPerPage = 10;
+    const [currentPage, setCurrentPage] = useState(0); 
+
+    const handlePageChange = (newPage) => {
+        setCurrentPage(newPage);
+    };
+
+    const startIndex = currentPage * usersPerPage;
+    const endIndex = startIndex + usersPerPage;
+    const usersToDisplay = users.slice(startIndex, endIndex);
+
 
     // useEffect(() => {
     //     fetchTableData()
@@ -316,13 +413,12 @@ function Users() {
                                     </>
                                 )}
                             </select>
-
                             <button className="remove-user-button">Remove</button>
                         </form>
                     </div>
 
                 </div>
-                <div className="all-users-table-container">
+                {/* <div className="all-users-table-container">
                     <DataTable 
                         title='Users'
                         columns={columns}
@@ -330,7 +426,33 @@ function Users() {
                         dense
                         pagination
                     />
+                </div> */}
+
+
+
+                <div className="all-users-table-container">
+                    <div className="users-table-title">Users</div>
+                    <div className="users-table-content">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th className={`user-column ${userColumnActive ? 'active' : ''}`} onClick={() => { handleRotate('user'); handleActiveColumn('user'); handleSort('user') }}>User Name <i className={`bx bx-down-arrow ${userRotate ? 'rotate' : ''} ${userColumnActive ? 'active' : ''}`} onClick={() => { handleRotate('user'); handleActiveColumn('user'); handleSort('user') }}></i></th>
+                                    <th className={`email-column ${emailColumnActive ? 'active' : ''}`} onClick={() => { handleRotate('email'); handleActiveColumn('email'); handleSort('email') }}>Email <i className={`bx bx-down-arrow ${emailRotate ? 'rotate' : ''} ${emailColumnActive ? 'active' : ''}`} onClick={() => { handleRotate('email'); handleActiveColumn('email'); handleSort('email') }}></i></th>
+                                    <th className={`role-column ${roleColumnActive ? 'active' : ''}`} onClick={() => { handleRotate('role'); handleActiveColumn('role'); handleSort('role') }}>Role <i className={`bx bx-down-arrow ${roleRotate ? 'rotate' : ''} ${roleColumnActive ? 'active' : ''}`} onClick={() => { handleRotate('role'); handleActiveColumn('role'); handleSort('role') }}></i></th>
+                                </tr>
+                            </thead>
+                            <tbody className="users-table-body">
+                                {usersToDisplay.map((user, index) => (
+                                    <UsersTable user={user} key={index} index={index} onDelete={onDelete}/>
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>
+                    <div className="users-table-pagination">
+                        <TablePagination currentPage={currentPage} pageCount={Math.ceil(users.length / usersPerPage)} onPageChange={handlePageChange} />
+                    </div>
                 </div>
+
             </div>
         </section>
     )

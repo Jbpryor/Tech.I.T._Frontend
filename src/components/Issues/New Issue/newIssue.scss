@@ -22,6 +22,8 @@
             margin: 4%;
 
             .new-issue-details {
+                font-size: 15px;
+                text-align: left;
                 display: grid;
                 grid-template-columns: 50% 50%;
                 padding: 1%;
@@ -35,13 +37,38 @@
             
 
                 .new-issue-input {
+                    font-size: 15px;
                     padding-left: 2%;
                     border: none;
+                    text-align: left;
+                }
+
+                .id,
+                .date {
+                    padding-left: 3%;
+                }
+
+                .description {
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    align-items: center;
+                    padding-left: 2%;
+
+                    &:hover {
+                        white-space: unset;
+                        text-overflow: unset;
+                        overflow: auto;
+                        width: 100vw;
+                    }
                 }
             }
         }
 
         .new-issue-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
 
             button {
                 margin: 0 5%;

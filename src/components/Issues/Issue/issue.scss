@@ -9,6 +9,7 @@
     'issue comments'
     'issue attachments';
     align-items: center;
+    font-size: 14px;
 
     .issue-container {
         grid-area: issue;
@@ -48,7 +49,7 @@
         
                     &:hover {
                         color: rgb(86, 86, 2);
-                        border: 2px solid rgb(86, 86, 2, 0.05);
+                        border: 1px solid rgb(86, 86, 2, 0.05);
                     }
                 }
             }
@@ -156,27 +157,74 @@
         }
 
         .issue-comments-content {
-            margin-top: 3%;
+            margin-top: 5%;
             display: grid;
-            grid-template-columns: 25% 75%;
-            grid-template-rows: auto;
+            grid-template-columns: 20% 40% 20% 20%;
+            grid-template-rows: 25% 25% 25% 25%;
+            overflow: auto;
+            height: 85%;
 
-            .issue-comments-user {
-                padding-left: 2%;
+            .issue-comments-user-container,
+            .issue-comment-container,
+            .issue-comments-date-container {
                 display: flex;
-                flex-direction: column;
+                align-items: center;
                 justify-content: center;
+
+                .issue-comments-user,
+                .issue-comment {
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    align-items: center;
+                    flex: 1;
+                    padding-left: 2%;
+
+                    &:hover {
+                        white-space: unset;
+                        text-overflow: unset;
+                    }
+                }
+
+                .issue-comments-date {
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    align-items: center;
+                    flex: 1;
+                    text-align: center;
+                }
             }
 
-            .issue-comments {
-                padding-left: 2%;
+            .issue-comments-buttons-container {
                 display: flex;
                 flex-direction: column;
+                align-items: center;
                 justify-content: center;
-            }
-        }
-        
+               
+                .issue-comments-button-container {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    width: 50%;
 
+                    .delete-button {
+                        border-radius: 5%;
+                        border: 1px solid rgba(0, 0, 0, 0.143);
+                        box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 4px 6px 0 rgba(0, 0, 0, 0.19);
+                        background-color: white;
+                        cursor: pointer;
+                        z-index: 1;
+
+            
+                        &:hover {
+                            color: rgb(86, 86, 2);
+                            border: 2px solid rgb(86, 86, 2, 0.05);
+                        }
+                    }
+                } 
+            }
+        }      
     }
 
     .issue-attachments-container {
@@ -193,10 +241,54 @@
             font-size: 15px;
             font-weight: 800;
             z-index: 1;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.129);
         }
 
-        .issue-attachments-progress {
-            // border: 2px solid yellow;
+        .issue-attachments-content {
+            margin: 2%;
+            
+            .issue-attachments-saved {                
+                display: grid;
+                grid-template-columns: 50% 50%;
+
+
+                .issue-attachments-saved-files {
+                    cursor: pointer;
+                    text-decoration: none;
+                    color: inherit;
+                    align-items: center;
+                    justify-content: center;
+                    display: flex;
+
+                    
+                    &:hover {
+                        color: rgb(86, 86, 2);
+                    }
+                }
+
+                .issue-attachments-button-container {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: center;
+
+                    .delete-button {
+                        border-radius: 5%;
+                        border: 1px solid rgba(0, 0, 0, 0.143);
+                        box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 4px 6px 0 rgba(0, 0, 0, 0.19);
+                        background-color: white;
+                        width: calc(50%/2.5);
+                        cursor: pointer;
+                        z-index: 1;
+
+            
+                        &:hover {
+                            color: rgb(86, 86, 2);
+                            border: 1px solid rgb(86, 86, 2, 0.05);
+                        }
+                    }
+                }
+            }
 
         }
 
@@ -230,15 +322,26 @@
                 height: 100%;
                 width: 100%;
                 position: relative;
+                display: flex;
+                align-items: center;
+                justify-content: center;
                 background-color: rgba(231, 231, 231, 0.5);
                 z-index: 0;
 
-                .issue-attachments-link {
-                    position: absolute;
-                    bottom: 35%;
-                    right: 32%;
+                &.drag-over {
+                    border: 5px dotted rgb(86, 86, 2);
+                }
 
-                    span {
+                .issue-attachments-file {
+                    position: absolute;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;        
+                }
+
+                .issue-attachments-link {
+
+                    label {
                         color: rgb(86, 86, 2);
                         font-weight: 500;
                         cursor: pointer;
@@ -247,6 +350,10 @@
                             font-weight: 900;
                         }
                     }
+                }
+
+                .issue-attachment-file-input {
+                    display: none;
                 }
             }
 

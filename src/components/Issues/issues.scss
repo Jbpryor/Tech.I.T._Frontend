@@ -14,11 +14,11 @@
         }
     }
 
-
     .issues-container {
         display: grid;
         grid-template-columns: 50% 50%;
-        gap: 0.75%;
+        gap: 1.75%;
+        margin: 1%;
 
         &.active {
             display: flex;
@@ -31,7 +31,6 @@
             color: inherit;
 
             .issue-container {
-                margin: 3%;
                 padding: 2% 1%;
                 border: 1px solid #ccc;
                 background-color: rgb(255, 255, 255);
@@ -43,8 +42,7 @@
             
                 &:hover {
                     transform: scale(1.01);
-                }
-                
+                }                
             
                 .issue-title {
                     font-size: 15px;
@@ -86,22 +84,8 @@
                             text-transform: capitalize;
                         }
                     }
-                }
-            
-                Button {
-                    cursor: pointer;
-                    background-color: transparent;
-                    width: 80%;
-                    border: 1px solid rgb(86, 86, 2, 0.05);
-                    background-color: rgb(86, 86, 2, 0.05);
-                    transition: transform 3s ease-in-out;
-            
-                    &:hover {
-                        color: rgb(86, 86, 2);
-                    }
-                }
+                }        
             }
-        }
-      
+        }      
     }
 }

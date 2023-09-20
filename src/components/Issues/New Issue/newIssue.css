@@ -20,6 +20,8 @@
   margin: 4%;
 }
 .new-issue .new-issue-container .new-issue-form .new-issue-details {
+  font-size: 15px;
+  text-align: left;
   display: grid;
   grid-template-columns: 50% 50%;
   padding: 1%;
@@ -29,8 +31,32 @@
   padding-left: 2%;
 }
 .new-issue .new-issue-container .new-issue-form .new-issue-details .new-issue-input {
+  font-size: 15px;
   padding-left: 2%;
   border: none;
+  text-align: left;
+}
+.new-issue .new-issue-container .new-issue-form .new-issue-details .id,
+.new-issue .new-issue-container .new-issue-form .new-issue-details .date {
+  padding-left: 3%;
+}
+.new-issue .new-issue-container .new-issue-form .new-issue-details .description {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  align-items: center;
+  padding-left: 2%;
+}
+.new-issue .new-issue-container .new-issue-form .new-issue-details .description:hover {
+  white-space: unset;
+  text-overflow: unset;
+  overflow: auto;
+  width: 100vw;
+}
+.new-issue .new-issue-container .new-issue-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .new-issue .new-issue-container .new-issue-button button {
   margin: 0 5%;

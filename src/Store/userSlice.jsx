@@ -4,12 +4,10 @@ export const LOCAL_STORAGE_KEY = 'users';
 
 const userFullName = (user) => `${user.name.first} ${user.name.last}`;
 
-const initialState = {
-    users: JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY)) || [],
-};
+const initialState = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY)) || []
 
 const userSlice = createSlice({
-    name: 'user',
+    name: 'users',
     initialState,
     reducers: {
         addUser: (state, action) => {

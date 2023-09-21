@@ -42,7 +42,7 @@ function Header() {
                     )}
                 </div>
                 <div className="new-container">
-                    <NavLink to='/NewTicket'>
+                    <NavLink to='/issues/newIssue'>
                         <button className='new-button'>New +</button>
                     </NavLink>
                 </div>

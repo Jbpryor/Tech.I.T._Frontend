@@ -46,7 +46,7 @@ function Users() {
     //     return storedUsersData ? JSON.parse(storedUsersData) : [];
     // });
 
-    const users = useSelector((state) => state.user.users);
+    const users = useSelector((state) => state.users);
 
     const [ selectedUser, setSelectedUser ] = useState(null);
     const [ addUserInput, setAddUserInput ] = useState({

@@ -24,7 +24,7 @@
     
             .issue-details {
                 display: grid;
-                grid-template-columns: 45% 45% 10%;
+                grid-template-columns: 25% 65% 10%;
                 padding: 1%;
                 border-bottom: 1px solid rgba(0, 0, 0, 0.129);
 
@@ -33,7 +33,7 @@
                 }
 
                 .issue-detail {
-                    width: 150px;
+                    width: 100%;
                     position: relative;
                     left: -2%;
                     padding-left: 2%;
@@ -41,6 +41,7 @@
 
                 button {
                     border-radius: 5%;
+                    height: 22px;
                     border: 1px solid rgba(0, 0, 0, 0.143);
                     box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 4px 6px 0 rgba(0, 0, 0, 0.19);
                     background-color: white;

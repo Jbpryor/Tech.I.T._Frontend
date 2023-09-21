@@ -23,11 +23,11 @@ function Layout() {
                     <Route index element={<Dashboard />} />
                     <Route path="/dashboard" element={<Dashboard />} />
                     <Route path='/users' element={<Users />}  />
-                    <Route path='/Projects' element={<Projects />} />
-                    <Route path='/Issues' element={<Issues />} />
+                    <Route path='/projects' element={<Projects />} />
+                    <Route path='/issues' element={<Issues />} />
                     <Route path='/issues/:issueId' element={<Issue />} />
                     <Route path='/issues/newIssue' element={<NewIssue />} />
-                    <Route path='/Reports' element={<Reports />} />
+                    <Route path='/reports' element={<Reports />} />
                 </Routes>
 
             </div>

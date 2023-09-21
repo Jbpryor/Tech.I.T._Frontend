@@ -9,49 +9,56 @@ function NewIssue() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    const [ editedDetail, setEditedDetail ] = useState({});
     const [ newId, setNewId ] = useState(0);
-    const [ selectedUser, setSelectedUser ] = useState(null);
-    const [ selectedSubmitter, setSelectedSubmitter ] = useState({ selectedUser: '' });
-    const users = useSelector((state) => state.user.users)
+    const users = useSelector((state) => state.users)
     const [ inputValues, setInputValues ] = useState({});
     const [ currentDate, setCurrentDate ] = useState('');
-    const issues = useSelector((state) => state.issue.issues);
+    const issues = useSelector((state) => state.issues);
 
 
 
     const location = useLocation();
 
+    const projects = [
+        {name: 'project 1'},
+        {name: 'project 2'},
+        {name: 'project 3'},
+        {name: 'project 4'},
+        {name: 'project 5'}
+    ];
+
     const issueDetails = [
         'Id',
         'Title',
-        'Project',
         'Status',
+        'Priority',
+        'Project',
+        'Developer',
         'Created',
         'Description',
         'Submitter',
-        'Priority',
         'Type',
     ];
 
     const newIssue = {
         id: newId,
         title: inputValues['Title'] || '',
+        status: inputValues['Status'] || '',
+        priority: inputValues["Priority"] || '',
         project: inputValues['Project'] || '',
-        status: editedDetail['Status'] || '',
+        developer: inputValues['Developer'] || '',
         created: currentDate,
         description: inputValues['Description'] || '',
-        submitter: selectedUser || '',
-        priority: editedDetail["Priority"] || '',
+        submitter: inputValues['Submitter'] || '',
         type: inputValues['Type'] || ''
     };
 
     const handleInputChange = (event, detail) => {
         const { value } = event.target;
-        setInputValues({
-            ...inputValues,
+        setInputValues((prevInputValues) => ({
+            ...prevInputValues,
             [detail]: value,
-        });
+        }));
     };
 
     const handleCurrentDate = () => {
@@ -61,20 +68,10 @@ function NewIssue() {
         const meridiem = hours >= 12 ? 'PM' : 'AM';
         const formattedHours = hours % 12 || 12;
 
-        const formattedDate =  `
-        ${(date.getMonth() + 1).toString().padStart(2, '0')}/${date.getDate().toString().padStart(2, '0')}/${date.getFullYear()} 
-        ${formattedHours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${date.getSeconds().toString().padStart(2, '0')} ${meridiem}`;
+        const formattedDate =  `${(date.getMonth() + 1).toString().padStart(2, '0')}/${date.getDate().toString().padStart(2, '0')}/${date.getFullYear()} ${formattedHours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${date.getSeconds().toString().padStart(2, '0')} ${meridiem}`.trim();
 
         setCurrentDate(formattedDate);
     }
-
-    const handleDetailChange = (event, detail) => {
-        const value = event.target.value;
-        setEditedDetail({
-            ...editedDetail,
-            [detail]: value,
-        });
-    };
 
     const handleSaveNewIssue = (event) => {
         event.preventDefault();
@@ -84,9 +81,7 @@ function NewIssue() {
         alert('New issue was created!')
 
         setInputValues({});
-        setEditedDetail({})
-        setSelectedUser(null);
-        navigate(`/issue/${newIssue.id}`)
+        navigate(`/issues/${newIssue.id}`)
     }
 
     useEffect(() => {
@@ -110,37 +105,49 @@ function NewIssue() {
                             <div className="new-issue-detail">{detail}:</div>
                                 {detail === 'Id' ? (
                                 <div className="new-issue-input id">Issue-{newId}</div>
-                            ) : detail === 'Project' ? (
-                                <select className="new-issue-input">
-                                    <option value="">CurrentProjects</option>
-                                </select>
                             ) : detail === 'Status' ? (
-                                <select className='new-issue-input' value={editedDetail[detail] || issueDetails[detail]} onChange={(event) => handleDetailChange(event, detail)}>
+                                <select className='new-issue-input' value={issueDetails[detail]} onChange={(event) => handleInputChange(event, detail)}>
+                                    <option value="">Select a status...</option>
                                     <option value="Open">Open</option>
                                     <option value="In Progress">In Progress</option>
                                     <option value="Under Review">Under Review</option>
                                     <option value="Resolved">Resolved</option>
                                     <option value="Postponed">Postponed</option>
-                                    <option value="Closed">Closed</option>                    
+                                    <option value="Closed">Closed</option>                
                                 </select>
-                            ) : detail === 'Created' ? (
-                                <div className="new-issue-input date">{currentDate}</div>
-                            ) : detail === 'Submitter' ? (
-                                <select className="new-issue-input">
-                                    <option value="">Select a Submitter...</option>
+                            ) : detail === 'Priority' ? (
+                                <select className="new-issue-input" value={issueDetails[detail]} onChange={(event) => handleInputChange(event, detail)}>
+                                    <option value=''>Select a priority level...</option>
+                                    <option value='Critical'>Critical</option>
+                                    <option value="High">High</option>
+                                    <option value="Medium">Medium</option>
+                                    <option value="Low">Low</option>
+                                </select>
+                            ) : detail === 'Project' ? (
+                                <select className="new-issue-input" value={issueDetails[detail]} onChange={(event) => handleInputChange(event, detail)}>
+                                    {projects.map((project, index) => (
+                                        <option key={index} value={project.name}>{project.name}</option>))}                                    
+                                </select>
+                            ) : detail === 'Developer' ? (
+                                <select className="new-issue-input" value={issueDetails[detail]} onChange={(event) => handleInputChange(event, detail)}>
+                                    <option value="">Select a Developer...</option>
                                     {users.map((user, index) => (
                                         <option key={index} value={`${user.name.first} ${user.name.last}`}>
                                             {user.name.first} {user.name.last}
                                         </option>
                                     ))}
                                 </select>
-                            ) : detail === 'Priority' ? (
-                                <select className="new-issue-input" value={editedDetail[detail] || issueDetails[detail]} onChange={(event) => handleDetailChange(event, detail)}>
-                                    <option value='Critical'>Critical</option>
-                                    <option value="High">High</option>
-                                    <option value="Medium">Medium</option>
-                                    <option value="Low">Low</option>
-                                </select>
+                            ) : detail === 'Created' ? (
+                                <div className="new-issue-input date">{currentDate}</div>
+                            ) : detail === 'Submitter' ? (
+                                <select className="new-issue-input" value={issueDetails[detail]} onChange={(event) => handleInputChange(event, detail)}>
+                                    <option value="">Select a Submitter...</option>
+                                    {users.map((user, index) => (
+                                        <option key={index} value={`${user.name.first} ${user.name.last}`}>
+                                            {user.name.first} {user.name.last}
+                                        </option>
+                                    ))}
+                                </select>            
                             ) : detail === 'Description' ? (
                                 <input type="text" className="new-issue-input description" placeholder={` Enter ${detail}...`} value={inputValues[detail] || ''} onChange={(event) => handleInputChange(event, detail)} />
                             ) : (

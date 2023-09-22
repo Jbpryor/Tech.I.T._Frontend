@@ -17,7 +17,7 @@ function Issues() {
             <div className={`issues-container ${isIssuesActive ? 'active' : ''}`}>                
             {issues.map((issue) => (
                 <Link className='issue-link' to={`/issues/${issue.id}`} key={issue.id}>
-                    <div className="issue-container">       
+                    <div className={`issue-container ${isIssuesActive ? 'active' : ''}`}>       
                         <div className="issue-title">{issue.title}</div>
                         <div className="issue-contents">
                             {Object.entries(issue).filter(([key]) => ['project', 'priority', 'status'].includes(key)).map(([key, value]) => (                

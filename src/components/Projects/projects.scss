@@ -7,7 +7,7 @@
     .projects-title {
         font-size: 15px;
         font-weight: 600;
-        padding: 1%;        
+        padding: 1%;
 
         &.active {
             display: none;
@@ -17,11 +17,65 @@
     .projects-container {
         display: grid;
         grid-template-columns: 50% 50%;
+        gap: 0 2%;
+        margin: 1%;
 
         &.active {
             display: flex;
             flex-wrap: wrap;
             justify-content: flex-start;
-        }  
+        }
+        
+        .project-link {
+            text-decoration: none;
+            color: inherit;
+
+            .project-container {
+                padding: 2% 1%;
+                border: 1px solid #ccc;
+                background-color: rgb(255, 255, 255);
+                width: calc(90vw/6);
+                text-align: center;
+                box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 12px 0 rgba(0, 0, 0, 0.19);
+                transition: transform 0.3s ease-in-out;
+                margin: 3% 0;
+                cursor: pointer;
+
+                &.active {
+                    width: calc(99vw/6);
+                }
+            
+                &:hover {
+                    transform: scale(1.01);
+                }                
+            
+                .project-title {
+                    font-size: 15px;
+                    padding: 2%;
+                    font-weight: 800;
+                    text-transform: capitalize;
+                    position: relative;
+                }
+            
+                .project-title::after {
+                    content: "";
+                    position: absolute;
+                    bottom: 0;
+                    left: 10%;
+                    width: 80%;
+                    height: 2px;
+                    background-color: rgba(231, 231, 231, 0.5);
+                }
+            
+                .project-contents {
+                    padding: 4%;
+                
+                    .project-description {
+                        font-size: 15px;
+                        text-transform: capitalize;
+                    }                    
+                }        
+            }
+        }      
     }
 }

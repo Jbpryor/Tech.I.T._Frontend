@@ -15,9 +15,55 @@
 .projects .projects-container {
   display: grid;
   grid-template-columns: 50% 50%;
+  gap: 0 2%;
+  margin: 1%;
 }
 .projects .projects-container.active {
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
+}
+.projects .projects-container .project-link {
+  text-decoration: none;
+  color: inherit;
+}
+.projects .projects-container .project-link .project-container {
+  padding: 2% 1%;
+  border: 1px solid #ccc;
+  background-color: rgb(255, 255, 255);
+  width: 15vw;
+  text-align: center;
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 12px 0 rgba(0, 0, 0, 0.19);
+  transition: transform 0.3s ease-in-out;
+  margin: 3% 0;
+  cursor: pointer;
+}
+.projects .projects-container .project-link .project-container.active {
+  width: 16.5vw;
+}
+.projects .projects-container .project-link .project-container:hover {
+  transform: scale(1.01);
+}
+.projects .projects-container .project-link .project-container .project-title {
+  font-size: 15px;
+  padding: 2%;
+  font-weight: 800;
+  text-transform: capitalize;
+  position: relative;
+}
+.projects .projects-container .project-link .project-container .project-title::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 10%;
+  width: 80%;
+  height: 2px;
+  background-color: rgba(231, 231, 231, 0.5);
+}
+.projects .projects-container .project-link .project-container .project-contents {
+  padding: 4%;
+}
+.projects .projects-container .project-link .project-container .project-contents .project-description {
+  font-size: 15px;
+  text-transform: capitalize;
 }/*# sourceMappingURL=projects.css.map */

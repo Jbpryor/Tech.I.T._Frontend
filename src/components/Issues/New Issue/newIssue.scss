@@ -49,18 +49,13 @@
                 }
 
                 .description {
-                    white-space: nowrap;
+                    word-wrap: break-word;
+                    word-break: break-all;
+                    width: 100%;
+                    height: auto;
                     overflow: hidden;
-                    text-overflow: ellipsis;
                     align-items: center;
                     padding-left: 2%;
-
-                    &:hover {
-                        white-space: unset;
-                        text-overflow: unset;
-                        overflow: auto;
-                        width: 100vw;
-                    }
                 }
             }
         }

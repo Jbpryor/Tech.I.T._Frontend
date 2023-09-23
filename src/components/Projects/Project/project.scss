@@ -1,66 +1,48 @@
 .project {
-    display: flex;
-}
-
-.project-container {
-    margin: 3%;
-    padding: 2% 1%;
-    border: 1px solid #ccc;
-    background-color: rgb(255, 255, 255);
-    width: 300px;
-    text-align: center;
-    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 12px 0 rgba(0, 0, 0, 0.19);
-    transition: transform 0.3s ease-in-out;
-    cursor: pointer;
-
-    &:hover {
-        transform: scale(1.01);
-    }
+    width: 100%;
+    height: 100%;
+    border: 2px solid purple;
     
+    .project-container {
+        display: grid;
+        grid-template-columns: 50% 50%;
+        grid-template-rows: 25% 75%;
+        height: 100%;
 
-    .project-icon {
-        font-size: 15px;
-        padding: 2%;
-        font-weight: 800;
-        text-transform: capitalize;
-        position: relative;
-    }
-
-    .project-icon::after {
-        content: "";
-        position: absolute;
-        bottom: 0;
-        left: 10%;
-        width: 80%;
-        height: 2px;
-        background-color: rgba(231, 231, 231, 0.5);
-    }
-
-    .project-name {
-        padding: 4%;
-        .project-name {
-            padding: 1%;
-            width: 100%;
+        .project-title-container {
             display: grid;
-            grid-template-columns: 50% 50%;
-            font-size: 14px;
-    
-            .project-left {
-                font-weight: 500;
-                text-align: left;
-                padding-left: 5%;
-                text-transform: capitalize;
-            }
-    
-            .project-right {
-                text-align: right;
-                padding-right: 5%;
-                text-transform: capitalize;
+            grid-template-rows: 10% 90%;
+
+            .project-title-content {
+                padding: 2%;
+
+                .project-name,
+                .project-manager {
+                    display: flex;
+                    padding: 1%;
+                    gap: 2%;
+                }            
             }
         }
-    }
-}
 
-.project-users {
-    
+        .project-status-content {
+            border: 2px solid blue;
+
+
+        }
+
+        .project-issues-content {
+            border: 2px solid yellow;
+
+
+        }
+
+        .project-users-content {
+            border: 2px solid red;
+
+
+        }
+
+
+    }
 }

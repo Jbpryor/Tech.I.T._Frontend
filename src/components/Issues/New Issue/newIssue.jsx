@@ -14,43 +14,44 @@ function NewIssue() {
     const [ inputValues, setInputValues ] = useState({});
     const [ currentDate, setCurrentDate ] = useState('');
     const issues = useSelector((state) => state.issues);
+    const projects = useSelector((state) => state.projects);
 
 
 
     const location = useLocation();
 
-    const projects = [
-        {name: 'project 1'},
-        {name: 'project 2'},
-        {name: 'project 3'},
-        {name: 'project 4'},
-        {name: 'project 5'}
-    ];
+    // const projects = [
+    //     {name: 'project 1'},
+    //     {name: 'project 2'},
+    //     {name: 'project 3'},
+    //     {name: 'project 4'},
+    //     {name: 'project 5'}
+    // ];
 
     const issueDetails = [
         'Id',
         'Title',
+        'Type',
         'Status',
         'Priority',
         'Project',
+        'Submitter',
         'Developer',
         'Created',
-        'Description',
-        'Submitter',
-        'Type',
+        'Description',        
     ];
 
     const newIssue = {
         id: newId,
         title: inputValues['Title'] || '',
+        type: inputValues['Type'] || '',
         status: inputValues['Status'] || '',
         priority: inputValues["Priority"] || '',
+        submitter: inputValues['Submitter'] || '',
         project: inputValues['Project'] || '',
         developer: inputValues['Developer'] || '',
         created: currentDate,
         description: inputValues['Description'] || '',
-        submitter: inputValues['Submitter'] || '',
-        type: inputValues['Type'] || ''
     };
 
     const handleInputChange = (event, detail) => {
@@ -105,6 +106,15 @@ function NewIssue() {
                             <div className="new-issue-detail">{detail}:</div>
                                 {detail === 'Id' ? (
                                 <div className="new-issue-input id">Issue-{newId}</div>
+                            ) : detail === 'Type' ? (
+                                <select className='new-issue-input' value={issueDetails[detail]} onChange={(event) => handleInputChange(event, detail)}>
+                                    <option value="">Select a type...</option>
+                                    <option value="Bug">Bug</option>
+                                    <option value="Feature">Feature</option>
+                                    <option value="Documentation">Documentation</option>
+                                    <option value="Crash">Crash</option>
+                                    <option value="Task">Task</option>               
+                                </select>
                             ) : detail === 'Status' ? (
                                 <select className='new-issue-input' value={issueDetails[detail]} onChange={(event) => handleInputChange(event, detail)}>
                                     <option value="">Select a status...</option>
@@ -125,9 +135,22 @@ function NewIssue() {
                                 </select>
                             ) : detail === 'Project' ? (
                                 <select className="new-issue-input" value={issueDetails[detail]} onChange={(event) => handleInputChange(event, detail)}>
+                                    <option value="">Select a project...</option>
                                     {projects.map((project, index) => (
-                                        <option key={index} value={project.name}>{project.name}</option>))}                                    
-                                </select>
+                                        <option key={index} value={`${project.title}`}>
+                                            {project.title}
+                                        </option>
+                                    ))}
+                                </select>  
+                            ) : detail === 'Submitter' ? (
+                                <select className="new-issue-input" value={issueDetails[detail]} onChange={(event) => handleInputChange(event, detail)}>
+                                    <option value="">Select a Submitter...</option>
+                                    {users.map((user, index) => (
+                                        <option key={index} value={`${user.name.first} ${user.name.last}`}>
+                                            {user.name.first} {user.name.last}
+                                        </option>
+                                    ))}
+                                </select>  
                             ) : detail === 'Developer' ? (
                                 <select className="new-issue-input" value={issueDetails[detail]} onChange={(event) => handleInputChange(event, detail)}>
                                     <option value="">Select a Developer...</option>
@@ -138,18 +161,9 @@ function NewIssue() {
                                     ))}
                                 </select>
                             ) : detail === 'Created' ? (
-                                <div className="new-issue-input date">{currentDate}</div>
-                            ) : detail === 'Submitter' ? (
-                                <select className="new-issue-input" value={issueDetails[detail]} onChange={(event) => handleInputChange(event, detail)}>
-                                    <option value="">Select a Submitter...</option>
-                                    {users.map((user, index) => (
-                                        <option key={index} value={`${user.name.first} ${user.name.last}`}>
-                                            {user.name.first} {user.name.last}
-                                        </option>
-                                    ))}
-                                </select>            
+                                <div className="new-issue-input date">{currentDate}</div>          
                             ) : detail === 'Description' ? (
-                                <input type="text" className="new-issue-input description" placeholder={` Enter ${detail}...`} value={inputValues[detail] || ''} onChange={(event) => handleInputChange(event, detail)} />
+                                <textarea type="text" className="new-issue-input description" placeholder={` Enter ${detail}...`} value={inputValues[detail] || ''} onChange={(event) => handleInputChange(event, detail)} />
                             ) : (
                                 <input type="text" className="new-issue-input text" placeholder={` Enter ${detail}...`} value={inputValues[detail] || ''} onChange={(event) => handleInputChange(event, detail)} />
                             )}                    

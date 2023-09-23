@@ -41,17 +41,13 @@
   padding-left: 3%;
 }
 .new-issue .new-issue-container .new-issue-form .new-issue-details .description {
-  white-space: nowrap;
+  word-wrap: break-word;
+  word-break: break-all;
+  width: 100%;
+  height: auto;
   overflow: hidden;
-  text-overflow: ellipsis;
   align-items: center;
   padding-left: 2%;
-}
-.new-issue .new-issue-container .new-issue-form .new-issue-details .description:hover {
-  white-space: unset;
-  text-overflow: unset;
-  overflow: auto;
-  width: 100vw;
 }
 .new-issue .new-issue-container .new-issue-button {
   display: flex;

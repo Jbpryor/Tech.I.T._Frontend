@@ -5,6 +5,7 @@ import { NavLink } from 'react-router-dom';
 function Header() {
     const [isSearchIconVisible, setSearchIconVisible] = useState(true);
     const [isGridVisible, setGridVisible] = useState(true);
+    const [ isNewMenuVisible, setIsNewMenuVisible ] = useState(false);
 
     const handleSearchIconClick = () => {
         setSearchIconVisible(false);
@@ -26,6 +27,10 @@ function Header() {
 
     }
 
+    const handleNewMenuVisibility = () => {
+        setIsNewMenuVisible(!isNewMenuVisible);
+    }
+
     return (
         <section className="header">
             <div className="header-links">
@@ -42,9 +47,13 @@ function Header() {
                     )}
                 </div>
                 <div className="new-container">
-                    <NavLink to='/issues/newIssue'>
-                        <button className='new-button'>New +</button>
-                    </NavLink>
+                    <button className='new-button' onClick={handleNewMenuVisibility} onMouseLeave={() => setIsNewMenuVisible(false)}>New +</button>
+                    <div className={`new-menu-container ${isNewMenuVisible ? 'active' : ''}`} onMouseEnter={() => setIsNewMenuVisible(true)} onMouseLeave={() => setIsNewMenuVisible(false)}>
+                        <NavLink className='nav-link' to='/users/newUser'>New User</NavLink>
+                        <NavLink className='nav-link' to='/projects/newProject'>New Project</NavLink>
+                        <NavLink className='nav-link' to='/issues/newIssue'>New Issue</NavLink>
+                        <NavLink className='nav-link' to='/reports/newReport'>New Report</NavLink>
+                    </div>
                 </div>
                 <div className="notification-container">
                     <i className='bx bxs-bell notification-icon' onClick={handleNotificationClick}></i>

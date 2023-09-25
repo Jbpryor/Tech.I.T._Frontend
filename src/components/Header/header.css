@@ -2,6 +2,7 @@
   align-items: center;
   background-color: rgb(255, 255, 255);
   color: rgb(19, 18, 18);
+  z-index: 999;
 }
 .header .header-links {
   height: 100%;
@@ -47,6 +48,7 @@
   text-align: center;
   padding: 0 1%;
   display: flex;
+  position: relative;
 }
 .header .header-links .new-container .new-button {
   cursor: pointer;
@@ -54,9 +56,53 @@
   border: none;
   font-size: 17px;
   background-color: transparent;
+  color: inherit;
 }
 .header .header-links .new-container .new-button:hover {
   color: rgb(86, 86, 2);
+}
+.header .header-links .new-container .new-menu-container {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  justify-content: space-evenly;
+  width: 125%;
+  top: 120%;
+  left: 0;
+  background-color: white;
+  z-index: 99;
+  text-decoration: none;
+  color: inherit;
+  height: 0;
+  overflow: hidden;
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 12px 0 rgba(0, 0, 0, 0.19);
+  transition: height 0.5s ease-in-out, padding 0.5s ease-in-out;
+}
+.header .header-links .new-container .new-menu-container.active {
+  border-left: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  border-right: 1px solid #ccc;
+  height: 500%;
+}
+.header .header-links .new-container .new-menu-container .nav-link {
+  display: flex;
+  flex-direction: column;
+  list-style-type: none;
+  align-items: center;
+  padding: 5%;
+  font-size: 15px;
+  cursor: pointer;
+  width: 100%;
+  text-align: center;
+  transition: filter 0.3s;
+  text-decoration: none;
+  color: rgb(19, 18, 18);
+  text-wrap: nowrap;
+}
+.header .header-links .new-container .new-menu-container .nav-link:hover {
+  color: rgb(86, 86, 2);
+  border: 1px solid rgba(86, 86, 2, 0.05);
+  background-color: rgba(86, 86, 2, 0.02);
 }
 .header .header-links .notification-container {
   text-align: center;

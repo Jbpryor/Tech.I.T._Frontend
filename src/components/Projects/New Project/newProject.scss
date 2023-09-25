@@ -1,0 +1,89 @@
+.new-project {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+        
+    .new-project-container {
+        display: flex;
+        flex-direction: column;
+        padding: 3%;
+        margin: 4%;
+        width: 60%;
+        border: 2px solid rgba(0, 0, 0, 0.143);
+        box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 12px 0 rgba(0, 0, 0, 0.19);
+
+        .new-project-title {
+            font-size: 20px;
+            font-weight: 800;
+        }
+        
+
+        .new-project-form {
+            margin: 4%;
+
+            .new-project-details {
+                font-size: 15px;
+                text-align: left;
+                display: grid;
+                grid-template-columns: 50% 50%;
+                padding: 1%;
+                border-bottom: 1px solid rgba(0, 0, 0, 0.129);
+
+                
+                .new-project-detail {
+                    padding-left: 2%;
+
+                }
+            
+
+                .new-project-input {
+                    font-size: 15px;
+                    padding-left: 2%;
+                    border: none;
+                    text-align: left;
+                }
+
+                .id,
+                .date {
+                    padding-left: 3%;
+                }
+
+                .description {
+                    word-wrap: break-word;
+                    word-break: break-all;
+                    width: 100%;
+                    height: auto;
+                    overflow: hidden;
+                    align-items: center;
+                    padding-left: 2%;
+                }
+            }
+        }
+
+        .new-project-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            button {
+                margin: 0 5%;
+                width: 150px;
+                border-radius: 5%;
+                border: 2px solid rgba(0, 0, 0, 0.143);
+                box-shadow: 0 6px 8px 0 rgba(0, 0, 0, 0.2), 0 8px 12px 0 rgba(0, 0, 0, 0.19);
+                font-size: 100%;
+                background-color: white;
+                cursor: pointer;
+                z-index: 1;
+    
+    
+                &:hover {
+                    color: rgb(86, 86, 2);
+                    border: 2px solid rgb(86, 86, 2, 0.05);
+                }
+            }
+        }
+
+
+    }
+}

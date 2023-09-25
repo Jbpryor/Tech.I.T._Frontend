@@ -2,32 +2,64 @@
   width: 100%;
   height: 100%;
   border: 2px solid purple;
+  padding: 1%;
 }
 .project .project-container {
   display: grid;
   grid-template-columns: 50% 50%;
   grid-template-rows: 25% 75%;
   height: 100%;
+  grid-template-areas: "top top" "left right";
 }
-.project .project-container .project-title-container {
+.project .project-container .project-top-container {
+  grid-area: top;
   display: grid;
-  grid-template-rows: 10% 90%;
+  grid-template-columns: 27% 27% 23% 23%;
+  grid-template-rows: 50% 50%;
+  grid-template-areas: "title title stats stats" "empty empty stats stats";
 }
-.project .project-container .project-title-container .project-title-content {
+.project .project-container .project-top-container .project-title-container {
+  grid-area: title;
+  display: grid;
+  grid-template-columns: 10% 90%;
+  margin: 2%;
+  padding: 0 1%;
+  border: 2px solid rgba(0, 0, 0, 0.143);
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 12px 0 rgba(0, 0, 0, 0.19);
+}
+.project .project-container .project-top-container .project-title-container .project-title-content {
   padding: 2%;
+  display: grid;
+  grid-template-columns: 50% 50%;
+  align-items: center;
+  justify-content: center;
 }
-.project .project-container .project-title-container .project-title-content .project-name,
-.project .project-container .project-title-container .project-title-content .project-manager {
+.project .project-container .project-top-container .project-title-container .project-title-content .project-name,
+.project .project-container .project-top-container .project-title-container .project-title-content .project-manager {
   display: flex;
-  padding: 1%;
-  gap: 2%;
+  font-size: 15px;
+  width: 100%;
+  justify-content: space-evenly;
 }
-.project .project-container .project-status-content {
-  border: 2px solid blue;
+.project .project-container .project-top-container .project-title-container .project-title-content .project-name .project-name-left,
+.project .project-container .project-top-container .project-title-container .project-title-content .project-name .project-manager-left,
+.project .project-container .project-top-container .project-title-container .project-title-content .project-manager .project-name-left,
+.project .project-container .project-top-container .project-title-container .project-title-content .project-manager .project-manager-left {
+  font-weight: 800;
 }
-.project .project-container .project-issues-content {
-  border: 2px solid yellow;
+.project .project-container .project-top-container .project-status-content {
+  grid-area: stats;
+  display: grid;
+  grid-template-columns: 50% 50%;
+  font-size: 13px;
+  margin: 2%;
 }
-.project .project-container .project-users-content {
-  border: 2px solid red;
+.project .project-container .project-top-container .project-status-content .status-container,
+.project .project-container .project-top-container .project-status-content .priority-container {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  width: 80%;
+  padding: 3%;
+  border: 2px solid rgba(0, 0, 0, 0.143);
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 12px 0 rgba(0, 0, 0, 0.19);
 }/*# sourceMappingURL=project.css.map */

@@ -71,7 +71,10 @@
                     padding: 4%;
                 
                     .project-description {
-                        font-size: 15px;
+                        font-size: 13px;
+                    } 
+
+                    .project-description::first-letter {
                         text-transform: capitalize;
                     }                    
                 }        

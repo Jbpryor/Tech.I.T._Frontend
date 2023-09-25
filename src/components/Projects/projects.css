@@ -64,6 +64,8 @@
   padding: 4%;
 }
 .projects .projects-container .project-link .project-container .project-contents .project-description {
-  font-size: 15px;
+  font-size: 13px;
+}
+.projects .projects-container .project-link .project-container .project-contents .project-description::first-letter {
   text-transform: capitalize;
 }/*# sourceMappingURL=projects.css.map */

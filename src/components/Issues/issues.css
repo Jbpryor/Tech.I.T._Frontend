@@ -68,16 +68,18 @@
   width: 100%;
   display: grid;
   grid-template-columns: 50% 50%;
-  font-size: 14px;
+  font-size: 13px;
 }
 .issues .issues-container .issue-link .issue-container .issue-contents .issue-name .issue-left {
   font-weight: 500;
   text-align: left;
   padding-left: 5%;
-  text-transform: capitalize;
 }
 .issues .issues-container .issue-link .issue-container .issue-contents .issue-name .issue-right {
   text-align: right;
   padding-right: 5%;
+}
+.issues .issues-container .issue-link .issue-container .issue-contents .issue-name .issue-left::first-letter,
+.issues .issues-container .issue-link .issue-container .issue-contents .issue-name .issue-right::first-letter {
   text-transform: capitalize;
 }/*# sourceMappingURL=issues.css.map */

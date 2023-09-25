@@ -5,17 +5,19 @@ import { useLocation, Link } from 'react-router-dom';
 // import { issues } from './Issue/issue'
 import { useSelector, useDispatch } from 'react-redux';
 
-function Issues() {
+function Issues({ projectIssues }) {
     const location = useLocation();
     const isIssuesActive = location.pathname === '/issues';
     const issues = useSelector((state) => state.issues);
+    const isProjectsActive = /^\/projects\//.test(location.pathname);
     
-
+    const filteredIssues = isProjectsActive ? projectIssues : issues;
+    
     return (
         <section className="issues">
             <div className={`issues-title ${isIssuesActive ? 'active' : ''}`}>Issues</div>
-            <div className={`issues-container ${isIssuesActive ? 'active' : ''}`}>                
-            {issues.map((issue) => (
+            <div className={`issues-container ${isIssuesActive ? 'active' : ''}`}>              
+            {filteredIssues.map((issue) => (
                 <Link className='issue-link' to={`/issues/${issue.id}`} key={issue.id}>
                     <div className={`issue-container ${isIssuesActive ? 'active' : ''}`}>       
                         <div className="issue-title">{issue.title}</div>

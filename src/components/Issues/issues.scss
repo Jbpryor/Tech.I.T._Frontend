@@ -74,18 +74,21 @@
                         width: 100%;
                         display: grid;
                         grid-template-columns: 50% 50%;
-                        font-size: 14px;
+                        font-size: 13px;
                 
                         .issue-left {
                             font-weight: 500;
                             text-align: left;
                             padding-left: 5%;
-                            text-transform: capitalize;
                         }
                 
                         .issue-right {
                             text-align: right;
                             padding-right: 5%;
+                        }
+
+                        .issue-left::first-letter,
+                        .issue-right::first-letter {
                             text-transform: capitalize;
                         }
                     }

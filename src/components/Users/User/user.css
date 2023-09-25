@@ -1,1 +1,213 @@
-/*# sourceMappingURL=user.css.map */
+.user {
+  height: 100%;
+  overflow: hidden;
+}
+.user .user-container {
+  height: 100%;
+  display: grid;
+  grid-template-columns: 30% 70%;
+}
+.user .user-container .user-buttons-container {
+  height: 92.05%;
+}
+.user .user-container .user-buttons-container .user-buttons-content {
+  margin: 15% 0;
+  padding: 2%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.user .user-container .user-buttons-container .user-buttons-content .account-settings,
+.user .user-container .user-buttons-container .user-buttons-content .notification-settings,
+.user .user-container .user-buttons-container .user-buttons-content .password-settings {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 3px;
+  padding: 2%;
+  height: 100px;
+  margin: 2%;
+  width: 300px;
+  border: 1px solid rgba(0, 0, 0, 0.143);
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 4px 6px 0 rgba(0, 0, 0, 0.19);
+  background-color: white;
+  cursor: pointer;
+  z-index: 1;
+}
+.user .user-container .user-buttons-container .user-buttons-content .account-settings:hover,
+.user .user-container .user-buttons-container .user-buttons-content .notification-settings:hover,
+.user .user-container .user-buttons-container .user-buttons-content .password-settings:hover {
+  color: rgb(86, 86, 2);
+  border: 1px solid rgba(86, 86, 2, 0.05);
+}
+.user .user-container .user-buttons-container .user-buttons-content .account-settings .button-title,
+.user .user-container .user-buttons-container .user-buttons-content .notification-settings .button-title,
+.user .user-container .user-buttons-container .user-buttons-content .password-settings .button-title {
+  font-size: 16px;
+  font-weight: 800;
+  padding: 2%;
+}
+.user .user-container .user-buttons-container .user-buttons-content .account-settings .button-details,
+.user .user-container .user-buttons-container .user-buttons-content .notification-settings .button-details,
+.user .user-container .user-buttons-container .user-buttons-content .password-settings .button-details {
+  font-size: 13px;
+  font-weight: 200;
+}
+.user .user-container .user-account-container {
+  display: grid;
+  grid-template-rows: 20% 50%;
+  margin: 2%;
+  padding: 2%;
+  display: none;
+}
+.user .user-container .user-account-container .user-img-container {
+  height: 80%;
+  display: grid;
+  grid-template-columns: 20% 60% 20%;
+  margin: 3% 2%;
+  padding: 3% 2%;
+  border: 2px solid rgba(0, 0, 0, 0.143);
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 12px 0 rgba(0, 0, 0, 0.19);
+}
+.user .user-container .user-account-container .user-img-container img {
+  border-radius: 50%;
+}
+.user .user-container .user-account-container .user-img-container .user-name-content {
+  padding: 1%;
+}
+.user .user-container .user-account-container .user-img-container .update {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 3px;
+  height: 25px;
+  margin: 10%;
+  width: 100px;
+  border: 1px solid rgba(0, 0, 0, 0.143);
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 4px 6px 0 rgba(0, 0, 0, 0.19);
+  background-color: white;
+  cursor: pointer;
+  z-index: 1;
+}
+.user .user-container .user-account-container .user-img-container .update:hover {
+  color: rgb(86, 86, 2);
+  border: 1px solid rgba(86, 86, 2, 0.05);
+}
+.user .user-container .user-account-container .user-info-container {
+  margin: 5% 2%;
+  padding: 5%;
+  height: 110%;
+  border: 2px solid rgba(0, 0, 0, 0.143);
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 12px 0 rgba(0, 0, 0, 0.19);
+}
+.user .user-container .user-account-container .user-info-container .user-name-container,
+.user .user-container .user-account-container .user-info-container .city-state-container,
+.user .user-container .user-account-container .user-info-container .zip-country-container {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  padding: 1%;
+  gap: 2%;
+}
+.user .user-container .user-account-container .user-info-container .user-name-container input,
+.user .user-container .user-account-container .user-info-container .city-state-container input,
+.user .user-container .user-account-container .user-info-container .zip-country-container input {
+  width: 96%;
+}
+.user .user-container .user-account-container .user-info-container .address-container {
+  display: grid;
+  grid-template-columns: 100%;
+  padding: 1%;
+  gap: 2%;
+}
+.user .user-container .user-account-container .user-info-container .address-container input {
+  width: 100%;
+}
+.user .user-container .user-account-container .edit-info-button-container {
+  padding: 5% 1%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.user .user-container .user-account-container .edit-info-button-container .edit-info-button {
+  border-radius: 5%;
+  height: 25px;
+  width: 200px;
+  border: 1px solid rgba(0, 0, 0, 0.143);
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 4px 6px 0 rgba(0, 0, 0, 0.19);
+  background-color: white;
+  cursor: pointer;
+  z-index: 1;
+}
+.user .user-container .user-account-container .edit-info-button-container .edit-info-button:hover {
+  color: rgb(86, 86, 2);
+  border: 1px solid rgba(86, 86, 2, 0.05);
+}
+.user .user-container .user-notifications-container {
+  margin: 2%;
+  padding: 2%;
+  display: none;
+}
+.user .user-container .user-notifications-container .notifications-content {
+  display: grid;
+  grid-template-rows: 20% 80%;
+  height: 100%;
+  padding: 0 5%;
+}
+.user .user-container .user-notifications-container .notifications-content .notifications-global,
+.user .user-container .user-notifications-container .notifications-content .notifications-local {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  padding: 2% 5%;
+  font-size: 15px;
+  border: 2px solid rgba(0, 0, 0, 0.143);
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 12px 0 rgba(0, 0, 0, 0.19);
+}
+.user .user-container .user-notifications-container .notifications-content .notifications-global .notification-content,
+.user .user-container .user-notifications-container .notifications-content .notifications-local .notification-content {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  padding: 1%;
+}
+.user .user-container .user-notifications-container .notifications-content .notifications-global .notification-header,
+.user .user-container .user-notifications-container .notifications-content .notifications-local .notification-header {
+  font-weight: 500;
+  font-size: 17px;
+}
+.user .user-container .user-notifications-container .notifications-content .notifications-global .notification-save-button-container,
+.user .user-container .user-notifications-container .notifications-content .notifications-local .notification-save-button-container {
+  margin: 1%;
+  padding: 2% 0;
+}
+.user .user-container .user-notifications-container .notifications-content .notifications-local {
+  padding: 1% 5%;
+  margin-top: 2%;
+}
+.user .user-container .user-notifications-container .notifications-content .enable,
+.user .user-container .user-notifications-container .notifications-content .disable,
+.user .user-container .user-notifications-container .notifications-content .notifications-save-button {
+  border-radius: 3px;
+  height: 25px;
+  width: 100px;
+  border: 1px solid rgba(0, 0, 0, 0.143);
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 4px 6px 0 rgba(0, 0, 0, 0.19);
+  background-color: white;
+  cursor: pointer;
+  z-index: 1;
+}
+.user .user-container .user-notifications-container .notifications-content .enable:hover,
+.user .user-container .user-notifications-container .notifications-content .disable:hover,
+.user .user-container .user-notifications-container .notifications-content .notifications-save-button:hover {
+  color: rgb(86, 86, 2);
+  border: 1px solid rgba(86, 86, 2, 0.05);
+}
+.user .user-container .user-notifications-container .notifications-content .notifications-save-button {
+  width: 125px;
+  height: 30px;
+}
+.user .user-container .user-password-container {
+  margin: 2%;
+  padding: 2%;
+}/*# sourceMappingURL=user.css.map */

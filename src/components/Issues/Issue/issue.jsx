@@ -16,7 +16,7 @@ function Issue() {
   const [ isEditMode, setEditMode ] = useState({});
   const [ showSaveButton, setShowSaveButton ] = useState(false);
   const [ editedDetail, setEditedDetail ] = useState({});
-  const [ showUpdatedField, setShowUpdatedField ] = useState(false);
+  const [ , setShowUpdatedField ] = useState(false);
 
   const issue = issues.find((issue) => issue.id.toString() === issueId);  
 
@@ -125,7 +125,16 @@ function Issue() {
             detail !== 'id' && (
               <div className="issue-details" key={detail}>
                 <div className="issue-title">{capitalizeFirstLetter(detail)}:</div>
-                {isEditMode[detail] && detail === 'status' ?
+                {isEditMode[detail] && detail === 'type' ? (
+                  <select className='issue-detail' value={editedDetail[detail] || issue[detail]} onChange={(event) => handleDetailChange(event, detail)}>
+                    <option value="">Select a type...</option>
+                    <option value="Bug">Bug</option>
+                    <option value="Feature">Feature</option>
+                    <option value="Documentation">Documentation</option>
+                    <option value="Crash">Crash</option>
+                    <option value="Task">Task</option>               
+                  </select>
+                ) : isEditMode[detail] && detail === 'status' ?
                 (
                   <select className='issue-detail' value={editedDetail[detail] || issue[detail]} onChange={(event) => handleDetailChange(event, detail)}>
                     <option value="Open">Open</option>

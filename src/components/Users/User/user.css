@@ -56,11 +56,13 @@
   font-weight: 200;
 }
 .user .user-container .user-account-container {
-  display: grid;
   grid-template-rows: 20% 50%;
   margin: 2%;
   padding: 2%;
   display: none;
+}
+.user .user-container .user-account-container.active {
+  display: grid;
 }
 .user .user-container .user-account-container .user-img-container {
   height: 80%;
@@ -149,6 +151,9 @@
   padding: 2%;
   display: none;
 }
+.user .user-container .user-notifications-container.active {
+  display: inherit;
+}
 .user .user-container .user-notifications-container .notifications-content {
   display: grid;
   grid-template-rows: 20% 80%;
@@ -208,6 +213,72 @@
   height: 30px;
 }
 .user .user-container .user-password-container {
-  margin: 2%;
+  margin: 3%;
+  margin-left: 10%;
+  margin-top: 5%;
   padding: 2%;
+  width: 50%;
+  height: 60%;
+  border: 2px solid rgba(0, 0, 0, 0.143);
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 12px 0 rgba(0, 0, 0, 0.19);
+  display: none;
+}
+.user .user-container .user-password-container.active {
+  display: inherit;
+}
+.user .user-container .user-password-container .title-container {
+  display: grid;
+  grid-template-columns: 80% 20%;
+}
+.user .user-container .user-password-container .title-container .title {
+  font-size: 17px;
+  font-weight: 800;
+  padding: 1%;
+}
+.user .user-container .user-password-container .title-container .password-details {
+  font-size: 13px;
+  padding: 5%;
+}
+.user .user-container .user-password-container .title-container .password-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 50px;
+}
+.user .user-container .user-password-container .title-container .password-icon i {
+  font-size: 50px;
+}
+.user .user-container .user-password-container .password-content {
+  padding: 0 4%;
+  margin: 5% 1%;
+}
+.user .user-container .user-password-container .password-content .current-password,
+.user .user-container .user-password-container .password-content .new-password,
+.user .user-container .user-password-container .password-content .re-enter-password {
+  padding: 2%;
+  width: 100%;
+}
+.user .user-container .user-password-container .password-content input {
+  width: 100%;
+}
+.user .user-container .user-password-container .new-password-button-container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2%;
+}
+.user .user-container .user-password-container .new-password-button-container .new-password-submit-button {
+  border-radius: 5%;
+  height: 25px;
+  width: 200px;
+  border: 1px solid rgba(0, 0, 0, 0.143);
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 4px 6px 0 rgba(0, 0, 0, 0.19);
+  background-color: white;
+  cursor: pointer;
+  z-index: 1;
+}
+.user .user-container .user-password-container .new-password-button-container .new-password-submit-button:hover {
+  color: rgb(86, 86, 2);
+  border: 1px solid rgba(86, 86, 2, 0.05);
 }/*# sourceMappingURL=user.css.map */

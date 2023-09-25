@@ -10,7 +10,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { addUser, changeUserRole, removeUser } from '../../Store/userSlice'
 
 
-function Users() {
+function Users({ projectUsers }) {
 
     // const dispatch = useDispatch();
 
@@ -23,6 +23,12 @@ function Users() {
     // const roles = [ 'Admin', 'Project Manager', 'Developer', 'Submitter' ];
 
     const users = useSelector((state) => state.users);
+
+    const isProjectsActive = /^\/projects\//.test(location.pathname);
+
+    const filteredUsers = isProjectsActive ? projectUsers : users;
+
+
 
     // const [ selectedUser, setSelectedUser ] = useState(null);
     // const [ addUserInput, setAddUserInput ] = useState({
@@ -382,7 +388,7 @@ function Users() {
         <section className="users">            
             <div className={`users-title ${isUsersActive ? 'active' : ''}`}>Users</div>
             <div className={`users-container ${isUsersActive ? 'active' : ''}`}>                
-            {users.map((user) => (
+            {filteredUsers.map((user) => (
                 <Link className='user-link' to={`/users/${user.id}`} key={user.id}>
                     <div className={`user-container ${isUsersActive ? 'active' : ''}`}>       
                         <div className="user-name">{user.name.first} {user.name.last}</div>

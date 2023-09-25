@@ -18,7 +18,8 @@ function Project() {
     const issue = issues.find((issue) => issue.id.toString() === projectId)
 
     const projectIssues = issues.filter((issue) => issue.project === project.title)
-    const projectUsers = users.filter((user) => user.name === issue.developer)
+    const developers = projectIssues.map((issue) => issue.developer)
+    const projectUsers = users.filter((user) => developers.includes(`${user.name.first} ${user.name.last}`))
 
     return (
         <section className="project">
@@ -34,7 +35,7 @@ function Project() {
                             </div>
                             <div className="project-manager">
                                 <div className="project-manager-left">Manager Name:</div>
-                                <div className="project-manager-right">John Duh</div>
+                                <div className="project-manager-right">{project.manager}</div>
                             </div>
                         </div>
                     </div>

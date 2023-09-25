@@ -1,29 +1,53 @@
-import React from "react";
+import React, { useState } from "react";
 import './user.scss';
 
 function User() {
+
+    const [ accountActive, setAccountActive ] = useState(true);
+    const [ notificationsActive, setNotificationsActive ] = useState(false);
+    const [ passwordActive, setPasswordActive ] = useState(false);
+
+    const handleAccountActive = () => {
+        setAccountActive(true);
+        setNotificationsActive(false);
+        setPasswordActive(false);
+    }
+
+    const handleNotificationsActive = () => {
+        setAccountActive(false);
+        setNotificationsActive(true);
+        setPasswordActive(false);
+    }
+
+    const handlePasswordActive =() => {
+        setAccountActive(false);
+        setNotificationsActive(false);
+        setPasswordActive(true);
+    }
+
+
     return (
         <section className="user">
             <div className="user-container">
 
                 <div className="user-buttons-container">
                     <div className="user-buttons-content">
-                        <div className="account-settings">
+                        <div className="account-settings" onClick={handleAccountActive}>
                             <div className="button-title">Account</div>
                             <div className="button-details">Details about your Personal information</div>
                         </div>
-                        <div className="notification-settings">
+                        <div className="notification-settings" onClick={handleNotificationsActive}>
                             <div className="button-title">Notifications</div>
                             <div className="button-details">Details about your Notifications</div>
                         </div>
-                        <div className="password-settings">
+                        <div className="password-settings" onClick={handlePasswordActive}>
                             <div className="button-title">Password & Security</div>
                             <div className="button-details">Details about your Password & Security</div>
                         </div>
                     </div>
                 </div>
 
-                <div className="user-account-container">
+                <div className={`user-account-container ${accountActive ? 'active' : ''}`}>
 
                     <div className="user-img-container">
                         <img src="" alt="" />
@@ -80,7 +104,7 @@ function User() {
                     </div>
                 </div>
 
-                <div className="user-notifications-container">
+                <div className={`user-notifications-container ${notificationsActive ? 'active' : ''}`}>
                     <div className="notifications-content">
                         <div className="notifications-global">
                             <div className="notification-content">
@@ -174,25 +198,37 @@ function User() {
                     </div>
                 </div>
 
-                <div className="user-password-container">
-                    <div className="title">Change Password</div>
-                    <div className="password-details">Update your password regularly and make sure it is unique from other passwords you use.</div>
-                    <div className="security-icon">#</div>
-                    <div className="current-password">
-                        <div className="title">Current Password*</div>
-                        <input type="text" />
+                <div className={`user-password-container ${passwordActive ? 'active' : ''}`}>
+
+                    <div className="title-container">
+                        <div className="title-content">
+                            <div className="title">Change Password</div>
+                            <div className="password-details">Update your password regularly and make sure it is unique from other passwords you use.</div>
+                        </div>
+                        <div className="password-icon">
+                            <i className='bx bxs-lock'></i>
+                        </div>
                     </div>
-                    <div className="new-password">
-                        <div className="title">New Password*</div>
-                        <input type="text" />
+
+                    <div className="password-content">
+                        <div className="current-password">
+                            <div className="title">Current Password*</div>
+                            <input type="password" />
+                        </div>
+                        <div className="new-password">
+                            <div className="title">New Password*</div>
+                            <input type="password" />
+                        </div>
+                        <div className="re-enter-password">
+                            <div className="title">Re-enter New Password*</div>
+                            <input type="password" />
+                        </div>
                     </div>
-                    <div className="re-enter-password">
-                        <div className="title">Re-enter New Password*</div>
-                        <input type="text" />
+
+                    <div className="new-password-button-container">
+                        <button className="new-password-submit-button">Submit</button>
                     </div>
-                    <div className="button-container">
-                        <div className="submit">Submit</div>
-                    </div>
+
                 </div>
 
             </div>

@@ -55,7 +55,9 @@ function User() {
                             <div className="user-name">User Name</div>
                             <div className="user-role">User Role</div>
                         </div>
-                        <button className="update">Update</button>
+                        <div className="user-img-update-button">
+                            <button className="update">Update</button>
+                        </div>
                     </div>
 
                     <div className="user-info-container">

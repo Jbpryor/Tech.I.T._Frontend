@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import './user.scss';
+import { useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
 
 function User() {
 
@@ -24,6 +26,12 @@ function User() {
         setNotificationsActive(false);
         setPasswordActive(true);
     }
+
+    const users = useSelector((state) => state.users);
+
+    const { userId } = useParams();
+    const user = users.find((user) => user.id.toString() === userId);
+    console.log(user.name);
 
 
     return (
@@ -50,10 +58,12 @@ function User() {
                 <div className={`user-account-container ${accountActive ? 'active' : ''}`}>
 
                     <div className="user-img-container">
-                        <img src="" alt="" />
+                        <div className="user-image-content">
+                            <img src="/images/john wick.jpg" alt="John Wick" className="user-image" />
+                        </div>
                         <div className="user-name-content">
-                            <div className="user-name">User Name</div>
-                            <div className="user-role">User Role</div>
+                            <div className="user-name">{user.name.first} {user.name.last}</div>
+                            <div className="user-role">{user.role}</div>
                         </div>
                         <div className="user-img-update-button">
                             <button className="update">Update</button>

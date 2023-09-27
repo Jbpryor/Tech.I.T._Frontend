@@ -19,7 +19,40 @@ function Project() {
 
     const projectIssues = issues.filter((issue) => issue.project === project.title)
     const developers = projectIssues.map((issue) => issue.developer)
-    const projectUsers = users.filter((user) => developers.includes(`${user.name.first} ${user.name.last}`))
+    const projectUsers = users.filter((user) => developers.includes(`${user.name.first} ${user.name.last}`));
+
+    const projectIssueStatus = projectIssues.map((issue) => issue.status);
+
+    const statusCounts = {
+        'Open': 0,
+        'In Progress': 0,
+        'Under Review': 0,
+        'Resolved': 0,
+        'Postponed': 0,
+        'Closed': 0,
+      };
+      
+      projectIssueStatus.forEach((status) => {
+        if (status in statusCounts) {
+          statusCounts[status] += 1;
+        }
+      });
+
+    const projectPriorityStatus = projectIssues.map((issue) => issue.priority)
+
+    const priorityCounts = {
+        'Critical': 0,
+        'High': 0,
+        'Medium': 0,
+        'Low': 0,
+    }
+
+    projectPriorityStatus.forEach((priority) => {
+        if (priority in priorityCounts) {
+            priorityCounts[priority] += 1;
+        }
+    })
+
 
     return (
         <section className="project">
@@ -27,7 +60,9 @@ function Project() {
 
                 <div className="project-top-container">
                     <div className="project-title-container">
-                        <div className="project-icon">#</div>
+                        <div className="project-icon-container">
+                            <i className='bx bxs-bug' ></i>
+                        </div>
                         <div className="project-title-content">
                             <div className="project-name">
                                 <div className="project-name-left">Project Name:</div>
@@ -42,40 +77,22 @@ function Project() {
 
                     <div className="project-status-content">
                         <div className="status-container">
-                            <div className="status-left">
-                                <div className="status-header-key">Statuses</div>
-                                <div className="status-key-row">Open</div>
-                                <div className="status-key-row">In Progress</div>
-                                <div className="status-key-row">Under Review</div>
-                                <div className="status-key-row">Resolved</div>
-                                <div className="status-key-row">Postponed</div>
-                                <div className="status-key-row">Closed</div>
-                            </div>
-                            <div className="status-right">
-                                <div className="status-header-value">Status Qty</div>
-                                <div className="status-value-row">0</div>
-                                <div className="status-value-row">5</div>
-                                <div className="status-value-row">3</div>
-                                <div className="status-value-row">6</div>
-                                <div className="status-value-row">33</div>
-                                <div className="status-value-row">5</div>
-                            </div>
+                            <div className="status-header">Statuses</div>
+                            {Object.entries(statusCounts).map(([status, count]) => (
+                                <>
+                                    <div className='status-left' key={status}>{status}: </div>
+                                    <div className='status-right' key={status}>{count}</div>
+                                </>
+                            ))}
                         </div>
                         <div className="priority-container">
-                            <div className="priority-left">
-                                <div className="priority-header-key">priorities</div>
-                                <div className="priority-key-row">Critical</div>
-                                <div className="priority-key-row">High</div>
-                                <div className="priority-key-row">Medium</div>
-                                <div className="priority-key-row">Low</div>
-                            </div>
-                            <div className="priority-right">
-                                <div className="priority-header-value">Priority Qty</div>
-                                <div className="priority-value-row">0</div>
-                                <div className="priority-value-row">3</div>
-                                <div className="priority-value-row">45</div>
-                                <div className="priority-value-row">5</div>
-                            </div>
+                            <div className="priority-header">Priorities</div>
+                            {Object.entries(priorityCounts).map(([priority, count]) => (
+                                <>
+                                    <div className="priority-left">{priority}:</div>
+                                    <div className="priority-right">{count}</div>
+                                </>
+                            ))}
                         </div>
                     </div>
                 </div>
@@ -86,17 +103,6 @@ function Project() {
 
                 <div className="project-users-content">
                     <Users projectUsers={projectUsers} />
-
-
-                    {/* <div className="project-users-column-name">Name
-                        <div className="project-users-row-name">Jason Pryor</div>
-                    </div>
-                    <div className="project-users-column-email">Email
-                        <div className="project-users-row-email">bllaaa@gmail.com</div>
-                    </div>
-                    <div className="project-users-column-role">Role
-                        <div className="project-users-row-role">Admin</div>
-                    </div> */}
                 </div>
 
             </div>
@@ -105,6 +111,3 @@ function Project() {
 }
 
 export default Project;
-
-// need to add a status field that contains issues
-// resolved to unresolved

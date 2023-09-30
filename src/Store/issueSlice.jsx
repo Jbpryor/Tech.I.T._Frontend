@@ -12,7 +12,7 @@ const issueSlice = createSlice({
             state.push(action.payload);
             localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(state));
         },
-        deletIssue: (state, action) => {
+        deleteIssue: (state, action) => {
             const issueIdToDelete = action.payload;
             const updatedState = state.filter((issue) => issue.id !== issueIdToDelete);
             localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(updatedState));
@@ -62,7 +62,7 @@ const issueSlice = createSlice({
     },
 });
 
-export const { addIssue, deletIssue, modifyIssue, issueCommentS, issueAttachments } = issueSlice.actions;
+export const { addIssue, deleteIssue, modifyIssue, issueCommentS, issueAttachments } = issueSlice.actions;
 
 export default issueSlice.reducer;
 

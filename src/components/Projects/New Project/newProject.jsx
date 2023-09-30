@@ -96,7 +96,7 @@ function NewProject() {
                             ) : detail === 'Manager' ? (
                                 <select className="new-project-input" value={projectDetails[detail]} onChange={(event) => handleInputChange(event, detail)}>
                                     <option value="">Select a Manager...</option>
-                                    {users.map((user, index) => (
+                                    {users.map((user, index) => user.role === 'Project Manager' && (
                                         <option key={index} value={`${user.name.first} ${user.name.last}`}>
                                             {user.name.first} {user.name.last}
                                         </option>

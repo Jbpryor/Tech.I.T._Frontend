@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import './issue.scss';
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { deletIssue, modifyIssue } from "../../../Store/issueSlice";
+import { deleteIssue, modifyIssue } from "../../../Store/issueSlice";
 
 function Issue() {
 
@@ -11,6 +11,10 @@ function Issue() {
   const dispatch = useDispatch();
 
   const issues = useSelector((state) => state.issues);
+  const projects = useSelector((state) => state.projects);
+
+  projects.map((project) => console.log(project.title))
+
 
   const { issueId } = useParams();
   const [ isEditMode, setEditMode ] = useState({});
@@ -62,7 +66,7 @@ function Issue() {
   };
 
   const handleDeleteIssue = () => {
-    dispatch(deletIssue(issue.id))
+    dispatch(deleteIssue(issue.id))
     navigate('/issues')
   }
 
@@ -143,6 +147,13 @@ function Issue() {
                     <option value="Resolved">Resolved</option>
                     <option value="Postponed">Postponed</option>
                     <option value="Closed">Closed</option>                    
+                  </select>
+                ) : isEditMode[detail] && detail === 'project' ? 
+                (
+                  <select className="issue-detail" value={editedDetail[detail] || issue[detail]} onChange={(event) => handleDetailChange(event, detail)}>
+                    {projects.map((project) => (
+                      <option value={project.title}>{project.title}</option>
+                    ))}
                   </select>
                 ) : isEditMode[detail] && detail === 'priority' ? 
                 (

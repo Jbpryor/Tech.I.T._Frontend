@@ -15,9 +15,71 @@
 .reports .reports-container {
   display: grid;
   grid-template-columns: 50% 50%;
+  gap: 0 2%;
+  margin: 1%;
 }
 .reports .reports-container.active {
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
+}
+.reports .reports-container .report-link {
+  text-decoration: none;
+  color: inherit;
+}
+.reports .reports-container .report-link .report-container {
+  padding: 2% 1%;
+  border: 1px solid #ccc;
+  background-color: rgb(255, 255, 255);
+  width: 14.6666666667vw;
+  text-align: center;
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 12px 0 rgba(0, 0, 0, 0.19);
+  transition: transform 0.3s ease-in-out;
+  margin: 3% 0;
+  cursor: pointer;
+}
+.reports .reports-container .report-link .report-container.active {
+  width: 13.5vw;
+}
+.reports .reports-container .report-link .report-container:hover {
+  transform: scale(1.01);
+}
+.reports .reports-container .report-link .report-container .report-title {
+  font-size: 15px;
+  padding: 2%;
+  font-weight: 800;
+  text-transform: capitalize;
+  position: relative;
+}
+.reports .reports-container .report-link .report-container .report-title::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 10%;
+  width: 80%;
+  height: 2px;
+  background-color: rgba(231, 231, 231, 0.5);
+}
+.reports .reports-container .report-link .report-container .report-contents {
+  padding: 4%;
+}
+.reports .reports-container .report-link .report-container .report-contents .report-name {
+  padding: 1%;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 50% 50%;
+  font-size: 13px;
+}
+.reports .reports-container .report-link .report-container .report-contents .report-name .report-left {
+  font-weight: 500;
+  text-align: left;
+  padding-left: 5%;
+}
+.reports .reports-container .report-link .report-container .report-contents .report-name .report-right {
+  text-align: right;
+  padding-right: 5%;
+}
+.reports .reports-container .report-link .report-container .report-contents .report-name .report-left::first-letter,
+.reports .reports-container .report-link .report-container .report-contents .report-name .report-right::first-letter {
+  text-transform: capitalize;
 }/*# sourceMappingURL=reports.css.map */

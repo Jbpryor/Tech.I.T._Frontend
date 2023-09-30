@@ -7,7 +7,7 @@
     .reports-title {
         font-size: 15px;
         font-weight: 600;
-        padding: 1%;        
+        padding: 1%;
 
         &.active {
             display: none;
@@ -17,11 +17,83 @@
     .reports-container {
         display: grid;
         grid-template-columns: 50% 50%;
+        gap: 0 2%;
+        margin: 1%;
 
         &.active {
             display: flex;
             flex-wrap: wrap;
             justify-content: flex-start;
-        }  
+        }
+        
+        .report-link {
+            text-decoration: none;
+            color: inherit;
+
+            .report-container {
+                padding: 2% 1%;
+                border: 1px solid #ccc;
+                background-color: rgb(255, 255, 255);
+                width: calc(88vw/6);
+                text-align: center;
+                box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 12px 0 rgba(0, 0, 0, 0.19);
+                transition: transform 0.3s ease-in-out;
+                margin: 3% 0;
+                cursor: pointer;
+
+                &.active {
+                    width: calc(81vw/6);
+                }
+            
+                &:hover {
+                    transform: scale(1.01);
+                }                
+            
+                .report-title {
+                    font-size: 15px;
+                    padding: 2%;
+                    font-weight: 800;
+                    text-transform: capitalize;
+                    position: relative;
+                }
+            
+                .report-title::after {
+                    content: "";
+                    position: absolute;
+                    bottom: 0;
+                    left: 10%;
+                    width: 80%;
+                    height: 2px;
+                    background-color: rgba(231, 231, 231, 0.5);
+                }
+            
+                .report-contents {
+                    padding: 4%;
+                    .report-name {
+                        padding: 1%;
+                        width: 100%;
+                        display: grid;
+                        grid-template-columns: 50% 50%;
+                        font-size: 13px;
+                
+                        .report-left {
+                            font-weight: 500;
+                            text-align: left;
+                            padding-left: 5%;
+                        }
+                
+                        .report-right {
+                            text-align: right;
+                            padding-right: 5%;
+                        }
+
+                        .report-left::first-letter,
+                        .report-right::first-letter {
+                            text-transform: capitalize;
+                        }
+                    }
+                }        
+            }
+        }      
     }
 }

@@ -15,6 +15,8 @@ import NewIssue from "../Issues/New Issue/newIssue";
 import Project from "../Projects/Project/project";
 import NewProject from "../Projects/New Project/newProject";
 import NewUser from "../Users/User/New User/newUser";
+import Report from "../Reports/Report/report";
+import NewReport from "../Reports/New Report/newReport";
 
 function Layout() {
     return (
@@ -36,6 +38,8 @@ function Layout() {
                     <Route path='/issues/:issueId' element={<Issue />} />
                     <Route path='/issues/newIssue' element={<NewIssue />} />
                     <Route path='/reports' element={<Reports />} />
+                    <Route path='/reports/:reportId' element={<Report />} />
+                    <Route path='/reports/newReport' element={<NewReport />} />
                 </Routes>
 
             </div>

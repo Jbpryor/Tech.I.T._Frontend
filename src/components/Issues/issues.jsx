@@ -1,8 +1,6 @@
 import React, { useEffect } from 'react';
 import './issues.scss'
 import { useLocation, Link } from 'react-router-dom';
-// import Issue from './Issue/issue';
-// import { issues } from './Issue/issue'
 import { useSelector, useDispatch } from 'react-redux';
 
 function Issues({ projectIssues }) {

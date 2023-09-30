@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import './newIssue.scss';
+import './newReport.scss';
 import { useLocation, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { addIssue } from "../../../Store/issueSlice";
+import { addReport } from "../../../Store/reportSlice";
 
-function NewIssue() {
+function NewReport() {
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -13,14 +13,14 @@ function NewIssue() {
     const users = useSelector((state) => state.users)
     const [ inputValues, setInputValues ] = useState({});
     const [ currentDate, setCurrentDate ] = useState('');
-    const issues = useSelector((state) => state.issues);
+    const reports = useSelector((state) => state.reports);
     const projects = useSelector((state) => state.projects);
 
 
 
     const location = useLocation();
 
-    const issueDetails = [
+    const reportDetails = [
         'Id',
         'Title',
         'Type',
@@ -33,7 +33,7 @@ function NewIssue() {
         'Description',        
     ];
 
-    const newIssue = {
+    const newReport = {
         id: newId,
         title: inputValues['Title'] || '',
         type: inputValues['Type'] || '',
@@ -66,21 +66,21 @@ function NewIssue() {
         setCurrentDate(formattedDate);
     }
 
-    const handleSaveNewIssue = (event) => {
+    const handleSaveNewReport = (event) => {
         event.preventDefault();
 
-        dispatch(addIssue(newIssue));
+        dispatch(addReport(newReport));
 
-        alert('New issue was created!')
+        alert('New report was created!')
 
         setInputValues({});
-        navigate(`/issues/${newIssue.id}`)
+        navigate(`/reports/${newReport.id}`)
     }
 
     useEffect(() => {
         handleCurrentDate();
-        if (issues && issues.length > 0) {
-          const highestId = Math.max(...issues.map((issue) => issue.id), 0);
+        if (reports && reports.length > 0) {
+          const highestId = Math.max(...reports.map((report) => report.id), 0);
           setNewId(highestId + 1);
         } else {
           setNewId(1);
@@ -89,17 +89,17 @@ function NewIssue() {
 
 
     return (
-        <section className="new-issue">
-            <div className="new-issue-container">
-                <div className="new-issue-title">New Issue</div>
-                <form className="new-issue-form">
-                    {issueDetails.map((detail) => (
-                        <div key={detail} className="new-issue-details">
-                            <div className="new-issue-detail">{detail}:</div>
+        <section className="new-report">
+            <div className="new-report-container">
+                <div className="new-report-title">New Report</div>
+                <form className="new-report-form">
+                    {reportDetails.map((detail) => (
+                        <div key={detail} className="new-report-details">
+                            <div className="new-report-detail">{detail}:</div>
                                 {detail === 'Id' ? (
-                                <div className="new-issue-input id">Issue-{newId}</div>
+                                <div className="new-report-input id">Report-{newId}</div>
                             ) : detail === 'Type' ? (
-                                <select className='new-issue-input' value={issueDetails[detail]} onChange={(event) => handleInputChange(event, detail)}>
+                                <select className='new-report-input' value={reportDetails[detail]} onChange={(event) => handleInputChange(event, detail)}>
                                     <option value="">Select a type...</option>
                                     <option value="Bug">Bug</option>
                                     <option value="Feature">Feature</option>
@@ -108,7 +108,7 @@ function NewIssue() {
                                     <option value="Task">Task</option>               
                                 </select>
                             ) : detail === 'Status' ? (
-                                <select className='new-issue-input' value={issueDetails[detail]} onChange={(event) => handleInputChange(event, detail)}>
+                                <select className='new-report-input' value={reportDetails[detail]} onChange={(event) => handleInputChange(event, detail)}>
                                     <option value="">Select a status...</option>
                                     <option value="Open">Open</option>
                                     <option value="In Progress">In Progress</option>
@@ -118,7 +118,7 @@ function NewIssue() {
                                     <option value="Closed">Closed</option>                
                                 </select>
                             ) : detail === 'Priority' ? (
-                                <select className="new-issue-input" value={issueDetails[detail]} onChange={(event) => handleInputChange(event, detail)}>
+                                <select className="new-report-input" value={reportDetails[detail]} onChange={(event) => handleInputChange(event, detail)}>
                                     <option value=''>Select a priority level...</option>
                                     <option value='Critical'>Critical</option>
                                     <option value="High">High</option>
@@ -126,7 +126,7 @@ function NewIssue() {
                                     <option value="Low">Low</option>
                                 </select>
                             ) : detail === 'Project' ? (
-                                <select className="new-issue-input" value={issueDetails[detail]} onChange={(event) => handleInputChange(event, detail)}>
+                                <select className="new-report-input" value={reportDetails[detail]} onChange={(event) => handleInputChange(event, detail)}>
                                     <option value="">Select a project...</option>
                                     {projects.map((project, index) => (
                                         <option key={index} value={`${project.title}`}>
@@ -135,7 +135,7 @@ function NewIssue() {
                                     ))}
                                 </select>  
                             ) : detail === 'Submitter' ? (
-                                <select className="new-issue-input" value={issueDetails[detail]} onChange={(event) => handleInputChange(event, detail)}>
+                                <select className="new-report-input" value={reportDetails[detail]} onChange={(event) => handleInputChange(event, detail)}>
                                     <option value="">Select a Submitter...</option>
                                     {users.map((user, index) => (
                                         <option key={index} value={`${user.name.first} ${user.name.last}`}>
@@ -144,7 +144,7 @@ function NewIssue() {
                                     ))}
                                 </select>  
                             ) : detail === 'Developer' ? (
-                                <select className="new-issue-input" value={issueDetails[detail]} onChange={(event) => handleInputChange(event, detail)}>
+                                <select className="new-report-input" value={reportDetails[detail]} onChange={(event) => handleInputChange(event, detail)}>
                                     <option value="">Select a Developer...</option>
                                     {users.map((user, index) => (
                                         <option key={index} value={`${user.name.first} ${user.name.last}`}>
@@ -153,21 +153,21 @@ function NewIssue() {
                                     ))}
                                 </select>
                             ) : detail === 'Created' ? (
-                                <div className="new-issue-input date">{currentDate}</div>          
+                                <div className="new-report-input date">{currentDate}</div>          
                             ) : detail === 'Description' ? (
-                                <textarea type="text" className="new-issue-input description" placeholder={` Enter ${detail}...`} value={inputValues[detail] || ''} onChange={(event) => handleInputChange(event, detail)} />
+                                <textarea type="text" className="new-report-input description" placeholder={` Enter ${detail}...`} value={inputValues[detail] || ''} onChange={(event) => handleInputChange(event, detail)} />
                             ) : (
-                                <input type="text" className="new-issue-input text" placeholder={` Enter ${detail}...`} value={inputValues[detail] || ''} onChange={(event) => handleInputChange(event, detail)} />
+                                <input type="text" className="new-report-input text" placeholder={` Enter ${detail}...`} value={inputValues[detail] || ''} onChange={(event) => handleInputChange(event, detail)} />
                             )}                    
                         </div>
                     ))}
                 </form>
-                <div className="new-issue-button">
-                    <button onClick={handleSaveNewIssue}>Create</button>
+                <div className="new-report-button">
+                    <button onClick={handleSaveNewReport}>Create</button>
                 </div>
             </div>
         </section>
     )
 }
 
-export default NewIssue;
+export default NewReport;

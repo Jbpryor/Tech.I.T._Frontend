@@ -99,6 +99,14 @@
                     .user-role {
                         padding: 1%;
                     }
+
+                    .user-name {
+                        font-weight: 500;
+                    }
+
+                    .user-role {
+                        font-size: 14px;
+                    }
                 }
 
                 .user-img-update-button {
@@ -141,6 +149,25 @@
                     input,
                     select {
                         width: 96%;
+                        margin: 1% 0;
+                    }
+
+                    select {
+                        padding: 0.9px 0;
+                    }
+
+                    .space {
+                        height: 24px;
+                        width: 96%;
+                        padding: 1% 0;
+                        margin: 1% 0;
+                        display: flex;
+                        align-items: center;
+                        justify-content: flex-start;
+                    }
+
+                    .title {
+                        font-weight: 500;
                     }
                 }
 
@@ -152,32 +179,49 @@
 
                     input {
                         width: 100%;
+                        margin: 1% 0;
+                    }
+
+                    .space {
+                        height: 24px;
+                        width: 100%;
+                    }
+
+                    .title {
+                        font-weight: 500;
                     }
                 }
-            }
 
-            .edit-info-button-container {
-                padding: 5% 1%;
-                margin: 2%;
-                display: flex;
-                align-items: center;
-                justify-content: center;
+                .edit-info-button-container {
+                    padding: 2% 1%;
+                    margin-top: 6%;
+                    display: flex;
+                    align-items: flex-end;
+                    justify-content: center;
+    
+                    .save-info-button,
+                    .cancel-edit-info-button,
+                    .edit-info-button {
+                        border-radius: 3px;
+                        margin: 0 5%;
+                        padding: 1% 3%;
+                        width: 155px;
+                        border: 1px solid rgba(0, 0, 0, 0.143);
+                        box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 4px 6px 0 rgba(0, 0, 0, 0.19);
+                        background-color: white;
+                        cursor: pointer;
+                        z-index: 1;
+            
+                        &:hover {
+                            color: rgb(86, 86, 2);
+                            border: 1px solid rgb(86, 86, 2, 0.05);
+                        } 
+                    }
 
-                .edit-info-button {
-                    border-radius: 3px;
-                    padding: 1% 3%;
-                    border: 1px solid rgba(0, 0, 0, 0.143);
-                    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 4px 6px 0 rgba(0, 0, 0, 0.19);
-                    background-color: white;
-                    cursor: pointer;
-                    z-index: 1;
-        
-                    &:hover {
-                        color: rgb(86, 86, 2);
-                        border: 1px solid rgb(86, 86, 2, 0.05);
-                    } 
                 }
             }
+
+ 
         }
 
         .user-notifications-container {

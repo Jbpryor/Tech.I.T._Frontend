@@ -4,29 +4,41 @@ export const LOCAL_STORAGE_KEY = 'users';
 
 const userFullName = (user) => `${user.name.first} ${user.name.last}`;
 
-const initialState = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY)) || []
+const initialState = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY)) || [];
 
 const userSlice = createSlice({
     name: 'users',
     initialState,
     reducers: {
         addUser: (state, action) => {
-            state.users.push(action.payload);
-            localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(state.users));
+            state.push(action.payload);
+            localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(state));
         },
+        modifyUser: (state, action) => {
+            const updatedUser = action.payload;
+            const index = state.findIndex((user) => user.id === updatedUser.id);
+        
+            if (index !== -1) {
+                const newState = [...state];
+                newState[index] = updatedUser;
+                state = newState;
+                localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(newState));
+            }
+        },        
         changeUserRole: (state, action) => {
             const { selectedUser, selectedRole } = action.payload;
-            state.users = state.users.map((user) => userFullName(user) === selectedUser ? { ...user, role: selectedRole } : user);
+            state.users = state.map((user) => userFullName(user) === selectedUser ? { ...user, role: selectedRole } : user);
             localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(state.users));
         },
         removeUser: (state, action) => {
-            const { selectedUser } = action.payload;
-            state.users = state.users.filter((user) => userFullName(user) !== selectedUser);
-            localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(state.users));
+            const userIdToDelete = action.payload;
+            const updatedState = state.filter((user) => user.id !== userIdToDelete);
+            localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(updatedState));
+            return updatedState;
         },
     },
 });
 
-export const { addUser, changeUserRole, removeUser } = userSlice.actions;
+export const { addUser, modifyUser, changeUserRole, removeUser } = userSlice.actions;
 
 export default userSlice.reducer;

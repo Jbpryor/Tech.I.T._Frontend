@@ -56,8 +56,8 @@
   font-weight: 200;
 }
 .user .user-container .user-account-container {
-  grid-template-rows: 20% 50%;
-  margin: 2%;
+  grid-template-rows: 20% 80%;
+  margin: 8% 15%;
   padding: 2%;
   display: none;
 }
@@ -65,42 +65,64 @@
   display: grid;
 }
 .user .user-container .user-account-container .user-img-container {
-  height: 80%;
+  height: 100%;
   display: grid;
   grid-template-columns: 20% 60% 20%;
-  margin: 3% 2%;
+  margin: 0 2%;
   padding: 3% 2%;
   border: 2px solid rgba(0, 0, 0, 0.143);
   box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 12px 0 rgba(0, 0, 0, 0.19);
 }
-.user .user-container .user-account-container .user-img-container img {
-  border-radius: 50%;
-}
-.user .user-container .user-account-container .user-img-container .user-name-content {
-  padding: 1%;
-}
-.user .user-container .user-account-container .user-img-container .update {
+.user .user-container .user-account-container .user-img-container .user-image-content {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+.user .user-container .user-account-container .user-img-container .user-image-content .user-image {
+  height: 75px;
+  width: 75px;
+  border-radius: 50%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.user .user-container .user-account-container .user-img-container .user-name-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 1%;
+}
+.user .user-container .user-account-container .user-img-container .user-name-content .user-name,
+.user .user-container .user-account-container .user-img-container .user-name-content .user-role {
+  padding: 1%;
+}
+.user .user-container .user-account-container .user-img-container .user-name-content .user-name {
+  font-weight: 500;
+}
+.user .user-container .user-account-container .user-img-container .user-name-content .user-role {
+  font-size: 14px;
+}
+.user .user-container .user-account-container .user-img-container .user-img-update-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.user .user-container .user-account-container .user-img-container .user-img-update-button .update {
   border-radius: 3px;
-  height: 25px;
-  margin: 10%;
-  width: 100px;
+  padding: 3% 10%;
   border: 1px solid rgba(0, 0, 0, 0.143);
   box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 4px 6px 0 rgba(0, 0, 0, 0.19);
   background-color: white;
   cursor: pointer;
   z-index: 1;
 }
-.user .user-container .user-account-container .user-img-container .update:hover {
+.user .user-container .user-account-container .user-img-container .user-img-update-button .update:hover {
   color: rgb(86, 86, 2);
   border: 1px solid rgba(86, 86, 2, 0.05);
 }
 .user .user-container .user-account-container .user-info-container {
-  margin: 5% 2%;
+  margin: 2%;
   padding: 5%;
-  height: 110%;
   border: 2px solid rgba(0, 0, 0, 0.143);
   box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 12px 0 rgba(0, 0, 0, 0.19);
 }
@@ -113,9 +135,34 @@
   gap: 2%;
 }
 .user .user-container .user-account-container .user-info-container .user-name-container input,
+.user .user-container .user-account-container .user-info-container .user-name-container select,
 .user .user-container .user-account-container .user-info-container .city-state-container input,
-.user .user-container .user-account-container .user-info-container .zip-country-container input {
+.user .user-container .user-account-container .user-info-container .city-state-container select,
+.user .user-container .user-account-container .user-info-container .zip-country-container input,
+.user .user-container .user-account-container .user-info-container .zip-country-container select {
   width: 96%;
+  margin: 1% 0;
+}
+.user .user-container .user-account-container .user-info-container .user-name-container select,
+.user .user-container .user-account-container .user-info-container .city-state-container select,
+.user .user-container .user-account-container .user-info-container .zip-country-container select {
+  padding: 0.9px 0;
+}
+.user .user-container .user-account-container .user-info-container .user-name-container .space,
+.user .user-container .user-account-container .user-info-container .city-state-container .space,
+.user .user-container .user-account-container .user-info-container .zip-country-container .space {
+  height: 24px;
+  width: 96%;
+  padding: 1% 0;
+  margin: 1% 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.user .user-container .user-account-container .user-info-container .user-name-container .title,
+.user .user-container .user-account-container .user-info-container .city-state-container .title,
+.user .user-container .user-account-container .user-info-container .zip-country-container .title {
+  font-weight: 500;
 }
 .user .user-container .user-account-container .user-info-container .address-container {
   display: grid;
@@ -125,29 +172,43 @@
 }
 .user .user-container .user-account-container .user-info-container .address-container input {
   width: 100%;
+  margin: 1% 0;
 }
-.user .user-container .user-account-container .edit-info-button-container {
-  padding: 5% 1%;
+.user .user-container .user-account-container .user-info-container .address-container .space {
+  height: 24px;
+  width: 100%;
+}
+.user .user-container .user-account-container .user-info-container .address-container .title {
+  font-weight: 500;
+}
+.user .user-container .user-account-container .user-info-container .edit-info-button-container {
+  padding: 2% 1%;
+  margin-top: 6%;
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: center;
 }
-.user .user-container .user-account-container .edit-info-button-container .edit-info-button {
-  border-radius: 5%;
-  height: 25px;
-  width: 200px;
+.user .user-container .user-account-container .user-info-container .edit-info-button-container .save-info-button,
+.user .user-container .user-account-container .user-info-container .edit-info-button-container .cancel-edit-info-button,
+.user .user-container .user-account-container .user-info-container .edit-info-button-container .edit-info-button {
+  border-radius: 3px;
+  margin: 0 5%;
+  padding: 1% 3%;
+  width: 155px;
   border: 1px solid rgba(0, 0, 0, 0.143);
   box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 4px 6px 0 rgba(0, 0, 0, 0.19);
   background-color: white;
   cursor: pointer;
   z-index: 1;
 }
-.user .user-container .user-account-container .edit-info-button-container .edit-info-button:hover {
+.user .user-container .user-account-container .user-info-container .edit-info-button-container .save-info-button:hover,
+.user .user-container .user-account-container .user-info-container .edit-info-button-container .cancel-edit-info-button:hover,
+.user .user-container .user-account-container .user-info-container .edit-info-button-container .edit-info-button:hover {
   color: rgb(86, 86, 2);
   border: 1px solid rgba(86, 86, 2, 0.05);
 }
 .user .user-container .user-notifications-container {
-  margin: 2%;
+  margin: 2% 10%;
   padding: 2%;
   display: none;
 }
@@ -176,6 +237,11 @@
   grid-template-columns: 50% 50%;
   padding: 1%;
 }
+.user .user-container .user-notifications-container .notifications-content .notifications-global .notification-content .notification-button-container,
+.user .user-container .user-notifications-container .notifications-content .notifications-local .notification-content .notification-button-container {
+  display: flex;
+  justify-content: flex-end;
+}
 .user .user-container .user-notifications-container .notifications-content .notifications-global .notification-header,
 .user .user-container .user-notifications-container .notifications-content .notifications-local .notification-header {
   font-weight: 500;
@@ -191,11 +257,9 @@
   margin-top: 2%;
 }
 .user .user-container .user-notifications-container .notifications-content .enable,
-.user .user-container .user-notifications-container .notifications-content .disable,
-.user .user-container .user-notifications-container .notifications-content .notifications-save-button {
+.user .user-container .user-notifications-container .notifications-content .disable {
   border-radius: 3px;
-  height: 25px;
-  width: 100px;
+  padding: 0.5% 7%;
   border: 1px solid rgba(0, 0, 0, 0.143);
   box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 4px 6px 0 rgba(0, 0, 0, 0.19);
   background-color: white;
@@ -203,22 +267,26 @@
   z-index: 1;
 }
 .user .user-container .user-notifications-container .notifications-content .enable:hover,
-.user .user-container .user-notifications-container .notifications-content .disable:hover,
-.user .user-container .user-notifications-container .notifications-content .notifications-save-button:hover {
+.user .user-container .user-notifications-container .notifications-content .disable:hover {
   color: rgb(86, 86, 2);
   border: 1px solid rgba(86, 86, 2, 0.05);
 }
 .user .user-container .user-notifications-container .notifications-content .notifications-save-button {
-  width: 125px;
-  height: 30px;
+  border-radius: 3px;
+  padding: 1% 5%;
+  border: 1px solid rgba(0, 0, 0, 0.143);
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 4px 6px 0 rgba(0, 0, 0, 0.19);
+  background-color: white;
+  cursor: pointer;
+  z-index: 1;
+}
+.user .user-container .user-notifications-container .notifications-content .notifications-save-button:hover {
+  color: rgb(86, 86, 2);
+  border: 1px solid rgba(86, 86, 2, 0.05);
 }
 .user .user-container .user-password-container {
-  margin: 3%;
-  margin-left: 10%;
-  margin-top: 5%;
+  margin: 10% 25%;
   padding: 2%;
-  width: 50%;
-  height: 60%;
   border: 2px solid rgba(0, 0, 0, 0.143);
   box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 12px 0 rgba(0, 0, 0, 0.19);
   display: none;
@@ -269,9 +337,8 @@
   padding: 2%;
 }
 .user .user-container .user-password-container .new-password-button-container .new-password-submit-button {
-  border-radius: 5%;
-  height: 25px;
-  width: 200px;
+  border-radius: 3px;
+  padding: 1% 5%;
   border: 1px solid rgba(0, 0, 0, 0.143);
   box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 4px 6px 0 rgba(0, 0, 0, 0.19);
   background-color: white;

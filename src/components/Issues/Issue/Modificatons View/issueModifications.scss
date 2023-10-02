@@ -1,0 +1,36 @@
+.mod-content {
+    display: flex;
+    flex-direction: column;
+    padding: 5%;
+    margin: 4%;
+    border: 2px solid rgba(0, 0, 0, 0.143);
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 12px 0 rgba(0, 0, 0, 0.19);
+
+    .mod-content::first-letter {
+        text-transform: capitalize;
+    }
+
+    .headers {
+        display: grid;
+        grid-template-columns: 24% 24% 24% 28%;
+        padding: 1%;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.129);
+        font-size: 15px;
+        font-weight: 600;
+
+        .title::first-letter {
+            text-transform: capitalize;
+        }
+    }
+
+    .mods {
+        display: grid;
+        grid-template-columns: 24% 24% 24% 28%;
+        padding: 1%;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.129);
+
+        .mod-title::first-letter {
+            text-transform: capitalize;
+        }
+    }
+}

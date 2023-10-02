@@ -3,6 +3,7 @@ import './issue.scss';
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { deleteIssue, modifyIssue, addModifications } from "../../../Store/issueSlice";
+import IssueModifications from "./Modificatons View/issueModifications";
 
 function Issue() {
 
@@ -77,7 +78,7 @@ function Issue() {
     };
 
     dispatch(modifyIssue(updatedIssue));
-    dispatch(addModifications({issueId: issue.id, modifications: pairedStates }));
+    dispatch(addModifications({ issueId: issue.id, modifications: pairedStates }));
   
 
     setEditedDetail({});
@@ -151,8 +152,10 @@ function Issue() {
     <section className={`issue ${isDraggingPage ? 'dragging' : ''}`} onDragOver={handlePageDragOver} onDragLeave={handlePageDragLeave}>
       {isModificationsViewActive ? (
         <div className="modifications-container">
-          <div className="modifications-content"></div>
-          <button className="issues-view-button" onClick={toggleModificationView}>Back to issues</button>
+          <IssueModifications issue={issue} />
+          <div className="mod-button-container">
+            <button className="issues-view-button" onClick={toggleModificationView}>Back to issues</button>
+          </div>
         </div>
       ) : (
         <div className="issue-container">

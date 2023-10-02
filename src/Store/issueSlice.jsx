@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { formatTimestamp } from "../main";
 
 export const LOCAL_STORAGE_KEY = 'issues';
 
@@ -22,13 +23,7 @@ const issueSlice = createSlice({
             const updatedIssue = action.payload;
             const index = state.findIndex((issue) => issue.id === updatedIssue.id);
             if (index !== -1) {
-                const date = new Date();
-                const hours = date.getHours();
-                const minutes = date.getMinutes();
-                const meridiem = hours >= 12 ? 'PM' : 'AM';
-                const formattedHours = hours % 12 || 12;
-
-                const formattedDate =  `${(date.getMonth() + 1).toString().padStart(2, '0')}/${date.getDate().toString().padStart(2, '0')}/${date.getFullYear()} ${formattedHours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${date.getSeconds().toString().padStart(2, '0')} ${meridiem}`.trim();
+                const formattedDate = formatTimestamp(new Date());
 
                 state[index] = {
                     ...updatedIssue,

@@ -11,6 +11,35 @@
     align-items: center;
     font-size: 14px;
 
+    .modifications-container {
+        grid-area: issue;
+
+        .mod-button-container {
+            display: flex;
+            margin-top: 4%;
+            align-items: center;
+            justify-content: center;
+
+            button {
+                margin: 0 5%;
+                width: 150px;
+                border-radius: 5%;
+                border: 2px solid rgba(0, 0, 0, 0.143);
+                box-shadow: 0 6px 8px 0 rgba(0, 0, 0, 0.2), 0 8px 12px 0 rgba(0, 0, 0, 0.19);
+                font-size: 100%;
+                background-color: white;
+                cursor: pointer;
+                z-index: 1;
+
+
+                &:hover {
+                    color: rgb(86, 86, 2);
+                    border: 2px solid rgb(86, 86, 2, 0.05);
+                }
+            }
+        }
+    }
+
     .issue-container {
         grid-area: issue;
 

@@ -6,10 +6,20 @@ import { useSelector, useDispatch } from 'react-redux';
 function Issues({ projectIssues }) {
     const location = useLocation();
     const isIssuesActive = location.pathname === '/issues';
-    const issues = useSelector((state) => state.issues);
+    const issues = useSelector((state) => state.issues)
+    const sortedIssues = [...issues].sort((a, b) => {
+        const priorityOrder = ['Critical', 'High', 'Medium', 'Low'];
+        const priorityA = priorityOrder.indexOf(a.priority);
+        const priorityB = priorityOrder.indexOf(b.priority);
+        if (priorityA !== priorityB) {
+            return priorityA - priorityB;
+        }
+        return a.created.localeCompare(b.created);
+    });
+    
     const isProjectsActive = /^\/projects\//.test(location.pathname);
     
-    const filteredIssues = isProjectsActive ? projectIssues : issues;
+    const filteredIssues = isProjectsActive ? projectIssues : sortedIssues;
     
     return (
         <section className="issues">

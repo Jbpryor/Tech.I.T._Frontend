@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import './newReport.scss';
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { addReport } from "../../../Store/reportSlice";
 
@@ -16,32 +16,21 @@ function NewReport() {
     const reports = useSelector((state) => state.reports);
     const projects = useSelector((state) => state.projects);
 
-
-
-    const location = useLocation();
-
     const reportDetails = [
-        'Id',
-        'Title',
-        'Type',
-        'Status',
-        'Priority',
-        'Project',
-        'Submitter',
-        'Developer',
         'Created',
+        'Subject',
+        'Type',
+        'Submitter',
+        'Project',        
         'Description',        
     ];
 
     const newReport = {
         id: newId,
-        title: inputValues['Title'] || '',
+        subject: inputValues['Subject'] || '',
         type: inputValues['Type'] || '',
-        status: inputValues['Status'] || '',
-        priority: inputValues["Priority"] || '',
-        submitter: inputValues['Submitter'] || '',
+        submitter: inputValues['Submitter'] || '', /* this needs to be set to the logged in user */
         project: inputValues['Project'] || '',
-        developer: inputValues['Developer'] || '',
         created: currentDate,
         description: inputValues['Description'] || '',
     };
@@ -95,39 +84,18 @@ function NewReport() {
                 <form className="new-report-form">
                     {reportDetails.map((detail) => (
                         <div key={detail} className="new-report-details">
-                            <div className="new-report-detail">{detail}:</div>
-                                {detail === 'Id' ? (
-                                <div className="new-report-input id">Report-{newId}</div>
-                            ) : detail === 'Type' ? (
+                            {detail === 'Type' ? (
                                 <select className='new-report-input' value={reportDetails[detail]} onChange={(event) => handleInputChange(event, detail)}>
-                                    <option value="">Select a type...</option>
+                                    <option value="">Type...</option>
                                     <option value="Bug">Bug</option>
                                     <option value="Feature">Feature</option>
                                     <option value="Documentation">Documentation</option>
                                     <option value="Crash">Crash</option>
                                     <option value="Task">Task</option>               
                                 </select>
-                            ) : detail === 'Status' ? (
-                                <select className='new-report-input' value={reportDetails[detail]} onChange={(event) => handleInputChange(event, detail)}>
-                                    <option value="">Select a status...</option>
-                                    <option value="Open">Open</option>
-                                    <option value="In Progress">In Progress</option>
-                                    <option value="Under Review">Under Review</option>
-                                    <option value="Resolved">Resolved</option>
-                                    <option value="Postponed">Postponed</option>
-                                    <option value="Closed">Closed</option>                
-                                </select>
-                            ) : detail === 'Priority' ? (
-                                <select className="new-report-input" value={reportDetails[detail]} onChange={(event) => handleInputChange(event, detail)}>
-                                    <option value=''>Select a priority level...</option>
-                                    <option value='Critical'>Critical</option>
-                                    <option value="High">High</option>
-                                    <option value="Medium">Medium</option>
-                                    <option value="Low">Low</option>
-                                </select>
                             ) : detail === 'Project' ? (
                                 <select className="new-report-input" value={reportDetails[detail]} onChange={(event) => handleInputChange(event, detail)}>
-                                    <option value="">Select a project...</option>
+                                    <option value="">Project...</option>
                                     {projects.map((project, index) => (
                                         <option key={index} value={`${project.title}`}>
                                             {project.title}
@@ -136,26 +104,17 @@ function NewReport() {
                                 </select>  
                             ) : detail === 'Submitter' ? (
                                 <select className="new-report-input" value={reportDetails[detail]} onChange={(event) => handleInputChange(event, detail)}>
-                                    <option value="">Select a Submitter...</option>
+                                    <option value="">Submitter...</option>
                                     {users.map((user, index) => (
                                         <option key={index} value={`${user.name.first} ${user.name.last}`}>
                                             {user.name.first} {user.name.last}
                                         </option>
                                     ))}
                                 </select>  
-                            ) : detail === 'Developer' ? (
-                                <select className="new-report-input" value={reportDetails[detail]} onChange={(event) => handleInputChange(event, detail)}>
-                                    <option value="">Select a Developer...</option>
-                                    {users.map((user, index) => (
-                                        <option key={index} value={`${user.name.first} ${user.name.last}`}>
-                                            {user.name.first} {user.name.last}
-                                        </option>
-                                    ))}
-                                </select>
                             ) : detail === 'Created' ? (
                                 <div className="new-report-input date">{currentDate}</div>          
                             ) : detail === 'Description' ? (
-                                <textarea type="text" className="new-report-input description" placeholder={` Enter ${detail}...`} value={inputValues[detail] || ''} onChange={(event) => handleInputChange(event, detail)} />
+                                <textarea type="text" className="new-report-input description" placeholder={` Enter a detailed ${detail}...`} value={inputValues[detail] || ''} onChange={(event) => handleInputChange(event, detail)} />
                             ) : (
                                 <input type="text" className="new-report-input text" placeholder={` Enter ${detail}...`} value={inputValues[detail] || ''} onChange={(event) => handleInputChange(event, detail)} />
                             )}                    

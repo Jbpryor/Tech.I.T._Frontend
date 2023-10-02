@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import './issue.scss';
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { deleteIssue, modifyIssue } from "../../../Store/issueSlice";
+import { deleteIssue, modifyIssue, addModifications } from "../../../Store/issueSlice";
 
 function Issue() {
 
@@ -13,28 +13,28 @@ function Issue() {
   const issues = useSelector((state) => state.issues);
   const projects = useSelector((state) => state.projects);
 
-  projects.map((project) => console.log(project.title))
-
-
   const { issueId } = useParams();
   const [ isEditMode, setEditMode ] = useState({});
   const [ showSaveButton, setShowSaveButton ] = useState(false);
   const [ editedDetail, setEditedDetail ] = useState({});
   const [ , setShowUpdatedField ] = useState(false);
 
-  const issue = issues.find((issue) => issue.id.toString() === issueId);  
+  const issue = issues.find((issue) => issue.id.toString() === issueId);
+  
+  const timeStamp = new Date().toISOString();
 
-  const handleEdit = (detail) => {
+  const [ modification, setModification ] = useState(null);
+  const [ previousState, setPreviousState ] = useState({});
+  const [ currentState, setCurrentState ] = useState({});
+
+  const handleEdit = (detail) => {;
+    setPreviousState((prev) => ({
+      ...prev,
+      [detail]: issue[detail],
+    }));
     setEditMode({ ...isEditMode, [detail]: true })
     setShowSaveButton(true);
     setShowUpdatedField(true);
-
-    const updatedIssue = {
-      ...issue,
-      modified: new Date().toISOString(),
-    };
-
-    dispatch(modifyIssue(updatedIssue));
   };
 
   const handleDetailChange = (event, detail) => {
@@ -43,26 +43,47 @@ function Issue() {
       ...prevEditedDetail,
       [detail]: value,
     }));
+    setCurrentState((prev) => ({
+      ...prev,
+      [detail]: value,
+    }));
   };
+
 
   const handleCancel = (detail) => {
     setEditMode({ ...isEditMode, [detail]: false });
     delete editedDetail[detail];
-    setEditedDetail({ ...editedDetail })
+    setEditedDetail({ ...editedDetail });
+    setModification(null);
   }
 
   const saveEditedIssue = () => {
-    setEditedDetail({});
-    setEditMode({});
-    setShowSaveButton(false);
+
+    const pairedStates = {};
+
+    for (const [key, value] of Object.entries(currentState)) {
+      if (previousState.hasOwnProperty(key)) {
+        pairedStates[key] = {
+          previousState: previousState[key],
+          currentState: value,
+          modified: timeStamp,
+        };
+      }
+    }
 
     const updatedIssue = {
       ...issue,
       ...editedDetail,
-      modified: new Date().toISOString(),
     };
 
     dispatch(modifyIssue(updatedIssue));
+    dispatch(addModifications({issueId: issue.id, modifications: pairedStates }));
+  
+
+    setEditedDetail({});
+    setEditMode({});
+    setShowSaveButton(false);
+    setModification(null);
   };
 
   const handleDeleteIssue = () => {
@@ -75,6 +96,7 @@ function Issue() {
   const [ isDraggingPage, setIsDraggingPage ] = useState(false);
   const [ isDragging, setIsDragging ] = useState(false);
   const [ savedFiles, setSavedFiles ] = useState([]);
+  const [ isModificationsViewActive, setModificationsViewActive ] = useState(false);
 
   const handleDragOver = (event) => {
     event.preventDefault();
@@ -121,75 +143,86 @@ function Issue() {
     setSavedFiles(updatedFiles);
   }
 
-  return (      
+  const toggleModificationView = () => {
+    setModificationsViewActive(!isModificationsViewActive);
+  }
+
+  return (    
     <section className={`issue ${isDraggingPage ? 'dragging' : ''}`} onDragOver={handlePageDragOver} onDragLeave={handlePageDragLeave}>
-      <div className="issue-container">
-        <div className="issue-contents">
-          {Object.keys(issue).map((detail) => (
-            detail !== 'id' && (
-              <div className="issue-details" key={detail}>
-                <div className="issue-title">{capitalizeFirstLetter(detail)}:</div>
-                {isEditMode[detail] && detail === 'type' ? (
-                  <select className='issue-detail' value={editedDetail[detail] || issue[detail]} onChange={(event) => handleDetailChange(event, detail)}>
-                    <option value="">Select a type...</option>
-                    <option value="Bug">Bug</option>
-                    <option value="Feature">Feature</option>
-                    <option value="Documentation">Documentation</option>
-                    <option value="Crash">Crash</option>
-                    <option value="Task">Task</option>               
-                  </select>
-                ) : isEditMode[detail] && detail === 'status' ?
-                (
-                  <select className='issue-detail' value={editedDetail[detail] || issue[detail]} onChange={(event) => handleDetailChange(event, detail)}>
-                    <option value="Open">Open</option>
-                    <option value="In Progress">In Progress</option>
-                    <option value="Under Review">Under Review</option>
-                    <option value="Resolved">Resolved</option>
-                    <option value="Postponed">Postponed</option>
-                    <option value="Closed">Closed</option>                    
-                  </select>
-                ) : isEditMode[detail] && detail === 'project' ? 
-                (
-                  <select className="issue-detail" value={editedDetail[detail] || issue[detail]} onChange={(event) => handleDetailChange(event, detail)}>
-                    {projects.map((project) => (
-                      <option value={project.title}>{project.title}</option>
-                    ))}
-                  </select>
-                ) : isEditMode[detail] && detail === 'priority' ? 
-                (
-                  <select className="issue-detail" value={editedDetail[detail] || issue[detail]} onChange={(event) => handleDetailChange(event, detail)}>
-                    <option value='Critical'>Critical</option>
-                    <option value="High">High</option>
-                    <option value="Medium">Medium</option>
-                    <option value="Low">Low</option>
-                  </select>
-                ) : isEditMode[detail] ? 
-                (
-                  <input className='issue-detail' type='text' value={editedDetail[detail] || issue[detail]} onChange={(event) => handleDetailChange(event, detail)} />
-                ) :
-                (
-                  <div className="issue-detail">{editedDetail[detail] || issue[detail]}</div>
-                )}
-                {detail === 'modified' ? (
-                  <button >View</button>
-                ): isEditMode[detail] ? (
-                  <button onClick={() => handleCancel(detail)}>Cancel</button>
-                ): (
-                  <button onClick={() => handleEdit(detail)}>Modify</button>
-                )}
-              </div>
-              ))
-            )
-          }
-          <div className='issue-buttons-container'>
-            {!showSaveButton && <button onClick={handleDeleteIssue}>Delete</button>}
-            {showSaveButton && <button className="save" onClick={saveEditedIssue}>Save</button>}
-          </div>
-        </div>         
-        <div className="new-issue-link-container">
-          <Link to='/issues/newIssue' className="new-issue-link">New Issue +</Link>
-        </div> 
-      </div>
+      {isModificationsViewActive ? (
+        <div className="modifications-container">
+          <div className="modifications-content"></div>
+          <button className="issues-view-button" onClick={toggleModificationView}>Back to issues</button>
+        </div>
+      ) : (
+        <div className="issue-container">
+          <div className="issue-content">
+            {Object.keys(issue).map((detail) => (
+              detail !== 'id' && detail !== 'modifications' && (
+                <div className="issue-details" key={detail}>
+                  <div className="issue-title">{capitalizeFirstLetter(detail)}:</div>
+                  {isEditMode[detail] && detail === 'type' ? (
+                    <select className='issue-detail' value={editedDetail[detail] || issue[detail]} onChange={(event) => handleDetailChange(event, detail)}>
+                      <option value="">Select a type...</option>
+                      <option value="Bug">Bug</option>
+                      <option value="Feature">Feature</option>
+                      <option value="Documentation">Documentation</option>
+                      <option value="Crash">Crash</option>
+                      <option value="Task">Task</option>               
+                    </select>
+                  ) : isEditMode[detail] && detail === 'status' ?
+                  (
+                    <select className='issue-detail' value={editedDetail[detail] || issue[detail]} onChange={(event) => handleDetailChange(event, detail)}>
+                      <option value="Open">Open</option>
+                      <option value="In Progress">In Progress</option>
+                      <option value="Under Review">Under Review</option>
+                      <option value="Resolved">Resolved</option>
+                      <option value="Postponed">Postponed</option>
+                      <option value="Closed">Closed</option>                    
+                    </select>
+                  ) : isEditMode[detail] && detail === 'project' ? 
+                  (
+                    <select className="issue-detail" value={editedDetail[detail] || issue[detail]} onChange={(event) => handleDetailChange(event, detail)}>
+                      {projects.map((project) => (
+                        <option value={project.title}>{project.title}</option>
+                      ))}
+                    </select>
+                  ) : isEditMode[detail] && detail === 'priority' ? 
+                  (
+                    <select className="issue-detail" value={editedDetail[detail] || issue[detail]} onChange={(event) => handleDetailChange(event, detail)}>
+                      <option value='Critical'>Critical</option>
+                      <option value="High">High</option>
+                      <option value="Medium">Medium</option>
+                      <option value="Low">Low</option>
+                    </select>
+                  ) : isEditMode[detail] ? 
+                  (
+                    <input className='issue-detail' type='text' value={editedDetail[detail] || issue[detail]} onChange={(event) => handleDetailChange(event, detail)} />
+                  ) :
+                  (
+                    <div className="issue-detail">{editedDetail[detail] || issue[detail]}</div>
+                  )}
+                  {detail === 'modified' ? (
+                    <button className="modifications-view-button" onClick={toggleModificationView}>View</button>
+                  ): isEditMode[detail] ? (
+                    <button onClick={() => handleCancel(detail)}>Cancel</button>
+                  ): (
+                    <button onClick={() => handleEdit(detail)}>Modify</button>
+                  )}
+                </div>
+                ))
+              )
+            }
+            <div className='issue-buttons-container'>
+              {!showSaveButton && <button onClick={handleDeleteIssue}>Delete</button>}
+              {showSaveButton && <button className="save" onClick={saveEditedIssue}>Save</button>}
+            </div>
+          </div>         
+          <div className="new-issue-link-container">
+            <Link to='/issues/newIssue' className="new-issue-link">New Issue +</Link>
+          </div> 
+        </div>
+      )}
       <div className="issue-comments-container">
         <div className="issue-comments-title">Comments</div>
         <div className="issue-comments-input-container">

@@ -23,31 +23,28 @@
   font-size: 15px;
   text-align: left;
   display: grid;
-  grid-template-columns: 50% 50%;
-  padding: 1%;
+  grid-template-columns: 100%;
+  padding: 1% 0;
   border-bottom: 1px solid rgba(0, 0, 0, 0.129);
-}
-.new-report .new-report-container .new-report-form .new-report-details .new-report-detail {
-  padding-left: 2%;
 }
 .new-report .new-report-container .new-report-form .new-report-details .new-report-input {
   font-size: 15px;
-  padding-left: 2%;
+  padding-left: 1%;
   border: none;
   text-align: left;
 }
-.new-report .new-report-container .new-report-form .new-report-details .id,
 .new-report .new-report-container .new-report-form .new-report-details .date {
-  padding-left: 3%;
+  padding-left: 1%;
 }
 .new-report .new-report-container .new-report-form .new-report-details .description {
   word-wrap: break-word;
-  word-break: break-all;
   width: 100%;
+  min-height: 150px;
   height: auto;
   overflow: hidden;
   align-items: center;
-  padding-left: 2%;
+  padding-left: 1%;
+  border: 1px solid rgba(0, 0, 0, 0.129);
 }
 .new-report .new-report-container .new-report-button {
   display: flex;

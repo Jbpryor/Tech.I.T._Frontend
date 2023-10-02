@@ -15,9 +15,17 @@ function Project() {
 
     const { projectId } = useParams();
     const project = projects.find((project) => project.id.toString() === projectId)
-    const issue = issues.find((issue) => issue.id.toString() === projectId)
+    const sortedIssues = [...issues].sort((a, b) => {
+        const priorityOrder = ['Critical', 'High', 'Medium', 'Low'];
+        const priorityA = priorityOrder.indexOf(a.priority);
+        const priorityB = priorityOrder.indexOf(b.priority);
+        if (priorityA !== priorityB) {
+            return priorityA - priorityB;
+        }
+        return a.created.localeCompare(b.created);
+    });
 
-    const projectIssues = issues.filter((issue) => issue.project === project.title)
+    const projectIssues = sortedIssues.filter((issue) => issue.project === project.title)
     const developers = projectIssues.map((issue) => issue.developer)
     const projectUsers = users.filter((user) => developers.includes(`${user.name.first} ${user.name.last}`));
 

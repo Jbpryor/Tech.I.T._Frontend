@@ -37,7 +37,18 @@ const issueSlice = createSlice({
                 localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(state));
             }
         },
-        issueCommentS: (state, action) => {
+        addModifications: (state, action) => {
+            const { issueId, modifications } = action.payload;
+            const index = state.findIndex((issue) => issue.id === issueId);
+            if (index !== -1) {
+                if (!state[index].modifications) {
+                    state[index].modifications = [];
+                }
+                state[index].modifications.push(modifications);
+                localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(state));
+            }
+        },
+        issueComments: (state, action) => {
             const { issueId, comment } = action.payload;
             const issue = state.issues.find((issue) => issue.id === issueId);
             if (issue) {
@@ -62,7 +73,7 @@ const issueSlice = createSlice({
     },
 });
 
-export const { addIssue, deleteIssue, modifyIssue, issueCommentS, issueAttachments } = issueSlice.actions;
+export const { addIssue, deleteIssue, modifyIssue, addModifications, issueCommentS, issueAttachments } = issueSlice.actions;
 
 export default issueSlice.reducer;
 

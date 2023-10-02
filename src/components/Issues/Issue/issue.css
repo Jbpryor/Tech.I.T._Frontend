@@ -12,7 +12,7 @@
 .issue .issue-container {
   grid-area: issue;
 }
-.issue .issue-container .issue-contents {
+.issue .issue-container .issue-content {
   display: flex;
   flex-direction: column;
   padding: 5%;
@@ -20,19 +20,19 @@
   border: 2px solid rgba(0, 0, 0, 0.143);
   box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 12px 0 rgba(0, 0, 0, 0.19);
 }
-.issue .issue-container .issue-contents .issue-details {
+.issue .issue-container .issue-content .issue-details {
   display: grid;
   grid-template-columns: 25% 65% 10%;
   padding: 1%;
   border-bottom: 1px solid rgba(0, 0, 0, 0.129);
 }
-.issue .issue-container .issue-contents .issue-details .issue-detail {
+.issue .issue-container .issue-content .issue-details .issue-detail {
   width: 100%;
   position: relative;
   left: -2%;
   padding-left: 2%;
 }
-.issue .issue-container .issue-contents .issue-details button {
+.issue .issue-container .issue-content .issue-details button {
   border-radius: 5%;
   height: 22px;
   border: 1px solid rgba(0, 0, 0, 0.143);
@@ -41,17 +41,17 @@
   cursor: pointer;
   z-index: 1;
 }
-.issue .issue-container .issue-contents .issue-details button:hover {
+.issue .issue-container .issue-content .issue-details button:hover {
   color: rgb(86, 86, 2);
   border: 1px solid rgba(86, 86, 2, 0.05);
 }
-.issue .issue-container .issue-contents .issue-buttons-container {
+.issue .issue-container .issue-content .issue-buttons-container {
   display: flex;
   margin-top: 4%;
   align-items: center;
   justify-content: center;
 }
-.issue .issue-container .issue-contents .issue-buttons-container button {
+.issue .issue-container .issue-content .issue-buttons-container button {
   margin: 0 5%;
   width: 150px;
   border-radius: 5%;
@@ -62,7 +62,7 @@
   cursor: pointer;
   z-index: 1;
 }
-.issue .issue-container .issue-contents .issue-buttons-container button:hover {
+.issue .issue-container .issue-content .issue-buttons-container button:hover {
   color: rgb(86, 86, 2);
   border: 2px solid rgba(86, 86, 2, 0.05);
 }

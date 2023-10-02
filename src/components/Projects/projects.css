@@ -3,6 +3,7 @@
   flex-direction: column;
   align-items: center;
   padding: 0.5%;
+  scroll-behavior: auto;
 }
 .projects .projects-title {
   font-size: 15px;
@@ -21,6 +22,7 @@
 .projects .projects-container.active {
   display: flex;
   flex-wrap: wrap;
+  width: 98%;
   justify-content: flex-start;
 }
 .projects .projects-container .project-link {

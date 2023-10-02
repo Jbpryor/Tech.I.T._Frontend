@@ -2,66 +2,15 @@ import React, { useState, useEffect } from "react";
 import './report.scss';
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { deleteReport, modifyReport } from "../../../Store/reportSlice";
+import { deleteReport } from "../../../Store/reportSlice";
 
 function Report() {
 
   const navigate = useNavigate();
-
   const dispatch = useDispatch();
-
   const reports = useSelector((state) => state.reports);
-  const projects = useSelector((state) => state.projects);
-
-
   const { reportId } = useParams();
-  const [ isEditMode, setEditMode ] = useState({});
-  const [ showSaveButton, setShowSaveButton ] = useState(false);
-  const [ editedDetail, setEditedDetail ] = useState({});
-  const [ , setShowUpdatedField ] = useState(false);
-
-  const report = reports.find((report) => report.id.toString() === reportId);  
-
-  const handleEdit = (detail) => {
-    setEditMode({ ...isEditMode, [detail]: true })
-    setShowSaveButton(true);
-    setShowUpdatedField(true);
-
-    const updatedReport = {
-      ...report,
-      modified: new Date().toISOString(),
-    };
-
-    dispatch(modifyReport(updatedReport));
-  };
-
-  const handleDetailChange = (event, detail) => {
-    const { value } = event.target;
-    setEditedDetail((prevEditedDetail) => ({
-      ...prevEditedDetail,
-      [detail]: value,
-    }));
-  };
-
-  const handleCancel = (detail) => {
-    setEditMode({ ...isEditMode, [detail]: false });
-    delete editedDetail[detail];
-    setEditedDetail({ ...editedDetail })
-  }
-
-  const saveEditedReport = () => {
-    setEditedDetail({});
-    setEditMode({});
-    setShowSaveButton(false);
-
-    const updatedReport = {
-      ...report,
-      ...editedDetail,
-      modified: new Date().toISOString(),
-    };
-
-    dispatch(modifyReport(updatedReport));
-  };
+  const report = reports.find((report) => report.id.toString() === reportId);
 
   const handleDeleteReport = () => {
     dispatch(deleteReport(report.id))
@@ -127,65 +76,17 @@ function Report() {
             detail !== 'id' && (
               <div className="report-details" key={detail}>
                 <div className="report-title">{capitalizeFirstLetter(detail)}:</div>
-                {isEditMode[detail] && detail === 'type' ? (
-                  <select className='report-detail' value={editedDetail[detail] || report[detail]} onChange={(event) => handleDetailChange(event, detail)}>
-                    <option value="">Select a type...</option>
-                    <option value="Bug">Bug</option>
-                    <option value="Feature">Feature</option>
-                    <option value="Documentation">Documentation</option>
-                    <option value="Crash">Crash</option>
-                    <option value="Task">Task</option>               
-                  </select>
-                ) : isEditMode[detail] && detail === 'status' ?
-                (
-                  <select className='report-detail' value={editedDetail[detail] || report[detail]} onChange={(event) => handleDetailChange(event, detail)}>
-                    <option value="Open">Open</option>
-                    <option value="In Progress">In Progress</option>
-                    <option value="Under Review">Under Review</option>
-                    <option value="Resolved">Resolved</option>
-                    <option value="Postponed">Postponed</option>
-                    <option value="Closed">Closed</option>                    
-                  </select>
-                ) : isEditMode[detail] && detail === 'project' ? 
-                (
-                  <select className="report-detail" value={editedDetail[detail] || report[detail]} onChange={(event) => handleDetailChange(event, detail)}>
-                    {projects.map((project) => (
-                      <option value={project.title}>{project.title}</option>
-                    ))}
-                  </select>
-                ) : isEditMode[detail] && detail === 'priority' ? 
-                (
-                  <select className="report-detail" value={editedDetail[detail] || report[detail]} onChange={(event) => handleDetailChange(event, detail)}>
-                    <option value='Critical'>Critical</option>
-                    <option value="High">High</option>
-                    <option value="Medium">Medium</option>
-                    <option value="Low">Low</option>
-                  </select>
-                ) : isEditMode[detail] ? 
-                (
-                  <input className='report-detail' type='text' value={editedDetail[detail] || report[detail]} onChange={(event) => handleDetailChange(event, detail)} />
-                ) :
-                (
-                  <div className="report-detail">{editedDetail[detail] || report[detail]}</div>
-                )}
-                {detail === 'modified' ? (
-                  <button >View</button>
-                ): isEditMode[detail] ? (
-                  <button onClick={() => handleCancel(detail)}>Cancel</button>
-                ): (
-                  <button onClick={() => handleEdit(detail)}>Modify</button>
-                )}
+                <div className="report-detail">{report[detail]}</div>
               </div>
               ))
             )
           }
           <div className='report-buttons-container'>
-            {!showSaveButton && <button onClick={handleDeleteReport}>Delete</button>}
-            {showSaveButton && <button className="save" onClick={saveEditedReport}>Save</button>}
+            <button onClick={handleDeleteReport}>Delete</button>
           </div>
         </div>         
         <div className="new-report-link-container">
-          <Link to='/reportss/newReport' className="new-report-link">New Report +</Link>
+          <Link to='/reports/newReport' className="new-report-link">New Report +</Link>
         </div> 
       </div>
       <div className="report-comments-container">

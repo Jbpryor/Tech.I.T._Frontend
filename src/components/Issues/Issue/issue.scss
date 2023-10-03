@@ -188,70 +188,74 @@
 
         .issue-comments-content {
             margin-top: 5%;
-            display: grid;
-            grid-template-columns: 20% 40% 20% 20%;
-            grid-template-rows: 25% 25% 25% 25%;
-            overflow: auto;
             height: 85%;
-
-            .issue-comments-user-container,
-            .issue-comment-container,
-            .issue-comments-date-container {
-                display: flex;
-                align-items: center;
-                justify-content: center;
-
-                .issue-comments-user,
-                .issue-comment {
-                    white-space: nowrap;
-                    overflow: hidden;
-                    text-overflow: ellipsis;
-                    align-items: center;
-                    flex: 1;
-                    padding-left: 2%;
-
-                    &:hover {
-                        white-space: unset;
-                        text-overflow: unset;
-                    }
-                }
-
-                .issue-comments-date {
-                    white-space: nowrap;
-                    overflow: hidden;
-                    text-overflow: ellipsis;
-                    align-items: center;
-                    flex: 1;
-                    text-align: center;
-                }
-            }
-
-            .issue-comments-buttons-container {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
-               
-                .issue-comments-button-container {
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: center;
-                    width: 50%;
-
-                    .delete-button {
-                        border-radius: 5%;
-                        border: 1px solid rgba(0, 0, 0, 0.143);
-                        box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 4px 6px 0 rgba(0, 0, 0, 0.19);
-                        background-color: white;
-                        cursor: pointer;
-                        z-index: 1;
-
             
+            .issue-comment-container {
+                display: grid;
+                grid-template-columns: 18% 40% 24% 18%;
+                padding: 1%;
+                overflow: auto;
+
+                .issue-comments-user-container,
+                .issue-comment-container,
+                .issue-comments-date-container {
+                    padding: 1%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+    
+                    .issue-comments-user,
+                    .issue-comment {
+                        white-space: nowrap;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        align-items: center;
+                        flex: 1;
+                        padding-left: 2%;
+    
                         &:hover {
-                            color: rgb(86, 86, 2);
-                            border: 2px solid rgb(86, 86, 2, 0.05);
+                            white-space: unset;
+                            text-overflow: unset;
                         }
                     }
+    
+                    .issue-comments-date {
+                        white-space: nowrap;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        align-items: center;
+                        flex: 1;
+                        text-align: center;
+                    }
+                }
+    
+                .issue-comments-buttons-container {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: center;
+                   
+                    .issue-comments-button-container {
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: center;
+                        width: 50%;
+    
+                        .delete-button {
+                            border-radius: 5%;
+                            border: 1px solid rgba(0, 0, 0, 0.143);
+                            box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 4px 6px 0 rgba(0, 0, 0, 0.19);
+                            background-color: white;
+                            cursor: pointer;
+                            z-index: 1;
+    
+                
+                            &:hover {
+                                color: rgb(86, 86, 2);
+                                border: 2px solid rgb(86, 86, 2, 0.05);
+                            }
+                        }
+                    } 
                 } 
             }
         }      

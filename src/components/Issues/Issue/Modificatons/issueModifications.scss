@@ -32,5 +32,9 @@
         .mod-title::first-letter {
             text-transform: capitalize;
         }
+
+        .mod-title {
+            font-weight: 500;
+        }
     }
 }

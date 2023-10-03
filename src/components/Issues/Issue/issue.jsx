@@ -3,7 +3,8 @@ import './issue.scss';
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { deleteIssue, modifyIssue, addModifications } from "../../../Store/issueSlice";
-import IssueModifications from "./Modificatons View/issueModifications";
+import IssueModifications from "./Modificatons/issueModifications";
+import Comments from "./Comments/comments";
 
 function Issue() {
 
@@ -19,14 +20,11 @@ function Issue() {
   const [ showSaveButton, setShowSaveButton ] = useState(false);
   const [ editedDetail, setEditedDetail ] = useState({});
   const [ , setShowUpdatedField ] = useState(false);
+  const [ previousState, setPreviousState ] = useState({});
 
   const issue = issues.find((issue) => issue.id.toString() === issueId);
   
   const timeStamp = new Date().toISOString();
-
-  const [ modification, setModification ] = useState(null);
-  const [ previousState, setPreviousState ] = useState({});
-  const [ currentState, setCurrentState ] = useState({});
 
   const handleEdit = (detail) => {;
     setPreviousState((prev) => ({
@@ -44,10 +42,6 @@ function Issue() {
       ...prevEditedDetail,
       [detail]: value,
     }));
-    setCurrentState((prev) => ({
-      ...prev,
-      [detail]: value,
-    }));
   };
 
 
@@ -55,14 +49,13 @@ function Issue() {
     setEditMode({ ...isEditMode, [detail]: false });
     delete editedDetail[detail];
     setEditedDetail({ ...editedDetail });
-    setModification(null);
   }
 
   const saveEditedIssue = () => {
 
     const pairedStates = {};
 
-    for (const [key, value] of Object.entries(currentState)) {
+    for (const [key, value] of Object.entries(editedDetail)) {
       if (previousState.hasOwnProperty(key)) {
         pairedStates[key] = {
           previousState: previousState[key],
@@ -84,7 +77,6 @@ function Issue() {
     setEditedDetail({});
     setEditMode({});
     setShowSaveButton(false);
-    setModification(null);
   };
 
   const handleDeleteIssue = () => {
@@ -161,7 +153,7 @@ function Issue() {
         <div className="issue-container">
           <div className="issue-content">
             {Object.keys(issue).map((detail) => (
-              detail !== 'id' && detail !== 'modifications' && (
+              detail !== 'id' && detail !== 'modifications' && detail !== 'comments' && (
                 <div className="issue-details" key={detail}>
                   <div className="issue-title">{capitalizeFirstLetter(detail)}:</div>
                   {isEditMode[detail] && detail === 'type' ? (
@@ -226,7 +218,7 @@ function Issue() {
           </div> 
         </div>
       )}
-      <div className="issue-comments-container">
+      {/* <div className="issue-comments-container">
         <div className="issue-comments-title">Comments</div>
         <div className="issue-comments-input-container">
           <input type="text" className="issue-comments-input" placeholder="Enter comment..." />
@@ -248,7 +240,8 @@ function Issue() {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
+      <Comments issue={issue} timeStamp={timeStamp} />
       <div className='issue-attachments-container'>
         <div className="issue-attachments-title">Attachments</div>
         <div className="issue-attachments-content">

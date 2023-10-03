@@ -28,4 +28,7 @@
 }
 .mod-content .mods .mod-title::first-letter {
   text-transform: capitalize;
+}
+.mod-content .mods .mod-title {
+  font-weight: 500;
 }/*# sourceMappingURL=issueModifications.css.map */

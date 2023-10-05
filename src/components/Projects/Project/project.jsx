@@ -4,7 +4,7 @@ import Users from "../../Users/users";
 import Issues from "../../Issues/issues";
 import { useSelector } from "react-redux";
 import { useParams, Link, useLocation } from "react-router-dom";
-import { PieChart, Pie, Sector, Cell, ResponsiveContainer } from 'recharts';
+import { PieChart, Pie, Sector, Cell, ResponsiveContainer, Tooltip } from 'recharts';
 
 
 
@@ -62,24 +62,20 @@ function Project() {
         }
     })
 
-    const STATUSCOLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
-
-    const statusPieChartData = [
-        { name: 'Open', value: statusCounts['Open'] },
-        { name: 'In Progress', value: statusCounts['In Progress'] },
-        { name: 'Under Review', value: statusCounts['Under Review'] },
-        { name: 'Resolved', value: statusCounts['Resolved'] },
-        { name: 'Postponed', value: statusCounts['Postponed'] },
-        { name: 'Closed', value: statusCounts['Closed'] },
+    const statusData = [
+        { name: 'Open', count: statusCounts['Open'], color: '#0088FE' },
+        { name: 'In Progress', count: statusCounts['In Progress'], color: '#00C49F' },
+        { name: 'Under Review', count: statusCounts['Under Review'], color: '#FFBB28' },
+        { name: 'Resolved', count: statusCounts['Resolved'], color: '#FF8042' },
+        { name: 'Postponed', count: statusCounts['Postponed'], color: '#FF6B6B' },
+        { name: 'Closed', count: statusCounts['Closed'], color: '#AFB42B' },
     ];
 
-    const PRIORITYCOLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
-
-    const priorityPieChartData = [
-        { name: 'Critical', value: priorityCounts['Critical'] },
-        { name: 'High', value: priorityCounts['High'] },
-        { name: 'Medium', value: priorityCounts['Medium'] },
-        { name: 'Low', value: priorityCounts['Low'] },
+    const priorityData = [
+        { name: 'Critical', count: priorityCounts['Critical'], color: '#0088FE' },
+        { name: 'High', count: priorityCounts['High'], color: '#00C49F' },
+        { name: 'Medium', count: priorityCounts['Medium'], color: '#FFBB28' },
+        { name: 'Low', count: priorityCounts['Low'], color: '#FF8042' },
     ];
 
     return (
@@ -111,10 +107,10 @@ function Project() {
                         <div className="status-content">
 
                             <div className="status-counts-container">
-                            {Object.entries(statusCounts).map(([status, count]) => (
-                                <div className="status-counts">
-                                    <div className="status-left">{status}:</div>
-                                    <div className="status-right">{count}</div>
+                            {statusData.map((status) => (
+                                <div className="status-counts" key={status.name}>
+                                    <div className="status-left"><div className="status-dot" style={{ backgroundColor: status.color }} />{status.name}:</div>
+                                    <div className="status-right">{status.count}</div>
                                 </div>
                             ))}
                             </div>
@@ -122,17 +118,18 @@ function Project() {
                             <div className="status-pie">
                                 <ResponsiveContainer height='100%'>
                                     <PieChart>
+                                        <Tooltip 
+                                        contentStyle={{background:"white", borderRadius:'2px'}}
+                                        />
                                         <Pie
-                                            data={statusPieChartData}
-                                            cx="50%"
-                                            cy="50%"
+                                            data={statusData}
                                             innerRadius={50}
                                             outerRadius={70}
                                             paddingAngle={5}
-                                            dataKey="value"
+                                            dataKey="count"
                                         >
-                                            {statusPieChartData.map((entry, index) => (
-                                                <Cell key={`cell-${index}`} fill={STATUSCOLORS[index % STATUSCOLORS.length]} />
+                                            {statusData.map((status) => (
+                                                <Cell key={status.name} fill={status.color} />
                                             ))}
                                         </Pie>
                                     </PieChart>
@@ -146,10 +143,10 @@ function Project() {
                         <div className="priority-content">
 
                             <div className="priority-counts-container">
-                            {Object.entries(priorityCounts).map(([priority, count]) => (
-                                <div className="priority-counts">
-                                    <div className="priority-left">{priority}:</div>
-                                    <div className="priority-right">{count}</div>
+                            {priorityData.map((priority) => (
+                                <div className="priority-counts" key={priority.name}>                                    
+                                    <div className="priority-left"><div className="priority-dot" style={{ backgroundColor: priority.color }} />{priority.name}:</div>
+                                    <div className="priority-right">{priority.count}</div>
                                 </div>
                             ))}
                             </div>
@@ -157,17 +154,18 @@ function Project() {
                             <div className="priority-pie">
                                 <ResponsiveContainer height='100%'>
                                     <PieChart>
+                                        <Tooltip 
+                                        contentStyle={{background:'white', borderRadius:'2px'}}
+                                        />
                                         <Pie
-                                            data={priorityPieChartData}
-                                            cx="50%"
-                                            cy="50%"
+                                            data={priorityData}
                                             innerRadius={50}
                                             outerRadius={70}
                                             paddingAngle={5}
-                                            dataKey="value"
+                                            dataKey="count"
                                         >
-                                            {priorityPieChartData.map((entry, index) => (
-                                                <Cell key={`cell-${index}`} fill={PRIORITYCOLORS[index % PRIORITYCOLORS.length]} />
+                                            {priorityData.map((priority) => (
+                                                <Cell key={priority.name} fill={priority.color} />
                                             ))}
                                         </Pie>
                                     </PieChart>

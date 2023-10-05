@@ -118,7 +118,6 @@
   justify-content: center;
   margin: 4%;
   padding: 2%;
-  grid-template-rows: repeat(6, 1fr);
 }
 .project .project-container .project-status-content .status-container .priority-content .status-counts-container .status-counts,
 .project .project-container .project-status-content .status-container .priority-content .status-counts-container .priority-counts,
@@ -140,6 +139,7 @@
   padding: 1%;
   grid-template-columns: repeat(2, 1fr);
   justify-content: flex-end;
+  align-items: center;
 }
 .project .project-container .project-status-content .status-container .priority-content .status-counts-container .status-counts .priority-left,
 .project .project-container .project-status-content .status-container .priority-content .status-counts-container .status-counts .status-left,
@@ -173,8 +173,79 @@
 .project .project-container .project-status-content .priority-container .status-content .priority-counts-container .status-counts .status-left,
 .project .project-container .project-status-content .priority-container .status-content .priority-counts-container .priority-counts .priority-left,
 .project .project-container .project-status-content .priority-container .status-content .priority-counts-container .priority-counts .status-left {
+  display: flex;
+  align-items: center;
   justify-content: flex-start;
-  padding-left: 5%;
+}
+.project .project-container .project-status-content .status-container .priority-content .status-counts-container .status-counts .priority-left .priority-dot,
+.project .project-container .project-status-content .status-container .priority-content .status-counts-container .status-counts .priority-left .status-dot,
+.project .project-container .project-status-content .status-container .priority-content .status-counts-container .status-counts .status-left .priority-dot,
+.project .project-container .project-status-content .status-container .priority-content .status-counts-container .status-counts .status-left .status-dot,
+.project .project-container .project-status-content .status-container .priority-content .status-counts-container .priority-counts .priority-left .priority-dot,
+.project .project-container .project-status-content .status-container .priority-content .status-counts-container .priority-counts .priority-left .status-dot,
+.project .project-container .project-status-content .status-container .priority-content .status-counts-container .priority-counts .status-left .priority-dot,
+.project .project-container .project-status-content .status-container .priority-content .status-counts-container .priority-counts .status-left .status-dot,
+.project .project-container .project-status-content .status-container .priority-content .priority-counts-container .status-counts .priority-left .priority-dot,
+.project .project-container .project-status-content .status-container .priority-content .priority-counts-container .status-counts .priority-left .status-dot,
+.project .project-container .project-status-content .status-container .priority-content .priority-counts-container .status-counts .status-left .priority-dot,
+.project .project-container .project-status-content .status-container .priority-content .priority-counts-container .status-counts .status-left .status-dot,
+.project .project-container .project-status-content .status-container .priority-content .priority-counts-container .priority-counts .priority-left .priority-dot,
+.project .project-container .project-status-content .status-container .priority-content .priority-counts-container .priority-counts .priority-left .status-dot,
+.project .project-container .project-status-content .status-container .priority-content .priority-counts-container .priority-counts .status-left .priority-dot,
+.project .project-container .project-status-content .status-container .priority-content .priority-counts-container .priority-counts .status-left .status-dot,
+.project .project-container .project-status-content .status-container .status-content .status-counts-container .status-counts .priority-left .priority-dot,
+.project .project-container .project-status-content .status-container .status-content .status-counts-container .status-counts .priority-left .status-dot,
+.project .project-container .project-status-content .status-container .status-content .status-counts-container .status-counts .status-left .priority-dot,
+.project .project-container .project-status-content .status-container .status-content .status-counts-container .status-counts .status-left .status-dot,
+.project .project-container .project-status-content .status-container .status-content .status-counts-container .priority-counts .priority-left .priority-dot,
+.project .project-container .project-status-content .status-container .status-content .status-counts-container .priority-counts .priority-left .status-dot,
+.project .project-container .project-status-content .status-container .status-content .status-counts-container .priority-counts .status-left .priority-dot,
+.project .project-container .project-status-content .status-container .status-content .status-counts-container .priority-counts .status-left .status-dot,
+.project .project-container .project-status-content .status-container .status-content .priority-counts-container .status-counts .priority-left .priority-dot,
+.project .project-container .project-status-content .status-container .status-content .priority-counts-container .status-counts .priority-left .status-dot,
+.project .project-container .project-status-content .status-container .status-content .priority-counts-container .status-counts .status-left .priority-dot,
+.project .project-container .project-status-content .status-container .status-content .priority-counts-container .status-counts .status-left .status-dot,
+.project .project-container .project-status-content .status-container .status-content .priority-counts-container .priority-counts .priority-left .priority-dot,
+.project .project-container .project-status-content .status-container .status-content .priority-counts-container .priority-counts .priority-left .status-dot,
+.project .project-container .project-status-content .status-container .status-content .priority-counts-container .priority-counts .status-left .priority-dot,
+.project .project-container .project-status-content .status-container .status-content .priority-counts-container .priority-counts .status-left .status-dot,
+.project .project-container .project-status-content .priority-container .priority-content .status-counts-container .status-counts .priority-left .priority-dot,
+.project .project-container .project-status-content .priority-container .priority-content .status-counts-container .status-counts .priority-left .status-dot,
+.project .project-container .project-status-content .priority-container .priority-content .status-counts-container .status-counts .status-left .priority-dot,
+.project .project-container .project-status-content .priority-container .priority-content .status-counts-container .status-counts .status-left .status-dot,
+.project .project-container .project-status-content .priority-container .priority-content .status-counts-container .priority-counts .priority-left .priority-dot,
+.project .project-container .project-status-content .priority-container .priority-content .status-counts-container .priority-counts .priority-left .status-dot,
+.project .project-container .project-status-content .priority-container .priority-content .status-counts-container .priority-counts .status-left .priority-dot,
+.project .project-container .project-status-content .priority-container .priority-content .status-counts-container .priority-counts .status-left .status-dot,
+.project .project-container .project-status-content .priority-container .priority-content .priority-counts-container .status-counts .priority-left .priority-dot,
+.project .project-container .project-status-content .priority-container .priority-content .priority-counts-container .status-counts .priority-left .status-dot,
+.project .project-container .project-status-content .priority-container .priority-content .priority-counts-container .status-counts .status-left .priority-dot,
+.project .project-container .project-status-content .priority-container .priority-content .priority-counts-container .status-counts .status-left .status-dot,
+.project .project-container .project-status-content .priority-container .priority-content .priority-counts-container .priority-counts .priority-left .priority-dot,
+.project .project-container .project-status-content .priority-container .priority-content .priority-counts-container .priority-counts .priority-left .status-dot,
+.project .project-container .project-status-content .priority-container .priority-content .priority-counts-container .priority-counts .status-left .priority-dot,
+.project .project-container .project-status-content .priority-container .priority-content .priority-counts-container .priority-counts .status-left .status-dot,
+.project .project-container .project-status-content .priority-container .status-content .status-counts-container .status-counts .priority-left .priority-dot,
+.project .project-container .project-status-content .priority-container .status-content .status-counts-container .status-counts .priority-left .status-dot,
+.project .project-container .project-status-content .priority-container .status-content .status-counts-container .status-counts .status-left .priority-dot,
+.project .project-container .project-status-content .priority-container .status-content .status-counts-container .status-counts .status-left .status-dot,
+.project .project-container .project-status-content .priority-container .status-content .status-counts-container .priority-counts .priority-left .priority-dot,
+.project .project-container .project-status-content .priority-container .status-content .status-counts-container .priority-counts .priority-left .status-dot,
+.project .project-container .project-status-content .priority-container .status-content .status-counts-container .priority-counts .status-left .priority-dot,
+.project .project-container .project-status-content .priority-container .status-content .status-counts-container .priority-counts .status-left .status-dot,
+.project .project-container .project-status-content .priority-container .status-content .priority-counts-container .status-counts .priority-left .priority-dot,
+.project .project-container .project-status-content .priority-container .status-content .priority-counts-container .status-counts .priority-left .status-dot,
+.project .project-container .project-status-content .priority-container .status-content .priority-counts-container .status-counts .status-left .priority-dot,
+.project .project-container .project-status-content .priority-container .status-content .priority-counts-container .status-counts .status-left .status-dot,
+.project .project-container .project-status-content .priority-container .status-content .priority-counts-container .priority-counts .priority-left .priority-dot,
+.project .project-container .project-status-content .priority-container .status-content .priority-counts-container .priority-counts .priority-left .status-dot,
+.project .project-container .project-status-content .priority-container .status-content .priority-counts-container .priority-counts .status-left .priority-dot,
+.project .project-container .project-status-content .priority-container .status-content .priority-counts-container .priority-counts .status-left .status-dot {
+  display: flex;
+  margin: 0 10px;
+  border-radius: 50%;
+  width: 8px;
+  height: 8px;
 }
 .project .project-container .project-status-content .status-container .priority-content .status-counts-container .status-counts .priority-right,
 .project .project-container .project-status-content .status-container .priority-content .status-counts-container .status-counts .status-right,

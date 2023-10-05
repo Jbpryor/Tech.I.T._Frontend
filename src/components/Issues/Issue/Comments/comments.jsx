@@ -23,7 +23,6 @@ function Comments({ issue, timeStamp }) {
             comment: comment,
             timeStamp: formatTimestamp(timeStamp),
         };
-        console.log(newComment);
     
         dispatch(addComment({ issueId: issue.id, comments: newComment }));
 

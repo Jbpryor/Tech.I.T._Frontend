@@ -63,19 +63,19 @@ function Project() {
     })
 
     const statusData = [
-        { name: 'Open', count: statusCounts['Open'], color: '#0088FE' },
-        { name: 'In Progress', count: statusCounts['In Progress'], color: '#00C49F' },
-        { name: 'Under Review', count: statusCounts['Under Review'], color: '#FFBB28' },
-        { name: 'Resolved', count: statusCounts['Resolved'], color: '#FF8042' },
-        { name: 'Postponed', count: statusCounts['Postponed'], color: '#FF6B6B' },
-        { name: 'Closed', count: statusCounts['Closed'], color: '#AFB42B' },
+        { name: 'Open', count: statusCounts['Open'], color: 'rgb(255, 0, 0)' },
+        { name: 'In Progress', count: statusCounts['In Progress'], color: 'rgb(255, 0, 255)' },
+        { name: 'Under Review', count: statusCounts['Under Review'], color: 'rgb(0, 0, 255)' },
+        { name: 'Resolved', count: statusCounts['Resolved'], color: 'rgb(0, 255, 255)' },
+        { name: 'Postponed', count: statusCounts['Postponed'], color: 'rgb(0, 255, 0)' },
+        { name: 'Closed', count: statusCounts['Closed'], color: 'rgb(255, 255, 0)' },
     ];
 
     const priorityData = [
-        { name: 'Critical', count: priorityCounts['Critical'], color: '#0088FE' },
-        { name: 'High', count: priorityCounts['High'], color: '#00C49F' },
-        { name: 'Medium', count: priorityCounts['Medium'], color: '#FFBB28' },
-        { name: 'Low', count: priorityCounts['Low'], color: '#FF8042' },
+        { name: 'Critical', count: priorityCounts['Critical'], color: 'rgb(255, 0, 0)' },
+        { name: 'High', count: priorityCounts['High'], color: 'rgb(255, 0, 255)' },
+        { name: 'Medium', count: priorityCounts['Medium'], color: 'rgb(0, 0, 255)' },
+        { name: 'Low', count: priorityCounts['Low'], color: 'rgb(0, 255, 255)' },
     ];
 
     return (

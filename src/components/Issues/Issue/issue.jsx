@@ -218,29 +218,6 @@ function Issue() {
           </div> 
         </div>
       )}
-      {/* <div className="issue-comments-container">
-        <div className="issue-comments-title">Comments</div>
-        <div className="issue-comments-input-container">
-          <input type="text" className="issue-comments-input" placeholder="Enter comment..." />
-          <button className="issue-comments-button">+</button>
-        </div>
-        <div className="issue-comments-content">
-          <div className="issue-comments-user-container">
-            <div className="issue-comments-user">Jason Brent Pryor</div>            
-          </div>
-          <div className="issue-comment-container">
-            <div className="issue-comment">You need to use more black in this area right here now and forever</div>
-          </div>
-          <div className="issue-comments-date-container">
-            <div className="issue-comments-date">09/15/2023</div>
-          </div>
-          <div className="issue-comments-buttons-container">
-            <div className="issue-comments-button-container">
-              <button className="delete-button">delete</button>
-            </div>
-          </div>
-        </div>
-      </div> */}
       <Comments issue={issue} timeStamp={timeStamp} />
       <div className='issue-attachments-container'>
         <div className="issue-attachments-title">Attachments</div>

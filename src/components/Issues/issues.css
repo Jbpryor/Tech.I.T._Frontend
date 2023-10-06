@@ -12,6 +12,32 @@
 .issues .issues-title.active {
   display: none;
 }
+.issues .issues-sort-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  border: 2px solid rgba(0, 0, 0, 0.143);
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 12px 0 rgba(0, 0, 0, 0.19);
+}
+.issues .issues-sort-container .issues-sort-select {
+  padding: 2px;
+  width: 150px;
+  border: none;
+  cursor: pointer;
+}
+.issues .issues-sort-container .issues-sort-select .project-select.active {
+  display: none;
+}
+.issues .issues-sort-container .issues-sort-icon {
+  padding: 5px;
+  margin-left: 5%;
+  cursor: pointer;
+  transition: transform 1s ease;
+}
+.issues .issues-sort-container .issues-sort-icon.rotate {
+  transform: rotate(180deg);
+}
 .issues .issues-container {
   display: grid;
   grid-template-columns: 50% 50%;

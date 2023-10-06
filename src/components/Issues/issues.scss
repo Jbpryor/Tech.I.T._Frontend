@@ -14,6 +14,40 @@
         }
     }
 
+    .issues-sort-container {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-evenly;
+        border: 2px solid rgba(0, 0, 0, 0.143);
+        box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 12px 0 rgba(0, 0, 0, 0.19);
+
+        .issues-sort-select {
+            padding: 2px;
+            width: 150px;
+            border: none;
+            cursor: pointer;
+
+            .project-select {
+                
+                &.active {
+                    display: none;
+                }
+            }
+        }
+
+        .issues-sort-icon {
+            padding: 5px;
+            margin-left: 5%;
+            cursor: pointer;
+            transition: transform 1s ease;
+
+            &.rotate {
+                transform: rotate(180deg)
+            }
+        }
+    }
+
     .issues-container {
         display: grid;
         grid-template-columns: 50% 50%;

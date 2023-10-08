@@ -8,6 +8,7 @@ import { PieChart, Pie, Sector, Cell, ResponsiveContainer, Tooltip } from 'recha
 
 
 
+
 function Project() {
 
     const projects = useSelector((state) => state.projects);
@@ -16,17 +17,7 @@ function Project() {
 
     const { projectId } = useParams();
     const project = projects.find((project) => project.id.toString() === projectId)
-    const sortedIssues = [...issues].sort((a, b) => {
-        const priorityOrder = ['Critical', 'High', 'Medium', 'Low'];
-        const priorityA = priorityOrder.indexOf(a.priority);
-        const priorityB = priorityOrder.indexOf(b.priority);
-        if (priorityA !== priorityB) {
-            return priorityA - priorityB;
-        }
-        return a.created.localeCompare(b.created);
-    });
-
-    const projectIssues = sortedIssues.filter((issue) => issue.project === project.title)
+    const projectIssues = issues.filter((issue) => issue.project === project.title)
     const developers = projectIssues.map((issue) => issue.developer)
     const projectUsers = users.filter((user) => developers.includes(`${user.name.first} ${user.name.last}`));
 
@@ -39,13 +30,13 @@ function Project() {
         'Resolved': 0,
         'Postponed': 0,
         'Closed': 0,
-      };
+    };
       
-      projectIssueStatus.forEach((status) => {
+    projectIssueStatus.forEach((status) => {
         if (status in statusCounts) {
-          statusCounts[status] += 1;
+            statusCounts[status] += 1;
         }
-      });
+    });
 
     const projectPriorityStatus = projectIssues.map((issue) => issue.priority)
 
@@ -54,13 +45,13 @@ function Project() {
         'High': 0,
         'Medium': 0,
         'Low': 0,
-    }
+    };
 
     projectPriorityStatus.forEach((priority) => {
         if (priority in priorityCounts) {
             priorityCounts[priority] += 1;
         }
-    })
+    });
 
     const statusData = [
         { name: 'Open', count: statusCounts['Open'], color: 'rgb(255, 0, 0)' },

@@ -3,35 +3,13 @@ import './issues.scss'
 import { useLocation, Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import 'boxicons/css/boxicons.min.css';
+import { sortByProperty } from '../../main';
+import IssuesSort from './Issues Sort/issuesSort';
 
 function Issues({ projectIssues }) {
     const location = useLocation();
     const isIssuesActive = location.pathname === '/issues';
     const issues = useSelector((state) => state.issues)
-
-    function sortByProperty(property, customOrder = null, reverse = false) {
-        return (a, b) => {
-            const aValue = a[property];
-            const bValue = b[property];
-    
-            if (property === 'created') {
-                const aDate = new Date(aValue);
-                const bDate = new Date(bValue);
-    
-                if (aDate < bDate) return reverse ? 1 : -1;
-                if (aDate > bDate) return reverse ? -1 : 1;
-                return 0;
-            }
-    
-            if (customOrder) {
-                const aIndex = customOrder.indexOf(aValue);
-                const bIndex = customOrder.indexOf(bValue);
-                return reverse ? bIndex - aIndex : aIndex - bIndex;
-            }
-    
-            return reverse ? bValue.localeCompare(aValue) : aValue.localeCompare(bValue);
-        };
-    };
 
     const priorityOrder = ['Critical', 'High', 'Medium', 'Low'];
     const statusOrder = ['Open', 'In Progress', 'Under Review', 'Resolved', 'Postponed', 'Closed'];
@@ -56,17 +34,13 @@ function Issues({ projectIssues }) {
     const handleRotate = () => {
         setRotate(!rotate);
         setSortOrder(sortOrder === 'ascending' ? 'descending' : 'ascending')
-    }
-
-    const handleSort = () => {
-
-    }
+    };
 
     const [sortOrder, setSortOrder] = useState('ascending');
 
     const getSortingFunction = () => {
         switch (selectedSort) {
-            case 'Date':
+            case 'Created':
                 return sortOrder === 'ascending' ? sortedIssuesByDate : sortedIssuesByDate.reverse();
             case 'Developer':
                 return sortOrder === 'ascending' ? sortedIssuesByDeveloper : sortedIssuesByDeveloper.reverse();
@@ -85,8 +59,7 @@ function Issues({ projectIssues }) {
             default:
                 return sortOrder === 'ascending' ? sortedIssuesByDate : sortedIssuesByDate.reverse();
         }
-      };
-      
+      };      
       
     const sortedIssues = getSortingFunction();      
     
@@ -94,19 +67,7 @@ function Issues({ projectIssues }) {
         <section className="issues">
             <div className={`issues-title ${isIssuesActive ? 'active' : ''}`}>Issues</div>
 
-            <div className="issues-sort-container" value={selectedSort} onChange={(event) => setSelectedSort(event.target.value)}>
-                <select className='issues-sort-select'>
-                    <option>Date</option>
-                    <option>Developer</option>
-                    <option>Priority</option>
-                    <option className={`project-select ${isProjectsActive ? 'active' : ''}`}>Project</option>
-                    <option>Status</option>
-                    <option>Submitter</option>
-                    <option>Title</option>
-                    <option>Type</option>
-                </select>
-                <i className={`bx bx-down-arrow issues-sort-icon ${rotate ? 'rotate' : ''}`} onClick={() => { handleRotate(); handleSort() }}></i>
-            </div>
+            <IssuesSort selectedSort={selectedSort} setSelectedSort={setSelectedSort} rotate={rotate} handleRotate={handleRotate} isProjectsActive={isProjectsActive} />
 
             <div className={`issues-container ${isIssuesActive ? 'active' : ''}`}>              
             {sortedIssues.map((issue) => (

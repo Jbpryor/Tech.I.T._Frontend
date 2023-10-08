@@ -146,7 +146,7 @@ function Issue() {
         <div className="modifications-container">
           <IssueModifications issue={issue} />
           <div className="mod-button-container">
-            <button className="issues-view-button" onClick={toggleModificationView}>Back to issues</button>
+            <button className="issues-view-button" onClick={toggleModificationView}>Back to issue</button>
           </div>
         </div>
       ) : (

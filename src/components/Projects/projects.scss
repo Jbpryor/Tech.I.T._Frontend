@@ -15,6 +15,37 @@
         }
     }
 
+    .projects-sort-container {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        margin: 1%;
+        justify-content: space-evenly;
+        border: 2px solid rgba(0, 0, 0, 0.143);
+        box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 12px 0 rgba(0, 0, 0, 0.19);
+
+        .projects-sort-select {
+            padding: 2px;
+            width: 150px;
+            border: none;
+            cursor: pointer;
+            outline: none;
+            background: transparent;
+            text-align: center;
+        }
+
+        .projects-sort-icon {
+            padding: 5px;
+            margin-left: 5%;
+            cursor: pointer;
+            transition: transform 1s ease;
+
+            &.rotate {
+                transform: rotate(180deg)
+            }
+        }
+    }
+
     .projects-container {
         display: grid;
         grid-template-columns: 50% 50%;

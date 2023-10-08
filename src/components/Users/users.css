@@ -13,6 +13,33 @@
 .users .users-title.active {
   display: none;
 }
+.users .users-sort-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 1%;
+  justify-content: space-evenly;
+  border: 2px solid rgba(0, 0, 0, 0.143);
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 12px 0 rgba(0, 0, 0, 0.19);
+}
+.users .users-sort-container .users-sort-select {
+  padding: 2px;
+  width: 150px;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  background: transparent;
+  text-align: center;
+}
+.users .users-sort-container .users-sort-icon {
+  padding: 5px;
+  margin-left: 5%;
+  cursor: pointer;
+  transition: transform 1s ease;
+}
+.users .users-sort-container .users-sort-icon.rotate {
+  transform: rotate(180deg);
+}
 .users .users-container {
   display: grid;
   grid-template-columns: 50% 50%;
@@ -73,4 +100,386 @@
 .users .users-container .user-link .user-container .user-contents .user-email::first-letter,
 .users .users-container .user-link .user-container .user-contents .user-role::first-letter {
   text-transform: uppercase;
+}
+
+/* break for table view*/
+.users {
+  height: 100%;
+  width: 100%;
+  align-items: center;
+  padding: 0.5%;
+}
+.users .users-container {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  padding: 0 0.5%;
+}
+.users .users-container .manage-users-content {
+  align-items: center;
+  margin: 10% 25%;
+}
+.users .users-container .manage-users-content .add-users-container .add-users-button-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+.users .users-container .manage-users-content .add-users-container .add-users-button-container .add-users-button {
+  display: flex;
+  justify-content: center;
+  width: 60%;
+  padding: 3%;
+  margin-top: 5%;
+  font-size: 15px;
+  font-weight: 800;
+  border-radius: 2%;
+  border: 1px solid rgba(0, 0, 0, 0.143);
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 4px 6px 0 rgba(0, 0, 0, 0.19);
+  background-color: rgb(255, 255, 255);
+  cursor: pointer;
+  z-index: 1;
+}
+.users .users-container .manage-users-content .add-users-container .add-users-button-container .add-users-button.active {
+  display: none;
+}
+.users .users-container .manage-users-content .add-users-container .add-users-button-container .add-users-button:hover {
+  color: rgb(86, 86, 2);
+  border: 2px solid rgba(86, 86, 2, 0.05);
+}
+.users .users-container .manage-users-content .add-users-container .add-users-form {
+  display: none;
+  flex-direction: column;
+  padding: 5%;
+  border: 1px solid #ccc;
+  background-color: rgb(255, 255, 255);
+  box-shadow: inset 0 4px 4px 0 rgba(0, 0, 0, 0.2), inset 0 6px 12px 0 rgba(0, 0, 0, 0.19);
+}
+.users .users-container .manage-users-content .add-users-container .add-users-form.active {
+  display: flex;
+}
+.users .users-container .manage-users-content .add-users-container .add-users-form .add-users-title {
+  padding: 3% 0;
+  font-size: 20px;
+  font-weight: 800;
+}
+.users .users-container .manage-users-content .add-users-container .add-users-form .first,
+.users .users-container .manage-users-content .add-users-container .add-users-form .last,
+.users .users-container .manage-users-content .add-users-container .add-users-form .email,
+.users .users-container .manage-users-content .add-users-container .add-users-form .user-drop-down,
+.users .users-container .manage-users-content .add-users-container .add-users-form .add-user {
+  padding: 1%;
+  margin: 2%;
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 12px 0 rgba(0, 0, 0, 0.19);
+  border: none;
+}
+.users .users-container .manage-users-content .add-users-container .add-users-form .add-user {
+  cursor: pointer;
+  background-color: rgb(255, 255, 255);
+  border: 1px solid rgba(86, 86, 2, 0.05);
+  transition: transform 3s ease-in-out;
+}
+.users .users-container .manage-users-content .add-users-container .add-users-form .add-user:hover {
+  color: rgb(86, 86, 2);
+}
+.users .users-container .manage-users-content .change-users-container .change-users-button-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+.users .users-container .manage-users-content .change-users-container .change-users-button-container .change-users-button {
+  display: flex;
+  justify-content: center;
+  width: 60%;
+  padding: 3%;
+  margin-top: 5%;
+  font-size: 15px;
+  font-weight: 800;
+  border-radius: 2%;
+  border: 1px solid rgba(0, 0, 0, 0.143);
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 4px 6px 0 rgba(0, 0, 0, 0.19);
+  background-color: rgb(255, 255, 255);
+  cursor: pointer;
+  z-index: 1;
+}
+.users .users-container .manage-users-content .change-users-container .change-users-button-container .change-users-button.active {
+  display: none;
+}
+.users .users-container .manage-users-content .change-users-container .change-users-button-container .change-users-button:hover {
+  color: rgb(86, 86, 2);
+  border: 2px solid rgba(86, 86, 2, 0.05);
+}
+.users .users-container .manage-users-content .change-users-container .change-user-form {
+  display: none;
+  flex-direction: column;
+  padding: 5%;
+  border: 1px solid #ccc;
+  background-color: rgb(255, 255, 255);
+  box-shadow: inset 0 4px 4px 0 rgba(0, 0, 0, 0.2), inset 0 6px 12px 0 rgba(0, 0, 0, 0.19);
+}
+.users .users-container .manage-users-content .change-users-container .change-user-form.active {
+  display: flex;
+}
+.users .users-container .manage-users-content .change-users-container .change-user-form .change-user-title {
+  padding: 3% 0;
+  font-size: 20px;
+  font-weight: 800;
+}
+.users .users-container .manage-users-content .change-users-container .change-user-form .user-selection,
+.users .users-container .manage-users-content .change-users-container .change-user-form .change-roll-drop-down,
+.users .users-container .manage-users-content .change-users-container .change-user-form .user-role,
+.users .users-container .manage-users-content .change-users-container .change-user-form .user-submit {
+  padding: 1%;
+  margin: 2%;
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 12px 0 rgba(0, 0, 0, 0.19);
+  border: none;
+}
+.users .users-container .manage-users-content .change-users-container .change-user-form .user-submit {
+  cursor: pointer;
+  background-color: rgb(255, 255, 255);
+  border: 1px solid rgba(86, 86, 2, 0.05);
+  transition: transform 3s ease-in-out;
+}
+.users .users-container .manage-users-content .change-users-container .change-user-form .user-submit:hover {
+  color: rgb(86, 86, 2);
+}
+.users .users-container .manage-users-content .change-users-container .change-user-form .user-role {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  padding: 1%;
+  font-size: 14px;
+  align-items: center;
+}
+.users .users-container .manage-users-content .change-users-container .change-user-form .user-role.hidden {
+  display: none;
+}
+.users .users-container .manage-users-content .change-users-container .change-user-form .user-role .user-current-role-left {
+  padding: 1%;
+}
+.users .users-container .manage-users-content .change-users-container .change-user-form .user-role .user-current-role-right {
+  display: flex;
+  justify-content: flex-end;
+  padding: 1% 10%;
+}
+.users .users-container .manage-users-content .remove-users-container .remove-users-button-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+.users .users-container .manage-users-content .remove-users-container .remove-users-button-container .remove-users-button {
+  display: flex;
+  justify-content: center;
+  width: 60%;
+  padding: 3%;
+  margin-top: 5%;
+  font-size: 15px;
+  font-weight: 800;
+  border-radius: 2%;
+  border: 1px solid rgba(0, 0, 0, 0.143);
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 4px 6px 0 rgba(0, 0, 0, 0.19);
+  background-color: rgb(255, 255, 255);
+  cursor: pointer;
+  z-index: 1;
+}
+.users .users-container .manage-users-content .remove-users-container .remove-users-button-container .remove-users-button.active {
+  display: none;
+}
+.users .users-container .manage-users-content .remove-users-container .remove-users-button-container .remove-users-button:hover {
+  color: rgb(86, 86, 2);
+  border: 2px solid rgba(86, 86, 2, 0.05);
+}
+.users .users-container .manage-users-content .remove-users-container .remove-user-form {
+  flex-direction: column;
+  padding: 5%;
+  border: 1px solid #ccc;
+  background-color: rgb(255, 255, 255);
+  box-shadow: inset 0 4px 4px 0 rgba(0, 0, 0, 0.2), inset 0 6px 12px 0 rgba(0, 0, 0, 0.19);
+  display: none;
+}
+.users .users-container .manage-users-content .remove-users-container .remove-user-form.active {
+  display: flex;
+}
+.users .users-container .manage-users-content .remove-users-container .remove-user-form .remove-user-title {
+  padding: 3% 0;
+  font-size: 20px;
+  font-weight: 800;
+}
+.users .users-container .manage-users-content .remove-users-container .remove-user-form .remove-user-selection,
+.users .users-container .manage-users-content .remove-users-container .remove-user-form .remove-user-button {
+  padding: 1%;
+  margin: 2%;
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 12px 0 rgba(0, 0, 0, 0.19);
+  border: none;
+}
+.users .users-container .manage-users-content .remove-users-container .remove-user-form .remove-user-button {
+  cursor: pointer;
+  background-color: rgb(255, 255, 255);
+  border: 1px solid rgba(86, 86, 2, 0.05);
+  transition: transform 3s ease-in-out;
+}
+.users .users-container .manage-users-content .remove-users-container .remove-user-form .remove-user-button:hover {
+  color: rgb(86, 86, 2);
+}
+.users .users-container .all-users-table-container {
+  height: 100%;
+  width: 100%;
+  border: 1px solid #ccc;
+  background-color: rgb(255, 255, 255);
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 12px 0 rgba(0, 0, 0, 0.19);
+  position: relative;
+  padding: 2% 5% 1% 5%;
+  display: grid;
+  grid-template-rows: 15% 75% 10%;
+}
+.users .users-container .all-users-table-container table {
+  width: 100%;
+  border-bottom: 1px solid #ccc;
+  border-collapse: collapse;
+}
+.users .users-container .all-users-table-container table th {
+  font-size: 14px;
+  padding: 1% 2%;
+  text-align: left;
+  cursor: pointer;
+  align-items: center;
+  position: relative;
+}
+.users .users-container .all-users-table-container table th:hover {
+  color: rgb(86, 86, 2);
+}
+.users .users-container .all-users-table-container table th.active {
+  color: rgb(86, 86, 2);
+}
+.users .users-container .all-users-table-container table td {
+  font-size: 12px;
+  border-top: 1px solid #ccc;
+  padding: 1% 2%;
+  text-align: left;
+}
+.users .users-container .all-users-table-container table i {
+  font-size: 13px;
+  align-items: center;
+  justify-content: center;
+  transition: transform 1s ease;
+  color: rgb(255, 255, 255);
+}
+.users .users-container .all-users-table-container table i.rotate {
+  transform: rotate(180deg);
+}
+.users .users-container .all-users-table-container table i.active {
+  color: rgb(86, 86, 2);
+}
+.users .users-container .all-users-table-container table .user-name {
+  cursor: pointer;
+}
+.users .users-container .all-users-table-container table .user-name:hover {
+  color: rgb(86, 86, 2);
+}
+.users .users-container .all-users-table-container table button {
+  font-size: 12px;
+  border-radius: 5%;
+  border: 1px solid rgba(0, 0, 0, 0.143);
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 4px 6px 0 rgba(0, 0, 0, 0.19);
+  background-color: white;
+  cursor: pointer;
+  z-index: 1;
+}
+.users .users-container .all-users-table-container table button:hover {
+  color: rgb(86, 86, 2);
+  border: 1px solid rgba(86, 86, 2, 0.05);
+}
+.users .users-container .all-users-table-container .users-table-title {
+  padding: 1% 0;
+  font-weight: 800;
+}
+.users .users-container .all-users-table-container .users-table-pagination .pagination-content {
+  display: grid;
+  grid-template-columns: 50% 50%;
+}
+.users .users-container .all-users-table-container .users-table-pagination .pagination-content .pagination-pages {
+  display: flex;
+  font-size: 12px;
+  justify-content: flex-start;
+  align-items: center;
+}
+.users .users-container .all-users-table-container .users-table-pagination .pagination-content .pagination-buttons {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.users .users-container .all-users-table-container .users-table-pagination .pagination-content .pagination-buttons .page-button-left,
+.users .users-container .all-users-table-container .users-table-pagination .pagination-content .pagination-buttons .page-button-right {
+  font-size: 12px;
+  border-radius: 5%;
+  border: 1px solid rgba(0, 0, 0, 0.143);
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 4px 6px 0 rgba(0, 0, 0, 0.19);
+  background-color: white;
+  cursor: pointer;
+  z-index: 1;
+  color: inherit;
+  padding: 1%;
+  margin: 1%;
+}
+.users .users-container .all-users-table-container .users-table-pagination .pagination-content .pagination-buttons .page-button-left:hover,
+.users .users-container .all-users-table-container .users-table-pagination .pagination-content .pagination-buttons .page-button-right:hover {
+  color: rgb(86, 86, 2);
+  border: 1px solid rgba(86, 86, 2, 0.05);
+}
+.users .users-container .all-users-table-container .users-table-pagination .pagination-content .pagination-buttons .page-number {
+  font-size: 12px;
+  border-radius: 5%;
+  border: 1px solid rgba(0, 0, 0, 0.143);
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 4px 6px 0 rgba(0, 0, 0, 0.19);
+  background-color: white;
+  z-index: 1;
+  color: inherit;
+  padding: 1% 2%;
+  margin: 1%;
+  cursor: pointer;
+}
+.users .users-container .all-users-table-container .users-table-pagination .pagination-content .pagination-buttons .page-number:hover {
+  color: rgb(86, 86, 2);
+  border: 1px solid rgba(86, 86, 2, 0.05);
+}
+.users .users-container .all-users-table-container .users-table-pagination .pagination-content .pagination-buttons .page-input {
+  font-size: 12px;
+  width: 10%;
+  border: 1px solid rgba(0, 0, 0, 0.143);
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 4px 6px 0 rgba(0, 0, 0, 0.19);
+  background-color: white;
+  z-index: 1;
+  color: inherit;
+  padding: 1% 2%;
+  margin: 1%;
+  cursor: pointer;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+}
+.users .users-container .all-users-table-container .bsxMp {
+  padding-bottom: 7%;
+  font-weight: 800;
+}
+.users .users-container .all-users-table-container .rdt_TableCol {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 15px;
+  font-weight: 600;
+}
+.users .users-container .all-users-table-container .rdt_TableCell {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2% 0;
+}
+.users .users-container .all-users-table-container .rdt_Pagination {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  justify-content: center;
 }/*# sourceMappingURL=users.css.map */

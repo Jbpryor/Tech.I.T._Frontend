@@ -1,11 +1,15 @@
 import './header.scss';
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { toggleViewMode } from '../../Store/viewModeSlice';
 
 function Header() {
     const [isSearchIconVisible, setSearchIconVisible] = useState(true);
     const [isGridVisible, setGridVisible] = useState(true);
     const [ isNewMenuVisible, setIsNewMenuVisible ] = useState(false);
+    const dispatch = useDispatch();
+    const viewMode = useSelector((state) => state.viewMode);
 
     const handleSearchIconClick = () => {
         setSearchIconVisible(false);
@@ -17,10 +21,12 @@ function Header() {
 
     const handleGridIconClick = () => {
         setGridVisible(false);
+        dispatch(toggleViewMode());
     }
 
     const handleListIconClick = () => {
         setGridVisible(true);
+        dispatch(toggleViewMode());
     }
 
     const handleNotificationClick = () => {
@@ -41,6 +47,13 @@ function Header() {
                     </div>
                     ) : (   
                     <div className="search-bar">
+                        <select name="" id="">
+                            <option value="">All</option>
+                            <option value="">Users</option>
+                            <option value="">Projects</option>
+                            <option value="">Issues</option>
+                            <option value="">Reports</option>
+                        </select>
                         <input className='search-input' type="text" placeholder="Search..." />
                         <button className='search-button' onClick={handleSearchButtonClick}>Search</button>
                     </div>

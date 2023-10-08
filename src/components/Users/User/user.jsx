@@ -61,11 +61,11 @@ function User() {
 
     const handleCancel = () => {
         setEmail(user.email),
-        setStreet(user.address.street),
-        setCity(user.address.city),
-        setState(user.address.state),
-        setZip(user.address.zip),
-        setCountry(user.address.country)
+        setStreet(street),
+        setCity(city),
+        setState(state),
+        setZip(zip),
+        setCountry(country),
         setEditMode(false);
         setShowSaveButton(false);
     };

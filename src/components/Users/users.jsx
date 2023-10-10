@@ -4,7 +4,7 @@ import { useLocation, Link } from "react-router-dom";
 import './users.scss';
 import 'boxicons/css/boxicons.min.css';
 import UsersTable from "./Users Table/usersTable";
-import TablePagination from "./Table Pagination/tablePagination";
+import TablePagination from "../../Charts & Tables/Table Pagination/tablePagination";
 import { useDispatch, useSelector } from "react-redux";
 import { addUser, changeUserRole, removeUser } from '../../Store/userSlice'
 import { sortByProperty } from "../../main";
@@ -13,7 +13,7 @@ import UsersSort from "./Users Sort/usersSort";
 
 function Users({ projectUsers }) {
 
-
+    const viewMode = useSelector((state) => state.viewMode);
 
     const location = useLocation();
     
@@ -112,60 +112,63 @@ function Users({ projectUsers }) {
         setCurrentPage(newPage);
     };
 
-    const startIndex = currentPage * usersPerPage;
-    const endIndex = startIndex + usersPerPage;
+    // const startIndex = currentPage * usersPerPage;
+    // const endIndex = startIndex + usersPerPage;
 
     return (
-        <section className="users">
-            <div className="users-container">
+        <>
+            {viewMode === 'list' ? (
+                <section className="users list">
+                    <div className={`users-title ${!isUsersActive ? 'active' : ''}`}>Users</div>
+                    <div className="users-container">
 
-                <div className="all-users-table-container">
-                    <div className="users-table-title">Users</div>
-                    <div className="users-table-content">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th value='Name' className={`user-column ${userColumnActive ? 'active' : ''}`} onClick={() => handleActiveColumn('user')}>User Name <i className={`bx bx-down-arrow ${userRotate ? 'rotate' : ''} ${userColumnActive ? 'active' : ''}`} onClick={() => handleActiveColumn('user')}></i></th>
-                                    <th value='Email' className={`email-column ${emailColumnActive ? 'active' : ''}`} onClick={() => handleActiveColumn('email')}>Email <i className={`bx bx-down-arrow ${emailRotate ? 'rotate' : ''} ${emailColumnActive ? 'active' : ''}`} onClick={() => handleActiveColumn('email')}></i></th>
-                                    <th value='Role' className={`role-column ${roleColumnActive ? 'active' : ''}`} onClick={() => handleActiveColumn('role')}>Role <i className={`bx bx-down-arrow ${roleRotate ? 'rotate' : ''} ${roleColumnActive ? 'active' : ''}`} onClick={() => handleActiveColumn('role')}></i></th>
-                                </tr>
-                            </thead>
-                            <tbody className="users-table-body">
-                                {sortedUsers.map((user, index) => (
-                                    <UsersTable user={user} key={index} index={index} onDelete={onDelete}/>
-                                ))}
-                            </tbody>
-                        </table>
+                        <div className="all-users-table-container">
+                            {/* <div className="users-table-title">Users</div> */}
+                            <div className="users-table-content">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th value='Name' className={`user-column ${userColumnActive ? 'active' : ''}`} onClick={() => handleActiveColumn('user')}>User Name <i className={`bx bx-down-arrow ${userRotate ? 'rotate' : ''} ${userColumnActive ? 'active' : ''}`} onClick={() => handleActiveColumn('user')}></i></th>
+                                            <th value='Email' className={`email-column ${emailColumnActive ? 'active' : ''}`} onClick={() => handleActiveColumn('email')}>Email <i className={`bx bx-down-arrow ${emailRotate ? 'rotate' : ''} ${emailColumnActive ? 'active' : ''}`} onClick={() => handleActiveColumn('email')}></i></th>
+                                            <th value='Role' className={`role-column ${roleColumnActive ? 'active' : ''}`} onClick={() => handleActiveColumn('role')}>Role <i className={`bx bx-down-arrow ${roleRotate ? 'rotate' : ''} ${roleColumnActive ? 'active' : ''}`} onClick={() => handleActiveColumn('role')}></i></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody className="users-table-body">
+                                        {sortedUsers.map((user, index) => (
+                                            <UsersTable user={user} key={index} index={index} onDelete={onDelete}/>
+                                        ))}
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div className="users-table-pagination">
+                                <TablePagination currentPage={currentPage} pageCount={Math.ceil(users.length / usersPerPage)} onPageChange={handlePageChange} />
+                            </div>
+                        </div>
+        
                     </div>
-                    <div className="users-table-pagination">
-                        <TablePagination currentPage={currentPage} pageCount={Math.ceil(users.length / usersPerPage)} onPageChange={handlePageChange} />
+                </section>
+            ) : (
+                <section className="users tile">            
+                    <div className={`users-title ${isUsersActive ? 'active' : ''}`}>Users</div>
+        
+                    <UsersSort selectedSort={selectedSort} setSelectedSort={setSelectedSort} rotate={rotate} handleRotate={handleRotate} />
+        
+                    <div className={`users-container ${isUsersActive ? 'active' : ''}`}>                
+                    {sortedUsers.map((user) => (
+                        <Link className='user-link' to={`/users/${user.id}`} key={user.id}>
+                            <div className={`user-container ${isUsersActive ? 'active' : ''}`}>       
+                                <div className="user-name">{user.name.first} {user.name.last}</div>
+                                <div className="user-contents">
+                                    <div className="user-email">{user.email}</div>
+                                    <div className="user-role">{user.role}</div>                           
+                                </div>
+                            </div>
+                        </Link>
+                    ))}
                     </div>
-                </div>
-
-            </div>
-        </section>
-
-
-
-        // <section className="users">            
-        //     <div className={`users-title ${isUsersActive ? 'active' : ''}`}>Users</div>
-
-        //     <UsersSort selectedSort={selectedSort} setSelectedSort={setSelectedSort} rotate={rotate} handleRotate={handleRotate} />
-
-        //     <div className={`users-container ${isUsersActive ? 'active' : ''}`}>                
-        //     {sortedUsers.map((user) => (
-        //         <Link className='user-link' to={`/users/${user.id}`} key={user.id}>
-        //             <div className={`user-container ${isUsersActive ? 'active' : ''}`}>       
-        //                 <div className="user-name">{user.name.first} {user.name.last}</div>
-        //                 <div className="user-contents">
-        //                     <div className="user-email">{user.email}</div>
-        //                     <div className="user-role">{user.role}</div>                           
-        //                 </div>
-        //             </div>
-        //         </Link>
-        //     ))}
-        //     </div>
-        // </section>
+                </section>
+            )}
+        </>
     )
 }
 

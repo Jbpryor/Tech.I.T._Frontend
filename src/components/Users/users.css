@@ -1,19 +1,19 @@
-.users {
+.tile {
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 0.5%;
   height: 100%;
 }
-.users .users-title {
+.tile .users-title {
   font-size: 15px;
   font-weight: 600;
   padding: 1%;
 }
-.users .users-title.active {
+.tile .users-title.active {
   display: none;
 }
-.users .users-sort-container {
+.tile .users-sort-container {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -22,7 +22,7 @@
   border: 2px solid rgba(0, 0, 0, 0.143);
   box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 12px 0 rgba(0, 0, 0, 0.19);
 }
-.users .users-sort-container .users-sort-select {
+.tile .users-sort-container .users-sort-select {
   padding: 2px;
   width: 150px;
   border: none;
@@ -31,35 +31,36 @@
   background: transparent;
   text-align: center;
 }
-.users .users-sort-container .users-sort-icon {
+.tile .users-sort-container .users-sort-icon {
   padding: 5px;
   margin-left: 5%;
   cursor: pointer;
   transition: transform 1s ease;
 }
-.users .users-sort-container .users-sort-icon.rotate {
+.tile .users-sort-container .users-sort-icon.rotate {
   transform: rotate(180deg);
 }
-.users .users-container {
+.tile .users-container {
   display: grid;
   grid-template-columns: 50% 50%;
   gap: 0 2%;
   margin: 1%;
 }
-.users .users-container.active {
+.tile .users-container.active {
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
   width: 98%;
 }
-.users .users-container .user-link {
+.tile .users-container .user-link {
   text-decoration: none;
   color: inherit;
 }
-.users .users-container .user-link .user-container {
+.tile .users-container .user-link .user-container {
   padding: 2% 1%;
   border: 1px solid #ccc;
   background-color: rgb(255, 255, 255);
+  min-height: 120px;
   width: 14.6666666667vw;
   text-align: center;
   box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 12px 0 rgba(0, 0, 0, 0.19);
@@ -67,20 +68,20 @@
   margin: 3% 0;
   cursor: pointer;
 }
-.users .users-container .user-link .user-container.active {
+.tile .users-container .user-link .user-container.active {
   width: 16.5vw;
 }
-.users .users-container .user-link .user-container:hover {
+.tile .users-container .user-link .user-container:hover {
   transform: scale(1.01);
 }
-.users .users-container .user-link .user-container .user-name {
+.tile .users-container .user-link .user-container .user-name {
   font-size: 15px;
   padding: 2%;
   font-weight: 800;
   text-transform: capitalize;
   position: relative;
 }
-.users .users-container .user-link .user-container .user-name::after {
+.tile .users-container .user-link .user-container .user-name::after {
   content: "";
   position: absolute;
   bottom: 0;
@@ -89,237 +90,33 @@
   height: 2px;
   background-color: rgba(231, 231, 231, 0.5);
 }
-.users .users-container .user-link .user-container .user-contents {
+.tile .users-container .user-link .user-container .user-contents {
   padding: 4%;
 }
-.users .users-container .user-link .user-container .user-contents .user-email,
-.users .users-container .user-link .user-container .user-contents .user-role {
+.tile .users-container .user-link .user-container .user-contents .user-email,
+.tile .users-container .user-link .user-container .user-contents .user-role {
   font-size: 13px;
   padding: 1%;
 }
-.users .users-container .user-link .user-container .user-contents .user-email::first-letter,
-.users .users-container .user-link .user-container .user-contents .user-role::first-letter {
+.tile .users-container .user-link .user-container .user-contents .user-email::first-letter,
+.tile .users-container .user-link .user-container .user-contents .user-role::first-letter {
   text-transform: uppercase;
 }
 
 /* break for table view*/
-.users {
+.list {
   height: 100%;
   width: 100%;
   align-items: center;
-  padding: 0.5%;
+  padding: 1% 0.5%;
 }
-.users .users-container {
+.list .users-container {
   display: flex;
   width: 100%;
   height: 100%;
   padding: 0 0.5%;
 }
-.users .users-container .manage-users-content {
-  align-items: center;
-  margin: 10% 25%;
-}
-.users .users-container .manage-users-content .add-users-container .add-users-button-container {
-  display: flex;
-  justify-content: center;
-  width: 100%;
-}
-.users .users-container .manage-users-content .add-users-container .add-users-button-container .add-users-button {
-  display: flex;
-  justify-content: center;
-  width: 60%;
-  padding: 3%;
-  margin-top: 5%;
-  font-size: 15px;
-  font-weight: 800;
-  border-radius: 2%;
-  border: 1px solid rgba(0, 0, 0, 0.143);
-  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 4px 6px 0 rgba(0, 0, 0, 0.19);
-  background-color: rgb(255, 255, 255);
-  cursor: pointer;
-  z-index: 1;
-}
-.users .users-container .manage-users-content .add-users-container .add-users-button-container .add-users-button.active {
-  display: none;
-}
-.users .users-container .manage-users-content .add-users-container .add-users-button-container .add-users-button:hover {
-  color: rgb(86, 86, 2);
-  border: 2px solid rgba(86, 86, 2, 0.05);
-}
-.users .users-container .manage-users-content .add-users-container .add-users-form {
-  display: none;
-  flex-direction: column;
-  padding: 5%;
-  border: 1px solid #ccc;
-  background-color: rgb(255, 255, 255);
-  box-shadow: inset 0 4px 4px 0 rgba(0, 0, 0, 0.2), inset 0 6px 12px 0 rgba(0, 0, 0, 0.19);
-}
-.users .users-container .manage-users-content .add-users-container .add-users-form.active {
-  display: flex;
-}
-.users .users-container .manage-users-content .add-users-container .add-users-form .add-users-title {
-  padding: 3% 0;
-  font-size: 20px;
-  font-weight: 800;
-}
-.users .users-container .manage-users-content .add-users-container .add-users-form .first,
-.users .users-container .manage-users-content .add-users-container .add-users-form .last,
-.users .users-container .manage-users-content .add-users-container .add-users-form .email,
-.users .users-container .manage-users-content .add-users-container .add-users-form .user-drop-down,
-.users .users-container .manage-users-content .add-users-container .add-users-form .add-user {
-  padding: 1%;
-  margin: 2%;
-  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 12px 0 rgba(0, 0, 0, 0.19);
-  border: none;
-}
-.users .users-container .manage-users-content .add-users-container .add-users-form .add-user {
-  cursor: pointer;
-  background-color: rgb(255, 255, 255);
-  border: 1px solid rgba(86, 86, 2, 0.05);
-  transition: transform 3s ease-in-out;
-}
-.users .users-container .manage-users-content .add-users-container .add-users-form .add-user:hover {
-  color: rgb(86, 86, 2);
-}
-.users .users-container .manage-users-content .change-users-container .change-users-button-container {
-  display: flex;
-  justify-content: center;
-  width: 100%;
-}
-.users .users-container .manage-users-content .change-users-container .change-users-button-container .change-users-button {
-  display: flex;
-  justify-content: center;
-  width: 60%;
-  padding: 3%;
-  margin-top: 5%;
-  font-size: 15px;
-  font-weight: 800;
-  border-radius: 2%;
-  border: 1px solid rgba(0, 0, 0, 0.143);
-  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 4px 6px 0 rgba(0, 0, 0, 0.19);
-  background-color: rgb(255, 255, 255);
-  cursor: pointer;
-  z-index: 1;
-}
-.users .users-container .manage-users-content .change-users-container .change-users-button-container .change-users-button.active {
-  display: none;
-}
-.users .users-container .manage-users-content .change-users-container .change-users-button-container .change-users-button:hover {
-  color: rgb(86, 86, 2);
-  border: 2px solid rgba(86, 86, 2, 0.05);
-}
-.users .users-container .manage-users-content .change-users-container .change-user-form {
-  display: none;
-  flex-direction: column;
-  padding: 5%;
-  border: 1px solid #ccc;
-  background-color: rgb(255, 255, 255);
-  box-shadow: inset 0 4px 4px 0 rgba(0, 0, 0, 0.2), inset 0 6px 12px 0 rgba(0, 0, 0, 0.19);
-}
-.users .users-container .manage-users-content .change-users-container .change-user-form.active {
-  display: flex;
-}
-.users .users-container .manage-users-content .change-users-container .change-user-form .change-user-title {
-  padding: 3% 0;
-  font-size: 20px;
-  font-weight: 800;
-}
-.users .users-container .manage-users-content .change-users-container .change-user-form .user-selection,
-.users .users-container .manage-users-content .change-users-container .change-user-form .change-roll-drop-down,
-.users .users-container .manage-users-content .change-users-container .change-user-form .user-role,
-.users .users-container .manage-users-content .change-users-container .change-user-form .user-submit {
-  padding: 1%;
-  margin: 2%;
-  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 12px 0 rgba(0, 0, 0, 0.19);
-  border: none;
-}
-.users .users-container .manage-users-content .change-users-container .change-user-form .user-submit {
-  cursor: pointer;
-  background-color: rgb(255, 255, 255);
-  border: 1px solid rgba(86, 86, 2, 0.05);
-  transition: transform 3s ease-in-out;
-}
-.users .users-container .manage-users-content .change-users-container .change-user-form .user-submit:hover {
-  color: rgb(86, 86, 2);
-}
-.users .users-container .manage-users-content .change-users-container .change-user-form .user-role {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  padding: 1%;
-  font-size: 14px;
-  align-items: center;
-}
-.users .users-container .manage-users-content .change-users-container .change-user-form .user-role.hidden {
-  display: none;
-}
-.users .users-container .manage-users-content .change-users-container .change-user-form .user-role .user-current-role-left {
-  padding: 1%;
-}
-.users .users-container .manage-users-content .change-users-container .change-user-form .user-role .user-current-role-right {
-  display: flex;
-  justify-content: flex-end;
-  padding: 1% 10%;
-}
-.users .users-container .manage-users-content .remove-users-container .remove-users-button-container {
-  display: flex;
-  justify-content: center;
-  width: 100%;
-}
-.users .users-container .manage-users-content .remove-users-container .remove-users-button-container .remove-users-button {
-  display: flex;
-  justify-content: center;
-  width: 60%;
-  padding: 3%;
-  margin-top: 5%;
-  font-size: 15px;
-  font-weight: 800;
-  border-radius: 2%;
-  border: 1px solid rgba(0, 0, 0, 0.143);
-  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 4px 6px 0 rgba(0, 0, 0, 0.19);
-  background-color: rgb(255, 255, 255);
-  cursor: pointer;
-  z-index: 1;
-}
-.users .users-container .manage-users-content .remove-users-container .remove-users-button-container .remove-users-button.active {
-  display: none;
-}
-.users .users-container .manage-users-content .remove-users-container .remove-users-button-container .remove-users-button:hover {
-  color: rgb(86, 86, 2);
-  border: 2px solid rgba(86, 86, 2, 0.05);
-}
-.users .users-container .manage-users-content .remove-users-container .remove-user-form {
-  flex-direction: column;
-  padding: 5%;
-  border: 1px solid #ccc;
-  background-color: rgb(255, 255, 255);
-  box-shadow: inset 0 4px 4px 0 rgba(0, 0, 0, 0.2), inset 0 6px 12px 0 rgba(0, 0, 0, 0.19);
-  display: none;
-}
-.users .users-container .manage-users-content .remove-users-container .remove-user-form.active {
-  display: flex;
-}
-.users .users-container .manage-users-content .remove-users-container .remove-user-form .remove-user-title {
-  padding: 3% 0;
-  font-size: 20px;
-  font-weight: 800;
-}
-.users .users-container .manage-users-content .remove-users-container .remove-user-form .remove-user-selection,
-.users .users-container .manage-users-content .remove-users-container .remove-user-form .remove-user-button {
-  padding: 1%;
-  margin: 2%;
-  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 12px 0 rgba(0, 0, 0, 0.19);
-  border: none;
-}
-.users .users-container .manage-users-content .remove-users-container .remove-user-form .remove-user-button {
-  cursor: pointer;
-  background-color: rgb(255, 255, 255);
-  border: 1px solid rgba(86, 86, 2, 0.05);
-  transition: transform 3s ease-in-out;
-}
-.users .users-container .manage-users-content .remove-users-container .remove-user-form .remove-user-button:hover {
-  color: rgb(86, 86, 2);
-}
-.users .users-container .all-users-table-container {
+.list .users-container .all-users-table-container {
   height: 100%;
   width: 100%;
   border: 1px solid #ccc;
@@ -330,84 +127,71 @@
   display: grid;
   grid-template-rows: 15% 75% 10%;
 }
-.users .users-container .all-users-table-container table {
+.list .users-container .all-users-table-container table {
   width: 100%;
   border-bottom: 1px solid #ccc;
   border-collapse: collapse;
 }
-.users .users-container .all-users-table-container table th {
+.list .users-container .all-users-table-container table th {
   font-size: 14px;
-  padding: 1% 2%;
-  text-align: left;
+  width: 33.3333333333%;
+  padding: 1%;
+  padding-left: 2.25%;
+  text-align: center;
   cursor: pointer;
-  align-items: center;
-  position: relative;
 }
-.users .users-container .all-users-table-container table th:hover {
+.list .users-container .all-users-table-container table th:hover {
   color: rgb(86, 86, 2);
 }
-.users .users-container .all-users-table-container table th.active {
+.list .users-container .all-users-table-container table th.active {
   color: rgb(86, 86, 2);
 }
-.users .users-container .all-users-table-container table td {
+.list .users-container .all-users-table-container table td {
   font-size: 12px;
   border-top: 1px solid #ccc;
-  padding: 1% 2%;
-  text-align: left;
+  padding: 1%;
+  text-align: center;
 }
-.users .users-container .all-users-table-container table i {
+.list .users-container .all-users-table-container table i {
   font-size: 13px;
-  align-items: center;
-  justify-content: center;
   transition: transform 1s ease;
   color: rgb(255, 255, 255);
 }
-.users .users-container .all-users-table-container table i.rotate {
+.list .users-container .all-users-table-container table i.rotate {
   transform: rotate(180deg);
 }
-.users .users-container .all-users-table-container table i.active {
+.list .users-container .all-users-table-container table i.active {
   color: rgb(86, 86, 2);
 }
-.users .users-container .all-users-table-container table .user-name {
+.list .users-container .all-users-table-container table .user-name .user-link {
   cursor: pointer;
+  text-decoration: none;
+  color: inherit;
 }
-.users .users-container .all-users-table-container table .user-name:hover {
+.list .users-container .all-users-table-container table .user-name .user-link:hover {
   color: rgb(86, 86, 2);
 }
-.users .users-container .all-users-table-container table button {
-  font-size: 12px;
-  border-radius: 5%;
-  border: 1px solid rgba(0, 0, 0, 0.143);
-  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 4px 6px 0 rgba(0, 0, 0, 0.19);
-  background-color: white;
-  cursor: pointer;
-  z-index: 1;
-}
-.users .users-container .all-users-table-container table button:hover {
-  color: rgb(86, 86, 2);
-  border: 1px solid rgba(86, 86, 2, 0.05);
-}
-.users .users-container .all-users-table-container .users-table-title {
+.list .users-container .all-users-table-container .users-table-title {
   padding: 1% 0;
   font-weight: 800;
 }
-.users .users-container .all-users-table-container .users-table-pagination .pagination-content {
+.list .users-container .all-users-table-container .users-table-pagination .pagination-content {
   display: grid;
   grid-template-columns: 50% 50%;
 }
-.users .users-container .all-users-table-container .users-table-pagination .pagination-content .pagination-pages {
+.list .users-container .all-users-table-container .users-table-pagination .pagination-content .pagination-pages {
   display: flex;
   font-size: 12px;
   justify-content: flex-start;
   align-items: center;
 }
-.users .users-container .all-users-table-container .users-table-pagination .pagination-content .pagination-buttons {
+.list .users-container .all-users-table-container .users-table-pagination .pagination-content .pagination-buttons {
   display: flex;
   justify-content: flex-end;
   align-items: center;
 }
-.users .users-container .all-users-table-container .users-table-pagination .pagination-content .pagination-buttons .page-button-left,
-.users .users-container .all-users-table-container .users-table-pagination .pagination-content .pagination-buttons .page-button-right {
+.list .users-container .all-users-table-container .users-table-pagination .pagination-content .pagination-buttons .page-button-left,
+.list .users-container .all-users-table-container .users-table-pagination .pagination-content .pagination-buttons .page-button-right {
   font-size: 12px;
   border-radius: 5%;
   border: 1px solid rgba(0, 0, 0, 0.143);
@@ -419,12 +203,12 @@
   padding: 1%;
   margin: 1%;
 }
-.users .users-container .all-users-table-container .users-table-pagination .pagination-content .pagination-buttons .page-button-left:hover,
-.users .users-container .all-users-table-container .users-table-pagination .pagination-content .pagination-buttons .page-button-right:hover {
+.list .users-container .all-users-table-container .users-table-pagination .pagination-content .pagination-buttons .page-button-left:hover,
+.list .users-container .all-users-table-container .users-table-pagination .pagination-content .pagination-buttons .page-button-right:hover {
   color: rgb(86, 86, 2);
   border: 1px solid rgba(86, 86, 2, 0.05);
 }
-.users .users-container .all-users-table-container .users-table-pagination .pagination-content .pagination-buttons .page-number {
+.list .users-container .all-users-table-container .users-table-pagination .pagination-content .pagination-buttons .page-number {
   font-size: 12px;
   border-radius: 5%;
   border: 1px solid rgba(0, 0, 0, 0.143);
@@ -436,11 +220,11 @@
   margin: 1%;
   cursor: pointer;
 }
-.users .users-container .all-users-table-container .users-table-pagination .pagination-content .pagination-buttons .page-number:hover {
+.list .users-container .all-users-table-container .users-table-pagination .pagination-content .pagination-buttons .page-number:hover {
   color: rgb(86, 86, 2);
   border: 1px solid rgba(86, 86, 2, 0.05);
 }
-.users .users-container .all-users-table-container .users-table-pagination .pagination-content .pagination-buttons .page-input {
+.list .users-container .all-users-table-container .users-table-pagination .pagination-content .pagination-buttons .page-input {
   font-size: 12px;
   width: 10%;
   border: 1px solid rgba(0, 0, 0, 0.143);
@@ -454,32 +238,4 @@
   -webkit-appearance: none;
      -moz-appearance: none;
           appearance: none;
-}
-.users .users-container .all-users-table-container .bsxMp {
-  padding-bottom: 7%;
-  font-weight: 800;
-}
-.users .users-container .all-users-table-container .rdt_TableCol {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  font-size: 15px;
-  font-weight: 600;
-}
-.users .users-container .all-users-table-container .rdt_TableCell {
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 2% 0;
-}
-.users .users-container .all-users-table-container .rdt_Pagination {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  justify-content: center;
 }/*# sourceMappingURL=users.css.map */

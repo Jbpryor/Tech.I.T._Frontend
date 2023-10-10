@@ -8,7 +8,7 @@ const viewModeSlice = createSlice({
       return action.payload;
     },
     toggleViewMode: (state) => {
-      return state === 'tile' ? 'list' : 'tile';
+      return state === 'list' ? 'tile' : 'list';
     },
   },
 });

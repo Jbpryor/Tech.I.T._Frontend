@@ -65,6 +65,7 @@
   transition: transform 0.3s ease-in-out;
   margin: 3% 0;
   cursor: pointer;
+  min-height: 200px;
 }
 .reports .reports-container .report-link .report-container.active {
   width: 13.5vw;

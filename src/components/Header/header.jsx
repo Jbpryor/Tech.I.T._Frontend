@@ -5,8 +5,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { toggleViewMode } from '../../Store/viewModeSlice';
 
 function Header() {
-    const [isSearchIconVisible, setSearchIconVisible] = useState(true);
-    const [isGridVisible, setGridVisible] = useState(true);
+    const [ isSearchIconVisible, setSearchIconVisible ] = useState(true);
+    const [ isGridVisible, setGridVisible ] = useState(true);
     const [ isNewMenuVisible, setIsNewMenuVisible ] = useState(false);
     const dispatch = useDispatch();
     const viewMode = useSelector((state) => state.viewMode);

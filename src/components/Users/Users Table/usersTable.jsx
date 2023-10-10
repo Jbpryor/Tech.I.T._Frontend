@@ -9,9 +9,9 @@ function UsersTable({ user, index, onDelete }) {
             </td>
             <td>{user.email}</td>
             <td>{user.role}</td>
-            <td>
+            {/* <td>
                 <button className="delete" onClick={() => { onDelete(index)}}>Delete</button>
-            </td>
+            </td> */}
         </tr>
     )
 }

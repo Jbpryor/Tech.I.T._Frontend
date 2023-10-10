@@ -68,6 +68,7 @@
   transition: transform 0.3s ease-in-out;
   margin: 3% 0;
   cursor: pointer;
+  min-height: 170px;
 }
 .issues .issues-container .issue-link .issue-container.active {
   width: 13.5vw;

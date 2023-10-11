@@ -61,11 +61,6 @@ function Projects() {
     /* this is the break from list view to tile view */
 
 
-
-    const dispatch = useDispatch();
-
-    const userFullName = (user) => `${user.name.first} ${user.name.last}`;
-
     // const onDelete = (index) => {
     //     const selectedUser = users[index];
     //     dispatch(removeUser({ selectedUser: userFullName(selectedUser) }));
@@ -203,12 +198,10 @@ function Projects() {
         setCurrentPage(newPage);
     };
 
-    // const isDashboardActive = location.pathname === '/dashboard';
-
     return (
         <>
             {viewMode === 'list' ? (
-                <section className="projects list">
+                <section className="projects projects-list">
                     <div className={`projects-title ${!isProjectsActive ? 'active' : ''}`}>Projects</div>
 
                     <div className="projects-container">
@@ -245,7 +238,7 @@ function Projects() {
                     </div>
                 </section>
                 ) : (
-                <section className="projects tile">
+                <section className="projects projects-tile">
                     <div className={`projects-title ${isProjectsActive ? 'active' : ''}`}>Projects</div>
 
                     <ProjectsSort selectedSort={selectedSort} setSelectedSort={setSelectedSort} rotate={rotate} handleRotate={handleRotate} />

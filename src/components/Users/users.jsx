@@ -118,12 +118,11 @@ function Users({ projectUsers }) {
     return (
         <>
             {viewMode === 'list' ? (
-                <section className="users list">
+                <section className="users users-list">
                     <div className={`users-title ${!isUsersActive ? 'active' : ''}`}>Users</div>
                     <div className="users-container">
 
                         <div className="all-users-table-container">
-                            {/* <div className="users-table-title">Users</div> */}
                             <div className="users-table-content">
                                 <table>
                                     <thead>
@@ -148,7 +147,7 @@ function Users({ projectUsers }) {
                     </div>
                 </section>
             ) : (
-                <section className="users tile">            
+                <section className="users users-tile">            
                     <div className={`users-title ${isUsersActive ? 'active' : ''}`}>Users</div>
         
                     <UsersSort selectedSort={selectedSort} setSelectedSort={setSelectedSort} rotate={rotate} handleRotate={handleRotate} />

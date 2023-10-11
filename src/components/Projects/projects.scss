@@ -1,9 +1,10 @@
-.tile {
+.projects-tile {
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 0.5%;
     scroll-behavior: auto;
+    min-height: 95vh;
 
     .projects-title {
         font-size: 15px;
@@ -126,11 +127,12 @@
 
 
 
-.list {
-    height: 100%;
+.projects-list {
+    min-height: 95vh;
     width: 100%;
     align-items: center;
     padding: 1% 0.5%;
+    background-color: green;
 
     .projects-title {
         font-size: 15px;

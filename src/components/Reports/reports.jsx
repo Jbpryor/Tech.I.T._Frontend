@@ -140,13 +140,25 @@ function Reports() {
 
     };
 
-    const reportsPerPage = 10;
-    const [currentPage, setCurrentPage] = useState(0); 
+    const [currentPage, setCurrentPage] = useState(1);
 
     const handlePageChange = (newPage) => {
-        setCurrentPage(newPage);
-    };
-    
+        if (newPage > 0 && newPage < pageCount) {
+            setCurrentPage(newPage);
+        }
+    };    
+
+    const [ itemsPerPage, setItemsPerPage ] = useState(10);
+    const pageCount = Math.ceil(sortedReports.length / itemsPerPage);
+
+    const slicedReports = sortedReports.map((report, index) => {
+        const firstPageIndex = (currentPage - 1) * itemsPerPage;
+        const lastPageIndex = firstPageIndex + itemsPerPage;
+        if (index >= firstPageIndex && index < lastPageIndex) {
+            return report;
+        }
+        return null;
+    }).filter(Boolean);   
     
     
     return (
@@ -173,14 +185,14 @@ function Reports() {
 
                                     </thead>
                                     <tbody className="reports-table-body">
-                                        {sortedReports.map((report, index) => (
+                                        {slicedReports.map((report, index) => (
                                             <ReportsTable report={report} key={index} index={index} isReportsActive={isReportsActive} />
                                         ))}
                                     </tbody>
                                 </table>
                             </div>
                             <div className="reports-table-pagination">
-                                <TablePagination currentPage={currentPage} pageCount={Math.ceil(reports.length / reportsPerPage)} onPageChange={handlePageChange} />
+                                <TablePagination currentPage={currentPage} setCurrentPage={setCurrentPage} onPageChange={handlePageChange} totalCount={sortedReports.length} items={sortedReports} itemsPerPage={itemsPerPage} setItemsPerPage={setItemsPerPage} pageCount={pageCount} />
                             </div>
                         </div>
 

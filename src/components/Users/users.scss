@@ -3,7 +3,7 @@
     flex-direction: column;
     align-items: center;
     padding: 0.5%;
-    min-height: 95vh;
+    min-height: 100%;
 
     .users-title {
         font-size: 15px;
@@ -131,7 +131,7 @@
 
 
 .users-list {
-    min-height: 95vh;
+    min-height: 100%;
     width: 100%;
     align-items: center;
     padding: 1% 0.5%;

@@ -105,15 +105,25 @@ function Users({ projectUsers }) {
         }
     };
 
-    const usersPerPage = 10;
-    const [currentPage, setCurrentPage] = useState(0); 
+    const [currentPage, setCurrentPage] = useState(1);
 
     const handlePageChange = (newPage) => {
-        setCurrentPage(newPage);
-    };
+        if (newPage > 0 && newPage < pageCount) {
+            setCurrentPage(newPage);
+        }
+    };    
 
-    // const startIndex = currentPage * usersPerPage;
-    // const endIndex = startIndex + usersPerPage;
+    const [ itemsPerPage, setItemsPerPage ] = useState(10);
+    const pageCount = Math.ceil(sortedUsers.length / itemsPerPage);
+
+    const slicedUsers = sortedUsers.map((user, index) => {
+        const firstPageIndex = (currentPage - 1) * itemsPerPage;
+        const lastPageIndex = firstPageIndex + itemsPerPage;
+        if (index >= firstPageIndex && index < lastPageIndex) {
+            return user;
+        }
+        return null;
+    }).filter(Boolean); 
 
     return (
         <>
@@ -133,14 +143,14 @@ function Users({ projectUsers }) {
                                         </tr>
                                     </thead>
                                     <tbody className="users-table-body">
-                                        {sortedUsers.map((user, index) => (
+                                        {slicedUsers.map((user, index) => (
                                             <UsersTable user={user} key={index} index={index} onDelete={onDelete}/>
                                         ))}
                                     </tbody>
                                 </table>
                             </div>
                             <div className="users-table-pagination">
-                                <TablePagination currentPage={currentPage} pageCount={Math.ceil(users.length / usersPerPage)} onPageChange={handlePageChange} />
+                                <TablePagination currentPage={currentPage} setCurrentPage={setCurrentPage} onPageChange={handlePageChange} totalCount={sortedUsers.length} items={sortedUsers} itemsPerPage={itemsPerPage} setItemsPerPage={setItemsPerPage} pageCount={pageCount} />
                             </div>
                         </div>
         

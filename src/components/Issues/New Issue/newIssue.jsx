@@ -3,6 +3,7 @@ import './newIssue.scss';
 import { useLocation, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { addIssue } from "../../../Store/issueSlice";
+import { issueDetails } from "../../../Constants/issueDetails";
 
 function NewIssue() {
 
@@ -16,35 +17,14 @@ function NewIssue() {
     const issues = useSelector((state) => state.issues);
     const projects = useSelector((state) => state.projects);
 
+    const newIssue = {};
 
-
-    const location = useLocation();
-
-    const issueDetails = [
-        'Id',
-        'Title',
-        'Type',
-        'Status',
-        'Priority',
-        'Project',
-        'Submitter',
-        'Developer',
-        'Created',
-        'Description',        
-    ];
-
-    const newIssue = {
-        id: newId,
-        title: inputValues['Title'] || '',
-        type: inputValues['Type'] || '',
-        status: inputValues['Status'] || '',
-        priority: inputValues["Priority"] || '',
-        submitter: inputValues['Submitter'] || '',
-        project: inputValues['Project'] || '',
-        developer: inputValues['Developer'] || '',
-        created: currentDate,
-        description: inputValues['Description'] || '',
-    };
+    issueDetails.forEach((detail) => {
+        newIssue[detail.toLowerCase()] = inputValues[detail] || '';
+    });
+    
+    newIssue.id = newId;
+    newIssue.created = currentDate;
 
     const handleInputChange = (event, detail) => {
         const { value } = event.target;

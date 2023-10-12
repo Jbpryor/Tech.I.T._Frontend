@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 import './issues.scss'
 import { useLocation, Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
@@ -32,7 +32,6 @@ function Issues({ projectIssues }) {
     const sortedIssuesByTitle = [...filteredIssues].sort(sortByProperty('title', null, true));
     const sortedIssuesByType = [...filteredIssues].sort(sortByProperty('type', null, true));
 
-
     const [ rotate, setRotate ] = useState(false);
     const [ selectedSort, setSelectedSort ] = useState('');
 
@@ -64,7 +63,7 @@ function Issues({ projectIssues }) {
             default:
                 return sortOrder === 'ascending' ? sortedIssuesByDate : sortedIssuesByDate.reverse();
         }
-      };      
+      };
       
     const sortedIssues = getSortingFunction();
     
@@ -225,12 +224,26 @@ function Issues({ projectIssues }) {
 
     };
 
-    const issuesPerPage = 10;
-    const [currentPage, setCurrentPage] = useState(0); 
+    const [currentPage, setCurrentPage] = useState(1);
 
     const handlePageChange = (newPage) => {
-        setCurrentPage(newPage);
-    };
+        if (newPage > 0 && newPage < pageCount) {
+            setCurrentPage(newPage);
+        }
+    };    
+
+    const [ itemsPerPage, setItemsPerPage ] = useState(10);
+    const pageCount = Math.ceil(sortedIssues.length / itemsPerPage);
+
+    const slicedIssues = sortedIssues.map((issue, index) => {
+        const firstPageIndex = (currentPage - 1) * itemsPerPage;
+        const lastPageIndex = firstPageIndex + itemsPerPage;
+        if (index >= firstPageIndex && index < lastPageIndex) {
+            return issue;
+        }
+        return null;
+    }).filter(Boolean);
+
     
     return (
         <>
@@ -259,14 +272,14 @@ function Issues({ projectIssues }) {
 
                                     </thead>
                                     <tbody className="issues-table-body">
-                                        {sortedIssues.map((issue, index) => (
+                                        {slicedIssues.map((issue, index) => (
                                             <IssuesTable issue={issue} key={index} index={index} isIssuesActive={isIssuesActive} />
                                         ))}
                                     </tbody>
                                 </table>
                             </div>
                             <div className="issues-table-pagination">
-                                <TablePagination currentPage={currentPage} pageCount={Math.ceil(issues.length / issuesPerPage)} onPageChange={handlePageChange} />
+                                <TablePagination currentPage={currentPage} setCurrentPage={setCurrentPage} onPageChange={handlePageChange} totalCount={sortedIssues.length} items={sortedIssues} itemsPerPage={itemsPerPage} setItemsPerPage={setItemsPerPage} pageCount={pageCount} />
                             </div>
                         </div>
 

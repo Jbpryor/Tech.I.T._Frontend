@@ -191,12 +191,25 @@ function Projects() {
 
     };
 
-    const projectsPerPage = 10;
-    const [currentPage, setCurrentPage] = useState(0); 
+    const [currentPage, setCurrentPage] = useState(1);
 
     const handlePageChange = (newPage) => {
-        setCurrentPage(newPage);
-    };
+        if (newPage > 0 && newPage < pageCount) {
+            setCurrentPage(newPage);
+        }
+    };    
+
+    const [ itemsPerPage, setItemsPerPage ] = useState(10);
+    const pageCount = Math.ceil(sortedProjects.length / itemsPerPage);
+
+    const slicedProjects = sortedProjects.map((project, index) => {
+        const firstPageIndex = (currentPage - 1) * itemsPerPage;
+        const lastPageIndex = firstPageIndex + itemsPerPage;
+        if (index >= firstPageIndex && index < lastPageIndex) {
+            return project;
+        }
+        return null;
+    }).filter(Boolean);
 
     return (
         <>
@@ -224,14 +237,14 @@ function Projects() {
 
                                     </thead>
                                     <tbody className="users-table-body">
-                                        {sortedProjects.map((project, index) => (
+                                        {slicedProjects.map((project, index) => (
                                             <ProjectsTable project={project} key={index} index={index} isProjectsActive={isProjectsActive} />
                                         ))}
                                     </tbody>
                                 </table>
                             </div>
                             <div className="projects-table-pagination">
-                                <TablePagination currentPage={currentPage} pageCount={Math.ceil(projects.length / projectsPerPage)} onPageChange={handlePageChange} />
+                                <TablePagination currentPage={currentPage} setCurrentPage={setCurrentPage} onPageChange={handlePageChange} totalCount={sortedProjects.length} items={sortedProjects} itemsPerPage={itemsPerPage} setItemsPerPage={setItemsPerPage} pageCount={pageCount} />
                             </div>
                         </div>
 

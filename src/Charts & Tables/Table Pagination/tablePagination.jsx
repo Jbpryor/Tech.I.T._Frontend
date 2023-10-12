@@ -1,12 +1,22 @@
 import React, { useState } from 'react';
+import './tablePagination.scss'
 
-function TablePagination({ currentPage, pageCount, onPageChange }) {
+function TablePagination({ currentPage, setCurrentPage, onPageChange, items, itemsPerPage, setItemsPerPage }) {
+  const [pageNumber, setPageNumber] = useState(currentPage);
+  const totalItems = Math.ceil(items.length);
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = Math.min(currentPage * itemsPerPage - 1, totalItems - 1);
 
-  const [ selectPage, setSelectPage ] = useState(null);
-  const [ pageNumber, setPageNumber ] = useState(currentPage + 1);
+  const [selectPage, setSelectPage] = useState(null);
+  const itemsPerPageOptions = [10, 20, 50, 100, 200, 500, 100];
 
-  const handlePageClick = (newPage) => {
-    if (newPage >= 0 && newPage < pageCount) {
+  const pageOptionFiltered = itemsPerPageOptions.filter((option) => option <= totalItems)
+
+  const handleItemsPerPageChange = (event) => {
+    const newItemsPerPage = parseInt(event.target.value, 10);
+    if (!isNaN(newItemsPerPage) && newItemsPerPage > 0) {
+      setItemsPerPage(newItemsPerPage);
+      const newPage = Math.floor(startIndex / newItemsPerPage);
       onPageChange(newPage);
     }
   };
@@ -18,15 +28,15 @@ function TablePagination({ currentPage, pageCount, onPageChange }) {
 
   const handlePageChange = (event) => {
     const inputPageNumber = parseInt(event.target.value, 10);
-    if (!isNaN(inputPageNumber) && inputPageNumber >= 1 && inputPageNumber <= pageCount) {
+    if (!isNaN(inputPageNumber) && inputPageNumber >= 1) {
       setPageNumber(inputPageNumber);
     }
   };
 
-  const handlePageEnter = event => {
+  const handlePageEnter = (event) => {
     if (event.key === 'Enter') {
       const newPage = pageNumber - 1;
-      if (newPage >= 0 && newPage < pageCount) {
+      if (newPage >= 0 && newPage < totalItems) {
         onPageChange(newPage);
         setSelectPage(null);
       }
@@ -36,7 +46,7 @@ function TablePagination({ currentPage, pageCount, onPageChange }) {
   const renderPageNumber = () => {
     const buttons = [];
 
-    for (let i = 0; i < pageCount; i++) {
+    for (let i = 0; i < Math.ceil(items.length / itemsPerPage); i++) {
       buttons.push(
         <div className='page-number' key={i} onClick={() => handlePageSelection(i)}>
           {i + 1}
@@ -50,28 +60,36 @@ function TablePagination({ currentPage, pageCount, onPageChange }) {
   return (
     <div className="pagination-content">
       <div className="pagination-pages">
-
-          <div className="page-info">
-            Showing page {currentPage + 1} of {pageCount}
-          </div>
-
+        <select className={`items-per-page ${totalItems <= 10 ? 'none' : ''}`} value={itemsPerPage} onChange={handleItemsPerPageChange}>
+          {pageOptionFiltered.map((option) => (
+            <option key={option} value={option}>
+              {option}
+            </option>
+          ))}
+        </select>
+        <div className="page-info">
+          Showing {startIndex + 1} - {Math.min(endIndex + 1, totalItems)} of {totalItems}
+        </div>
       </div>
       <div className="pagination-buttons">
-
-        <button className='page-button-left' onClick={() => handlePageClick(currentPage - 1)} disabled={currentPage === 0}>
-          <i className='bx bx-left-arrow' ></i>
+        <button className='page-button-left' onClick={() => onPageChange(setCurrentPage(currentPage - 1))} disabled={currentPage === 1}>
+          <i className='bx bx-left-arrow'></i>
         </button>
-
         {selectPage === null ? (
           renderPageNumber()
-        ):(
-          <input className='page-input' type="number" value={pageNumber} onChange={handlePageChange} onKeyDown={handlePageEnter} onBlur={() => setSelectPage(null)} />
+        ) : (
+          <input
+            className='page-input'
+            type="number"
+            value={pageNumber}
+            onChange={handlePageChange}
+            onKeyDown={handlePageEnter}
+            onBlur={() => setSelectPage(null)}
+          />
         )}
-
-        <button className='page-button-right' onClick={() => handlePageClick(currentPage + 1)} disabled={currentPage === pageCount - 1}>
-          <i className='bx bx-right-arrow' ></i>
+        <button className='page-button-right' onClick={() => onPageChange(setCurrentPage(currentPage + 1))} disabled={currentPage === Math.ceil(totalItems / itemsPerPage)}>
+          <i className='bx bx-right-arrow'></i>
         </button>
-
       </div>
     </div>
   );

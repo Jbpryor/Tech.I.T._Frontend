@@ -4,7 +4,7 @@
     align-items: center;
     padding: 0.5%;
     scroll-behavior: auto;
-    min-height: 95vh;
+    min-height: 100%;
 
     .projects-title {
         font-size: 15px;
@@ -128,11 +128,10 @@
 
 
 .projects-list {
-    min-height: 95vh;
+    min-height: 100%;
     width: 100%;
     align-items: center;
     padding: 1% 0.5%;
-    background-color: green;
 
     .projects-title {
         font-size: 15px;
@@ -223,86 +222,6 @@
 
             .projects-table-pagination {
                 padding: 1%;
-
-                .pagination-content {
-                    display: grid;
-                    grid-template-columns: 50% 50%;
-
-                    .pagination-pages {
-                        display: flex;
-                        font-size: 12px;
-                        justify-content: flex-start;
-                        align-items: center;
-                    }
-                    
-                    .pagination-buttons {
-                        display: flex;
-                        justify-content: flex-end;
-                        align-items: center;
-
-                        .page-button-left, 
-                        .page-button-right {
-                            display: flex;
-                            align-items: center;
-                            justify-content: center;
-                            height: 25px;
-                            font-size: 12px;
-                            border-radius: 5%;
-                            border: 1px solid rgba(0, 0, 0, 0.143);
-                            box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2), 0 2px 3px 0 rgba(0, 0, 0, 0.2);
-                            background-color: white;
-                            cursor: pointer;
-                            z-index: 1;
-                            color: inherit;
-                            padding: 1%;
-                
-                            &:hover {
-                                color: rgb(86, 86, 2);
-                                border: 1px solid rgb(86, 86, 2, 0.05);
-                            }
-                        }
-
-                        .page-number {
-                            display: flex;
-                            align-items: center;
-                            justify-content: center;
-                            height: 25px;
-                            font-size: 12px;
-                            border-radius: 5%;
-                            border: 1px solid rgba(0, 0, 0, 0.143);
-                            box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2), 0 2px 3px 0 rgba(0, 0, 0, 0.2);
-                            background-color: white;
-                            z-index: 1;
-                            color: inherit;
-                            padding: 1% 2%;
-                            margin: 1%;
-                            cursor: pointer;
-
-                            &:hover {
-                                color: rgb(86, 86, 2);
-                                border: 1px solid rgb(86, 86, 2, 0.05);
-                            }
-                        }
-
-                        .page-input {
-                            display: flex;
-                            align-items: center;
-                            justify-content: center;
-                            height: 25px;
-                            font-size: 12px;
-                            width: 10%;
-                            border: 1px solid rgba(0, 0, 0, 0.143);
-                            box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2), 0 2px 3px 0 rgba(0, 0, 0, 0.2);
-                            background-color: white;
-                            z-index: 1;
-                            color: inherit;
-                            padding: 1% 2%;
-                            margin: 1%;
-                            cursor: pointer;
-                            appearance: none;
-                        }
-                    }
-                }
             }
         }
     }

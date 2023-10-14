@@ -45,7 +45,7 @@ header {
 
 
         .user {
-            a {
+            .field {
                 display: flex;
                 flex-direction: column;
                 gap: 2px;
@@ -55,13 +55,13 @@ header {
                 text-decoration: none;
                 padding: 20px;
 
-
                 span {
                     font-weight: 500;
                     opacity: 0.6;
                     text-align: center;
                     color: rgb(35, 40, 54);
                     padding-top: 5px;
+                    cursor: pointer;
                 }
 
                 i {
@@ -70,6 +70,7 @@ header {
                     align-items: center;
                     justify-content: center;
                     transition: filter 0.3s;
+                    cursor: pointer;
 
                     &:hover {
                         filter: brightness(0.7);
@@ -84,8 +85,8 @@ header {
     
                 }
         
-                &.project {        
-                    .project-icon {
+                &.manager {        
+                    .manager-icon {
                         color: rgb(255, 165, 0);
                     }
                 }

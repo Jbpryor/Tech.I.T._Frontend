@@ -4,6 +4,7 @@ import issueReducer from './issueSlice';
 import projectReducer from './projectSlice';
 import reportReducer from './reportSlice';
 import viewModeReducer from './viewModeSlice';
+import demoUserReducer from './demoUserSlice';
 
 const rootReducer = {
   users: userReducer,
@@ -11,6 +12,7 @@ const rootReducer = {
   projects: projectReducer,
   reports: reportReducer,
   viewMode: viewModeReducer,
+  demoUser: demoUserReducer,
 }
 
 const store = configureStore({

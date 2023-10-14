@@ -36,7 +36,6 @@ function Login() {
     }
 
     return (
-        // need to change the login container to login-container
         <section className='login-container'>
             <div className="login-form">
                 <div className="login-content">

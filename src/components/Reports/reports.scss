@@ -1,14 +1,14 @@
 .reports-tile {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    padding: 0.5%;
     min-height: 100%;
 
     .reports-title {
         font-size: 15px;
         font-weight: 600;
         padding: 1%;
+        text-align: center;
+        margin-top: 2%;
 
         &.active {
             display: none;
@@ -19,11 +19,13 @@
         display: flex;
         flex-direction: row;
         align-items: center;
-        margin: 1%;
         justify-content: space-evenly;
-        border: 2px solid rgba(0, 0, 0, 0.143);
-        box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 12px 0 rgba(0, 0, 0, 0.19);
+        border: 1px solid white;
+        border-bottom: 2px solid rgba(0, 0, 0, 0.143);
+        box-shadow: 5px 4px 4px 0px rgba(0, 0, 0, 0.2), 15px 6px 12px 0 rgba(0, 0, 0, 0.2);
         background-color: rgb(255, 255, 255);
+        width: 100%;
+        
 
         .reports-sort-select {
             padding: 2px;
@@ -48,37 +50,39 @@
     }
 
     .reports-container {
-        display: grid;
-        grid-template-columns: 50% 50%;
-        gap: 0 2%;
-        margin: 1%;
+        display: flex;
+        width: 100%;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-top: 1%;
 
         &.active {
             display: flex;
-            width: 98%;
             flex-wrap: wrap;
-            justify-content: flex-start;
+            align-items: flex-start;
         }
         
         .report-link {
             text-decoration: none;
             color: inherit;
+            width: auto;
+            height: auto;
+            padding: 5px;
+
+            &.active {
+                padding: 10px;
+            }
 
             .report-container {
                 padding: 2% 1%;
                 border: 1px solid #ccc;
                 background-color: rgb(255, 255, 255);
-                width: calc(88vw/6);
+                width: 240px;
                 text-align: center;
                 box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 12px 0 rgba(0, 0, 0, 0.19);
                 transition: transform 0.3s ease-in-out;
-                margin: 3% 0;
                 cursor: pointer;
-                min-height: 200px;
-
-                &.active {
-                    width: calc(81vw/6);
-                }
+                height: 200px;
             
                 &:hover {
                     transform: scale(1.01);
@@ -154,7 +158,6 @@
 
         &.active {
             text-align: center;
-            margin-bottom: 8.75%;
         }
     }
 
@@ -200,7 +203,7 @@
                 }
 
                 .description-column {
-                    width: 250px;
+                    width: 450px;
                 }
 
                 td {

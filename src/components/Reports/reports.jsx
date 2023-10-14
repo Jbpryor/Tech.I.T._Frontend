@@ -200,14 +200,15 @@ function Reports() {
                 </section> 
             ) : (
                 <section className="reports reports-tile">
-                    <div className={`reports-title ${isReportsActive ? 'active' : ''}`}>Reports</div>
-        
+
                     <ReportsSort selectedSort={selectedSort} setSelectedSort={setSelectedSort} rotate={rotate} handleRotate={handleRotate} />
+
+                    <div className={`reports-title ${isReportsActive ? 'active' : ''}`}>Reports</div>        
         
                     <div className={`reports-container ${isReportsActive ? 'active' : ''}`}>              
                     {sortedReports.map((report) => (
-                        <Link className='report-link' to={`/reports/${report.id}`} key={report.id}>
-                            <div className={`report-container ${isReportsActive ? 'active' : ''}`}>       
+                        <Link className={`report-link ${isReportsActive ? 'active' : ''}`} to={`/reports/${report.id}`} key={report.id}>
+                            <div className='report-container'>       
                                 <div className="report-title">{report.type}</div>
                                 <div className="report-contents">
                                     {Object.entries(report).filter(([key]) => !['id', 'description', 'type'].includes(key)).map(([key, value]) => (                

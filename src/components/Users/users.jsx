@@ -164,8 +164,8 @@ function Users({ projectUsers }) {
         
                     <div className={`users-container ${isUsersActive ? 'active' : ''}`}>                
                     {sortedUsers.map((user) => (
-                        <Link className='user-link' to={`/users/${user.id}`} key={user.id}>
-                            <div className={`user-container ${isUsersActive ? 'active' : ''}`}>       
+                        <Link className={`user-link ${isUsersActive ? 'active' : ''}`} to={`/users/${user.id}`} key={user.id}>
+                            <div className='user-container'>       
                                 <div className="user-name">{user.name.first} {user.name.last}</div>
                                 <div className="user-contents">
                                     <div className="user-email">{user.email}</div>

@@ -1,14 +1,14 @@
 .issues-tile {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    padding: 0.5%;
     min-height: 100%;
 
     .issues-title {
+        text-align: center;
         font-size: 15px;
         font-weight: 600;
         padding: 1%;
+        margin-top: 2%;
 
         &.active {
             display: none;
@@ -19,11 +19,12 @@
         display: flex;
         flex-direction: row;
         align-items: center;
-        margin: 1%;
         justify-content: space-evenly;
-        border: 2px solid rgba(0, 0, 0, 0.143);
-        box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 12px 0 rgba(0, 0, 0, 0.19);
+        border: 1px solid white;
+        border-bottom: 2px solid rgba(0, 0, 0, 0.143);
+        box-shadow: 5px 4px 4px 0px rgba(0, 0, 0, 0.2), 15px 6px 12px 0 rgba(0, 0, 0, 0.2);
         background-color: rgb(255, 255, 255);
+        width: 100%;
 
         .issues-sort-select {
             padding: 2px;
@@ -55,37 +56,40 @@
     }
 
     .issues-container {
-        display: grid;
-        grid-template-columns: 50% 50%;
-        gap: 0 2%;
-        margin: 1%;
+        display: flex;
+        width: 100%;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-top: 1%;
 
         &.active {
             display: flex;
             flex-wrap: wrap;
-            width: 98%;
-            justify-content: flex-start;
+            align-items: flex-start;
         }
         
         .issue-link {
             text-decoration: none;
             color: inherit;
+            width: auto;
+            height: auto;
+            padding: 5px;
+
+            &.active {
+                padding: 10px;
+            }
+
 
             .issue-container {
                 padding: 2% 1%;
                 border: 1px solid #ccc;
                 background-color: rgb(255, 255, 255);
-                width: calc(88vw/6);
+                width: 240px;
+                height: 155px;
                 text-align: center;
                 box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 12px 0 rgba(0, 0, 0, 0.19);
                 transition: transform 0.3s ease-in-out;
-                margin: 3% 0;
                 cursor: pointer;
-                min-height: 170px;
-
-                &.active {
-                    width: calc(81vw/6);
-                }
             
                 &:hover {
                     transform: scale(1.01);
@@ -144,9 +148,6 @@
 /* break for table view*/
 
 
-
-
-
 .issues-list {
     min-height: 100%;
     width: 100%;
@@ -160,7 +161,6 @@
 
         &.active {
             text-align: center;
-            margin-bottom: 8.75%;
         }
     }
 

@@ -10,6 +10,7 @@ function Header() {
     const [ isNewMenuVisible, setIsNewMenuVisible ] = useState(false);
     const dispatch = useDispatch();
     const viewMode = useSelector((state) => state.viewMode);
+    const demoUser = useSelector((state) => state.demoUser);
 
     const handleSearchIconClick = () => {
         setSearchIconVisible(false);
@@ -61,10 +62,10 @@ function Header() {
                 </div>
                 <div className="new-container">
                     <button className='new-button' onClick={handleNewMenuVisibility} onMouseLeave={() => setIsNewMenuVisible(false)}>New +</button>
-                    <div className={`new-menu-container ${isNewMenuVisible ? 'active' : ''}`} onMouseEnter={() => setIsNewMenuVisible(true)} onMouseLeave={() => setIsNewMenuVisible(false)}>
-                        <NavLink className='nav-link' to='/users/newUser'>New User</NavLink>
-                        <NavLink className='nav-link' to='/projects/newProject'>New Project</NavLink>
-                        <NavLink className='nav-link' to='/issues/newIssue'>New Issue</NavLink>
+                    <div className={`new-menu-container ${isNewMenuVisible ? 'active' : ''} ${demoUser}` } onMouseEnter={() => setIsNewMenuVisible(true)} onMouseLeave={() => setIsNewMenuVisible(false)}>
+                        {(demoUser === 'admin' || demoUser === 'manager') && <NavLink className='nav-link' to='/users/newUser'>New User</NavLink>}
+                        {(demoUser === 'admin' || demoUser === 'manager') && <NavLink className='nav-link' to='/projects/newProject'>New Project</NavLink>}
+                        {(demoUser === 'admin' || demoUser === 'manager' || demoUser === 'developer') && <NavLink className='nav-link' to='/issues/newIssue'>New Issue</NavLink>}
                         <NavLink className='nav-link' to='/reports/newReport'>New Report</NavLink>
                     </div>
                 </div>

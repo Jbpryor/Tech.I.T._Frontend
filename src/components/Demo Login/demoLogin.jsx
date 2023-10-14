@@ -1,44 +1,18 @@
 import './demoLogin.scss';
 import 'boxicons/css/boxicons.min.css';
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom'
+import { useDispatch } from 'react-redux';
+import { setDemoUserMode } from '../../Store/demoUserSlice';
 
 function DemoLogin() {
+    const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    useEffect(() => {
-        const users = document.querySelectorAll('.user');
-        const admin = document.querySelector('.admin');
-        const project = document.querySelector('.project');
-        const developer = document.querySelector('.developer');
-        const submitter = document.querySelector('.submitter');
-
-        users.forEach(user => {
-            user.addEventListener('click', event => {
-                event.preventDefault();
-
-                if (admin) {
-                    navigate('/Dashboard')
-                };
-                if (project) {
-                    navigate('/Dashboard')
-                };
-                if (developer) {
-                    navigate('/Dashboard')
-                };
-                if (submitter) {
-                    navigate('/Dashboard')
-                };
-            });
-        });
-
-        return () => {
-            users.forEach(user => {
-                user.removeEventListener('click', () => {})
-            })
-        }
-        
-    }, []);
+    const handleDemoLogin = (user) => {
+        dispatch(setDemoUserMode(user));
+        navigate('/Dashboard');
+    };
 
     return (
         <section className="demo container">
@@ -46,32 +20,32 @@ function DemoLogin() {
                 <header>Demo User</header>
 
                 <div className="users">
-                    <div className="user">
-                        <a href="" className="field admin">
-                            <i className='bx bxs-user-rectangle admin-icon'></i>
-                            <span>Admin</span>
-                        </a>
+                    <div className="user" >
+                        <div value='admin' className="field admin">
+                            <i className='bx bxs-user-rectangle admin-icon' onClick={() => handleDemoLogin('admin')}></i>
+                            <span onClick={() => handleDemoLogin('admin')}>Admin</span>
+                        </div>
                     </div>
 
                     <div className="user">
-                        <a href="" className="field project">
-                            <i className='bx bxs-user-rectangle project-icon'></i>
-                            <span>Project Manager</span>
-                        </a>
+                        <div className="field manager">
+                            <i className='bx bxs-user-rectangle manager-icon' onClick={() => handleDemoLogin('manager')}></i>
+                            <span onClick={() => handleDemoLogin('manager')}>Project Manager</span>
+                        </div>
                     </div>
 
                     <div className="user">
-                        <a href="" className="field developer">
-                            <i className='bx bxs-user-rectangle developer-icon'></i>
-                            <span>Developer</span>
-                        </a>
+                        <div className="field developer">
+                            <i className='bx bxs-user-rectangle developer-icon' onClick={() => handleDemoLogin('developer')}></i>
+                            <span onClick={() => handleDemoLogin('developer')}>Developer</span>
+                        </div>
                     </div>
 
                     <div className="user">
-                        <a href="" className="field submitter">
-                            <i className='bx bxs-user-rectangle submitter-icon'></i>
-                            <span>Submitter</span>
-                        </a>
+                        <div className="field submitter">
+                            <i className='bx bxs-user-rectangle submitter-icon' onClick={() => handleDemoLogin('submitter')}></i>
+                            <span onClick={() => handleDemoLogin('submitter')}>Submitter</span>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -287,14 +287,15 @@ function Issues({ projectIssues }) {
                 </section>            
             ) : (
                 <section className="issues issues-tile">
-                    <div className={`issues-title ${isIssuesActive ? 'active' : ''}`}>Issues</div>
 
                     <IssuesSort selectedSort={selectedSort} setSelectedSort={setSelectedSort} rotate={rotate} handleRotate={handleRotate} isProjectsActive={isProjectsActive} />
 
+                    <div className={`issues-title ${isIssuesActive ? 'active' : ''}`}>Issues</div>
+
                     <div className={`issues-container ${isIssuesActive ? 'active' : ''}`}>              
                     {sortedIssues.map((issue) => (
-                        <Link className='issue-link' to={`/issues/${issue.id}`} key={issue.id}>
-                            <div className={`issue-container ${isIssuesActive ? 'active' : ''}`}>       
+                        <Link className={`issue-link ${isIssuesActive ? 'active' : ''}`} to={`/issues/${issue.id}`} key={issue.id}>
+                            <div className='issue-container'>       
                                 <div className="issue-title">{issue.title}</div>
                                 <div className="issue-contents">
                                     {Object.entries(issue).filter(([key]) => ['project', 'priority', 'status'].includes(key)).map(([key, value]) => (                

@@ -252,14 +252,15 @@ function Projects() {
                 </section>
                 ) : (
                 <section className="projects projects-tile">
-                    <div className={`projects-title ${isProjectsActive ? 'active' : ''}`}>Projects</div>
 
                     <ProjectsSort selectedSort={selectedSort} setSelectedSort={setSelectedSort} rotate={rotate} handleRotate={handleRotate} />
 
+                    <div className={`projects-title ${isProjectsActive ? 'active' : ''}`}>Projects</div>
+
                     <div className={`projects-container ${isProjectsActive ? 'active' : ''}`}>                
                     {sortedProjects.map((project) => (
-                        <Link className='project-link' to={`/projects/${project.id}`} key={project.id}>
-                            <div className={`project-container ${isProjectsActive ? 'active' : ''}`}>       
+                        <Link className={`project-link ${isProjectsActive ? 'active' : ''}`} to={`/projects/${project.id}`} key={project.id}>
+                            <div className='project-container'>       
                                 <div className="project-title">{project.title}</div>
                                 <div className="project-contents">
                                     <div className="project-description">{project.description}</div>                            

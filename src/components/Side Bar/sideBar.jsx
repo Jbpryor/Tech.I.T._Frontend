@@ -19,8 +19,7 @@ function SideBar() {
     } else if (demoUser === 'submitter') {
         return 'rgb(224, 1, 1)';
     }
-    return 'black';
-};
+  };
 
 
   return (

@@ -2,7 +2,7 @@ import React, { useState, useRef } from "react";
 import './user.scss';
 import { useSelector, useDispatch } from "react-redux";
 import { useParams, useNavigate } from "react-router-dom";
-import { modifyUser } from "../../../Store/userSlice";
+import { modifyUser, removeUser } from "../../../Store/userSlice";
 import CountryMenu from "./Country Menu/countryMenu";
 import PictureContent from "./Picture Content/pictureContent";
 
@@ -11,6 +11,8 @@ function User() {
     const navigate = useNavigate();
 
     const dispatch = useDispatch();
+
+    const demoUser = useSelector((state) => state.demoUser);
 
     const [ accountActive, setAccountActive ] = useState(true);
     const [ notificationsActive, setNotificationsActive ] = useState(false);
@@ -100,6 +102,13 @@ function User() {
     const handleFileSelected = (file) => {
       setProfilePicture(file);
     };
+
+    const handleRemoveUser = () => {
+        // this needs a nav to enter password to delete
+        dispatch(removeUser(user.id));
+        alert('User Deleted');
+        navigate('/users');
+    };
     
 
     return (
@@ -120,6 +129,10 @@ function User() {
                             <div className="button-title">Password & Security</div>
                             <div className="button-details">Details about your Password & Security</div>
                         </div>
+                        {(demoUser === 'admin') && <div className="remove-user" onClick={handleRemoveUser}>
+                            <div className="button-title">Delete User</div>
+                            <div className="button-details">This will remove this user</div>
+                        </div>}
                     </div>
                 </div>
 

@@ -27,8 +27,9 @@ const userSlice = createSlice({
         },        
         changeUserRole: (state, action) => {
             const { selectedUser, selectedRole } = action.payload;
-            state.users = state.map((user) => userFullName(user) === selectedUser ? { ...user, role: selectedRole } : user);
-            localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(state.users));
+            const updatedRole = state.map((user) => user.id === selectedUser ? { ...user, role: selectedRole } : user);
+            localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(updatedRole));
+            return updatedRole;
         },
         removeUser: (state, action) => {
             const userIdToDelete = action.payload;

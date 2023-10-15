@@ -70,11 +70,6 @@ function Issues({ projectIssues }) {
     
        /* this is the break from list view to tile view */
 
-    // const onDelete = (index) => {
-    //     const selectedUser = users[index];
-    //     dispatch(removeUser({ selectedUser: userFullName(selectedUser) }));
-    // }
-
     const [ titleRotate, setTitleRotate ] = useState(false);
     const [ typeRotate, setTypeRotate ] = useState(false);
     const [ descriptionRotate, setDescriptionRotate ] = useState(false);
@@ -243,7 +238,6 @@ function Issues({ projectIssues }) {
         }
         return null;
     }).filter(Boolean);
-
     
     return (
         <>
@@ -289,8 +283,6 @@ function Issues({ projectIssues }) {
                 <section className="issues issues-tile">
 
                     <IssuesSort selectedSort={selectedSort} setSelectedSort={setSelectedSort} rotate={rotate} handleRotate={handleRotate} isProjectsActive={isProjectsActive} />
-
-                    <div className={`issues-title ${isIssuesActive ? 'active' : ''}`}>Issues</div>
 
                     <div className={`issues-container ${isIssuesActive ? 'active' : ''}`}>              
                     {sortedIssues.map((issue) => (

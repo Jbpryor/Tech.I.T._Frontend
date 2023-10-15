@@ -3,6 +3,9 @@ import React from "react";
 function ProjectsSort({ selectedSort, setSelectedSort, rotate, handleRotate }) {
     return (
         <div className="projects-sort-container" value={selectedSort} onChange={(event) => setSelectedSort(event.target.value)}>
+
+            <div className='projects-title'>Projects</div>
+
             <select className='projects-sort-select'>
                 <option>Backend</option>
                 <option>Client Name</option>
@@ -12,7 +15,9 @@ function ProjectsSort({ selectedSort, setSelectedSort, rotate, handleRotate }) {
                 <option>Title</option>
                 <option>Type</option>
             </select>
+
             <i className={`bx bx-down-arrow projects-sort-icon ${rotate ? 'rotate' : ''}`} onClick={() => handleRotate()}></i>
+            
         </div>
     )
 }

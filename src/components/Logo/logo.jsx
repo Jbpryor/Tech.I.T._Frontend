@@ -1,0 +1,34 @@
+import React from "react";
+import { useSelector } from "react-redux";
+import './logo.scss';
+
+function Logo() {
+
+    const demoUser = useSelector((state) => state.demoUser);
+
+    const getLogoColor = () => {
+        if (demoUser === 'admin') {
+            return 'rgb(1, 182, 1)';
+        } else if (demoUser === 'manager') {
+            return 'rgb(255, 165, 0)';
+        } else if (demoUser === 'developer') {
+            return 'rgb(232, 232, 15)';
+        } else if (demoUser === 'submitter') {
+            return 'rgb(224, 1, 1)';
+        }
+        return 'white';
+    }
+
+    return (
+        <section className="logo">
+            <div className="logo-container">
+                <div className="header-logo">
+                    <div className="user-initial-first">D</div>
+                    <div className="user-initial-last" style={{ color: getLogoColor() }}>U</div>
+                </div>
+            </div>
+        </section>
+    )
+}
+
+export default Logo;

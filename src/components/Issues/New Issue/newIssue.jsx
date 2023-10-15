@@ -67,7 +67,6 @@ function NewIssue() {
         }
     }, []);
 
-
     return (
         <section className="new-issue">
             <div className="new-issue-container">

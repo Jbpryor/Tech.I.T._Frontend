@@ -1,14 +1,18 @@
 import React, { useState, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
+import { userRoles } from '../../../../Constants/userRoles';
+import { changeUserRole } from '../../../../Store/userSlice';
 
 const PictureContent = ({ onFileSelected }) => {
   const [ selectedFile, setSelectedFile ] = useState(null);
-  // const [ EditMode, setEditMode ] = useState(false);
+  const [ editMode, setEditMode ] = useState(false);
   // const [ showSaveButton, setShowSaveButton ] = useState(false);
   // const [ userImage, setUserImage ] = useState('/images/default-profile.jpg');
   const inputRef = useRef(null);
   const dispatch = useDispatch();
+
+  const demoUser = useSelector((state) => state.demoUser);
 
   const handleFileChange = (event) => {
     const file = event.target.files[0];
@@ -60,6 +64,27 @@ const PictureContent = ({ onFileSelected }) => {
     const filePath = `${imagesDirectory}/${uniqueFilename}`;
     localStorage.setItem(filePath, file);
   };
+
+  const [ userRole, setUserRole ] = useState('');
+  const [ editedRole, setEditedRole ] = useState({});
+
+  const handleChangeUserRole = () => {
+    setEditMode(true);
+  }
+
+  const handleSaveUserRole = () => {
+    setUserRole(editedRole[userRole]);
+    dispatch(changeUserRole({ selectedUser: user.id, selectedRole: editedRole[userRole] }))
+    setEditMode(false);
+  }
+
+  const handleRoleChange = (event, userRole) => {
+    const { value } = event.target;
+    setEditedRole((prevEditedRole) => ({
+      ...prevEditedRole,
+      [userRole]: value,
+    }));
+  };
   
   return (
     <>
@@ -74,7 +99,26 @@ const PictureContent = ({ onFileSelected }) => {
     </div>
     <div className="user-name-content">
       <div className="user-name">{user.name.first} {user.name.last}</div>
-      <div className="user-role">{user.role}</div>
+      <div className="user-role-container">
+        {editMode ? (
+          <select value={userRole} className="user-role-select" onChange={(event) => handleRoleChange(event, userRole)}>
+            <option value={user.role}>{user.role}</option>
+            {userRoles.map((role) => role !== user.role && (
+              <option key={role} value={role}>{role}</option>
+            ))}
+          </select>
+        ) : (
+          <div className="user-role">{user.role}</div>
+        )}
+        {(demoUser === 'admin' || demoUser === 'manager') && <div className="change-role-buttons-container">
+          {editMode ? (
+              <button className='save-role-button' onClick={handleSaveUserRole}>Save</button>
+            ) : (
+              <button className="change-role-button" onClick={handleChangeUserRole}>Change Role</button>
+            )
+          }
+        </div>}
+      </div>
     </div>
     <div className="user-img-update-button">
       <input type='file' accept='image/*' onChange={handleFileChange} style={{ display: 'none' }} ref={inputRef} />

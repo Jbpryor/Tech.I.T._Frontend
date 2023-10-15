@@ -255,8 +255,6 @@ function Projects() {
 
                     <ProjectsSort selectedSort={selectedSort} setSelectedSort={setSelectedSort} rotate={rotate} handleRotate={handleRotate} />
 
-                    <div className={`projects-title ${isProjectsActive ? 'active' : ''}`}>Projects</div>
-
                     <div className={`projects-container ${isProjectsActive ? 'active' : ''}`}>                
                     {sortedProjects.map((project) => (
                         <Link className={`project-link ${isProjectsActive ? 'active' : ''}`} to={`/projects/${project.id}`} key={project.id}>

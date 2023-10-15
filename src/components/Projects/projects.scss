@@ -3,18 +3,6 @@
     flex-direction: column;
     min-height: 100%;
 
-    .projects-title {
-        font-size: 15px;
-        font-weight: 600;
-        padding: 1%;
-        text-align: center;
-        margin-top: 2%;
-
-        &.active {
-            display: none;
-        }
-    }
-
     .projects-sort-container {
         display: flex;
         flex-direction: row;
@@ -25,7 +13,14 @@
         box-shadow: 5px 4px 4px 0px rgba(0, 0, 0, 0.2), 15px 6px 12px 0 rgba(0, 0, 0, 0.2);
         background-color: rgb(255, 255, 255);
         width: 100%;
-        z-index: 98;        
+        z-index: 98; 
+        
+        .projects-title {
+            text-align: center;
+            font-size: 16px;
+            font-weight: 600;
+            margin-right: 5%;
+        }
 
         .projects-sort-select {
             padding: 2px;
@@ -143,7 +138,6 @@
 
         &.active {
             text-align: center;
-            margin-bottom: 8.75%;
         }
     }
 

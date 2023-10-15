@@ -202,8 +202,6 @@ function Reports() {
                 <section className="reports reports-tile">
 
                     <ReportsSort selectedSort={selectedSort} setSelectedSort={setSelectedSort} rotate={rotate} handleRotate={handleRotate} />
-
-                    <div className={`reports-title ${isReportsActive ? 'active' : ''}`}>Reports</div>        
         
                     <div className={`reports-container ${isReportsActive ? 'active' : ''}`}>              
                     {sortedReports.map((report) => (

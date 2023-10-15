@@ -21,7 +21,8 @@
 
                 .account-settings,
                 .notification-settings,
-                .password-settings {
+                .password-settings,
+                .remove-user {
                     display: flex;
                     flex-direction: column;
                     align-items: center;
@@ -96,17 +97,52 @@
                     justify-content: center;
                     padding: 1%;
 
-                    .user-name,
-                    .user-role {
-                        padding: 1%;
-                    }
-
                     .user-name {
+                        padding: 1%;
                         font-weight: 500;
                     }
 
-                    .user-role {
+                    .user-role-container {
+                        display: flex;
+                        align-items: center;
+                        justify-content: flex-start;
+                        padding: 1%;
                         font-size: 14px;
+                        width: 100%;
+
+                        .user-role {
+                            padding: 2%;
+                        }
+
+                        .user-role-select {
+                            height: 25px;
+                            width: 125px;
+                            border-radius: 3px;
+
+                        }
+
+                        .change-role-buttons-container {
+                            margin-left: 10%;
+                            padding: 2%;
+
+                            .change-role-button,
+                            .save-role-button {
+                                height: 25px;
+                                width: 125px;
+                                border-radius: 3px;
+                                padding: 3px 8px;    
+                                border: 1px solid rgba(0, 0, 0, 0.143);
+                                box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 4px 6px 0 rgba(0, 0, 0, 0.19);
+                                background-color: white;
+                                cursor: pointer;
+                                z-index: 1;
+                    
+                                &:hover {
+                                    color: rgb(86, 86, 2);
+                                    border: 1px solid rgb(86, 86, 2, 0.05);
+                                }
+                            }
+                        }
                     }
                 }
 

@@ -5,7 +5,7 @@ import './users.scss';
 import 'boxicons/css/boxicons.min.css';
 import UsersTable from "./Users Table/usersTable";
 import TablePagination from "../../Charts & Tables/Table Pagination/tablePagination";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { addUser, changeUserRole, removeUser } from '../../Store/userSlice'
 import { sortByProperty } from "../../main";
 import UsersSort from "./Users Sort/usersSort";
@@ -54,22 +54,11 @@ function Users({ projectUsers }) {
       };
       
       
-    const sortedUsers = getSortingFunction(); 
-
-
+    const sortedUsers = getSortingFunction();
 
 
     /* this the break from grid into list table */
 
-
-    const dispatch = useDispatch();
-
-    const userFullName = (user) => `${user.name.first} ${user.name.last}`;
-
-    const onDelete = (index) => {
-        const selectedUser = users[index];
-        dispatch(removeUser({ selectedUser: userFullName(selectedUser) }));
-    }
 
     const [ userRotate, setUserRotate ] = useState(false);
     const [ emailRotate, setEmailRotate ] = useState(false);
@@ -144,7 +133,7 @@ function Users({ projectUsers }) {
                                     </thead>
                                     <tbody className="users-table-body">
                                         {slicedUsers.map((user, index) => (
-                                            <UsersTable user={user} key={index} index={index} onDelete={onDelete}/>
+                                            <UsersTable user={user} key={index} index={index}/>
                                         ))}
                                     </tbody>
                                 </table>
@@ -160,9 +149,7 @@ function Users({ projectUsers }) {
                 <section className="users users-tile">  
 
                     <UsersSort selectedSort={selectedSort} setSelectedSort={setSelectedSort} rotate={rotate} handleRotate={handleRotate} />
-          
-                    <div className={`users-title ${isUsersActive ? 'active' : ''}`}>Users</div>
-                
+                          
                     <div className={`users-container ${isUsersActive ? 'active' : ''}`}>                
                     {sortedUsers.map((user) => (
                         <Link className={`user-link ${isUsersActive ? 'active' : ''}`} to={`/users/${user.id}`} key={user.id}>

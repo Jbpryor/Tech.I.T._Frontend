@@ -5,12 +5,15 @@ import Projects from '../Projects/projects';
 import Reports from '../Reports/reports';
 import Users from '../Users/users';
 import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 function Dashboard() {
 
-    const demoUser = useSelector((state) => state.demoUser);
-    const [ user, setUser ] = useState(false);
+    const navigate = useNavigate();
 
+    const demoUser = useSelector((state) => state.demoUser);
+
+    const [ user, setUser ] = useState(false);
  
     useEffect(() => {
         if (demoUser === 'developer' || demoUser === 'submitter') {
@@ -19,7 +22,6 @@ function Dashboard() {
             setUser(false);
         }
     }, [demoUser]);
-
 
     return (
         <section className='dashboard'>

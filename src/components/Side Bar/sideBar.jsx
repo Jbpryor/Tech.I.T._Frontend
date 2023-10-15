@@ -25,11 +25,6 @@ function SideBar() {
 
   return (
     <section className="sideBar">
-      <div className="logo-container">
-        <div className="header-logo">
-          <img src="#" alt="#" />
-        </div>
-      </div>
       <div className="sideBar-links">
         <NavLink to="/dashboard" activeclassname='active' className="nav-link dashboard-link">
           Dashboard
@@ -53,7 +48,7 @@ function SideBar() {
         </NavLink>        
       </div>
       <div className="user-container">
-        <NavLink to='/logout'>
+        <NavLink to='users/user-1695880788571-412'>
             <i className="bx bxs-user-rectangle user-icon" style={{ color: getIconColor() }}></i>
         </NavLink>
         <div className="user-name">Hello, <br />{userName}</div>

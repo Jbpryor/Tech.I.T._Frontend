@@ -1,6 +1,7 @@
 import React from "react";
 import { Routes, Route } from 'react-router-dom';
 import './layout.scss';
+import Logo from "../../Logo/logo";
 import Header from "../Header/header";
 import SideBar from "../Side Bar/sideBar";
 // import { Outlet } from 'react-router-dom';
@@ -20,7 +21,8 @@ import NewReport from "../Reports/New Report/newReport";
 
 function Layout() {
     return (
-        <section className="layout">            
+        <section className="layout">
+            <Logo />         
             <SideBar />
             <Header />
             <div className="main-content">

@@ -4,8 +4,12 @@
     grid-template-columns: 7% 93%;
     grid-template-rows: 5% 95%;
     grid-template-areas: 
-    "side head"
+    "logo head"
     "side main";
+}
+
+.logo {
+    grid-area: logo;
 }
 
 .header {
@@ -19,7 +23,6 @@
 .main-content {
     grid-area: main;
     background-color: rgba(255, 255, 255, 0.966);
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19) inset;
     overflow-x: hidden;
     overflow-y: auto;
 }

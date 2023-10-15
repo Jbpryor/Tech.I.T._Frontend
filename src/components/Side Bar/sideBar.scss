@@ -1,18 +1,14 @@
 .sideBar {
     display: grid;
-    grid-template-rows: 1fr 8fr 1fr;
-    height: 100vh;
+    grid-template-rows: 9fr 1fr;
+    height: 100%;
     background-color: rgb(255, 255, 255);
+    box-shadow: 4px 0px 4px 0px rgba(0, 0, 0, 0.2), 6px 0px 10px 0 rgba(0, 0, 0, 0.2);
     color: rgb(19, 18, 18);
-
-    .logo-container {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
+    z-index: 99;
 
     .sideBar-links {
-        padding-top: 20%;
+        padding-top: 50%;
         .nav-link {
             display: flex;
             flex-direction: column;

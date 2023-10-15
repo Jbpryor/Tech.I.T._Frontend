@@ -157,11 +157,12 @@ function Users({ projectUsers }) {
                     </div>
                 </section>
             ) : (
-                <section className="users users-tile">            
-                    <div className={`users-title ${isUsersActive ? 'active' : ''}`}>Users</div>
-        
+                <section className="users users-tile">  
+
                     <UsersSort selectedSort={selectedSort} setSelectedSort={setSelectedSort} rotate={rotate} handleRotate={handleRotate} />
-        
+          
+                    <div className={`users-title ${isUsersActive ? 'active' : ''}`}>Users</div>
+                
                     <div className={`users-container ${isUsersActive ? 'active' : ''}`}>                
                     {sortedUsers.map((user) => (
                         <Link className={`user-link ${isUsersActive ? 'active' : ''}`} to={`/users/${user.id}`} key={user.id}>

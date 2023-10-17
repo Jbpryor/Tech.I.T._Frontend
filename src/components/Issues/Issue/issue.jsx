@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import './issue.scss';
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { deleteIssue, modifyIssue, addModifications } from "../../../Store/issueSlice";
+import { deleteIssue, modifyIssue, addModifications } from "../../../Store/Slices/issueSlice";
 import IssueModifications from "./Modificatons/issueModifications";
 import Comments from "./Comments/comments";
 

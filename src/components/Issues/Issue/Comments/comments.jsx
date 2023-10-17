@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { addComment, deleteComment } from "../../../../Store/issueSlice";
+import { addComment, deleteComment } from "../../../../Store/Slices/issueSlice";
 import { useDispatch } from "react-redux";
 import { formatTimestamp } from "../../../../main";
 

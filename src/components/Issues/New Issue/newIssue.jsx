@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import './newIssue.scss';
 import { useLocation, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { addIssue } from "../../../Store/issueSlice";
+import { addIssue } from "../../../Store/Slices/issueSlice";
 import { issueDetails } from "../../../Constants/issueDetails";
 
 function NewIssue() {

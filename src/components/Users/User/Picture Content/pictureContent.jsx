@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { userRoles } from '../../../../Constants/userRoles';
-import { changeUserRole } from '../../../../Store/userSlice';
+import { changeUserRole } from '../../../../Store/Slices/userSlice';
 
 const PictureContent = ({ onFileSelected }) => {
   const [ selectedFile, setSelectedFile ] = useState(null);

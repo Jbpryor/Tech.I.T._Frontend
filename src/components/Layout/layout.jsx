@@ -19,15 +19,19 @@ import NewProject from "../Projects/New Project/newProject";
 import NewUser from "../Users/User/New User/newUser";
 import Report from "../Reports/Report/report";
 import NewReport from "../Reports/New Report/newReport";
+import Settings from "../Settings/settings";
+import { useSelector } from "react-redux";
 
 function Layout() {
+
+    const theme = useSelector((state) => state.settings.themes[state.settings.theme]);
     return (
         <PrivateRoutes>
             <section className="layout">
                 <Logo />         
                 <SideBar />
                 <Header />
-                <div className="main-content">
+                <div className="main-content" style={{ background: theme.background_color }}>
 
                     <Routes>
                         <Route index element={<Dashboard />} />
@@ -44,6 +48,7 @@ function Layout() {
                         <Route path='/reports' element={<Reports />} />
                         <Route path='/reports/:reportId' element={<Report />} />
                         <Route path='/reports/newReport' element={<NewReport />} />
+                        <Route path='/settings' element={<Settings />} />
                     </Routes>
 
                 </div>

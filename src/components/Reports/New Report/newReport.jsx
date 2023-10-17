@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import './newReport.scss';
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { addReport } from "../../../Store/reportSlice";
+import { addReport } from "../../../Store/Slices/reportSlice";
 
 function NewReport() {
 

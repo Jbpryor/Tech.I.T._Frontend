@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import './newProject.scss';
 import { useLocation, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { addProject } from "../../../Store/projectSlice";
+import { addProject } from "../../../Store/Slices/projectSlice";
 
 function NewProject() {
 

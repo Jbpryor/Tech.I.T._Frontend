@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import './report.scss';
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { deleteReport } from "../../../Store/reportSlice";
+import { deleteReport } from "../../../Store/Slices/reportSlice";
 
 function Report() {
 

@@ -25,16 +25,16 @@
             color: rgb(19, 18, 18);
 
             &:hover {
-                color: rgb(86, 86, 2);
-                border: 1px solid rgb(86, 86, 2, 0.05);
-                background-color: rgb(86, 86, 2, 0.02);
+                color: rgb(86, 86, 2) !important;
+                border: 1px solid rgb(86, 86, 2, 0.05) !important;
+                background-color: rgb(86, 86, 2, 0.02) !important;
             }
         
         }
 
         .active {
-            color: rgb(86, 86, 2);
-            border: 1px solid rgb(86, 86, 2, 0.05);
+            color: rgb(86, 86, 2) !important;
+            border: 1px solid rgb(86, 86, 2, 0.05) !important;
         }
     }
 
@@ -51,7 +51,7 @@
             transition: filter 0.2s ;
 
             &:hover {
-                color: rgb(86, 86, 2);
+                color: rgb(86, 86, 2) !important;
             }
         }
     }
@@ -71,7 +71,7 @@
             cursor: pointer;
 
             &:hover {
-                filter: brightness(0.7)
+                filter: brightness(0.7);
             }
         }
 

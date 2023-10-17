@@ -3,7 +3,7 @@ import 'boxicons/css/boxicons.min.css';
 import React from 'react';
 import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux';
-import { setDemoUserMode } from '../../Store/demoUserSlice';
+import { setDemoUserMode } from '../../Store/Slices/demoUserSlice';
 
 function DemoLogin() {
     const dispatch = useDispatch();

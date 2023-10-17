@@ -2,7 +2,7 @@ import React, { useState, useRef } from "react";
 import './user.scss';
 import { useSelector, useDispatch } from "react-redux";
 import { useParams, useNavigate } from "react-router-dom";
-import { modifyUser, removeUser } from "../../../Store/userSlice";
+import { modifyUser, removeUser } from "../../../Store/Slices/userSlice";
 import CountryMenu from "./Country Menu/countryMenu";
 import PictureContent from "./Picture Content/pictureContent";
 

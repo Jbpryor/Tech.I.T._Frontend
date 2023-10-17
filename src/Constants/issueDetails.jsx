@@ -4,9 +4,9 @@ export const issueDetails = [
     'Type',
     'Status',
     'Priority',
-    'Project',
-    'Description',        
+    'Project',        
     'Developer',
     'Submitter',
     'Created',
+    'Description',
 ];

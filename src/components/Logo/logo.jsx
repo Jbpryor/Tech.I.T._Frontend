@@ -5,6 +5,7 @@ import './logo.scss';
 function Logo() {
 
     const demoUser = useSelector((state) => state.demoUser);
+    const theme = useSelector((state) => state.settings.themes[state.settings.theme]);
 
     const getLogoColor = () => {
         if (demoUser === 'admin') {
@@ -20,10 +21,10 @@ function Logo() {
     }
 
     return (
-        <section className="logo">
+        <section className="logo" style={{background: theme.primary_color}}>
             <div className="logo-container">
                 <div className="header-logo">
-                    <div className="user-initial-first">D</div>
+                    <div className="user-initial-first" style={{color: theme.font_color}}>D</div>
                     <div className="user-initial-last" style={{ color: getLogoColor() }}>U</div>
                 </div>
             </div>

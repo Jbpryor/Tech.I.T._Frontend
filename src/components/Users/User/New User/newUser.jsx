@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import './newUser.scss';
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { addUser } from "../../../../Store/userSlice";
+import { addUser } from "../../../../Store/Slices/userSlice";
 
 function NewUser() {
 

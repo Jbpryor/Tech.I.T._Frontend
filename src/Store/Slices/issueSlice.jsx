@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { formatTimestamp } from "../main";
+import { formatTimestamp } from "../../main";
 
 export const LOCAL_STORAGE_KEY = 'issues';
 

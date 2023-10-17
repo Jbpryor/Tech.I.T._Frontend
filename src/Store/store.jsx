@@ -1,10 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
-import userReducer from './userSlice';
-import issueReducer from './issueSlice';
-import projectReducer from './projectSlice';
-import reportReducer from './reportSlice';
-import viewModeReducer from './viewModeSlice';
-import demoUserReducer from './demoUserSlice';
+import userReducer from './Slices/userSlice';
+import issueReducer from './Slices/issueSlice';
+import projectReducer from './Slices/projectSlice';
+import reportReducer from './Slices/reportSlice';
+import viewModeReducer from './Slices/viewModeSlice';
+import demoUserReducer from './Slices/demoUserSlice';
+import settingsReducer from './Slices/settingsSlice'
 
 const rootReducer = {
   users: userReducer,
@@ -13,6 +14,7 @@ const rootReducer = {
   reports: reportReducer,
   viewMode: viewModeReducer,
   demoUser: demoUserReducer,
+  settings: settingsReducer,
 }
 
 const store = configureStore({

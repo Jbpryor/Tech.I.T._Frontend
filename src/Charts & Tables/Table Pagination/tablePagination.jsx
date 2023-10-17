@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
 import './tablePagination.scss'
+import { useSelector } from 'react-redux';
 
 function TablePagination({ currentPage, setCurrentPage, onPageChange, items, itemsPerPage, setItemsPerPage }) {
+
+  const theme = useSelector((state) => state.settings.themes[state.settings.theme]);
+
   const [pageNumber, setPageNumber] = useState(currentPage);
   const totalItems = Math.ceil(items.length);
   const startIndex = (currentPage - 1) * itemsPerPage;
@@ -48,7 +52,7 @@ function TablePagination({ currentPage, setCurrentPage, onPageChange, items, ite
 
     for (let i = 0; i < Math.ceil(items.length / itemsPerPage); i++) {
       buttons.push(
-        <div className='page-number' key={i} onClick={() => handlePageSelection(i)}>
+        <div className='page-number' key={i} onClick={() => handlePageSelection(i)} style={{ background: theme.background_color, color: theme.font_color }} >
           {i + 1}
         </div>
       );
@@ -67,12 +71,12 @@ function TablePagination({ currentPage, setCurrentPage, onPageChange, items, ite
             </option>
           ))}
         </select>
-        <div className="page-info">
+        <div className="page-info" style={{ background: theme.primary_color, color: theme.font_color }}>
           Showing {startIndex + 1} - {Math.min(endIndex + 1, totalItems)} of {totalItems}
         </div>
       </div>
       <div className="pagination-buttons">
-        <button className='page-button-left' onClick={() => onPageChange(setCurrentPage(currentPage - 1))} disabled={currentPage === 1}>
+        <button className='page-button-left' onClick={() => onPageChange(setCurrentPage(currentPage - 1))} disabled={currentPage === 1} style={{ background: theme.background_color, color: theme.font_color }} >
           <i className='bx bx-left-arrow'></i>
         </button>
         {selectPage === null ? (
@@ -85,9 +89,10 @@ function TablePagination({ currentPage, setCurrentPage, onPageChange, items, ite
             onChange={handlePageChange}
             onKeyDown={handlePageEnter}
             onBlur={() => setSelectPage(null)}
+            style={{ background: theme.background_color, color: theme.font_color }}
           />
         )}
-        <button className='page-button-right' onClick={() => onPageChange(setCurrentPage(currentPage + 1))} disabled={currentPage === Math.ceil(totalItems / itemsPerPage)}>
+        <button className='page-button-right' onClick={() => onPageChange(setCurrentPage(currentPage + 1))} disabled={currentPage === Math.ceil(totalItems / itemsPerPage)} style={{ background: theme.background_color, color: theme.font_color }} >
           <i className='bx bx-right-arrow'></i>
         </button>
       </div>

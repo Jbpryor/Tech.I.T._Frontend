@@ -14,14 +14,10 @@ import UsersSort from "./Users Sort/usersSort";
 function Users({ projectUsers }) {
 
     const viewMode = useSelector((state) => state.viewMode);
-
-    const location = useLocation();
-    
+    const location = useLocation();    
     const isUsersActive = location.pathname === '/users';
-
-
     const users = useSelector((state) => state.users);
-
+    const theme = useSelector((state) => state.settings.themes[state.settings.theme]);
     const isProjectsActive = /^\/projects\//.test(location.pathname);
 
     const filteredUsers = isProjectsActive ? projectUsers : users;
@@ -117,18 +113,18 @@ function Users({ projectUsers }) {
     return (
         <>
             {viewMode === 'list' ? (
-                <section className="users users-list">
+                <section className="users users-list" style={{ color: theme.font_color }}>
                     <div className={`users-title ${!isUsersActive ? 'active' : ''}`}>Users</div>
                     <div className="users-container">
 
-                        <div className="all-users-table-container">
+                        <div className="all-users-table-container" style={{ background: theme.primary_color, border: theme.background_color }} >
                             <div className="users-table-content">
                                 <table>
                                     <thead>
                                         <tr>
-                                            <th value='Name' className={`user-column ${userColumnActive ? 'active' : ''}`} onClick={() => handleActiveColumn('user')}>User Name <i className={`bx bx-down-arrow ${userRotate ? 'rotate' : ''} ${userColumnActive ? 'active' : ''}`} onClick={() => handleActiveColumn('user')}></i></th>
-                                            <th value='Email' className={`email-column ${emailColumnActive ? 'active' : ''}`} onClick={() => handleActiveColumn('email')}>Email <i className={`bx bx-down-arrow ${emailRotate ? 'rotate' : ''} ${emailColumnActive ? 'active' : ''}`} onClick={() => handleActiveColumn('email')}></i></th>
-                                            <th value='Role' className={`role-column ${roleColumnActive ? 'active' : ''}`} onClick={() => handleActiveColumn('role')}>Role <i className={`bx bx-down-arrow ${roleRotate ? 'rotate' : ''} ${roleColumnActive ? 'active' : ''}`} onClick={() => handleActiveColumn('role')}></i></th>
+                                            <th value='Name' className={`user-column ${userColumnActive ? 'active' : ''}`} onClick={() => handleActiveColumn('user')}>User Name <i className={`bx bx-down-arrow ${userRotate ? 'rotate' : ''} ${userColumnActive ? 'active' : ''}`} onClick={() => handleActiveColumn('user')} style={{ color: theme.font_color }} ></i></th>
+                                            <th value='Email' className={`email-column ${emailColumnActive ? 'active' : ''}`} onClick={() => handleActiveColumn('email')}>Email <i className={`bx bx-down-arrow ${emailRotate ? 'rotate' : ''} ${emailColumnActive ? 'active' : ''}`} onClick={() => handleActiveColumn('email')} style={{ color: theme.font_color }} ></i></th>
+                                            <th value='Role' className={`role-column ${roleColumnActive ? 'active' : ''}`} onClick={() => handleActiveColumn('role')}>Role <i className={`bx bx-down-arrow ${roleRotate ? 'rotate' : ''} ${roleColumnActive ? 'active' : ''}`} onClick={() => handleActiveColumn('role')} style={{ color: theme.font_color }} ></i></th>
                                         </tr>
                                     </thead>
                                     <tbody className="users-table-body">
@@ -152,8 +148,8 @@ function Users({ projectUsers }) {
                           
                     <div className={`users-container ${isUsersActive ? 'active' : ''}`}>                
                     {sortedUsers.map((user) => (
-                        <Link className={`user-link ${isUsersActive ? 'active' : ''}`} to={`/users/${user.id}`} key={user.id}>
-                            <div className='user-container'>       
+                        <Link className={`user-link ${isUsersActive ? 'active' : ''}`} to={`/users/${user.id}`} key={user.id} style={{ color: theme.font_color }} >
+                            <div className='user-container' style={{ background: theme.primary_color, border: `1px solid ${theme.background_color}`}} >       
                                 <div className="user-name">{user.name.first} {user.name.last}</div>
                                 <div className="user-contents">
                                     <div className="user-email">{user.email}</div>

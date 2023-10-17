@@ -11,6 +11,7 @@ const PictureContent = ({ onFileSelected }) => {
   // const [ userImage, setUserImage ] = useState('/images/default-profile.jpg');
   const inputRef = useRef(null);
   const dispatch = useDispatch();
+  const theme = useSelector((state) => state.settings.themes[state.settings.theme]);
 
   const demoUser = useSelector((state) => state.demoUser);
 
@@ -101,7 +102,7 @@ const PictureContent = ({ onFileSelected }) => {
       <div className="user-name">{user.name.first} {user.name.last}</div>
       <div className="user-role-container">
         {editMode ? (
-          <select value={userRole} className="user-role-select" onChange={(event) => handleRoleChange(event, userRole)}>
+          <select value={userRole} className="user-role-select" onChange={(event) => handleRoleChange(event, userRole)} style={{ background: theme.primary_color, border: `1px solid ${theme.primary_color}`, color: theme.font_color }} >
             <option value={user.role}>{user.role}</option>
             {userRoles.map((role) => role !== user.role && (
               <option key={role} value={role}>{role}</option>
@@ -112,9 +113,9 @@ const PictureContent = ({ onFileSelected }) => {
         )}
         {(demoUser === 'admin' || demoUser === 'manager') && <div className="change-role-buttons-container">
           {editMode ? (
-              <button className='save-role-button' onClick={handleSaveUserRole}>Save</button>
+              <button className='save-role-button' onClick={handleSaveUserRole} style={{ background: theme.background_color, color: theme.font_color}} >Save</button>
             ) : (
-              <button className="change-role-button" onClick={handleChangeUserRole}>Change Role</button>
+              <button className="change-role-button" onClick={handleChangeUserRole} style={{ background: theme.background_color, color: theme.font_color}} >Change Role</button>
             )
           }
         </div>}
@@ -122,7 +123,7 @@ const PictureContent = ({ onFileSelected }) => {
     </div>
     <div className="user-img-update-button">
       <input type='file' accept='image/*' onChange={handleFileChange} style={{ display: 'none' }} ref={inputRef} />
-      <button className="update" onClick={() => inputRef.current.click()}>Update</button>
+      <button className="update" onClick={() => inputRef.current.click()} style={{ background: theme.background_color, color: theme.font_color}} >Update</button>
     </div>
   </>
   );

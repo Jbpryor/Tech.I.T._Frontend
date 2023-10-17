@@ -13,6 +13,7 @@ function User() {
     const dispatch = useDispatch();
 
     const demoUser = useSelector((state) => state.demoUser);
+    const theme = useSelector((state) => state.settings.themes[state.settings.theme]);
 
     const [ accountActive, setAccountActive ] = useState(true);
     const [ notificationsActive, setNotificationsActive ] = useState(false);
@@ -112,24 +113,24 @@ function User() {
     
 
     return (
-        <section className="user">
+        <section className="user" style={{ color: theme.font_color, background: theme.background_color }} >
             <div className="user-container">
 
                 <div className="user-buttons-container">
                     <div className="user-buttons-content">
-                        <div className="account-settings" onClick={handleAccountActive}>
+                        <div className="account-settings" onClick={handleAccountActive} style={{ background: theme.primary_color }} >
                             <div className="button-title">Account</div>
                             <div className="button-details">Details about your Personal information</div>
                         </div>
-                        <div className="notification-settings" onClick={handleNotificationsActive}>
+                        <div className="notification-settings" onClick={handleNotificationsActive} style={{ background: theme.primary_color }} >
                             <div className="button-title">Notifications</div>
                             <div className="button-details">Details about your Notifications</div>
                         </div>
-                        <div className="password-settings" onClick={handlePasswordActive}>
+                        <div className="password-settings" onClick={handlePasswordActive} style={{ background: theme.primary_color }} >
                             <div className="button-title">Password & Security</div>
                             <div className="button-details">Details about your Password & Security</div>
                         </div>
-                        {(demoUser === 'admin') && <div className="remove-user" onClick={handleRemoveUser}>
+                        {(demoUser === 'admin') && <div className="remove-user" onClick={handleRemoveUser} style={{ background: theme.primary_color }} >
                             <div className="button-title">Delete User</div>
                             <div className="button-details">This will remove this user</div>
                         </div>}
@@ -138,11 +139,11 @@ function User() {
 
                 <div className={`user-account-container ${accountActive ? 'active' : ''}`}>
 
-                    <div className="user-img-container">
+                    <div className="user-img-container" style={{ background: theme.primary_color }} >
                         <PictureContent onFileSelected={handleFileSelected} />
                     </div>
 
-                    <div className="user-info-container">
+                    <div className="user-info-container" style={{ background: theme.primary_color }} >
                         <div className="user-name-container">
                             <div className="user-name-input">
                                 <div className="user-name title">Full Name:</div>
@@ -153,7 +154,7 @@ function User() {
                             <div className="user-email-input">
                                 <div className="user-email title">Email:</div>
                                 {editMode ? (
-                                    <input className="user-email-title" type='email' value={email} onChange={(event) => setEmail(event.target.value)} />
+                                    <input className="user-email-title" type='email' value={email} onChange={(event) => setEmail(event.target.value)} style={{ background: theme.background_color, color: theme.font_color}} />
                                 ) : (
                                     <div className="user-email space">{email}</div>
                                 )}
@@ -163,7 +164,7 @@ function User() {
                             <div className="address-input">
                                 <div className="address title">Address:</div>
                                 {editMode ? (
-                                    <input className="user-address" type="text" value={street} onChange={(event) => setStreet(event.target.value)}/>
+                                    <input className="user-address" type="text" value={street} onChange={(event) => setStreet(event.target.value)} style={{ background: theme.background_color, color: theme.font_color}} />
                                 ) : (
                                     <div className="user-address space">{street}</div>
                                 )}
@@ -173,7 +174,7 @@ function User() {
                             <div className="city-content">
                                 <div className="city title">City:</div>
                                 {editMode ? (
-                                    <input className="user-city" type="text" value={city} onChange={(event) => setCity(event.target.value)} />
+                                    <input className="user-city" type="text" value={city} onChange={(event) => setCity(event.target.value)} style={{ background: theme.background_color, color: theme.font_color}} />
                                 ): (
                                     <div className="user-city space">{city}</div>
                                 )}
@@ -181,7 +182,7 @@ function User() {
                             <div className="state-content">
                                 <div className="state title">State/Province:</div>
                                 {editMode ? (
-                                    <input className="user-state" type="text" value={state} onChange={(event) => setState(event.target.value)} />
+                                    <input className="user-state" type="text" value={state} onChange={(event) => setState(event.target.value)} style={{ background: theme.background_color, color: theme.font_color}} />
                                 ): (
                                     <div className="user-state space">{state}</div>
                                 )}
@@ -191,7 +192,7 @@ function User() {
                             <div className="zip-content">
                                 <div className="zip title">Zip Code:</div>
                                 {editMode ? (
-                                    <input className="user-zip" type="text" value={zip} onChange={(event) => setZip(event.target.value)}  />
+                                    <input className="user-zip" type="text" value={zip} onChange={(event) => setZip(event.target.value)} style={{ background: theme.background_color, color: theme.font_color}}  />
                                 ) : (
                                     <div className="user-zip space">{zip}</div>
                                 )}
@@ -199,7 +200,7 @@ function User() {
                             <div className="country-content">
                                 <div className="country title">Country:</div>
                                 {editMode ? (
-                                    <select id="country" name="address.country" value={country} onChange={(event) => setCountry(event.target.value)}><CountryMenu /></select>
+                                    <select id="country" name="address.country" value={country} onChange={(event) => setCountry(event.target.value)} style={{ background: theme.background_color, border: `1px solid ${theme.primary_color}`, color: theme.font_color }} ><CountryMenu /></select>
                                 ) : (
                                     <div className="user-country space">{country}</div>
                                 )}
@@ -209,11 +210,11 @@ function User() {
                         <div className="edit-info-button-container">
                             {editMode ? (
                                 <>
-                                    <button className="save-info-button" onClick={saveEditedUser}>Save</button>
-                                    <button className="cancel-edit-info-button" onClick={handleCancel}>Cancel</button>
+                                    <button className="save-info-button" onClick={saveEditedUser} style={{ background: theme.background_color, color: theme.font_color }} >Save</button>
+                                    <button className="cancel-edit-info-button" onClick={handleCancel} style={{ background: theme.background_color, color: theme.font_color }} >Cancel</button>
                                 </>
                             ) : (
-                                    <button className="edit-info-button" onClick={handleEdit}>Edit Information</button>
+                                    <button className="edit-info-button" onClick={handleEdit} style={{ background: theme.background_color, color: theme.font_color }} >Edit Information</button>
                             )}
                         </div>
                     </div>
@@ -221,7 +222,7 @@ function User() {
 
                 <div className={`user-notifications-container ${notificationsActive ? 'active' : ''}`}>
                     <div className="notifications-content">
-                        <div className="notifications-global">
+                        <div className="notifications-global" style={{ background: theme.primary_color }} >
                             <div className="notification-content">
                                 <div className="notification-title">All Notifications</div>
                                 <div className="notification-button-container">
@@ -237,7 +238,7 @@ function User() {
                                 </div>
                             </div>
                         </div>
-                        <div className="notifications-local">
+                        <div className="notifications-local" style={{ background: theme.primary_color }} >
                             <div className="notification-header">Notify me when:</div>
                             <div className="notifications">
                                 <div className="notification-content">
@@ -305,7 +306,7 @@ function User() {
                                 </div>
 
                                 <div className="notification-save-button-container">
-                                    <button className="notifications-save-button">Save Changes</button>
+                                    <button className="notifications-save-button" style={{ background: theme.background_color, color: theme.font_color }} >Save Changes</button>
                                 </div>
                             
                             </div>
@@ -313,7 +314,7 @@ function User() {
                     </div>
                 </div>
 
-                <div className={`user-password-container ${passwordActive ? 'active' : ''}`}>
+                <div className={`user-password-container ${passwordActive ? 'active' : ''}`} style={{ background: theme.primary_color, color: theme.font_color }} >
 
                     <div className="title-container">
                         <div className="title-content">
@@ -328,20 +329,20 @@ function User() {
                     <div className="password-content">
                         <div className="current-password">
                             <div className="title">Current Password*</div>
-                            <input type="password" />
+                            <input type="password" style={{ background: theme.background_color, color: theme.font_color }} />
                         </div>
                         <div className="new-password">
                             <div className="title">New Password*</div>
-                            <input type="password" />
+                            <input type="password" style={{ background: theme.background_color, color: theme.font_color }} />
                         </div>
                         <div className="re-enter-password">
                             <div className="title">Re-enter New Password*</div>
-                            <input type="password" />
+                            <input type="password" style={{ background: theme.background_color, color: theme.font_color }} />
                         </div>
                     </div>
 
                     <div className="new-password-button-container">
-                        <button className="new-password-submit-button">Submit</button>
+                        <button className="new-password-submit-button" style={{ background: theme.background_color, color: theme.font_color }} >Submit</button>
                     </div>
 
                 </div>

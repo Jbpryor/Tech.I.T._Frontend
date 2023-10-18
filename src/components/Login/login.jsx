@@ -27,10 +27,6 @@ function Login() {
 
     }
 
-    const handleSignup = () => {
-        navigate('/signup');
-    }
-
     const handleLogin = () => {
         demoUser ? (navigate('/demoLogin')) : (navigate('/'))
     }
@@ -57,9 +53,6 @@ function Login() {
                             <button onClick={handleLogin}>Login</button>
                         </div>                
                     </form> 
-                    <div className="form-link">
-                        <span>New user? <a href="#" className="link signup-link" onClick={handleSignup}>Signup</a></span>
-                    </div>
                 </div>
                 
                 <div className="line"></div>

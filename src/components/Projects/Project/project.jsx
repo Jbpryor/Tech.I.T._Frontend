@@ -14,6 +14,7 @@ function Project() {
     const projects = useSelector((state) => state.projects);
     const issues = useSelector((state) => state.issues);
     const users = useSelector((state) => state.users);
+    const theme = useSelector((state) => state.settings.themes[state.settings.theme]);
 
     const { projectId } = useParams();
     const project = projects.find((project) => project.id.toString() === projectId)
@@ -73,7 +74,7 @@ function Project() {
         <section className="project">
             <div className="project-container">
 
-                <div className="project-title-container">
+                <div className="project-title-container" style={{ background: theme.primary_color, border: `2px solid ${theme.border}`, color: theme.font_color }} >
                     <div className="project-icon-container">
                         <i className='bx bxs-bug' ></i>
                     </div>
@@ -93,11 +94,11 @@ function Project() {
 
                 <div className="project-status-content">
 
-                    <div className="status-container">
+                    <div className="status-container" style={{ background: theme.primary_color, border: `2px solid ${theme.border}`, color: theme.font_color }} >
                         <div className="status-header">Statuses</div>
                         <div className="status-content">
 
-                            <div className="status-counts-container">
+                            <div className="status-counts-container" >
                             {statusData.map((status) => (
                                 <div className="status-counts" key={status.name}>
                                     <div className="status-left"><div className="status-dot" style={{ backgroundColor: status.color }} />{status.name}:</div>
@@ -129,7 +130,7 @@ function Project() {
                         </div>
                     </div>
 
-                    <div className="priority-container">
+                    <div className="priority-container" style={{ background: theme.primary_color, border: `2px solid ${theme.border}`, color: theme.font_color }} >
                         <div className="priority-header">Priorities</div>
                         <div className="priority-content">
 

@@ -129,7 +129,7 @@ function Users({ projectUsers }) {
                                     </thead>
                                     <tbody className="users-table-body">
                                         {slicedUsers.map((user, index) => (
-                                            <UsersTable user={user} key={index} index={index}/>
+                                            <UsersTable user={user} key={index} index={index} theme={theme} />
                                         ))}
                                     </tbody>
                                 </table>
@@ -144,7 +144,7 @@ function Users({ projectUsers }) {
             ) : (
                 <section className="users users-tile">  
 
-                    <UsersSort selectedSort={selectedSort} setSelectedSort={setSelectedSort} rotate={rotate} handleRotate={handleRotate} />
+                    <UsersSort selectedSort={selectedSort} setSelectedSort={setSelectedSort} rotate={rotate} handleRotate={handleRotate} theme={theme} />
                           
                     <div className={`users-container ${isUsersActive ? 'active' : ''}`}>                
                     {sortedUsers.map((user) => (

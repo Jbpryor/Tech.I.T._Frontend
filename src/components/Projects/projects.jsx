@@ -13,6 +13,7 @@ function Projects() {
     const location = useLocation();
     const isProjectsActive = location.pathname === '/projects';
     const projects = useSelector((state) => state.projects);
+    const theme = useSelector((state) => state.settings.themes[state.settings.theme]);
 
     const sortedProjectsByBackend = [...projects].sort(sortByProperty('backend', null, true));
     const sortedProjectsByClientName = [...projects].sort(sortByProperty('clientName', null, true));
@@ -59,12 +60,6 @@ function Projects() {
 
 
     /* this is the break from list view to tile view */
-
-
-    // const onDelete = (index) => {
-    //     const selectedUser = users[index];
-    //     dispatch(removeUser({ selectedUser: userFullName(selectedUser) }));
-    // }
 
     const [ titleRotate, setTitleRotate ] = useState(false);
     const [ typeRotate, setTypeRotate ] = useState(false);
@@ -219,7 +214,7 @@ function Projects() {
 
                     <div className="projects-container">
 
-                        <div className="all-projects-table-container">
+                        <div className="all-projects-table-container" style={{ border: `1px solid ${theme.border}`, background: theme.primary_color, color: theme.font_color }} >
                             <div className="projects-table-content">
                                 <table>
                                     <thead>
@@ -238,7 +233,7 @@ function Projects() {
                                     </thead>
                                     <tbody className="users-table-body">
                                         {slicedProjects.map((project, index) => (
-                                            <ProjectsTable project={project} key={index} index={index} isProjectsActive={isProjectsActive} />
+                                            <ProjectsTable project={project} key={index} index={index} isProjectsActive={isProjectsActive} theme={theme} />
                                         ))}
                                     </tbody>
                                 </table>
@@ -253,12 +248,12 @@ function Projects() {
                 ) : (
                 <section className="projects projects-tile">
 
-                    <ProjectsSort selectedSort={selectedSort} setSelectedSort={setSelectedSort} rotate={rotate} handleRotate={handleRotate} />
+                    <ProjectsSort selectedSort={selectedSort} setSelectedSort={setSelectedSort} rotate={rotate} handleRotate={handleRotate} theme={theme} />
 
-                    <div className={`projects-container ${isProjectsActive ? 'active' : ''}`}>                
+                    <div className={`projects-container ${isProjectsActive ? 'active' : ''}`} >                
                     {sortedProjects.map((project) => (
                         <Link className={`project-link ${isProjectsActive ? 'active' : ''}`} to={`/projects/${project.id}`} key={project.id}>
-                            <div className='project-container'>       
+                            <div className='project-container' style={{ border: `1px solid ${theme.border}`, background: theme.primary_color, color: theme.font_color }}>       
                                 <div className="project-title">{project.title}</div>
                                 <div className="project-contents">
                                     <div className="project-description">{project.description}</div>                            

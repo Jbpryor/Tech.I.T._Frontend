@@ -1,12 +1,8 @@
 import React from "react";
-import { useSelector } from "react-redux";
 
-function UsersSort({ selectedSort, setSelectedSort, rotate, handleRotate }) {
-
-    const theme = useSelector((state) => state.settings.themes[state.settings.theme]);
-
+function UsersSort({ selectedSort, setSelectedSort, rotate, handleRotate, theme }) {
     return (
-        <div className="users-sort-container" value={selectedSort} onChange={(event) => setSelectedSort(event.target.value)} style={{ background: theme.primary_color, border: `1px solid ${theme.primary_color}`, color: theme.font_color }}>
+        <div className="users-sort-container" value={selectedSort} onChange={(event) => setSelectedSort(event.target.value)} style={{ background: theme.primary_color, border: `1px solid ${theme.primary_color}`, color: theme.font_color, borderBottom: `2px solid ${theme.border}` }}>
 
             <div className='users-title'>Users</div>
 

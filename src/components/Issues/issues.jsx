@@ -15,6 +15,7 @@ function Issues({ projectIssues }) {
     const location = useLocation();
     const isIssuesActive = location.pathname === '/issues';
     const issues = useSelector((state) => state.issues)
+    const theme = useSelector((state) => state.settings.themes[state.settings.theme]);
 
     const priorityOrder = ['Critical', 'High', 'Medium', 'Low'];
     const statusOrder = ['Open', 'In Progress', 'Under Review', 'Resolved', 'Postponed', 'Closed'];
@@ -242,12 +243,12 @@ function Issues({ projectIssues }) {
     return (
         <>
             {viewMode === 'list' ? (
-                <section className="issues issues-list">
+                <section className="issues issues-list" style={{ color: theme.font_color }} >
                     <div className={`issues-title ${!isIssuesActive ? 'active' : ''}`}>Issues</div>
 
                     <div className="issues-container">
 
-                        <div className="all-issues-table-container">
+                        <div className="all-issues-table-container" style={{ border: `1px solid ${theme.border}`, background: theme.primary_color, color: theme.font_color }} >
                             <div className="issues-table-content">
                                 <table>
                                     <thead>
@@ -267,7 +268,7 @@ function Issues({ projectIssues }) {
                                     </thead>
                                     <tbody className="issues-table-body">
                                         {slicedIssues.map((issue, index) => (
-                                            <IssuesTable issue={issue} key={index} index={index} isIssuesActive={isIssuesActive} />
+                                            <IssuesTable issue={issue} key={index} index={index} isIssuesActive={isIssuesActive} theme={theme} />
                                         ))}
                                     </tbody>
                                 </table>
@@ -282,12 +283,12 @@ function Issues({ projectIssues }) {
             ) : (
                 <section className="issues issues-tile">
 
-                    <IssuesSort selectedSort={selectedSort} setSelectedSort={setSelectedSort} rotate={rotate} handleRotate={handleRotate} isProjectsActive={isProjectsActive} />
+                    <IssuesSort selectedSort={selectedSort} setSelectedSort={setSelectedSort} rotate={rotate} handleRotate={handleRotate} isProjectsActive={isProjectsActive} theme={theme} />
 
                     <div className={`issues-container ${isIssuesActive ? 'active' : ''}`}>              
                     {sortedIssues.map((issue) => (
                         <Link className={`issue-link ${isIssuesActive ? 'active' : ''}`} to={`/issues/${issue.id}`} key={issue.id}>
-                            <div className='issue-container'>       
+                            <div className='issue-container' style={{ background: theme.primary_color, border: `1px solid ${theme.border}`, color: theme.font_color }} >       
                                 <div className="issue-title">{issue.title}</div>
                                 <div className="issue-contents">
                                     {Object.entries(issue).filter(([key]) => ['project', 'priority', 'status'].includes(key)).map(([key, value]) => (                

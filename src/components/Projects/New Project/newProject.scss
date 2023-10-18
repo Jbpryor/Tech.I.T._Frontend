@@ -9,9 +9,7 @@
         padding: 3%;
         margin: 4%;
         width: 60%;
-        border: 2px solid rgba(0, 0, 0, 0.143);
         box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 12px 0 rgba(0, 0, 0, 0.19);
-        background-color: rgb(255, 255, 255);
 
         .new-project-title {
             font-size: 20px;
@@ -28,8 +26,6 @@
                 display: grid;
                 grid-template-columns: 50% 50%;
                 padding: 1%;
-                border-bottom: 1px solid rgba(0, 0, 0, 0.129);
-
                 
                 .new-project-detail {
                     padding-left: 2%;
@@ -70,17 +66,15 @@
                 margin: 0 5%;
                 width: 150px;
                 border-radius: 5%;
-                border: 2px solid rgba(0, 0, 0, 0.143);
                 box-shadow: 0 6px 8px 0 rgba(0, 0, 0, 0.2), 0 8px 12px 0 rgba(0, 0, 0, 0.19);
                 font-size: 100%;
-                background-color: white;
                 cursor: pointer;
                 z-index: 1;
     
     
                 &:hover {
-                    color: rgb(86, 86, 2);
-                    border: 2px solid rgb(86, 86, 2, 0.05);
+                    color: rgb(86, 86, 2) !important;
+                    border: 2px solid rgb(86, 86, 2, 0.05) !important;
                 }
             }
         }

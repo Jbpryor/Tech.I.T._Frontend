@@ -1,12 +1,12 @@
 import React from "react";
 
-function IssuesSort({ selectedSort, setSelectedSort, rotate, handleRotate, isProjectsActive }) {
+function IssuesSort({ selectedSort, setSelectedSort, rotate, handleRotate, isProjectsActive, theme }) {
     return (
-        <div className="issues-sort-container" value={selectedSort} onChange={(event) => setSelectedSort(event.target.value)}>
+        <div className="issues-sort-container" value={selectedSort} onChange={(event) => setSelectedSort(event.target.value)} style={{ background: theme.primary_color, color: theme.font_color, border: `1px solid ${theme.primary_color}`, borderBottom: `2px solid ${theme.border}` }} >
 
             <div className='issues-title' >Issues</div>
 
-            <select className='issues-sort-select'>
+            <select className='issues-sort-select' style={{ color: theme.font_color, background: theme.primary_color }} >
                 <option>Created</option>
                 <option>Developer</option>
                 <option>Priority</option>

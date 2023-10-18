@@ -23,18 +23,16 @@
             button {
                 margin: 0 5%;
                 width: 150px;
-                border-radius: 5%;
-                border: 2px solid rgba(0, 0, 0, 0.143);
+                border-radius: 3px;
                 box-shadow: 0 6px 8px 0 rgba(0, 0, 0, 0.2), 0 8px 12px 0 rgba(0, 0, 0, 0.19);
                 font-size: 100%;
-                background-color: white;
                 cursor: pointer;
                 z-index: 1;
 
 
                 &:hover {
-                    color: rgb(86, 86, 2);
-                    border: 2px solid rgb(86, 86, 2, 0.05);
+                    color: rgb(86, 86, 2) !important;
+                    border: 2px solid rgb(86, 86, 2, 0.05) !important;
                 }
             }
         }
@@ -48,19 +46,12 @@
             flex-direction: column;
             padding: 5%;
             margin: 4%;
-            border: 2px solid rgba(0, 0, 0, 0.143);
             box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 12px 0 rgba(0, 0, 0, 0.19);
-            background-color: rgb(255, 255, 255);
     
             .issue-details {
                 display: grid;
                 grid-template-columns: 25% 65% 10%;
                 padding: 1%;
-                border-bottom: 1px solid rgba(0, 0, 0, 0.129);
-
-                .issue-title {
-
-                }
 
                 .issue-detail {
                     width: 100%;
@@ -70,17 +61,15 @@
                 }
 
                 button {
-                    border-radius: 5%;
+                    border-radius: 2px;
                     height: 22px;
-                    border: 1px solid rgba(0, 0, 0, 0.143);
                     box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 4px 6px 0 rgba(0, 0, 0, 0.19);
-                    background-color: white;
                     cursor: pointer;
                     z-index: 1;
         
                     &:hover {
-                        color: rgb(86, 86, 2);
-                        border: 1px solid rgb(86, 86, 2, 0.05);
+                        color: rgb(86, 86, 2) !important;
+                        border: 1px solid rgb(86, 86, 2, 0.05) !important;
                     }
                 }
             }
@@ -94,18 +83,16 @@
                 button {
                     margin: 0 5%;
                     width: 150px;
-                    border-radius: 5%;
-                    border: 2px solid rgba(0, 0, 0, 0.143);
+                    border-radius: 3px;
                     box-shadow: 0 6px 8px 0 rgba(0, 0, 0, 0.2), 0 8px 12px 0 rgba(0, 0, 0, 0.19);
                     font-size: 100%;
-                    background-color: white;
                     cursor: pointer;
                     z-index: 1;
     
     
                     &:hover {
-                        color: rgb(86, 86, 2);
-                        border: 2px solid rgb(86, 86, 2, 0.05);
+                        color: rgb(86, 86, 2) !important;
+                        border: 2px solid rgb(86, 86, 2, 0.05) !important;
                     }
                 }
             }
@@ -119,11 +106,9 @@
             .new-issue-link {
                 margin: 0 5%;
                 width: 150px;
-                border-radius: 5%;
-                border: 2px solid rgba(0, 0, 0, 0.143);
+                border-radius: 3px;
                 box-shadow: 0 6px 8px 0 rgba(0, 0, 0, 0.2), 0 8px 12px 0 rgba(0, 0, 0, 0.19);
                 font-size: 100%;
-                background-color: white;
                 cursor: pointer;
                 z-index: 1;
                 text-decoration: none;
@@ -132,13 +117,11 @@
 
 
                 &:hover {
-                    color: rgb(86, 86, 2);
-                    border: 2px solid rgb(86, 86, 2, 0.05);
+                    color: rgb(86, 86, 2) !important;
+                    border: 2px solid rgb(86, 86, 2, 0.05) !important;
                 }                
             }
         }
-
-
     }
 
     .issue-comments-container {
@@ -148,9 +131,7 @@
         grid-template-rows: 10% 10% 80%;
         margin: 2%;
         padding: 2%;
-        border: 2px solid rgba(0, 0, 0, 0.143);
         box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 12px 0 rgba(0, 0, 0, 0.19);
-        background-color: rgb(255, 255, 255);
 
         .issue-comments-title {
             font-size: 15px;
@@ -172,17 +153,15 @@
                 right: 10%;
                 bottom: -110%;
                 width: 9%;
-                border-radius: 5%;
-                border: 2px solid rgba(0, 0, 0, 0.143);
+                border-radius: 3px;
                 box-shadow: 0 6px 8px 0 rgba(0, 0, 0, 0.2), 0 8px 12px 0 rgba(0, 0, 0, 0.19);
                 font-size: 200%;
-                background-color: white;
                 cursor: pointer;
                 z-index: 1;
                 
                 &:hover {
-                    color: rgb(86, 86, 2);
-                    border: 2px solid rgb(86, 86, 2, 0.05);
+                    color: rgb(86, 86, 2) !important;
+                    border: 2px solid rgb(86, 86, 2, 0.05) !important;
                 }
             }
 
@@ -244,17 +223,15 @@
                         width: 50%;
     
                         .delete-button {
-                            border-radius: 5%;
-                            border: 1px solid rgba(0, 0, 0, 0.143);
+                            border-radius: 2px;
                             box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 4px 6px 0 rgba(0, 0, 0, 0.19);
-                            background-color: white;
                             cursor: pointer;
                             z-index: 1;
     
                 
                             &:hover {
-                                color: rgb(86, 86, 2);
-                                border: 2px solid rgb(86, 86, 2, 0.05);
+                                color: rgb(86, 86, 2) !important;
+                                border: 2px solid rgb(86, 86, 2, 0.05) !important;
                             }
                         }
                     } 

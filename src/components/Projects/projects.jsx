@@ -209,7 +209,7 @@ function Projects() {
     return (
         <>
             {viewMode === 'list' ? (
-                <section className="projects projects-list">
+                <section className="projects projects-list" style={{ color: theme.font_color }} >
                     <div className={`projects-title ${!isProjectsActive ? 'active' : ''}`}>Projects</div>
 
                     <div className="projects-container">

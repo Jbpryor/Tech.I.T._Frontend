@@ -64,7 +64,7 @@ function TablePagination({ currentPage, setCurrentPage, onPageChange, items, ite
   return (
     <div className="pagination-content">
       <div className="pagination-pages">
-        <select className={`items-per-page ${totalItems <= 10 ? 'none' : ''}`} value={itemsPerPage} onChange={handleItemsPerPageChange}>
+        <select className={`items-per-page ${totalItems <= 10 ? 'none' : ''}`} value={itemsPerPage} onChange={handleItemsPerPageChange} style={{ background: theme.primary_color, color: theme.font_color, border: `1px solid ${theme.border}` }} >
           {pageOptionFiltered.map((option) => (
             <option key={option} value={option}>
               {option}

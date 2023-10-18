@@ -14,6 +14,7 @@ function Issue() {
 
   const issues = useSelector((state) => state.issues);
   const projects = useSelector((state) => state.projects);
+  const theme = useSelector((state) => state.settings.themes[state.settings.theme]);
 
   const { issueId } = useParams();
   const [ isEditMode, setEditMode ] = useState({});
@@ -144,20 +145,20 @@ function Issue() {
     <section className={`issue ${isDraggingPage ? 'dragging' : ''}`} onDragOver={handlePageDragOver} onDragLeave={handlePageDragLeave}>
       {isModificationsViewActive ? (
         <div className="modifications-container">
-          <IssueModifications issue={issue} />
+          <IssueModifications issue={issue} theme={theme} />
           <div className="mod-button-container">
-            <button className="issues-view-button" onClick={toggleModificationView}>Back to issue</button>
+            <button className="issues-view-button" onClick={toggleModificationView} style={{ background: theme.primary_color, border: `2px solid ${theme.border}`, color: theme.font_color }} >Back to issue</button>
           </div>
         </div>
       ) : (
         <div className="issue-container">
-          <div className="issue-content">
+          <div className="issue-content" style={{ background: theme.primary_color, color: theme.font_color, border: `2px solid ${theme.border}` }} >
             {Object.keys(issue).map((detail) => (
               detail !== 'id' && detail !== 'modifications' && detail !== 'comments' && (
-                <div className="issue-details" key={detail}>
+                <div className="issue-details" key={detail} style={{ borderBottom: `1px solid ${theme.border}`}} >
                   <div className="issue-title">{capitalizeFirstLetter(detail)}:</div>
                   {isEditMode[detail] && detail === 'type' ? (
-                    <select className='issue-detail' value={editedDetail[detail] || issue[detail]} onChange={(event) => handleDetailChange(event, detail)}>
+                    <select className='issue-detail' value={editedDetail[detail] || issue[detail]} onChange={(event) => handleDetailChange(event, detail)} style={{ background: theme.background_color, color: theme.font_color }} >
                       <option value="">Select a type...</option>
                       <option value="Bug">Bug</option>
                       <option value="Feature">Feature</option>
@@ -167,7 +168,7 @@ function Issue() {
                     </select>
                   ) : isEditMode[detail] && detail === 'status' ?
                   (
-                    <select className='issue-detail' value={editedDetail[detail] || issue[detail]} onChange={(event) => handleDetailChange(event, detail)}>
+                    <select className='issue-detail' value={editedDetail[detail] || issue[detail]} onChange={(event) => handleDetailChange(event, detail)} style={{ background: theme.background_color, color: theme.font_color }} >
                       <option value="Open">Open</option>
                       <option value="In Progress">In Progress</option>
                       <option value="Under Review">Under Review</option>
@@ -177,14 +178,14 @@ function Issue() {
                     </select>
                   ) : isEditMode[detail] && detail === 'project' ? 
                   (
-                    <select className="issue-detail" value={editedDetail[detail] || issue[detail]} onChange={(event) => handleDetailChange(event, detail)}>
+                    <select className="issue-detail" value={editedDetail[detail] || issue[detail]} onChange={(event) => handleDetailChange(event, detail)} style={{ background: theme.background_color, color: theme.font_color }} >
                       {projects.map((project) => (
                         <option value={project.title}>{project.title}</option>
                       ))}
                     </select>
                   ) : isEditMode[detail] && detail === 'priority' ? 
                   (
-                    <select className="issue-detail" value={editedDetail[detail] || issue[detail]} onChange={(event) => handleDetailChange(event, detail)}>
+                    <select className="issue-detail" value={editedDetail[detail] || issue[detail]} onChange={(event) => handleDetailChange(event, detail)} style={{ background: theme.background_color, color: theme.font_color }} >
                       <option value='Critical'>Critical</option>
                       <option value="High">High</option>
                       <option value="Medium">Medium</option>
@@ -192,33 +193,33 @@ function Issue() {
                     </select>
                   ) : isEditMode[detail] ? 
                   (
-                    <input className='issue-detail' type='text' value={editedDetail[detail] || issue[detail]} onChange={(event) => handleDetailChange(event, detail)} />
+                    <input className='issue-detail' type='text' value={editedDetail[detail] || issue[detail]} onChange={(event) => handleDetailChange(event, detail)} style={{ background: theme.background_color, color: theme.font_color, border: 'none' }}/>
                   ) :
                   (
                     <div className="issue-detail">{editedDetail[detail] || issue[detail]}</div>
                   )}
                   {detail === 'modified' ? (
-                    <button className="modifications-view-button" onClick={toggleModificationView}>View</button>
+                    <button className="modifications-view-button" onClick={toggleModificationView} style={{ background: theme.background_color, color: theme.font_color, border: `1px solid ${theme.border}`}} >View</button>
                   ): isEditMode[detail] ? (
-                    <button onClick={() => handleCancel(detail)}>Cancel</button>
+                    <button onClick={() => handleCancel(detail)} style={{ background: theme.background_color, color: theme.font_color, border: `1px solid ${theme.border}`}} >Cancel</button>
                   ): (
-                    <button onClick={() => handleEdit(detail)}>Modify</button>
+                    <button onClick={() => handleEdit(detail)} style={{ background: theme.background_color, color: theme.font_color, border: `1px solid ${theme.border}`}} >Modify</button>
                   )}
                 </div>
                 ))
               )
             }
             <div className='issue-buttons-container'>
-              {!showSaveButton && <button onClick={handleDeleteIssue}>Delete</button>}
-              {showSaveButton && <button className="save" onClick={saveEditedIssue}>Save</button>}
+              {!showSaveButton && <button onClick={handleDeleteIssue} style={{ background: theme.background_color, color: theme.font_color, border: `2px solid ${theme.border}`}}>Delete</button>}
+              {showSaveButton && <button className="save" onClick={saveEditedIssue} style={{ background: theme.background_color, color: theme.font_color, border: `2px solid ${theme.border}`}}>Save</button>}
             </div>
           </div>         
           <div className="new-issue-link-container">
-            <Link to='/issues/newIssue' className="new-issue-link">New Issue +</Link>
+            <Link to='/issues/newIssue' className="new-issue-link" style={{ background: theme.primary_color, border: `2px solid ${theme.border}`, color: theme.font_color }} >New Issue +</Link>
           </div> 
         </div>
       )}
-      <Comments issue={issue} timeStamp={timeStamp} />
+      <Comments issue={issue} timeStamp={timeStamp} theme={theme} />
       <div className='issue-attachments-container'>
         <div className="issue-attachments-title">Attachments</div>
         <div className="issue-attachments-content">

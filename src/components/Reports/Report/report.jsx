@@ -3,6 +3,8 @@ import './report.scss';
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { deleteReport } from "../../../Store/Slices/reportSlice";
+import Comments from "./Comments/comments";
+
 
 function Report() {
 
@@ -11,11 +13,15 @@ function Report() {
   const reports = useSelector((state) => state.reports);
   const { reportId } = useParams();
   const report = reports.find((report) => report.id.toString() === reportId);
+  const theme = useSelector((state) => state.settings.themes[state.settings.theme]);
 
   const handleDeleteReport = () => {
     dispatch(deleteReport(report.id))
     navigate('/reports')
-  }
+  };
+
+  const timeStamp = new Date().toISOString();
+
 
   const [ droppedFiles, setDroppedFiles ] = useState([]);
   const [ droppedFile, setDroppedFile ] = useState(false);
@@ -71,10 +77,10 @@ function Report() {
   return (      
     <section className={`report ${isDraggingPage ? 'dragging' : ''}`} onDragOver={handlePageDragOver} onDragLeave={handlePageDragLeave}>
       <div className="report-container">
-        <div className="report-contents">
+        <div className="report-contents" style={{ border: `2px solid ${theme.border}`, color: theme.font_color, background: theme.primary_color }} >
           {Object.keys(report).map((detail) => (
-            detail !== 'id' && (
-              <div className="report-details" key={detail}>
+            detail !== 'id' && detail !== 'comments' && (
+              <div className="report-details" key={detail} style={{ borderBottom: `1px solid ${theme.border}`}} >
                 <div className="report-title">{capitalizeFirstLetter(detail)}:</div>
                 <div className="report-detail">{report[detail]}</div>
               </div>
@@ -82,53 +88,48 @@ function Report() {
             )
           }
           <div className='report-buttons-container'>
-            <button onClick={handleDeleteReport}>Delete</button>
+            <button onClick={handleDeleteReport} style={{ border: `2px solid ${theme.border}`, background: theme.background_color, color: theme.font_color }} >Delete</button>
           </div>
         </div>         
         <div className="new-report-link-container">
-          <Link to='/reports/newReport' className="new-report-link">New Report +</Link>
+          <Link to='/reports/newReport' className="new-report-link" style={{ border: `2px solid ${theme.border}`, background: theme.primary_color, color: theme.font_color }} >New Report +</Link>
         </div> 
       </div>
-      <div className="report-comments-container">
-        <div className="report-comments-title">Comments</div>
-        <div className="report-comments-input-container">
-          <input type="text" className="report-comments-input" placeholder="Enter comment..." />
-          <button className="report-comments-button">+</button>
-        </div>
-        <div className="report-comments-content">
-          <div className="report-comments-user-container">
-            <div className="report-comments-user">Jason Brent Pryor</div>            
-          </div>
-          <div className="report-comment-container">
-            <div className="report-comment">You need to use more black in this area right here now and forever</div>
-          </div>
-          <div className="report-comments-date-container">
-            <div className="report-comments-date">09/15/2023</div>
-          </div>
-          <div className="report-comments-buttons-container">
-            <div className="report-comments-button-container">
-              <button className="delete-button">delete</button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className='report-attachments-container'>
-        <div className="report-attachments-title">Attachments</div>
+
+      <Comments report={report} timeStamp={timeStamp} theme={theme} />
+
+      <div className='report-attachments-container' style={{
+          background: theme.primary_color,
+          border: `2px solid ${theme.border}`,
+          color: theme.font_color,
+        }} >
+        <div className="report-attachments-title" style={{ borderBottom: `1px solid ${theme.border}`}} >Attachments</div>
         <div className="report-attachments-content">
           <div className="report-attachments-saved">
             {savedFiles.map((file, index) => (
               <>
                 <Link className="report-attachments-saved-files" key={index} href={file.url} target="_blank">{file.name}</Link>
                 <div className="report-attachments-button-container">
-                  <button className="delete-button" onClick={() => handleDeleteFile(index)}>delete</button>
+                  <button className="delete-button" onClick={() => handleDeleteFile(index)} style={{
+                      border: `1px solid ${theme.border}`,
+                      background: theme.background_color,
+                      color: theme.font_color,
+                    }} >delete</button>
                 </div>
               </>
             ))}
           </div>
         </div>
-        <div className="report-attachments-box">
-          <button className="report-attachments-button" onClick={handleSaveUpload}>+</button>
-          <div className={`report-attachments-drop ${isDragging ? 'drag-over' : ''}`} onDragOver={handleDragOver} onDragLeave={handleDragLeave} onDrop={handleDrop}>
+        <div className="report-attachments-box" style={{ border: `2px solid ${theme.border}` }} >
+          <button className="report-attachments-button" onClick={handleSaveUpload}             style={{
+              border: `2px solid ${theme.border}`,
+              color: theme.font_color,
+              background: theme.primary_color,
+            }} >+</button>
+          <div className={`report-attachments-drop ${isDragging ? 'drag-over' : ''}`} onDragOver={handleDragOver} onDragLeave={handleDragLeave} onDrop={handleDrop} style={{
+              border: `5px dotted ${theme.border}`,
+              background: theme.background_color,
+            }} >
             {droppedFiles.length > 0 && droppedFiles[droppedFiles.length - 1] ? (
               <div className="report-attachments-file">{droppedFiles[droppedFiles.length - 1].name}</div>) : (
               <>

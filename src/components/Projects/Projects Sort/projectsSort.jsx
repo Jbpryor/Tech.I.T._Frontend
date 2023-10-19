@@ -7,7 +7,7 @@ function ProjectsSort({ selectedSort, setSelectedSort, rotate, handleRotate, the
 
             <div className='projects-title'>Projects</div>
 
-            <select className='projects-sort-select' style={{ color: theme.font_color, background: theme.primary_color }}>
+            <select className='projects-sort-select' style={{ color: theme.font_color, background: theme.primary_color }} >
                 <option>Backend</option>
                 <option>Client Name</option>
                 <option>Created</option>

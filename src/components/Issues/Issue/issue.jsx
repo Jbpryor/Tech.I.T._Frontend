@@ -354,7 +354,9 @@ function Issue() {
           </div>
         </div>
       )}
+
       <Comments issue={issue} timeStamp={timeStamp} theme={theme} />
+      
       <div
         className="issue-attachments-container"
         style={{

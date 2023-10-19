@@ -19,40 +19,18 @@
             flex-direction: column;
             padding: 5%;
             margin: 4%;
-            border: 2px solid rgba(0, 0, 0, 0.143);
             box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 12px 0 rgba(0, 0, 0, 0.19);
-            background-color: rgb(255, 255, 255);
     
             .report-details {
                 display: grid;
-                grid-template-columns: 25% 65% 10%;
+                grid-template-columns: 50% 50%;
                 padding: 1%;
-                border-bottom: 1px solid rgba(0, 0, 0, 0.129);
-
-                .report-title {
-
-                }
 
                 .report-detail {
                     width: 100%;
                     position: relative;
                     left: -2%;
                     padding-left: 2%;
-                }
-
-                button {
-                    border-radius: 5%;
-                    height: 22px;
-                    border: 1px solid rgba(0, 0, 0, 0.143);
-                    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 4px 6px 0 rgba(0, 0, 0, 0.19);
-                    background-color: white;
-                    cursor: pointer;
-                    z-index: 1;
-        
-                    &:hover {
-                        color: rgb(86, 86, 2);
-                        border: 1px solid rgb(86, 86, 2, 0.05);
-                    }
                 }
             }
 
@@ -65,22 +43,19 @@
                 button {
                     margin: 0 5%;
                     width: 150px;
-                    border-radius: 5%;
-                    border: 2px solid rgba(0, 0, 0, 0.143);
+                    border-radius: 3px;
                     box-shadow: 0 6px 8px 0 rgba(0, 0, 0, 0.2), 0 8px 12px 0 rgba(0, 0, 0, 0.19);
                     font-size: 100%;
-                    background-color: white;
                     cursor: pointer;
                     z-index: 1;
     
     
                     &:hover {
-                        color: rgb(86, 86, 2);
-                        border: 2px solid rgb(86, 86, 2, 0.05);
+                        color: rgb(86, 86, 2) !important;
+                        border: 2px solid rgb(86, 86, 2, 0.05) !important;
                     }
                 }
             }
-
         }
 
         .new-report-link-container {
@@ -90,11 +65,9 @@
             .new-report-link {
                 margin: 0 5%;
                 width: 150px;
-                border-radius: 5%;
-                border: 2px solid rgba(0, 0, 0, 0.143);
+                border-radius: 3px;
                 box-shadow: 0 6px 8px 0 rgba(0, 0, 0, 0.2), 0 8px 12px 0 rgba(0, 0, 0, 0.19);
                 font-size: 100%;
-                background-color: white;
                 cursor: pointer;
                 z-index: 1;
                 text-decoration: none;
@@ -103,13 +76,11 @@
 
 
                 &:hover {
-                    color: rgb(86, 86, 2);
-                    border: 2px solid rgb(86, 86, 2, 0.05);
+                    color: rgb(86, 86, 2) !important;
+                    border: 2px solid rgb(86, 86, 2, 0.05) !important;
                 }                
             }
         }
-
-
     }
 
     .report-comments-container {
@@ -161,73 +132,75 @@
 
         .report-comments-content {
             margin-top: 5%;
-            display: grid;
-            grid-template-columns: 20% 40% 20% 20%;
-            grid-template-rows: 25% 25% 25% 25%;
-            overflow: auto;
             height: 85%;
-
-            .report-comments-user-container,
-            .report-comment-container,
-            .report-comments-date-container {
-                display: flex;
-                align-items: center;
-                justify-content: center;
-
-                .report-comments-user,
-                .report-comment {
-                    white-space: nowrap;
-                    overflow: hidden;
-                    text-overflow: ellipsis;
-                    align-items: center;
-                    flex: 1;
-                    padding-left: 2%;
-
-                    &:hover {
-                        white-space: unset;
-                        text-overflow: unset;
-                    }
-                }
-
-                .report-comments-date {
-                    white-space: nowrap;
-                    overflow: hidden;
-                    text-overflow: ellipsis;
-                    align-items: center;
-                    flex: 1;
-                    text-align: center;
-                }
-            }
-
-            .report-comments-buttons-container {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
-               
-                .report-comments-button-container {
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: center;
-                    width: 50%;
-
-                    .delete-button {
-                        border-radius: 5%;
-                        border: 1px solid rgba(0, 0, 0, 0.143);
-                        box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 4px 6px 0 rgba(0, 0, 0, 0.19);
-                        background-color: white;
-                        cursor: pointer;
-                        z-index: 1;
-
             
+            .report-comment-container {
+                display: grid;
+                grid-template-columns: 18% 40% 24% 18%;
+                padding: 1%;
+                overflow: auto;
+
+                .report-comments-user-container,
+                .report-comment-container,
+                .report-comments-date-container {
+                    padding: 1%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+    
+                    .report-comments-user,
+                    .report-comment {
+                        white-space: nowrap;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        align-items: center;
+                        flex: 1;
+                        padding-left: 2%;
+    
                         &:hover {
-                            color: rgb(86, 86, 2);
-                            border: 2px solid rgb(86, 86, 2, 0.05);
+                            white-space: unset;
+                            text-overflow: unset;
                         }
                     }
+    
+                    .report-comments-date {
+                        white-space: nowrap;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        align-items: center;
+                        flex: 1;
+                        text-align: center;
+                    }
+                }
+    
+                .report-comments-buttons-container {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: center;
+                   
+                    .report-comments-button-container {
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: center;
+                        width: 50%;
+    
+                        .delete-button {
+                            border-radius: 2px;
+                            box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 4px 6px 0 rgba(0, 0, 0, 0.19);
+                            cursor: pointer;
+                            z-index: 1;
+    
+                
+                            &:hover {
+                                color: rgb(86, 86, 2) !important;
+                                border: 2px solid rgb(86, 86, 2, 0.05) !important;
+                            }
+                        }
+                    } 
                 } 
             }
-        }      
+        }       
     }
 
     .report-attachments-container {
@@ -237,15 +210,12 @@
         grid-template-rows: 10% 45% 45%;
         margin: 2%;
         padding: 2%;
-        border: 2px solid rgba(0, 0, 0, 0.143);
         box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 12px 0 rgba(0, 0, 0, 0.19);
-        background-color: rgb(255, 255, 255);
 
         .report-attachments-title {
             font-size: 15px;
             font-weight: 800;
             z-index: 1;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.129);
         }
 
         .report-attachments-content {
@@ -278,17 +248,15 @@
 
                     .delete-button {
                         border-radius: 5%;
-                        border: 1px solid rgba(0, 0, 0, 0.143);
                         box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 4px 6px 0 rgba(0, 0, 0, 0.19);
-                        background-color: white;
                         width: calc(50%/2.5);
                         cursor: pointer;
                         z-index: 1;
 
             
                         &:hover {
-                            color: rgb(86, 86, 2);
-                            border: 1px solid rgb(86, 86, 2, 0.05);
+                            color: rgb(86, 86, 2) !important;
+                            border: 1px solid rgb(86, 86, 2, 0.05) !important;
                         }
                     }
                 }
@@ -299,7 +267,6 @@
         .report-attachments-box {
             position: relative;
             padding: 4%;
-            border: 2px solid rgba(0, 0, 0, 0.143);
             box-shadow: inset 0 4px 4px 0 rgba(0, 0, 0, 0.2), inset 0 6px 12px 0 rgba(0, 0, 0, 0.19);
             
             .report-attachments-button {
@@ -307,33 +274,29 @@
                 right: 10%;
                 top: -18%;
                 width: 9%;
-                border-radius: 5%;
-                border: 2px solid rgba(0, 0, 0, 0.143);
+                border-radius: 3px;
                 box-shadow: 0 6px 8px 0 rgba(0, 0, 0, 0.2), 0 8px 12px 0 rgba(0, 0, 0, 0.19);
                 font-size: 200%;
-                background-color: white;
                 cursor: pointer;
                 z-index: 1;
                 
                 &:hover {
-                    color: rgb(86, 86, 2);
-                    border: 2px solid rgb(86, 86, 2, 0.05);
+                    color: rgb(86, 86, 2) !important;
+                    border: 2px solid rgb(86, 86, 2, 0.05) !important;
                 }
             }
             .report-attachments-drop {
-                border: 5px dotted rgba(231, 231, 231);
-                border-radius: 2%;
+                border-radius: 2px;
                 height: 100%;
                 width: 100%;
                 position: relative;
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                background-color: rgba(231, 231, 231, 0.5);
                 z-index: 0;
 
                 &.drag-over {
-                    border: 5px dotted rgb(86, 86, 2);
+                    border: 5px dotted rgb(86, 86, 2) !important;
                 }
 
                 .report-attachments-file {

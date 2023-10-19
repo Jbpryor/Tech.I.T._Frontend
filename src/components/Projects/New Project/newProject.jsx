@@ -101,11 +101,22 @@ function NewProject() {
 
   return (
     <section className="new-project" style={{ color: theme.font_color }}>
-      <div className="new-project-container" style={{ border: `2px solid ${theme.border}`, background: theme.primary_color, color: theme.font_color }} >
+      <div
+        className="new-project-container"
+        style={{
+          border: `2px solid ${theme.border}`,
+          background: theme.primary_color,
+          color: theme.font_color,
+        }}
+      >
         <div className="new-project-title">New Project</div>
         <form className="new-project-form">
           {projectDetails.map((detail) => (
-            <div key={detail} className="new-project-details" style={{ borderBottom: `1px solid ${theme.border}`}} >
+            <div
+              key={detail}
+              className="new-project-details"
+              style={{ borderBottom: `1px solid ${theme.border}` }}
+            >
               <div className="new-project-detail">{detail}:</div>
               {detail === "Id" ? (
                 <div className="new-project-input id">Project-{newId}</div>
@@ -114,15 +125,34 @@ function NewProject() {
                   className="new-project-input"
                   value={projectDetails[detail]}
                   onChange={(event) => handleInputChange(event, detail)}
-                style={{ background: theme.background_color, border: `0.5px solid ${theme.border}`, color: theme.font_color }} >
-                  <option value=""style={{ background: theme.background_color, border: `0.5px solid ${theme.border}`, color: theme.font_color }} >Select a Manager...</option>
+                  style={{
+                    background: theme.background_color,
+                    border: `0.5px solid ${theme.border}`,
+                    color: theme.font_color,
+                  }}
+                >
+                  <option
+                    value=""
+                    style={{
+                      background: theme.background_color,
+                      border: `0.5px solid ${theme.border}`,
+                      color: theme.font_color,
+                    }}
+                  >
+                    Select a Manager...
+                  </option>
                   {users.map(
                     (user, index) =>
                       user.role === "Project Manager" && (
                         <option
                           key={index}
                           value={`${user.name.first} ${user.name.last}`}
-                        style={{ background: theme.background_color, border: `0.5px solid ${theme.border}`, color: theme.font_color }} >
+                          style={{
+                            background: theme.background_color,
+                            border: `0.5px solid ${theme.border}`,
+                            color: theme.font_color,
+                          }}
+                        >
                           {user.name.first} {user.name.last}
                         </option>
                       )
@@ -137,7 +167,12 @@ function NewProject() {
                   placeholder={` Enter ${detail}...`}
                   value={inputValues[detail] || ""}
                   onChange={(event) => handleInputChange(event, detail)}
-                style={{ background: theme.background_color, border: `0.5px solid ${theme.border}`, color: theme.font_color }} />
+                  style={{
+                    background: theme.background_color,
+                    border: `0.5px solid ${theme.border}`,
+                    color: theme.font_color,
+                  }}
+                />
               ) : (
                 <input
                   type="text"
@@ -145,13 +180,27 @@ function NewProject() {
                   placeholder={` Enter ${detail}...`}
                   value={inputValues[detail] || ""}
                   onChange={(event) => handleInputChange(event, detail)}
-                style={{ background: theme.background_color, border: `0.5px solid ${theme.border}`, color: theme.font_color }} />
+                  style={{
+                    background: theme.background_color,
+                    border: `0.5px solid ${theme.border}`,
+                    color: theme.font_color,
+                  }}
+                />
               )}
             </div>
           ))}
         </form>
         <div className="new-project-button">
-          <button onClick={handleSaveNewProject} style={{ border: `2px solid ${theme.border}`, background: theme.background_color, color: theme.font_color }} >Create</button>
+          <button
+            onClick={handleSaveNewProject}
+            style={{
+              border: `2px solid ${theme.border}`,
+              background: theme.background_color,
+              color: theme.font_color,
+            }}
+          >
+            Create
+          </button>
         </div>
       </div>
     </section>

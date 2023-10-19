@@ -247,15 +247,12 @@
         grid-template-rows: 10% 45% 45%;
         margin: 2%;
         padding: 2%;
-        border: 2px solid rgba(0, 0, 0, 0.143);
         box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 12px 0 rgba(0, 0, 0, 0.19);
-        background-color: rgb(255, 255, 255);
 
         .issue-attachments-title {
             font-size: 15px;
             font-weight: 800;
             z-index: 1;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.129);
         }
 
         .issue-attachments-content {
@@ -287,18 +284,15 @@
                     justify-content: center;
 
                     .delete-button {
-                        border-radius: 5%;
-                        border: 1px solid rgba(0, 0, 0, 0.143);
+                        border-radius: 2px;
                         box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 4px 6px 0 rgba(0, 0, 0, 0.19);
-                        background-color: white;
                         width: calc(50%/2.5);
                         cursor: pointer;
                         z-index: 1;
-
             
                         &:hover {
-                            color: rgb(86, 86, 2);
-                            border: 1px solid rgb(86, 86, 2, 0.05);
+                            color: rgb(86, 86, 2) !important;
+                            border: 1px solid rgb(86, 86, 2, 0.05) !important;
                         }
                     }
                 }
@@ -309,7 +303,6 @@
         .issue-attachments-box {
             position: relative;
             padding: 4%;
-            border: 2px solid rgba(0, 0, 0, 0.143);
             box-shadow: inset 0 4px 4px 0 rgba(0, 0, 0, 0.2), inset 0 6px 12px 0 rgba(0, 0, 0, 0.19);
             
             .issue-attachments-button {
@@ -317,21 +310,19 @@
                 right: 10%;
                 top: -18%;
                 width: 9%;
-                border-radius: 5%;
-                border: 2px solid rgba(0, 0, 0, 0.143);
+                border-radius: 3px;
                 box-shadow: 0 6px 8px 0 rgba(0, 0, 0, 0.2), 0 8px 12px 0 rgba(0, 0, 0, 0.19);
                 font-size: 200%;
-                background-color: white;
                 cursor: pointer;
                 z-index: 1;
                 
                 &:hover {
-                    color: rgb(86, 86, 2);
-                    border: 2px solid rgb(86, 86, 2, 0.05);
+                    color: rgb(86, 86, 2) !important;
+                    border: 2px solid rgb(86, 86, 2, 0.05) !important;
                 }
             }
             .issue-attachments-drop {
-                border: 5px dotted rgba(231, 231, 231);
+                // border: 5px dotted rgba(231, 231, 231);
                 border-radius: 2%;
                 height: 100%;
                 width: 100%;
@@ -339,11 +330,11 @@
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                background-color: rgba(231, 231, 231, 0.5);
+                // background-color: rgba(231, 231, 231, 0.5);
                 z-index: 0;
 
                 &.drag-over {
-                    border: 5px dotted rgb(86, 86, 2);
+                    border: 5px dotted rgb(86, 86, 2) !important;
                 }
 
                 .issue-attachments-file {
@@ -370,10 +361,6 @@
                     display: none;
                 }
             }
-
         }
-
     }
-
-
 }

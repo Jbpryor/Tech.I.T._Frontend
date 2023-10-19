@@ -15,7 +15,7 @@ const settingsSlice = createSlice({
       'dark-mode': {
         primary_color: 'rgb(15, 15, 15)',
         background_color: 'rgb(28, 28, 28)',
-        font_color: 'white',
+        font_color: 'rgb(235, 235, 235)',
         outline: '-1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black',
         border: 'rgba(255, 255, 255, 0.143)',
       },

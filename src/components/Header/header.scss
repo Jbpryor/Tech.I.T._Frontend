@@ -1,7 +1,5 @@
 .header {
     align-items: center;
-    background-color: rgb(255, 255, 255);
-    color: rgb(19, 18, 18);
     box-shadow: 2px 4px 4px 0px rgba(0, 0, 0, 0.2), 5px 6px 12px 0 rgba(0, 0, 0, 0.2);
     z-index: 99;
 
@@ -9,7 +7,7 @@
         height: 100%;
         list-style: none;
         display: flex;
-        justify-content: end;
+        justify-content: flex-end;
         align-items: center;
         padding: 0 1%;
         height: 100%;
@@ -174,5 +172,21 @@
                 }
             }
         }            
+    }
+}
+
+@media (max-width: 500px) {
+    .view-container {
+        display: none !important;
+    }
+    .header-links {
+        padding: 0 3% !important;
+    }
+
+    .search-container,
+    .search-bar,
+    .new-container,
+    .notification-container {
+        padding: 0 3% !important;
     }
 }

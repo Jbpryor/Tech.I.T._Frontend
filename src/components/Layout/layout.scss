@@ -25,3 +25,18 @@
     overflow-x: hidden;
     overflow-y: auto;
 }
+
+@media (max-width: 500px) {
+
+    .logo {
+        display: none !important;
+    }
+    .layout {
+        grid-template-columns: 100%;
+        grid-template-rows: 5% 90% 5%;
+        grid-template-areas: 
+        "head"
+        "main"
+        "side";
+    }
+}

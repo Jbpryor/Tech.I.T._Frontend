@@ -8,7 +8,6 @@
         flex-direction: row;
         align-items: center;
         justify-content: center;
-        border-bottom: 2px solid rgba(0, 0, 0, 0.143);
         box-shadow: 5px 4px 4px 0px rgba(0, 0, 0, 0.2), 15px 6px 12px 0 rgba(0, 0, 0, 0.2);
         width: 100%;
         z-index: 98;
@@ -63,7 +62,7 @@
             padding: 5px;
 
             &.active {
-                padding: 10px !important;
+                padding: 10px;
             }
 
             .user-container {
@@ -113,6 +112,26 @@
                 }        
             }
         }      
+    }
+}
+
+@media (max-width: 500px) {
+
+    .users-title {
+        display: none;
+    }
+
+    .users-container {
+        margin-top: 0 !important;
+    }
+
+    .user-link {
+        width: 100% !important;
+        padding: 5px !important;      
+    }
+
+    .user-container {
+        width: 100% !important;       
     }
 }
 

@@ -112,6 +112,26 @@
     }
 }
 
+@media (max-width: 500px) {
+
+    .projects-title {
+        display: none;
+    }
+
+    .projects-container {
+        margin-top: 0 !important;
+    }
+
+    .project-link {
+        width: 100% !important;
+        padding: 5px !important;      
+    }
+
+    .project-container {
+        width: 100% !important;       
+    }
+}
+
 
 
 /* break for table view*/

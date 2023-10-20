@@ -127,6 +127,26 @@
     }
 }
 
+@media (max-width: 500px) {
+
+    .reports-title {
+        display: none;
+    }
+
+    .reports-container {
+        margin-top: 0 !important;
+    }
+
+    .report-link {
+        width: 100% !important;
+        padding: 5px !important;      
+    }
+
+    .report-container {
+        width: 100% !important;       
+    }
+}
+
 
 /* break for table view*/
 

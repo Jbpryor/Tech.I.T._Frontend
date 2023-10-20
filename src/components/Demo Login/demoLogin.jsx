@@ -11,7 +11,11 @@ function DemoLogin() {
 
     const handleDemoLogin = (user) => {
         dispatch(setDemoUserMode(user));
-        navigate('/Dashboard');
+        if (window.innerWidth > 850) {
+            navigate('/Dashboard');
+        } else {
+            navigate('/Issues');
+        }
     };
 
     return (

@@ -136,6 +136,26 @@
     }
 }
 
+@media (max-width: 500px) {
+
+    .issues-title {
+        display: none;
+    }
+
+    .issues-container {
+        margin-top: 0 !important;
+    }
+
+    .issue-link {
+        width: 100% !important;
+        padding: 5px !important;      
+    }
+
+    .issue-container {
+        width: 100% !important;       
+    }
+}
+
 
 /* break for table view*/
 

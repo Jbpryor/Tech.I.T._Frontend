@@ -2,13 +2,12 @@
     display: grid;
     grid-template-rows: 9fr 1fr;
     height: 100%;
-    background-color: rgb(255, 255, 255);
     box-shadow: 4px 0px 4px 0px rgba(0, 0, 0, 0.2), 6px 0px 10px 0 rgba(0, 0, 0, 0.2);
-    color: rgb(19, 18, 18);
     z-index: 99;
 
     .sideBar-links {
         padding-top: 50%;
+        
         .nav-link {
             display: flex;
             flex-direction: column;
@@ -29,7 +28,16 @@
                 border: 1px solid rgb(86, 86, 2, 0.05) !important;
                 background-color: rgb(86, 86, 2, 0.02) !important;
             }
-        
+            
+            &.active {
+                .dashboard-link,
+                .users-link,
+                .projects-link,
+                .issues-link,
+                .reports-link {
+                    color: rgb(86, 86, 2) !important;
+                }
+            }
         }
 
         .active {
@@ -44,10 +52,14 @@
         align-items: center;
         justify-content: center;
         text-align: center;
-        i {
+
+        .settings-link {
+            text-decoration: none;
+        }
+
+        .settings-icon {
             font-size: 30px;
             padding: 2px;
-            color: rgb(19, 18, 18);
             transition: filter 0.2s ;
 
             &:hover {
@@ -56,16 +68,19 @@
         }
     }
 
-    .user-container {
+    .user-icon-container {
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
         text-align: center;
         transition: filter 0.3s;
+
+        .user-link {
+            text-decoration: none;
+        }
         
-        i {
-            color: rgb(224, 1, 1);
+        .user-icon {
             font-size: 25px;
             padding: 2px;
             cursor: pointer;
@@ -75,9 +90,60 @@
             }
         }
 
-        .user-name {
+        .user-name-welcome {
             font-size: 12px;
             padding: 2px;
         }
     }
+}
+
+@media (min-width: 1301px) {
+    span.icon {display:none}
+    span.text {display:inline-block}
+}
+
+@media (max-width: 1300px) {
+    span.icon {display:inline-block}
+    span.text {display:none}
+}
+
+@media (max-width: 1000px) {
+    .user-name-welcome {display: none;}
+}
+
+@media (max-width: 850px) {
+    .dashboard-link {
+        display: none !important;
+    }
+}
+
+@media (max-width: 500px) {
+    .sideBar {
+        display: grid;
+        grid-template-rows: 100%;
+        grid-template-columns: 66% 17% 17%;
+    }
+
+    .sideBar-links,
+    .settings-container,
+    .user-icon {
+        display: flex;
+        padding: 0 !important;
+        justify-content: space-evenly;
+    }
+
+    .nav-link {
+        flex-direction: row !important;
+        justify-content: space-evenly;
+    }
+    
+    .icon,
+    .settings-icon,
+    .user-icon {
+        font-size: 25px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+    }
+
 }

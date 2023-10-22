@@ -196,8 +196,20 @@
 }
 
 
-@media screen and (max-width: 400px) {
-    .form {
+@media screen and (max-width: 500px) {
+    .login-form {
         padding: 15px;
+        height: 100vh;
+    }
+
+    .login-form-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .login-title {
+        padding-top: 10%;
     }
 }

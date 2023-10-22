@@ -25,6 +25,7 @@ import { useSelector } from "react-redux";
 function Layout() {
 
     const theme = useSelector((state) => state.settings.themes[state.settings.theme]);
+    
     return (
         <PrivateRoutes>
             <section className="layout">

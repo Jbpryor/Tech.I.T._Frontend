@@ -3,16 +3,11 @@ import './dashboard.scss'
 import Issues from '../Issues/issues';
 import Projects from '../Projects/projects';
 import Reports from '../Reports/reports';
-import Users from '../Users/users';
 import { useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
 
 function Dashboard() {
 
-    const navigate = useNavigate();
-
     const demoUser = useSelector((state) => state.demoUser);
-
     const [ user, setUser ] = useState(false);
  
     useEffect(() => {

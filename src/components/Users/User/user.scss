@@ -2,22 +2,23 @@
     height: 100%;
     overflow: hidden;
 
-
     .user-container {
-        height: 100%;
+        height: 95vh;
         display: grid;
         grid-template-columns: 30% 70%;
 
         .user-buttons-container {
-            height: 92.05%;
+            display: none;
+            align-items: center;
+            justify-content: center;
+
+            &.active {
+                display: flex;
+            }
 
             .user-buttons-content {
-                margin: 15% 0;
-                padding: 2%;
                 display: flex;
                 flex-direction: column;
-                align-items: center;
-                justify-content: center;
 
                 .account-settings,
                 .notification-settings,
@@ -32,7 +33,6 @@
                     height: 100px;
                     margin: 2%;
                     width: 300px;
-                    border: 1px solid rgba(0, 0, 0, 0.143);
                     box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 4px 6px 0 rgba(0, 0, 0, 0.19);
                     cursor: pointer;
                     z-index: 1;
@@ -58,8 +58,8 @@
 
         .user-account-container {
             grid-template-rows: 20% 80%;
-            margin: 8% 15%;
-            padding: 2%;
+            height: 95vh;
+            padding: 5%;
             display: none;
 
             &.active {
@@ -68,17 +68,16 @@
 
             .user-img-container {
                 height: 100%;
-                display: grid;
-                grid-template-columns: 20% 60% 20%;
-                margin: 0 2%;
-                padding: 3% 2%;
-                border: 2px solid rgba(0, 0, 0, 0.143);
+                display: flex;
+                align-items: center;
+                grid-template-columns: repeat(2, 1fr);
                 box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 12px 0 rgba(0, 0, 0, 0.19);
 
                 .user-image-content {
                     display: flex;
-                    align-items: center;
                     justify-content: center;
+                    width: 100%;
+                    padding: 5%;
 
                     .user-image {
                         height: 75px;
@@ -91,92 +90,61 @@
                 .user-name-content {
                     display: flex;
                     flex-direction: column;
-                    align-items: flex-start;
                     justify-content: center;
-                    padding: 1%;
+                    align-items: center;
+                    padding: 5%;
+                    width: 100%;
 
                     .user-name {
-                        padding: 1%;
                         font-weight: 500;
                     }
 
                     .user-role-container {
                         display: flex;
-                        align-items: center;
-                        justify-content: flex-start;
-                        padding: 1%;
+                        justify-content: center;
                         font-size: 14px;
                         width: 100%;
-
-                        .user-role {
-                            padding: 2%;
-                        }
 
                         .user-role-select {
                             height: 25px;
                             width: 140px;
                             border-radius: 3px;
-
                         }
+                    }
 
-                        .change-role-buttons-container {
-                            margin-left: 10%;
-                            padding: 2%;
+                    .change-role-buttons-container {
+                        margin-left: 10%;
+                        padding: 2%;
 
-                            .change-role-button,
-                            .save-role-button {
-                                height: 25px;
-                                width: 125px;
-                                border-radius: 3px;
-                                border: 1px solid rgba(0, 0, 0, 0.143);
-                                box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 4px 6px 0 rgba(0, 0, 0, 0.19);
-                                cursor: pointer;
-                                z-index: 1;
-                    
-                                &:hover {
-                                    color: rgb(86, 86, 2) !important;
-                                    border: 1px solid rgb(86, 86, 2, 0.05) !important;
-                                }
+                        .change-role-button,
+                        .save-role-button {
+                            height: 25px;
+                            width: 125px;
+                            border-radius: 3px;
+                            box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 4px 6px 0 rgba(0, 0, 0, 0.19);
+                            cursor: pointer;
+                            z-index: 1;
+                
+                            &:hover {
+                                color: rgb(86, 86, 2) !important;
+                                border: 1px solid rgb(86, 86, 2, 0.05) !important;
                             }
                         }
                     }
                 }
-
-                .user-img-update-button {
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-
-                    .update {
-                        border-radius: 3px;
-                        padding: 3% 10%;
-
-                        border: 1px solid rgba(0, 0, 0, 0.143);
-                        box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 4px 6px 0 rgba(0, 0, 0, 0.19);
-                        cursor: pointer;
-                        z-index: 1;
-            
-                        &:hover {
-                            color: rgb(86, 86, 2) !important;
-                            border: 1px solid rgb(86, 86, 2, 0.05) !important;
-                        }
-                    }
-                }     
             }
 
             .user-info-container {
-                margin: 2%;
+                margin-top: 2%;
                 padding: 5%;
-                border: 2px solid rgba(0, 0, 0, 0.143);
                 box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 12px 0 rgba(0, 0, 0, 0.19);
 
-                .user-name-container,
+                .user-full-name-container,
                 .city-state-container,
                 .zip-country-container {
                     display: grid;
                     grid-template-columns: 50% 50%;
                     padding: 1%;
-                    gap: 2%;
 
                     input,
                     select {
@@ -186,6 +154,10 @@
 
                     select {
                         padding: 0.9px 0;
+                    }
+
+                    input {
+                        padding-left: 1%;
                     }
 
                     .space {
@@ -205,13 +177,13 @@
 
                 .address-container {
                     display: grid;
-                    grid-template-columns: 100%;
+                    grid-template-columns: 98%;
                     padding: 1%;
-                    gap: 2%;
 
                     input {
                         width: 100%;
                         margin: 1% 0;
+                        padding-left: 1%;
                     }
 
                     .space {
@@ -226,7 +198,6 @@
 
                 .edit-info-button-container {
                     padding: 2% 1%;
-                    margin-top: 6%;
                     display: flex;
                     align-items: flex-end;
                     justify-content: center;
@@ -237,8 +208,7 @@
                         border-radius: 3px;
                         margin: 0 5%;
                         padding: 1% 3%;
-                        width: 155px;
-                        border: 1px solid rgba(0, 0, 0, 0.143);
+                        width: 160px;
                         box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 4px 6px 0 rgba(0, 0, 0, 0.19);
                         cursor: pointer;
                         z-index: 1;
@@ -248,16 +218,13 @@
                             border: 1px solid rgb(86, 86, 2, 0.05) !important;
                         } 
                     }
-
                 }
-            }
-
- 
+            } 
         }
 
         .user-notifications-container {
-            margin: 2% 10%;
-            padding: 2%;
+            height: 95vh;
+            padding: 2% 5%;
             display: none;
 
             &.active {
@@ -267,8 +234,7 @@
             .notifications-content {
                 display: grid;
                 grid-template-rows: 20% 80%;
-                height: 100%;
-                padding: 0 5%;
+                height: 88vh;
 
                 .notifications-global,
                 .notifications-local {
@@ -276,14 +242,14 @@
                     flex-direction: column;
                     justify-content: space-evenly;
                     padding: 2% 5%;
-                    font-size: 15px;
+                    font-size: 14px;
                     border: 2px solid rgba(0, 0, 0, 0.143);
                     box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 12px 0 rgba(0, 0, 0, 0.19);
 
                     .notification-content {
                         display: grid;
                         grid-template-columns: 50% 50%;
-                        padding: 1%;
+                        padding: 0.5%;
 
                         .notification-button-container {
                             display: flex;
@@ -293,18 +259,16 @@
 
                     .notification-header {
                         font-weight: 500;
-                        font-size: 17px;
+                        font-size: 16px;
                     }
                     
                     .notification-save-button-container {
-                        margin: 1%;
                         padding: 2% 0;
                     }
      
                 }
 
                 .notifications-local {
-                    padding: 1% 5%;
                     margin-top: 2%;
                 }
 
@@ -312,15 +276,13 @@
                 .disable {
                     border-radius: 3px;
                     padding: 0.5% 7%;
-                    border: 1px solid rgba(0, 0, 0, 0.143);
                     box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 4px 6px 0 rgba(0, 0, 0, 0.19);
-                    background-color: white;
                     cursor: pointer;
                     z-index: 1;
         
                     &:hover {
-                        color: rgb(86, 86, 2);
-                        border: 1px solid rgb(86, 86, 2, 0.05);
+                        color: rgb(86, 86, 2) !important;
+                        border: 1px solid rgb(86, 86, 2, 0.05) !important;
                     }
                 }
 
@@ -336,7 +298,6 @@
                 .notifications-save-button {
                     border-radius: 3px;
                     padding: 1% 5%;
-                    border: 1px solid rgba(0, 0, 0, 0.143);
                     box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 4px 6px 0 rgba(0, 0, 0, 0.19);
                     cursor: pointer;
                     z-index: 1;
@@ -346,87 +307,183 @@
                         border: 1px solid rgb(86, 86, 2, 0.05) !important;
                     }
                 }
-
-            }
-
-            
+            }            
         }
 
         .user-password-container {
-            margin: 10% 25%;
-            padding: 2%;
-            border: 2px solid rgba(0, 0, 0, 0.143);
-            box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 12px 0 rgba(0, 0, 0, 0.19);
+            height: 95vh;
+            padding: 5%;
             display: none;
 
             &.active {
                 display: inherit;
             }
-
-            .title-container {
+            
+            .user-password-content {
                 display: grid;
-                grid-template-columns: 80% 20%;
-
-                .title {
-                    font-size: 17px;
-                    font-weight: 800;
-                    padding: 1%;
+                grid-template-rows: 35% 50% 15%;
+                box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 12px 0 rgba(0, 0, 0, 0.19);
+    
+                .title-container {
+                    display: grid;
+                    grid-template-columns: 80% 20%;
+                    padding: 2%;
+    
+                    .title {
+                        font-size: 17px;
+                        font-weight: 800;
+                        padding: 1%;
+                    }
+    
+                    .password-details {
+                        font-size: 13px;
+                        padding: 5%;
+                    }
+                    
+                    .password-icon {
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        font-size: 50px;
+    
+                        i {
+                            font-size: 50px;
+                        }
+                    }
                 }
-
-                .password-details {
-                    font-size: 13px;
-                    padding: 5%;
+    
+                .password-content {
+                    padding: 0 4%;
+    
+                    .current-password,
+                    .new-password,
+                    .re-enter-password {
+                        padding: 2%;
+                        width: 100%;
+                    }
+    
+                    input {
+                        width: 100%;
+                    }
                 }
-                
-                .password-icon {
+    
+                .new-password-button-container {
+                    width: 100%;
                     display: flex;
                     align-items: center;
                     justify-content: center;
-                    font-size: 50px;
-
-                    i {
-                        font-size: 50px;
+    
+                    .new-password-submit-button {
+                        border-radius: 3px;
+                        padding: 1% 5%;
+                        box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 4px 6px 0 rgba(0, 0, 0, 0.19);
+                        cursor: pointer;
+                        z-index: 1;
+            
+                        &:hover {
+                            color: rgb(86, 86, 2) !important;
+                            border: 1px solid rgb(86, 86, 2, 0.05) !important;
+                        } 
                     }
-                }
-            }
-
-            .password-content {
-                padding: 0 4%;
-                margin: 5% 1%;
-
-                .current-password,
-                .new-password,
-                .re-enter-password {
-                    padding: 2%;
-                    width: 100%;
-                }
-
-                input {
-                    width: 100%;
-                }
-            }
-
-            .new-password-button-container {
-                width: 100%;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                padding: 2%;
-
-                .new-password-submit-button {
-                    border-radius: 3px;
-                    padding: 1% 5%;
-                    border: 1px solid rgba(0, 0, 0, 0.143);
-                    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 4px 6px 0 rgba(0, 0, 0, 0.19);
-                    cursor: pointer;
-                    z-index: 1;
-        
-                    &:hover {
-                        color: rgb(86, 86, 2) !important;
-                        border: 1px solid rgb(86, 86, 2, 0.05) !important;
-                    } 
                 }
             }
         }
     }
+}
+
+
+
+@media (max-width: 1200px) {
+    .user-buttons-container,
+    .user-account-container,
+    .user-notifications-container,
+    .user-password-container {
+        width: 95vw;
+        padding: 0 !important;
+    }  
+}
+
+@media (max-width: 500px) {
+
+    .user-buttons-container,
+    .user-account-container,
+    .user-notifications-container,
+    .user-password-container {
+        width: 100vw !important;
+        font-size: 14px;
+    }
+
+    .user-account-container {
+        grid-template-rows: 15% 85% !important;
+    }
+
+    .account-settings,
+    .notification-settings,
+    .password-settings,
+    .remove-user {
+        width: 100vw !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    .user-image {
+        height: 60px !important;
+        width: 60px !important;
+    }
+
+    .user-name,
+    .user-role-container,
+    .change-role-buttons-container {
+        padding-bottom: 2%;
+    }
+    
+    .user-role-container,
+    .user-role-select {
+        width: auto !important;
+        font-size: 12px !important;
+    }
+
+    .change-role-buttons-container {
+        margin: 0 !important;
+    } 
+    
+    .user-info-container {
+        margin: 0 !important;
+        height: 100% !important;
+        padding: 2% !important;
+        width: 100vw;
+
+        .user-full-name-container,
+        .city-state-container,
+        .zip-country-container,
+        .address-container {
+            display: flex !important;
+            flex-direction: column !important;
+            font-size: 14px;
+            padding: 0 !important;
+
+            input,
+            select,
+            .space {
+                width: 100% !important;
+                margin: 0 !important;
+            }
+        }
+    }
+
+    .user-full-name-content,
+    .user-email-content,
+    .address-content,
+    .city-content,
+    .state-content,
+    .zip-content,
+    .country-content {
+        padding: 3%;
+    }
+
+    .save-info-button,
+    .cancel-edit-info-button {
+        margin-top: 4% !important;
+    }
+
 }

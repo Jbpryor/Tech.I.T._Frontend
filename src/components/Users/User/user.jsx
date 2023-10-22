@@ -5,6 +5,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { modifyUser, removeUser } from "../../../Store/Slices/userSlice";
 import CountryMenu from "./Country Menu/countryMenu";
 import PictureContent from "./Picture Content/pictureContent";
+import UserButtons from "./User Buttons/userButtons";
 
 function User() {
 
@@ -12,66 +13,11 @@ function User() {
 
     const dispatch = useDispatch();
 
+    const { userId } = useParams();
+
     const demoUser = useSelector((state) => state.demoUser);
     const theme = useSelector((state) => state.settings.themes[state.settings.theme]);
-
-    const [ accountActive, setAccountActive ] = useState(true);
-    const [ notificationsActive, setNotificationsActive ] = useState(false);
-    const [ passwordActive, setPasswordActive ] = useState(false);
-    const [ viewUserButtons, setViewUserButtons ] = useState(true);
-
-    const handleAccountActive = () => {
-        setAccountActive(true);
-        setNotificationsActive(false);
-        setPasswordActive(false);
-
-        if (window.innerWidth < 1200) {
-            setViewUserButtons(false)
-        }
-    };
-
-    const handleNotificationsActive = () => {
-        setAccountActive(false);
-        setNotificationsActive(true);
-        setPasswordActive(false);
-
-        if (window.innerWidth < 1200) {
-            setViewUserButtons(false)
-        }
-    };
-
-    const handlePasswordActive =() => {
-        setAccountActive(false);
-        setNotificationsActive(false);
-        setPasswordActive(true);
-
-        if (window.innerWidth < 1200) {
-            setViewUserButtons(false)
-        }
-    };
-
-    const handleResize = () => {
-        if (window.innerWidth < 1200) {
-            setAccountActive(false);
-            setNotificationsActive(false);
-            setPasswordActive(false);
-        } else {
-            setAccountActive(true);
-            setNotificationsActive(false);
-            setPasswordActive(false);
-        }
-    };
-
-    useEffect(() => {
-        handleResize();
-        window.addEventListener("resize", handleResize);
-        return () => {
-            window.removeEventListener("resize", handleResize);
-        };
-    }, []);
-
     const users = useSelector((state) => state.users);
-    const { userId } = useParams();
 
     const user = users.find((user) => {
         if (typeof user.id === 'string') {
@@ -88,6 +34,12 @@ function User() {
     const [ state, setState ] = useState(user.address && user.address.state ? user.address.state : '');
     const [ zip, setZip ] = useState(user.address && user.address.zip ? user.address.zip : '');
     const [ country, setCountry ] = useState(user.address && user.address.country ? user.address.country : '');
+
+    const [ accountActive, setAccountActive ] = useState(true);
+    const [ notificationsActive, setNotificationsActive ] = useState(false);
+    const [ passwordActive, setPasswordActive ] = useState(false);
+    const [ viewUserButtons, setViewUserButtons ] = useState(true);
+    const [, setProfilePicture] = useState(null);
 
     const handleEdit = () => {
         setEditMode(true);
@@ -117,17 +69,12 @@ function User() {
             ...user,
             email: email,
             address: updatedAddress,
-        };
+        };    
     
-    
-        dispatch(modifyUser(updatedUser));
-    
+        dispatch(modifyUser(updatedUser));    
         setEditMode(false);
-
         alert('Information Saved!');
     };
-
-    const [, setProfilePicture] = useState(null);
 
     const handleFileSelected = (file) => {
       setProfilePicture(file);
@@ -145,26 +92,7 @@ function User() {
         <section className="user" style={{ color: theme.font_color, background: theme.background_color }} >
             <div className="user-container">
 
-                <div className={`user-buttons-container ${viewUserButtons ? 'active' : ''}`}>
-                    <div className="user-buttons-content">
-                        <div className="account-settings" onClick={handleAccountActive} style={{ background: theme.primary_color, border: `1px solid ${theme.border}` }} >
-                            <div className="button-title">Account</div>
-                            <div className="button-details">Details about your Personal information</div>
-                        </div>
-                        <div className="notification-settings" onClick={handleNotificationsActive} style={{ background: theme.primary_color, border: `1px solid ${theme.border}` }} >
-                            <div className="button-title">Notifications</div>
-                            <div className="button-details">Details about your Notifications</div>
-                        </div>
-                        <div className="password-settings" onClick={handlePasswordActive} style={{ background: theme.primary_color, border: `1px solid ${theme.border}` }} >
-                            <div className="button-title">Password & Security</div>
-                            <div className="button-details">Details about your Password & Security</div>
-                        </div>
-                        {(demoUser === 'admin') && <div className="remove-user" onClick={handleRemoveUser} style={{ background: theme.primary_color, border: `1px solid ${theme.border}` }} >
-                            <div className="button-title">Delete Account</div>
-                            <div className="button-details">This will remove this user</div>
-                        </div>}
-                    </div>
-                </div>
+                <UserButtons setAccountActive={setAccountActive} setNotificationsActive={setNotificationsActive} setPasswordActive={setPasswordActive} viewUserButtons={viewUserButtons} setViewUserButtons={setViewUserButtons} demoUser={demoUser} theme={theme} handleRemoveUser={handleRemoveUser}  />
 
                 <div className={`user-account-container ${accountActive ? 'active' : ''}`}>
 

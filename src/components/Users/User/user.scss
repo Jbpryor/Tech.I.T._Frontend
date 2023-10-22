@@ -276,6 +276,7 @@
                 .disable {
                     border-radius: 3px;
                     padding: 0.5% 7%;
+                    height: 25px;
                     box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 4px 6px 0 rgba(0, 0, 0, 0.19);
                     cursor: pointer;
                     z-index: 1;
@@ -484,6 +485,46 @@
     .save-info-button,
     .cancel-edit-info-button {
         margin-top: 4% !important;
+    }
+
+    .notifications-content {
+        height: 100% !important;
+        grid-template-rows: 15% 85% !important;
+    }
+
+    .notifications-global,
+    .notifications-local {
+        padding: 5% 1% !important;
+        font-size: 13px !important;
+        justify-content: flex-start !important;
+    }
+
+    .notifications-local {
+        margin: 0 !important;
+    }
+
+    .notification-content {
+        padding: 1% 0 !important;
+    }
+
+    .notification-header {
+        font-size: 15px !important;
+        padding: 10% 0;
+    }
+
+    .notification-save-button-container {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center;
+        height: 35%;
+    }
+
+    .user-password-container {
+        height: 90vh !important;
+    }
+
+    .user-password-content {
+        grid-template-rows: 35% 40% 25% !important;
     }
 
 }

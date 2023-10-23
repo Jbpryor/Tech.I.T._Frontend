@@ -1,8 +1,8 @@
 import React, { useState, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
-import { userRoles } from "../../../../Constants/userRoles";
-import { changeUserRole } from "../../../../Store/Slices/userSlice";
+import { userRoles } from "../../../../../Constants/userRoles";
+import { changeUserRole } from "../../../../../Store/Slices/userSlice";
 
 const PictureContent = ({ onFileSelected }) => {
   const [selectedFile, setSelectedFile] = useState(null);
@@ -29,14 +29,14 @@ const PictureContent = ({ onFileSelected }) => {
       };
 
       reader.readAsDataURL(file);
-    };
-  };
-
-  const openExplorer = () => {
-    if (inputRef.current) {
-      inputRef.current.click();
     }
   };
+
+  // const openExplorer = () => {
+  //   if (inputRef.current) {
+  //     inputRef.current.click();
+  //   }
+  // };
 
   const users = useSelector((state) => state.users);
   const { userId } = useParams();
@@ -62,11 +62,11 @@ const PictureContent = ({ onFileSelected }) => {
   //   storeProfilePicture(file, uniqueFilename);
   // };
 
-  const storeProfilePicture = (file) => {
-    const imagesDirectory = `${process.env.PUBLIC_URL}/images`;
-    const filePath = `${imagesDirectory}/${uniqueFilename}`;
-    localStorage.setItem(filePath, file);
-  };
+  // const storeProfilePicture = (file) => {
+  //   const imagesDirectory = `${process.env.PUBLIC_URL}/images`;
+  //   const filePath = `${imagesDirectory}/${uniqueFilename}`;
+  //   localStorage.setItem(filePath, file);
+  // };
 
   const [userRole, setUserRole] = useState("");
   const [editedRole, setEditedRole] = useState({});
@@ -95,9 +95,28 @@ const PictureContent = ({ onFileSelected }) => {
   };
 
   return (
-    <>
+    <div
+      className={`user-img-container ${demoUser === 'admin' || demoUser === 'manager' ? 'admin' : '' }`}
+      style={{
+        background: theme.primary_color,
+        border: `2px solid ${theme.border}`,
+      }}
+    >
       <div className="user-image-content">
-      <div ref={inputRef} onClick={(event) => { event.stopPropagation(); inputRef.current.click() }}>
+        <div
+          ref={inputRef}
+          onClick={() => {
+            inputRef.current.click();
+            console.log('here');
+          }}
+        >
+          <input
+            type="file"
+            accept="image/*"
+            onChange={handleFileChange}
+            style={{ display: "none" }}
+            ref={inputRef}
+          />
           {selectedFile ? (
             <img className="user-image" src={selectedFile} alt="Profile" />
           ) : (
@@ -107,13 +126,6 @@ const PictureContent = ({ onFileSelected }) => {
               alt="Generic Profile"
             />
           )}
-          <input
-            type="file"
-            accept="image/*"
-            onChange={handleFileChange}
-            style={{ display: "none" }}
-            ref={inputRef}
-          />
         </div>
       </div>
       <div className="user-name-content">
@@ -178,7 +190,7 @@ const PictureContent = ({ onFileSelected }) => {
           )}
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

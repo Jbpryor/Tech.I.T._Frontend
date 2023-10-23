@@ -1,6 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate } from "react-router-dom";
+import { removeUser } from "../../../../Store/Slices/userSlice";
 
-function UserButtons({ setAccountActive, setNotificationsActive, setPasswordActive, viewUserButtons, setViewUserButtons, demoUser, theme, handleRemoveUser }) {
+
+function UserButtons({ user, setAccountActive, setNotificationsActive, setPasswordActive, viewUserButtons, setViewUserButtons, theme }) {
+
+    const demoUser = useSelector((state) => state.demoUser);
+
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const handleAccountActive = () => {
         setAccountActive(true);
@@ -32,6 +41,13 @@ function UserButtons({ setAccountActive, setNotificationsActive, setPasswordActi
         }
     };
 
+    const handleRemoveUser = () => {
+        // this needs a nav to enter password to delete
+        dispatch(removeUser(user.id));
+        alert('User Deleted');
+        navigate('/users');
+    };
+
     const handleResize = () => {
         if (window.innerWidth < 1200) {
             setAccountActive(false);
@@ -51,6 +67,7 @@ function UserButtons({ setAccountActive, setNotificationsActive, setPasswordActi
             window.removeEventListener("resize", handleResize);
         };
     }, []);
+
 
     return (
         <div className={`user-buttons-container ${viewUserButtons ? 'active' : ''}`}>

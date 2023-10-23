@@ -25,7 +25,7 @@
                 align-items: center;
                 justify-content: flex-start;
 
-                i {
+                .project-icon {
                     font-size: 30px;
                 }
             }
@@ -64,12 +64,6 @@
             .priority-container {
                 grid-area: priority;
             }
-            
-            .status-container,
-            .priority-container {
-                padding: 1%;
-                box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 12px 0 rgba(0, 0, 0, 0.19);
-            }
 
             .status-container,
             .priority-container {
@@ -77,6 +71,8 @@
                 flex-direction: column;
                 margin: 0 10%;
                 font-size: 12px;
+                padding: 1%;
+                box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 12px 0 rgba(0, 0, 0, 0.19);
                 
                 .priority-header,
                 .status-header {
@@ -122,8 +118,6 @@
                             justify-content: flex-end;
                             align-items: center;
 
-
-
                             .priority-left,
                             .status-left {
                                 display: flex;
@@ -152,6 +146,40 @@
             }
         }
 
+        .project-buttons-container {
+            display: none;
+            flex-direction: column;
+            width: 100vw;
+
+            .project-issues-button-container.inactive {
+                display: none;
+            }
+
+            .project-users-button-container.inactive {
+                display: none;
+            }
+
+            .project-issues-button,
+            .project-users-button {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                border-radius: 3px;
+                padding: 2%;
+                height: 100px;
+                width: 100%;
+                box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 4px 6px 0 rgba(0, 0, 0, 0.19);
+                cursor: pointer;
+                z-index: 1;
+    
+                &:hover {
+                    color: rgb(86, 86, 2) !important;
+                    border: 1px solid rgb(86, 86, 2, 0.05) !important;
+                }
+            }
+        }
+
         .project-issues-content {
             margin-top: 2%;
         }
@@ -159,7 +187,113 @@
         .project-users-content {
             margin-top: 2%;
         }
+    }
+}
 
+@media screen and (max-width: 850px) {
 
+    .project-container {
+        display: block !important;
+    }
+
+    .project-title-container {
+        margin: 2% 0 !important;
+        padding: 1% !important;
+    }
+
+    .project-name,
+    .project-manager,
+    .project-created {
+        font-size: 13px !important;
+        flex-direction: column !important;
+    }
+
+    .project-status-content {
+        margin: 0 !important;
+    }
+
+    .status-container,
+    .priority-container {
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    .project-icon {
+        display: none!important;
+    }
+}
+
+@media screen and (max-width: 750px) {
+
+    .priority-content,
+    .status-content {
+        font-size: 11px !important;
+    }
+
+    .status-counts,
+    .priority-counts {
+        padding: 0 !important;
+    }
+
+    .priority-dot,
+    .status-dot {
+        margin-right: 5px !important;
+        height: 5px !important;
+        width: 5px !important;
+    }
+}
+
+@media screen and (max-width: 550px) {
+
+    .project-container {
+        display: flex !important;
+        flex-direction: column !important; 
+    }
+
+    .project-title-container,
+    .project-issues-content,
+    .project-users-content {
+        margin: 0 !important;
+    }
+
+    .project-status-content {
+        display: flex !important;
+        flex-direction: column !important;
+    }
+
+    .project-manager,
+    .project-created {
+        display: none !important;
+    }
+
+    .project-name {
+        flex-direction: row !important;
+    }
+
+    .status-container,
+    .priority-container {
+        height: 200px;
+    }
+}
+
+@media screen and (max-width: 500px) {
+
+    .project-buttons-container {
+        display: flex !important;
+    }
+    .project-issues-content,
+    .project-users-content {
+        display: none !important;
+        height: 0 !important;
+    }
+
+    .project-issues-content.active {
+        display: flex !important;
+        flex-direction: column !important;
+    }
+
+    .project-users-content.active {
+        display: flex !important;
+        flex-direction: column !important;
     }
 }

@@ -1,12 +1,10 @@
-import React, { PureComponent } from "react";
+import React, { useState, useEffect } from "react";
 import './project.scss';
 import Users from "../../Users/users";
 import Issues from "../../Issues/issues";
 import { useSelector } from "react-redux";
 import { useParams, Link, useLocation } from "react-router-dom";
 import { PieChart, Pie, Sector, Cell, ResponsiveContainer, Tooltip } from 'recharts';
-
-
 
 
 function Project() {
@@ -70,13 +68,47 @@ function Project() {
         { name: 'Low', count: priorityCounts['Low'], color: 'rgb(0, 255, 255)' },
     ];
 
+    const [innerRadius, setInnerRadius] = useState(50);
+    const [outerRadius, setOuterRadius] = useState(70);
+    
+    const updatePieChartSize = () => {
+      if (window.innerWidth <= 750) {
+        setInnerRadius(35);
+        setOuterRadius(55);
+      } else {
+        setInnerRadius(50);
+        setOuterRadius(70);
+      }
+    };
+  
+    useEffect(() => {
+      updatePieChartSize();  
+      window.addEventListener('resize', updatePieChartSize);  
+      return () => {
+        window.removeEventListener('resize', updatePieChartSize);
+      };
+    }, []);
+
+    const [ viewProjectIssues, setViewProjecIssuess ] = useState(false);
+    const [ viewProjectUsers, setViewProjectUsers ] = useState(false);
+
+    const handleProjectIssues = () => {
+        setViewProjecIssuess(true);
+        setViewProjectUsers(false);
+    }
+
+    const handleProjectUsers = () => {
+        setViewProjecIssuess(false);
+        setViewProjectUsers(true);
+    }
+
     return (
         <section className="project">
             <div className="project-container">
 
                 <div className="project-title-container" style={{ background: theme.primary_color, border: `2px solid ${theme.border}`, color: theme.font_color }} >
                     <div className="project-icon-container">
-                        <i className='bx bxs-bug' ></i>
+                        <i className='bx bxs-bug project-icon' ></i>
                     </div>
                     <div className="project-name">
                         <div className="project-name-left">Project Name:</div>
@@ -115,9 +147,9 @@ function Project() {
                                         />
                                         <Pie
                                             data={statusData}
-                                            innerRadius={50}
-                                            outerRadius={70}
-                                            paddingAngle={5}
+                                            innerRadius={innerRadius}
+                                            outerRadius={outerRadius}
+                                            paddingAngle={3.25}
                                             dataKey="count"
                                         >
                                             {statusData.map((status) => (
@@ -151,9 +183,9 @@ function Project() {
                                         />
                                         <Pie
                                             data={priorityData}
-                                            innerRadius={50}
-                                            outerRadius={70}
-                                            paddingAngle={5}
+                                            innerRadius={innerRadius}
+                                            outerRadius={outerRadius}
+                                            paddingAngle={3.25}
                                             dataKey="count"
                                         >
                                             {priorityData.map((priority) => (
@@ -166,13 +198,22 @@ function Project() {
                         </div>
                     </div>
                     
-                </div>                
+                </div>
 
-                <div className="project-issues-content">
+                <div className="project-buttons-container">
+                    <div className={`project-issues-button-container ${viewProjectIssues ? 'inactive' : '' }`} >
+                        <button className="project-issues-button" onClick={handleProjectIssues} style={{ background: theme.primary_color, border: `2px solid ${theme.border}`, color: theme.font_color }} >Project Issues</button>
+                    </div>
+                    <div className={`project-users-button-container ${viewProjectUsers ? 'inactive' : '' }`} >
+                        <button className="project-users-button" onClick={handleProjectUsers} style={{ background: theme.primary_color, border: `2px solid ${theme.border}`, color: theme.font_color }} >Project Users</button>
+                    </div>
+                </div>               
+
+                <div className={`project-issues-content ${viewProjectIssues ? 'active' : ''}`}>
                     <Issues projectIssues={projectIssues} />
                 </div>
 
-                <div className="project-users-content">
+                <div className={`project-users-content ${viewProjectUsers ? 'active' : ''}`}>
                     <Users projectUsers={projectUsers} />
                 </div>
 

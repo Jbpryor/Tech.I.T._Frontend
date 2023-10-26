@@ -9,6 +9,7 @@ import {
 } from "../../../Store/Slices/issueSlice";
 import IssueModifications from "./Modificatons/issueModifications";
 import Comments from "./Comments/comments";
+import useWindowSize from "../../../Hooks/useWindowSize";
 
 function Issue() {
   const navigate = useNavigate();
@@ -147,6 +148,11 @@ function Issue() {
     setModificationsViewActive(!isModificationsViewActive);
   };
 
+  const { width } = useWindowSize();
+
+  const smallerScreen = width < 500;
+  const midSizeScreen = width < 1000;
+
   return (
     <section
       className={`issue ${isDraggingPage ? "dragging" : ""}`}
@@ -155,23 +161,53 @@ function Issue() {
     >
       {isModificationsViewActive ? (
         <div className="modifications-container">
-          <IssueModifications issue={issue} theme={theme} />
-          <div className="mod-button-container">
-            <button
-              className="issues-view-button"
-              onClick={toggleModificationView}
+          {midSizeScreen ? (
+            <div
+              className="modifications-return-title"
               style={{
-                background: theme.primary_color,
-                border: `2px solid ${theme.border}`,
                 color: theme.font_color,
               }}
             >
-              Back to issue
-            </button>
-          </div>
+              <i
+                className="bx bx-left-arrow modifications-icon"
+                onClick={toggleModificationView}
+              ></i>
+              <div>Modifications</div>
+            </div>
+          ) : null}
+          <IssueModifications issue={issue} theme={theme} smallerScreen={smallerScreen} />
+              {!midSizeScreen ? (
+                          <div className="mod-button-container">
+                          <button
+                            className="issues-view-button"
+                            onClick={toggleModificationView}
+                            style={{
+                              background: theme.primary_color,
+                              border: `2px solid ${theme.border}`,
+                              color: theme.font_color,
+                            }}
+                          >
+                            Back to issue
+                          </button>
+                        </div>
+              ) : null}
         </div>
       ) : (
         <div className="issue-container">
+          {smallerScreen ? (
+            <div
+              className="issue-return-title"
+              style={{
+                color: theme.font_color,
+              }}
+            >
+              <i
+                className="bx bx-left-arrow issue-icon"
+                onClick={() => navigate("/issues")}
+              ></i>
+              <div>Issue</div>
+            </div>
+          ) : null}
           <div
             className="issue-content"
             style={{
@@ -273,7 +309,48 @@ function Issue() {
                         {editedDetail[detail] || issue[detail]}
                       </div>
                     )}
-                    {detail === "modified" ? (
+                    {smallerScreen ? (
+                      detail === "modified" ? (
+                        <button
+                          className="modificatins-modify-button"
+                          onClick={toggleModificationView}
+                          style={{
+                            background: theme.primary_color,
+                            color: theme.font_color,
+                            border: `none`,
+                            boxShadow: "none",
+                          }}
+                        >
+                          <i className="bx bx-right-arrow"></i>
+                        </button>
+                      ) : isEditMode[detail] ? (
+                        <button
+                          className="modifications-cancel-button"
+                          onClick={() => handleCancel(detail)}
+                          style={{
+                            background: theme.primary_color,
+                            color: theme.font_color,
+                            border: `none`,
+                            boxShadow: "none",
+                          }}
+                        >
+                          X
+                        </button>
+                      ) : (
+                        <button
+                          className="modificatins-modify-button"
+                          onClick={() => handleEdit(detail)}
+                          style={{
+                            background: theme.primary_color,
+                            color: theme.font_color,
+                            border: `none`,
+                            boxShadow: "none",
+                          }}
+                        >
+                          <i className="bx bx-right-arrow"></i>
+                        </button>
+                      )
+                    ) : detail === "modified" ? (
                       <button
                         className="modifications-view-button"
                         onClick={toggleModificationView}
@@ -287,6 +364,7 @@ function Issue() {
                       </button>
                     ) : isEditMode[detail] ? (
                       <button
+                        className="modifications-cancel-button"
                         onClick={() => handleCancel(detail)}
                         style={{
                           background: theme.background_color,
@@ -298,6 +376,7 @@ function Issue() {
                       </button>
                     ) : (
                       <button
+                        className="modificatins-modify-button"
                         onClick={() => handleEdit(detail)}
                         style={{
                           background: theme.background_color,
@@ -339,24 +418,16 @@ function Issue() {
               )}
             </div>
           </div>
-          <div className="new-issue-link-container">
-            <Link
-              to="/issues/newIssue"
-              className="new-issue-link"
-              style={{
-                background: theme.primary_color,
-                border: `2px solid ${theme.border}`,
-                color: theme.font_color,
-              }}
-            >
-              New Issue +
-            </Link>
-          </div>
         </div>
       )}
 
-      <Comments issue={issue} timeStamp={timeStamp} theme={theme} />
-      
+      <Comments
+        issue={issue}
+        timeStamp={timeStamp}
+        theme={theme}
+        smallerScreen={smallerScreen}
+      />
+
       <div
         className="issue-attachments-container"
         style={{
@@ -384,17 +455,31 @@ function Issue() {
                   {file.name}
                 </Link>
                 <div className="issue-attachments-button-container">
-                  <button
-                    className="delete-button"
-                    onClick={() => handleDeleteFile(index)}
-                    style={{
-                      border: `1px solid ${theme.border}`,
-                      background: theme.background_color,
-                      color: theme.font_color,
-                    }}
-                  >
-                    delete
-                  </button>
+                  {smallerScreen ? (
+                    <button
+                      className="delete-button"
+                      onClick={() => handleDeleteFile(index)}
+                      style={{
+                        border: `1px solid ${theme.border}`,
+                        background: theme.background_color,
+                        color: theme.font_color,
+                      }}
+                    >
+                      X
+                    </button>
+                  ) : (
+                    <button
+                      className="delete-button"
+                      onClick={() => handleDeleteFile(index)}
+                      style={{
+                        border: `1px solid ${theme.border}`,
+                        background: theme.background_color,
+                        color: theme.font_color,
+                      }}
+                    >
+                      delete
+                    </button>
+                  )}
                 </div>
               </>
             ))}
@@ -434,12 +519,18 @@ function Issue() {
               </div>
             ) : (
               <>
-                <div className="issue-attachments-link">
-                  {isDraggingPage
-                    ? "Drop files here or "
-                    : "Drag files here or "}{" "}
-                  <label htmlFor="file-input">browse</label>
-                </div>
+                {smallerScreen ? (
+                  <div className="issue-attachments-link">
+                    <label htmlFor="file-input">Add a file</label>
+                  </div>
+                ) : (
+                  <div className="issue-attachments-link">
+                    {isDraggingPage
+                      ? "Drop files here or "
+                      : "Drag files here or "}{" "}
+                    <label htmlFor="file-input">browse</label>
+                  </div>
+                )}
                 <input
                   className="issue-attachment-file-input"
                   type="file"

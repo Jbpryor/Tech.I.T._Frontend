@@ -35,3 +35,16 @@
         }
     }
 }
+
+@media screen and (max-width: 1000px) {
+    .mod-content {
+        margin: 0;
+    }
+}
+
+@media screen and (max-width: 500) {
+    .mod-content {
+        padding: 3% !important;
+    }
+
+}

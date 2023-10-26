@@ -85,7 +85,7 @@ function NewUser() {
   };
 
   return (
-    <section className="new-user" style={{ color: theme.font_color }} >
+    <section className="new-user" style={{ color: theme.font_color }}>
       <div
         className="new-user-container"
         style={{
@@ -109,7 +109,7 @@ function NewUser() {
               style={{
                 background: theme.background_color,
                 border: `0.5px solid ${theme.border}`,
-                color: theme.font_color
+                color: theme.font_color,
               }}
             />
           </label>
@@ -125,7 +125,7 @@ function NewUser() {
               style={{
                 background: theme.background_color,
                 border: `0.5px solid ${theme.border}`,
-                color: theme.font_color
+                color: theme.font_color,
               }}
             />
           </label>
@@ -141,7 +141,7 @@ function NewUser() {
               style={{
                 background: theme.background_color,
                 border: `0.5px solid ${theme.border}`,
-                color: theme.font_color
+                color: theme.font_color,
               }}
             />
           </label>
@@ -177,7 +177,15 @@ function NewUser() {
             </select>
           </label>
           <div className="new-user-button-container">
-            <button className="add-new-user" type="submit" style={{ border: `1px solid ${theme.border}`, background: theme.background_color, color: theme.font_color }} >
+            <button
+              className="add-new-user"
+              type="submit"
+              style={{
+                border: `1px solid ${theme.border}`,
+                background: theme.background_color,
+                color: theme.font_color,
+              }}
+            >
               Add New User
             </button>
           </div>

@@ -3,7 +3,7 @@ import { addComment, deleteComment } from "../../../../Store/Slices/issueSlice";
 import { useDispatch } from "react-redux";
 import { formatTimestamp } from "../../../../main";
 
-function Comments({ issue, timeStamp, theme }) {
+function Comments({ issue, timeStamp, theme, smallerScreen }) {
 
     const dispatch = useDispatch();
 
@@ -47,7 +47,7 @@ function Comments({ issue, timeStamp, theme }) {
                         <div className="issue-comments-user-container">
                             <div className="issue-comments-user">{comment.userName}</div>            
                         </div>
-                        <div className="issue-comment-container">
+                        <div className="issue-comment-content">
                             <div className="issue-comment">{comment.comment}</div>
                         </div>
                         <div className="issue-comments-date-container">
@@ -55,7 +55,11 @@ function Comments({ issue, timeStamp, theme }) {
                         </div>
                         <div className="issue-comments-buttons-container">
                             <div className="issue-comments-button-container">
-                                <button className="delete-button" onClick={() => handleDeleteComment(index)} style={{ background: theme.primary_color, color: theme.font_color, border: `2px solid ${theme.border}` }} >delete</button>
+                                {smallerScreen ? (
+                                    <button className="delete-button" onClick={() => handleDeleteComment(index)} style={{ background: 'none', color: theme.font_color, border: 'none', boxShadow: 'none' }} >X</button>
+                                ) : (
+                                    <button className="delete-button" onClick={() => handleDeleteComment(index)} style={{ background: theme.primary_color, color: theme.font_color, border: `2px solid ${theme.border}` }} >delete</button>
+                                )}
                             </div>
                         </div>
                     </div>

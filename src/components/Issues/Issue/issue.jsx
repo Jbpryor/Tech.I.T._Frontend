@@ -175,22 +175,26 @@ function Issue() {
               <div>Modifications</div>
             </div>
           ) : null}
-          <IssueModifications issue={issue} theme={theme} smallerScreen={smallerScreen} />
-              {!midSizeScreen ? (
-                          <div className="mod-button-container">
-                          <button
-                            className="issues-view-button"
-                            onClick={toggleModificationView}
-                            style={{
-                              background: theme.primary_color,
-                              border: `2px solid ${theme.border}`,
-                              color: theme.font_color,
-                            }}
-                          >
-                            Back to issue
-                          </button>
-                        </div>
-              ) : null}
+          <IssueModifications
+            issue={issue}
+            theme={theme}
+            smallerScreen={smallerScreen}
+          />
+          {!midSizeScreen ? (
+            <div className="mod-button-container">
+              <button
+                className="issues-view-button"
+                onClick={toggleModificationView}
+                style={{
+                  background: theme.primary_color,
+                  border: `2px solid ${theme.border}`,
+                  color: theme.font_color,
+                }}
+              >
+                Back to issue
+              </button>
+            </div>
+          ) : null}
         </div>
       ) : (
         <div className="issue-container">

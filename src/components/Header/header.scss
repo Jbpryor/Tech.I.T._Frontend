@@ -41,12 +41,11 @@
                 }
             }
             
-            .search-button {
+            .cancel-search-button {
                 cursor: pointer;
-                background-color: transparent;
 
                 &:hover {
-                    color: rgb(86, 86, 2);
+                    color: rgb(86, 86, 2) !important;
                 }
             }
         }
@@ -189,4 +188,29 @@
     .notification-container {
         padding: 0 3% !important;
     }
+
+    .search-container {
+        padding: 0 !important;
+        margin: 0 !important;
+
+        &.active {
+            width: 100%;
+        }
+    }
+
+    .search-bar {
+        width: 100% !important;
+        display: flex;
+        justify-content: center;
+        padding: 0 !important;
+    }
+
+    .search-input {
+        width: 100%;
+    }
+
+    .search-select {
+        width: 50px;
+    }
+
 }

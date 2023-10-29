@@ -107,7 +107,6 @@ const PictureContent = ({ onFileSelected }) => {
           ref={inputRef}
           onClick={() => {
             inputRef.current.click();
-            console.log('here');
           }}
         >
           <input
@@ -122,7 +121,7 @@ const PictureContent = ({ onFileSelected }) => {
           ) : (
             <img
               className="user-image"
-              src="/images/generic-profile-image.jpg"
+              src="public/images/generic-profile-image.jpg"
               alt="Generic Profile"
             />
           )}

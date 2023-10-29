@@ -121,7 +121,7 @@ const PictureContent = ({ onFileSelected }) => {
           ) : (
             <img
               className="user-image"
-              src="public/images/generic-profile-image.jpg"
+              src="/images/generic-profile-image.jpg"
               alt="Generic Profile"
             />
           )}

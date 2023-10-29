@@ -178,7 +178,7 @@ function NewUser() {
           </label>
           <div className="new-user-button-container">
             <button
-              className="add-new-user"
+              className="new-user-button"
               type="submit"
               style={{
                 border: `1px solid ${theme.border}`,

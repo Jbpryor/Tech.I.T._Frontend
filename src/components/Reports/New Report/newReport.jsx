@@ -210,8 +210,9 @@ function NewReport() {
             </div>
           ))}
         </form>
-        <div className="new-report-button">
+        <div className="new-report-button-container">
           <button
+            className="new-report-button"
             onClick={handleSaveNewReport}
             style={{
               border: `2px solid ${theme.border}`,

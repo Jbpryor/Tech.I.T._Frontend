@@ -8,7 +8,7 @@
         flex-direction: column;
         padding: 3%;
         margin: 4%;
-        width: 60%;
+        width: 900px;
         box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 12px 0 rgba(0, 0, 0, 0.19);
 
         .new-issue-title {
@@ -55,12 +55,12 @@
             }
         }
 
-        .new-issue-button {
+        .new-issue-button-container {
             display: flex;
             align-items: center;
             justify-content: center;
 
-            button {
+            .new-issue-button {
                 margin: 0 5%;
                 width: 150px;
                 border-radius: 3px;
@@ -76,5 +76,35 @@
                 }
             }
         }
+    }
+}
+
+@media screen and (max-width: 800px) {
+
+    .new-issue {
+        height: 100%;
+    }
+    
+    .new-issue-container {
+        margin: 0 !important;
+        padding: 5% 2% !important;
+
+        height: 100%;
+    }
+
+    .new-issue-details {
+        padding: 2% 0 !important;
+    }
+
+    .new-issue-button-container {
+        height: 100%;
+        align-items: flex-end !important;
+    }
+}
+
+@media screen and (max-width: 500px) {
+
+    .new-project-details {
+        padding: 3% 0 !important;
     }
 }

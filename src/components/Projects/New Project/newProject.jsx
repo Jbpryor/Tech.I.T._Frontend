@@ -190,8 +190,9 @@ function NewProject() {
             </div>
           ))}
         </form>
-        <div className="new-project-button">
+        <div className="new-project-button-container">
           <button
+            className="new-project-button"
             onClick={handleSaveNewProject}
             style={{
               border: `2px solid ${theme.border}`,

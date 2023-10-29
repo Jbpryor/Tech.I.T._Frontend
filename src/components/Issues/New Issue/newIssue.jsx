@@ -251,8 +251,9 @@ function NewIssue() {
             </div>
           ))}
         </form>
-        <div className="new-issue-button">
+        <div className="new-issue-button-container">
           <button
+            className="new-issue-button"
             onClick={handleSaveNewIssue}
             style={{
               border: `2px solid ${theme.border}`,

@@ -319,7 +319,7 @@ function Issue() {
                           className="modificatins-modify-button"
                           onClick={toggleModificationView}
                           style={{
-                            background: theme.primary_color,
+                            background: 'transparent',
                             color: theme.font_color,
                             border: `none`,
                             boxShadow: "none",

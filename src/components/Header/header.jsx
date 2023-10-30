@@ -47,7 +47,7 @@ function Header() {
   return (
     <section
       className="header"
-      style={{ background: theme.primary_color, color: theme.font_color }}
+      style={{ background: theme.primary_color, color: theme.font_color, borderBottom: `1px solid ${theme.border}` }}
     >
       <div className="header-links">
         <div className={`search-container ${isSearchIconVisible ? '' : 'active'}`} >

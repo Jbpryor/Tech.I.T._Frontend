@@ -11,6 +11,8 @@
         box-shadow: 5px 4px 4px 0px rgba(0, 0, 0, 0.2), 15px 6px 12px 0 rgba(0, 0, 0, 0.2);
         z-index: 98;        
         width: 100%;
+        position: sticky;
+        top: 0;
 
         .issues-title {
             text-align: center;

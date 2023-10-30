@@ -138,6 +138,10 @@
 
 @media (max-width: 500px) {
 
+    .issues-sort-container {
+        box-shadow: none !important;
+    }
+
     .issues-title {
         display: none;
     }
@@ -153,7 +157,8 @@
 
     .issue-container {
         width: 100% !important;
-        height: 100% !important;       
+        height: 100% !important;
+        box-shadow: none !important;      
     }
 }
 

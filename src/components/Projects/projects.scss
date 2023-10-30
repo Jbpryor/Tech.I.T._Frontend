@@ -114,6 +114,10 @@
 
 @media (max-width: 500px) {
 
+    .projects-sort-container {
+        box-shadow: none !important;
+    }
+
     .projects-title {
         display: none;
     }
@@ -129,7 +133,8 @@
 
     .project-container {
         width: 100% !important;
-        height: 100% !important;      
+        height: 100% !important;
+        box-shadow: none !important;    
     }
 }
 

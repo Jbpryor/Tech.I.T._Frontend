@@ -117,6 +117,10 @@
 
 @media (max-width: 500px) {
 
+    .users-sort-container {
+        box-shadow: none !important;
+    }
+
     .users-title {
         display: none;
     }
@@ -131,8 +135,9 @@
     }
 
     .user-container {
-        width: 100% !important;       
-        height: 100% !important;       
+        width: 100% !important;     
+        height: 100% !important;
+        box-shadow: none !important;
     }
 }
 

@@ -462,7 +462,8 @@
     }
 
     .issue-comments-input {
-        width: 94% !important;
+        width: 90% !important;
+        box-shadow: none !important;
     }
 
     .issue-comment-container {
@@ -477,6 +478,7 @@
         height: 30px !important;
         width: 30px !important;
         box-shadow: none !important;
+        border: none !important;
     }
 
     .issue-comments-date {

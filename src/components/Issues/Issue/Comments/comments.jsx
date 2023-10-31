@@ -38,7 +38,7 @@ function Comments({ issue, timeStamp, theme, smallerScreen }) {
         <div className="issue-comments-container" style={{ background: theme.primary_color, color: theme.font_color, border: `2px solid ${theme.border}` }} >
             <div className="issue-comments-title">Comments</div>
             <div className="issue-comments-input-container">
-                <input type="text" className="issue-comments-input" value={comment} placeholder="Enter comment..." onChange={handleInputChange} style={{ background: theme.background_color, color: theme.font_color }} />
+                <input type="text" className="issue-comments-input" value={comment} placeholder="Enter comment..." onChange={handleInputChange} style={{ background: theme.background_color, color: theme.font_color, border: `1px solid ${theme.border}` }} />
                 <button className="issue-comments-button" onClick={handleSaveComment} style={{ background: theme.primary_color, color: theme.font_color, border: `2px solid ${theme.border}` }} >+</button>
             </div>
             <div className="issue-comments-content">

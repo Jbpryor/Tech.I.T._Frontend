@@ -394,7 +394,7 @@ function Issue() {
                   style={{
                     background: theme.background_color,
                     color: theme.font_color,
-                    border: `2px solid ${theme.border}`,
+                    border: smallerScreen ? 'none' : (`2px solid ${theme.border}`),
                   }}
                 >
                   Delete
@@ -407,7 +407,7 @@ function Issue() {
                   style={{
                     background: theme.background_color,
                     color: theme.font_color,
-                    border: `2px solid ${theme.border}`,
+                    border: smallerScreen ? 'none' : (`2px solid ${theme.border}`),
                   }}
                 >
                   Save

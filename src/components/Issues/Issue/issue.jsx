@@ -229,6 +229,7 @@ function Issue() {
                     className="issue-details"
                     key={detail}
                     style={{ borderBottom: `1px solid ${theme.border}` }}
+                    onClick={!isEditMode[detail] && smallerScreen ? () => handleEdit(detail) : null}
                   >
                     <div className="issue-title">
                       {capitalizeFirstLetter(detail)}:
@@ -319,7 +320,7 @@ function Issue() {
                           className="modificatins-modify-button"
                           onClick={toggleModificationView}
                           style={{
-                            background: 'transparent',
+                            background: 'none',
                             color: theme.font_color,
                             border: `none`,
                             boxShadow: "none",
@@ -332,7 +333,7 @@ function Issue() {
                           className="modifications-cancel-button"
                           onClick={() => handleCancel(detail)}
                           style={{
-                            background: theme.primary_color,
+                            background: 'none',
                             color: theme.font_color,
                             border: `none`,
                             boxShadow: "none",
@@ -345,7 +346,7 @@ function Issue() {
                           className="modificatins-modify-button"
                           onClick={() => handleEdit(detail)}
                           style={{
-                            background: theme.primary_color,
+                            background: 'none',
                             color: theme.font_color,
                             border: `none`,
                             boxShadow: "none",

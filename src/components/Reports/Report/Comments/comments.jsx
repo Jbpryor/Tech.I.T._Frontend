@@ -54,6 +54,7 @@ function Comments({ report, timeStamp, theme, smallerScreen }) {
           style={{
             background: theme.background_color,
             color: theme.font_color,
+            border: `2px solid ${theme.border}` 
           }}
         />
         <button

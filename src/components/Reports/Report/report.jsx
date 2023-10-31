@@ -122,11 +122,12 @@ function Report() {
                 </div>
               )
           )}
-          <div className="report-buttons-container">
+          <div className="report-button-container">
             <button
+              className="report-delete-button"
               onClick={handleDeleteReport}
               style={{
-                border: `2px solid ${theme.border}`,
+                border: smallerScreen ? 'none' : `2px solid ${theme.border}`,
                 background: theme.background_color,
                 color: theme.font_color,
               }}

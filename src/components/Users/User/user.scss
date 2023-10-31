@@ -437,6 +437,7 @@
         width: 100vw !important;
         margin: 0 !important;
         padding: 0 !important;
+        box-shadow: none !important;
     }
 
     .user-img-container {
@@ -470,6 +471,7 @@
     .change-role-button,
     .save-role-button {
         height: 25px !important;
+        box-shadow: none !important;
     }
     
     .user-role-container,
@@ -520,6 +522,12 @@
     .save-info-button,
     .cancel-edit-info-button {
         margin-top: 4% !important;
+    }
+
+    .save-info-button,
+    .cancel-edit-info-button,
+    .edit-info-button {
+        box-shadow: none !important;
     }
 
     .notifications-content {

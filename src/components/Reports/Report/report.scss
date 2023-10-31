@@ -336,9 +336,6 @@
         margin: 0 !important;
     }
 
-    .report-delete-button {
-        box-shadow: none !important;
-    }
 
     .report-comments-container,
     .report-attachments-container {
@@ -393,7 +390,6 @@
 
     .report-comments-input {
         width: 90% !important;
-        box-shadow: none !important;
     }
 
     .report-comment-container {
@@ -408,7 +404,6 @@
         height: 30px !important;
         width: 30px !important;
         border: none !important;
-        box-shadow: none !important;
         background: none !important;
     }
 
@@ -418,6 +413,18 @@
 
     .delete-button {
         width: 20px;
+    }
+
+    .report-contents,
+    .report-comments-container,
+    .report-comments-input,
+    .report-comments-button,
+    .report-delete-button,
+    .report-attachments-container,
+    .delete-button,
+    .report-attachments-box,
+    .report-attachments-button {
+        box-shadow: none !important;
     }
 
 }

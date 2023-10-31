@@ -429,14 +429,27 @@
         text-align: right;
     }
 
-    .modificatins-modify-button,
+    .modifications-modify-button,
     .modifications-view-button,
-    .modifications-cancel-button {
+    .modifications-cancel-button,
+    .modifications-modified-button {
         font-size: 14px !important;
         padding: 0 !important;
         margin: 0 !important;
         width: 25px !important;
         text-align: right;
+        box-shadow: none !important;
+        border: none !important;
+        background: none !important;
+
+        &:hover {
+            border: none !important;
+        }
+    }
+
+    .issue-save-button,
+    .issue-delete-button {
+        box-shadow: none !important;
     }
 
     .issue-comments-content {
@@ -463,6 +476,7 @@
         bottom: 0 !important;
         height: 30px !important;
         width: 30px !important;
+        box-shadow: none !important;
     }
 
     .issue-comments-date {
@@ -471,6 +485,7 @@
 
     .delete-button {
         width: 20px;
+        box-shadow: none !important;
     }
 
 }

@@ -317,13 +317,10 @@ function Issue() {
                     {smallerScreen ? (
                       detail === "modified" ? (
                         <button
-                          className="modificatins-modify-button"
+                          className="modifications-modified-button"
                           onClick={toggleModificationView}
                           style={{
-                            background: 'none',
-                            color: theme.font_color,
-                            border: `none`,
-                            boxShadow: "none",
+                            color: theme.font_color
                           }}
                         >
                           <i className="bx bx-right-arrow"></i>
@@ -333,23 +330,17 @@ function Issue() {
                           className="modifications-cancel-button"
                           onClick={() => handleCancel(detail)}
                           style={{
-                            background: 'none',
-                            color: theme.font_color,
-                            border: `none`,
-                            boxShadow: "none",
+                            color: theme.font_color
                           }}
                         >
                           X
                         </button>
                       ) : (
                         <button
-                          className="modificatins-modify-button"
+                          className="modifications-modify-button"
                           onClick={() => handleEdit(detail)}
                           style={{
-                            background: 'none',
-                            color: theme.font_color,
-                            border: `none`,
-                            boxShadow: "none",
+                            color: theme.font_color
                           }}
                         >
                           <i className="bx bx-right-arrow"></i>
@@ -398,6 +389,7 @@ function Issue() {
             <div className="issue-buttons-container">
               {!showSaveButton && (
                 <button
+                  className="issue-delete-button"
                   onClick={handleDeleteIssue}
                   style={{
                     background: theme.background_color,
@@ -410,7 +402,7 @@ function Issue() {
               )}
               {showSaveButton && (
                 <button
-                  className="save"
+                  className="issue-save-button"
                   onClick={saveEditedIssue}
                   style={{
                     background: theme.background_color,

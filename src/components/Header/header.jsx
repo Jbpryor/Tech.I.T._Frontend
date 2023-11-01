@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleViewMode } from "../../Store/Slices/viewModeSlice";
 import useWindowSize from "../../Hooks/useWindowSize";
-import CustomSelect from "./CustomSelect/customSelect";
+import SearchSelect from "./Search Select/searchSelect";
 
 function Header() {
   const [isSearchIconVisible, setSearchIconVisible] = useState(true);
@@ -62,15 +62,15 @@ function Header() {
             <div className="search-bar">
               
               {smallerScreen ? (
-                <CustomSelect theme={theme} />
+                <SearchSelect theme={theme} />
               ) : (
                 <select className="search-select" name="" id="" style={{ background: theme.background_color, color: theme.font_color, border: `1px solid ${theme.border}` }} >
-                <option className="search-option" value="all">All</option>
-                <option className="search-option" value="users">Users</option>
-                <option className="search-option" value="projects">Projects</option>
-                <option className="search-option" value="issues">Issues</option>
-                <option className="search-option" value="reports">Reports</option>
-              </select>
+                  <option className="search-option" value="all">All</option>
+                  <option className="search-option" value="users">Users</option>
+                  <option className="search-option" value="projects">Projects</option>
+                  <option className="search-option" value="issues">Issues</option>
+                  <option className="search-option" value="reports">Reports</option>
+                </select>
               )}
 
               <input
@@ -108,56 +108,66 @@ function Header() {
                 >
                   New +
                 </button>
-                <div
-                  className={`new-menu-container ${
-                    isNewMenuVisible ? "active" : ""
-                  } ${demoUser}`}
-                  onMouseEnter={() => setIsNewMenuVisible(true)}
-                  onMouseLeave={() => setIsNewMenuVisible(false)}
-                  style={{
-                    background: theme.primary_color,
-                    borderTop: isNewMenuVisible
-                      ? `2px solid ${theme.primary_color}`
-                      : "none",
-                  }}
-                >
-                  {(demoUser === "admin" || demoUser === "manager") && (
-                    <NavLink
-                      className="nav-link"
-                      to="/users/newUser"
-                      style={{ color: theme.font_color }}
-                    >
-                      New User
-                    </NavLink>
-                  )}
-                  {(demoUser === "admin" || demoUser === "manager") && (
-                    <NavLink
-                      className="nav-link"
-                      to="/projects/newProject"
-                      style={{ color: theme.font_color }}
-                    >
-                      New Project
-                    </NavLink>
-                  )}
-                  {(demoUser === "admin" ||
-                    demoUser === "manager" ||
-                    demoUser === "developer") && (
-                    <NavLink
-                      className="nav-link"
-                      to="/issues/newIssue"
-                      style={{ color: theme.font_color }}
-                    >
-                      New Issue
-                    </NavLink>
-                  )}
-                  <NavLink
-                    className="nav-link"
-                    to="/reports/newReport"
-                    style={{ color: theme.font_color }}
+
+
+                <div className={`menu-overlay ${isNewMenuVisible ? "active" : ""}`} >
+                  <div
+                    className={`new-menu-container ${
+                      isNewMenuVisible ? "active" : ""
+                    } ${demoUser}`}
+                    onMouseEnter={() => setIsNewMenuVisible(true)}
+                    onMouseLeave={() => setIsNewMenuVisible(false)}
+                    style={{
+                      background: theme.primary_color,
+                      borderTop: isNewMenuVisible
+                        ? `2px solid ${theme.primary_color}`
+                        : "none",
+                    }}
                   >
-                    New Report
-                  </NavLink>
+                    {(demoUser === "admin" || demoUser === "manager") && (
+                      <NavLink
+                        className="nav-link"
+                        onClick={() => setIsNewMenuVisible(false)}
+                        to="/users/newUser"
+                        style={{ color: theme.font_color }}
+                      >
+                        New User
+                      </NavLink>
+                    )}
+                    {(demoUser === "admin" || demoUser === "manager") && (
+                      <NavLink
+                        className="nav-link"
+                        onClick={() => setIsNewMenuVisible(false)}
+                        to="/projects/newProject"
+                        style={{ color: theme.font_color }}
+                      >
+                        New Project
+                      </NavLink>
+                    )}
+                    {(demoUser === "admin" ||
+                      demoUser === "manager" ||
+                      demoUser === "developer") && (
+                      <NavLink
+                        className="nav-link"
+                        onClick={() => setIsNewMenuVisible(false)}
+                        to="/issues/newIssue"
+                        style={{ color: theme.font_color }}
+                      >
+                        New Issue
+                      </NavLink>
+                    )}
+                    <NavLink
+                      className="nav-link"
+                      onClick={() => setIsNewMenuVisible(false)}
+                      to="/reports/newReport"
+                      style={{ color: theme.font_color }}
+                    >
+                      New Report
+                    </NavLink>
+                  </div>
                 </div>
+
+
               </div>
               <div className="notification-container">
                 <i

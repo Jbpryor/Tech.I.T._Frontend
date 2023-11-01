@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import './customSelect.scss';
+import './searchSelect.scss';
 
-function CustomSelect({ theme }) {
+function SearchSelect({ theme }) {
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedOption, setSelectedOption] = useState("all"); // Default selection
+  const [selectedOption, setSelectedOption] = useState("all");
 
   const options = [
     { value: "all", label: "All" },
@@ -23,7 +23,7 @@ function CustomSelect({ theme }) {
   };
 
   return (
-    <div className="custom-select">
+    <div className="search-select">
       <div className="selected-option" onClick={toggleOptions} style={{ border: `1px solid ${theme.border}`, background: theme.background_color, color: theme.font_color}} >
         {options.find((option) => option.value === selectedOption).label} {<i className='bx bx-chevron-down down-icon'></i>}
       </div>
@@ -49,4 +49,4 @@ function CustomSelect({ theme }) {
   );
 }
 
-export default CustomSelect;
+export default SearchSelect;

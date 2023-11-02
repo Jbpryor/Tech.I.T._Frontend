@@ -1,8 +1,14 @@
 import React from "react";
+import useWindowSize from "../../../Hooks/useWindowSize";
 
 function ReportsSort({ selectedSort, setSelectedSort, rotate, handleRotate, theme }) {
+
+    const { width } = useWindowSize();
+
+    const smallerScreen = width < 500;
+
     return (
-        <div className="reports-sort-container" value={selectedSort} onChange={(event) => setSelectedSort(event.target.value)} style={{ background: theme.primary_color, color: theme.font_color, border: `1px solid ${theme.primary_color}`, borderBottom: `2px solid ${theme.border}` }} >
+        <div className="reports-sort-container" value={selectedSort} onChange={(event) => setSelectedSort(event.target.value)} style={{ background: theme.primary_color, color: theme.font_color, border: smallerScreen ? 'none' : (`1px solid ${theme.primary_color}`), borderBottom: `2px solid ${theme.border}` }} >
 
             <div className='reports-title'>Reports</div>        
 

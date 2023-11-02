@@ -7,7 +7,6 @@ import { sortByProperty } from '../../main';
 import IssuesSort from './Issues Sort/issuesSort';
 import IssuesTable from './Issues Table/issuesTable';
 import TablePagination from '../../Charts & Tables/Table Pagination/tablePagination';
-import useWindowSize from '../../Hooks/useWindowSize';
 
 function Issues({ projectIssues }) {
 
@@ -240,10 +239,6 @@ function Issues({ projectIssues }) {
         }
         return null;
     }).filter(Boolean);
-
-    const { width } = useWindowSize();
-
-    const smallerScreen = width < 500;
     
     return (
         <>
@@ -288,7 +283,7 @@ function Issues({ projectIssues }) {
             ) : (
                 <section className="issues issues-tile">
 
-                    <IssuesSort selectedSort={selectedSort} setSelectedSort={setSelectedSort} rotate={rotate} handleRotate={handleRotate} isProjectsActive={isProjectsActive} theme={theme} smallerScreen={smallerScreen} />
+                    <IssuesSort selectedSort={selectedSort} setSelectedSort={setSelectedSort} rotate={rotate} handleRotate={handleRotate} isProjectsActive={isProjectsActive} theme={theme} />
 
                     <div className={`issues-container ${isIssuesActive ? 'active' : ''}`}>              
                     {sortedIssues.map((issue) => (

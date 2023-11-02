@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from "react-router-dom";
 import { removeUser } from "../../../../Store/Slices/userSlice";
+import useWindowSize from "../../../../Hooks/useWindowSize";
 
 
 function UserButtons({ user, setAccountActive, setNotificationsActive, setPasswordActive, viewUserButtons, setViewUserButtons, theme }) {
@@ -11,12 +12,14 @@ function UserButtons({ user, setAccountActive, setNotificationsActive, setPasswo
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
+    const { width } = useWindowSize();
+
     const handleAccountActive = () => {
         setAccountActive(true);
         setNotificationsActive(false);
         setPasswordActive(false);
 
-        if (window.innerWidth < 1200) {
+        if (width < 1200) {
             setViewUserButtons(false)
         }
     };
@@ -26,7 +29,7 @@ function UserButtons({ user, setAccountActive, setNotificationsActive, setPasswo
         setNotificationsActive(true);
         setPasswordActive(false);
 
-        if (window.innerWidth < 1200) {
+        if (width < 1200) {
             setViewUserButtons(false)
         }
     };
@@ -36,7 +39,7 @@ function UserButtons({ user, setAccountActive, setNotificationsActive, setPasswo
         setNotificationsActive(false);
         setPasswordActive(true);
 
-        if (window.innerWidth < 1200) {
+        if (width < 1200) {
             setViewUserButtons(false)
         }
     };
@@ -47,27 +50,6 @@ function UserButtons({ user, setAccountActive, setNotificationsActive, setPasswo
         alert('User Deleted');
         navigate('/users');
     };
-
-    const handleResize = () => {
-        if (window.innerWidth < 1200) {
-            setAccountActive(false);
-            setNotificationsActive(false);
-            setPasswordActive(false);
-        } else {
-            setAccountActive(true);
-            setNotificationsActive(false);
-            setPasswordActive(false);
-        }
-    };
-
-    useEffect(() => {
-        handleResize();
-        window.addEventListener("resize", handleResize);
-        return () => {
-            window.removeEventListener("resize", handleResize);
-        };
-    }, []);
-
 
     return (
         <div className={`user-buttons-container ${viewUserButtons ? 'active' : ''}`}>

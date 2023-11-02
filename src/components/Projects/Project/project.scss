@@ -290,4 +290,10 @@
         display: flex !important;
         flex-direction: column !important;
     }
+
+    .project-title-container,
+    .status-container,
+    .priority-container {
+        box-shadow: none !important;
+    }
 }

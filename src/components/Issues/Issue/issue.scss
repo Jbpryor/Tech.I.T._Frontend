@@ -438,7 +438,6 @@
         margin: 0 !important;
         width: 25px !important;
         text-align: right;
-        box-shadow: none !important;
         border: none !important;
         background: none !important;
 
@@ -449,8 +448,8 @@
 
     .issue-save-button,
     .issue-delete-button {
-        box-shadow: none !important;
         background: none !important;
+        color: rgb(86, 86, 2) !important;
     }
 
     .issue-comments-content {
@@ -464,7 +463,6 @@
 
     .issue-comments-input {
         width: 90% !important;
-        box-shadow: none !important;
     }
 
     .issue-comment-container {
@@ -478,7 +476,6 @@
         bottom: 0 !important;
         height: 30px !important;
         width: 30px !important;
-        box-shadow: none !important;
         border: none !important;
         background: none !important;
     }
@@ -489,6 +486,23 @@
 
     .delete-button {
         width: 20px;
+    }
+
+    .issue-content,
+    .issue-comments-container,
+    .issue-comments-input,
+    .issue-comments-button,
+    .delete-button,
+    .issue-attachments-container,
+    .delete-button,
+    .issue-attachments-box,
+    .issue-attachments-button,
+    .issue-save-button,
+    .issue-delete-button,
+    .modifications-modify-button,
+    .modifications-view-button,
+    .modifications-cancel-button,
+    .modifications-modified-button {
         box-shadow: none !important;
     }
 

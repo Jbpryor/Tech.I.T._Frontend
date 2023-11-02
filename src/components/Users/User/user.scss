@@ -570,4 +570,25 @@
         grid-template-rows: 35% 40% 25% !important;
     }
 
+    .account-settings,
+    .notification-settings,
+    .password-settings,
+    .remove-user,
+    .user-img-container,
+    .change-role-button,
+    .save-role-button,
+    .user-info-container,
+    .save-info-button,
+    .cancel-edit-info-button,
+    .edit-info-button,
+    .notifications-global,
+    .notifications-local,
+    .enable,
+    .disable,
+    .notifications-save-button,
+    .user-password-content,
+    .new-password-submit-button {
+        box-shadow: none !important;
+    }
+
 }

@@ -121,7 +121,7 @@
     .sideBar {
         display: grid;
         grid-template-rows: 100%;
-        box-shadow: none;
+        box-shadow: none !important;
 
         &.grid-1 {
             grid-template-columns: 66% 17% 17%;

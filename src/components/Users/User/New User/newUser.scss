@@ -90,4 +90,9 @@
         height: 100%;
         align-items: flex-end !important;
     }
+
+    .new-user-container,
+    .new-user-button {
+        box-shadow: none !important;
+    }
 }

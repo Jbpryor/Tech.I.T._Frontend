@@ -229,7 +229,7 @@ function Issue() {
                     className="issue-details"
                     key={detail}
                     style={{ borderBottom: `1px solid ${theme.border}` }}
-                    onClick={!isEditMode[detail] && smallerScreen ? () => handleEdit(detail) : null}
+                    onClick={!isEditMode[detail] && detail !== "modified" && smallerScreen ? () => handleEdit(detail) : detail === "modified" && toggleModificationView}
                   >
                     <div className="issue-title">
                       {capitalizeFirstLetter(detail)}:

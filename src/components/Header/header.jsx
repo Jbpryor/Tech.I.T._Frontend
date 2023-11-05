@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleViewMode } from "../../Store/Slices/viewModeSlice";
 import useWindowSize from "../../Hooks/useWindowSize";
-import SearchSelect from "./Search Select/searchSelect";
+import SearchBar from "./Search Bar/searchBar";
 
 function Header() {
   const [isSearchIconVisible, setSearchIconVisible] = useState(true);
@@ -16,14 +16,6 @@ function Header() {
   const theme = useSelector(
     (state) => state.settings.themes[state.settings.theme]
   );
-
-  const handleSearchIconClick = () => {
-    setSearchIconVisible(false);
-  };
-
-  const handleCancelSearch = () => {
-    setSearchIconVisible(true);
-  };
 
   const handleGridIconClick = () => {
     setGridVisible(false);
@@ -50,53 +42,9 @@ function Header() {
       style={{ background: theme.primary_color, color: theme.font_color, borderBottom: `1px solid ${theme.border}` }}
     >
       <div className="header-links">
-        <div className={`search-container ${isSearchIconVisible ? '' : 'active'}`} >
-          {isSearchIconVisible ? (
-            <div className="icon-container">
-              <i
-                className="bx bx-search-alt-2 search-icon"
-                onClick={handleSearchIconClick}
-              ></i>
-            </div>
-          ) : (
-            <div className="search-bar">
-              
-              {smallerScreen ? (
-                <SearchSelect theme={theme} />
-              ) : (
-                <select className="search-select" name="" id="" style={{ background: theme.background_color, color: theme.font_color, border: `1px solid ${theme.border}` }} >
-                  <option className="search-option" value="all">All</option>
-                  <option className="search-option" value="users">Users</option>
-                  <option className="search-option" value="projects">Projects</option>
-                  <option className="search-option" value="issues">Issues</option>
-                  <option className="search-option" value="reports">Reports</option>
-                </select>
-              )}
 
-              <input
-                className="search-input"
-                type="text"
-                placeholder="Search..."
-                style={{ 
-                    background: theme.background_color,
-                    color: theme.font_color,
-                    border: `2px solid ${theme.border}`
-                }}
-              />
-              <button
-                className="cancel-search-button"
-                onClick={handleCancelSearch}
-                style={{
-                  background: theme.background_color,
-                  color: theme.font_color,
-                  border: `1px solid ${theme.border}`,
-                }}
-              >
-                Cancel
-              </button>
-            </div>
-          )}
-        </div>
+        <SearchBar isSearchIconVisible={isSearchIconVisible} setSearchIconVisible={setSearchIconVisible} theme={theme} smallerScreen={smallerScreen} />
+
         {smallerScreen ? (
           isSearchIconVisible ? (
             <>

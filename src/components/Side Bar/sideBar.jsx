@@ -25,7 +25,7 @@ function SideBar() {
   };
 
   return (
-    <section className={`sideBar ${demoUser === 'admin' || demoUser === 'manager' ? 'grid-1' : 'grid-2'}`} style={{ background: theme.primary_color, color: theme.font_color, border: `1px solid ${theme.border}` }}>
+    <section className={`sideBar ${demoUser === 'admin' || demoUser === 'manager' ? 'grid-1' : 'grid-2'}`} style={{ background: theme.primary_color, color: theme.font_color }}>
       <div className="sideBar-links">
         <NavLink to="/dashboard" activeclassname='active' className="nav-link dashboard-link" style={{color: theme.font_color}}>
           <span className='dashboard-link text'>Dashboard</span>

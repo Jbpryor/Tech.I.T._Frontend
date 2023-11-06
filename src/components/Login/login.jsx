@@ -50,7 +50,7 @@ function Login() {
                         </div>
 
                         <div className="field login-button">
-                            <button onClick={handleLogin}>Login</button>
+                            <button type='button' onClick={handleLogin}>Login</button>
                         </div>                
                     </form> 
                 </div>

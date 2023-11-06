@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import SearchSelect from "./Search Select/searchSelect";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 function SearchBar({
   isSearchIconVisible,
@@ -17,86 +18,57 @@ function SearchBar({
   const users = useSelector((state) => state.users);
   const issues = useSelector((state) => state.issues);
 
-  const filteredReports = {};
-  Object.entries(reports).forEach(([report, value]) => {
-    filteredReports[report] = value.subject;
-  });
-
-  const filteredProjects = {};
-  Object.entries(projects).forEach(([project, value]) => {
-    filteredProjects[project] = value.title;
-  });
-
-  const filteredUsers = {};
-  Object.entries(users).forEach(([user, value]) => {
-    filteredUsers[user] = value.name.first + " " + value.name.last;
-  });
-
-  const filteredIssues = {};
-  Object.entries(issues).forEach(([issue, value]) => {
-    filteredIssues[issue] = value.title;
-  });
-
   const allData = {
-    filteredReports,
-    filteredProjects,
-    filteredUsers,
-    filteredIssues,
+    reports,
+    projects,
+    users,
+    issues,
   };
 
-  function recursiveSearch(obj, search) {
-    const results = [];
+  const allDataValues = [];
 
-    for (const [key, value] of Object.entries(obj)) {
-      if (typeof value === "object" && value !== null) {
-        results.push(...recursiveSearch(value, search));
-      } else {
-        const keyWords = key.toLowerCase().split(" ");
-        const valueWords = value && value.toString().toLowerCase().split(" ");
+  for (const field in allData) {
+    const data = allData[field];
 
-        if (
-          keyWords.some((word) => word.startsWith(search.toLowerCase())) ||
-          (valueWords &&
-            valueWords.some((word) => word.startsWith(search.toLowerCase())))
-        ) {
-          results.push({ key, value });
-        }
+    for (const key in data) {
+      const value = data[key];
+
+      if (
+        field === "reports" &&
+        value.subject.toLowerCase().includes(search.toLowerCase())
+      ) {
+        allDataValues.push({
+          id: value.id,
+          value: value.subject,
+          field: field,
+        });
+      } else if (
+        (field === "projects" || field === "issues") &&
+        value.title.toLowerCase().includes(search.toLowerCase())
+      ) {
+        allDataValues.push({ id: value.id, value: value.title, field: field });
+      } else if (
+        field === "users" &&
+        (value.name.first + " " + value.name.last)
+          .toLowerCase()
+          .includes(search.toLowerCase())
+      ) {
+        allDataValues.push({
+          id: value.id,
+          value: value.name.first + " " + value.name.last,
+          field: field,
+        });
       }
     }
-
-    return results;
   }
 
-  const searchResults = [];
-
-  if (selectedData === "all") {
-    for (const [dataSetName, dataSet] of Object.entries(allData)) {
-      const dataSetResults = recursiveSearch(dataSet, search);
-      for (const { key, value } of dataSetResults) {
-        searchResults.push({ dataSetName, key, value });
-      }
+  const filteredData = allDataValues.filter((result) => {
+    if (selectedData === "all") {
+      return true;
+    } else {
+      return result.field === selectedData;
     }
-  } else if (selectedData === "reports") {
-    const dataSetResults = recursiveSearch(filteredReports, search);
-    for (const { key, value } of dataSetResults) {
-      searchResults.push({ key, value });
-    }
-  } else if (selectedData === "projects") {
-    const dataSetResults = recursiveSearch(filteredProjects, search);
-    for (const { key, value } of dataSetResults) {
-      searchResults.push({ key, value });
-    }
-  } else if (selectedData === "users") {
-    const dataSetResults = recursiveSearch(filteredUsers, search);
-    for (const { key, value } of dataSetResults) {
-      searchResults.push({ key, value });
-    }
-  } else if (selectedData === "issues") {
-    const dataSetResults = recursiveSearch(filteredIssues, search);
-    for (const { key, value } of dataSetResults) {
-      searchResults.push({ key, value });
-    }
-  }
+  });
 
   const handleSelectChange = (event) => {
     setSelectedData(event.target.value);
@@ -191,9 +163,26 @@ function SearchBar({
         className={`search-results-container ${resultsActive ? "active" : ""}`}
         style={{ background: theme.primary_color, color: theme.font_color }}
       >
-        {searchResults.map((result) => (
-          <div className="search-results">{result.value}</div>
-        ))}
+        {filteredData
+          .filter((item) => {
+            return search.toLowerCase() === ""
+              ? item
+              : item.value
+                  .toLowerCase()
+                  .split(" ")
+                  .some((word) => word.startsWith(search.toLowerCase()));
+          })
+          .map((result, index) => (
+            <Link
+              to={`/${result.field}/${result.id}`}
+              key={index}
+              className="search-link"
+              onClick={handleCancelSearch}
+              style={{color: theme.font_color}}
+            >
+              <div className="search-results">{result.value}</div>
+            </Link>
+          ))}
       </div>
     </>
   );

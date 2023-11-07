@@ -68,7 +68,7 @@ const PictureContent = ({ onFileSelected }) => {
   //   localStorage.setItem(filePath, file);
   // };
 
-  const [userRole, setUserRole] = useState("");
+  const [userRole, setUserRole] = useState();
   const [editedRole, setEditedRole] = useState({});
 
   const handleChangeUserRole = () => {
@@ -76,11 +76,10 @@ const PictureContent = ({ onFileSelected }) => {
   };
 
   const handleSaveUserRole = () => {
-    setUserRole(editedRole[userRole]);
     dispatch(
       changeUserRole({
         selectedUser: user.id,
-        selectedRole: editedRole[userRole],
+        selectedRole: userRole,
       })
     );
     setEditMode(false);
@@ -92,11 +91,15 @@ const PictureContent = ({ onFileSelected }) => {
       ...prevEditedRole,
       [userRole]: value,
     }));
+    setUserRole(value);
+
   };
 
   return (
     <div
-      className={`user-img-container ${demoUser === 'admin' || demoUser === 'manager' ? 'admin' : '' }`}
+      className={`user-img-container ${
+        demoUser === "admin" || demoUser === "manager" ? "admin" : ""
+      }`}
       style={{
         background: theme.primary_color,
         border: `2px solid ${theme.border}`,

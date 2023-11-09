@@ -52,7 +52,7 @@ function TablePagination({ currentPage, setCurrentPage, onPageChange, items, ite
 
     for (let i = 0; i < Math.ceil(items.length / itemsPerPage); i++) {
       buttons.push(
-        <div className='page-number' key={i} onClick={() => handlePageSelection(i)} style={{ background: theme.background_color, color: theme.font_color }} >
+        <div className='page-number' key={i} onClick={() => setCurrentPage(i + 1)} style={{ background: theme.background_color, color: theme.font_color }} >
           {i + 1}
         </div>
       );

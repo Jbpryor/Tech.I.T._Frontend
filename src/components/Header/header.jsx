@@ -1,10 +1,11 @@
 import "./header.scss";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleViewMode } from "../../Store/Slices/viewModeSlice";
 import useWindowSize from "../../Hooks/useWindowSize";
 import SearchBar from "./Search Bar/searchBar";
+import { setViewMode } from '../../Store/Slices/viewModeSlice';
 
 function Header() {
   const [isSearchIconVisible, setSearchIconVisible] = useState(true);
@@ -35,6 +36,12 @@ function Header() {
 
   const { width } = useWindowSize();
   const smallerScreen = width < 500;
+
+  useEffect(() => {
+    if (width < 1000) {
+      dispatch(setViewMode('tile'));
+    }
+  }, [dispatch, width]);
 
   return (
     <section

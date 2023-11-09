@@ -7,10 +7,12 @@ import { sortByProperty } from '../../main';
 import IssuesSort from './Issues Sort/issuesSort';
 import IssuesTable from './Issues Table/issuesTable';
 import TablePagination from '../../Charts & Tables/Table Pagination/tablePagination';
+// import useWindowSize from '../../Hooks/useWindowSize';
 
 function Issues({ projectIssues }) {
 
     const viewMode = useSelector((state) => state.viewMode);
+    // const dispatch = useDispatch();
 
     const location = useLocation();
     const isIssuesActive = location.pathname === '/issues';

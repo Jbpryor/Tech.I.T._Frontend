@@ -222,6 +222,12 @@
     }
 }
 
+@media screen and (max-width: 1000px) {
+    .view-container {
+        display: none !important;
+    }
+}
+
 @media (max-width: 700px) {
 
     .search-bar {
@@ -242,9 +248,6 @@
         box-shadow: none;
     }
 
-    .view-container {
-        display: none !important;
-    }
     .header-links {
         padding: 0 3% !important;
     }

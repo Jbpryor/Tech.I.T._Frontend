@@ -5,7 +5,8 @@ import projectReducer from './Slices/projectSlice';
 import reportReducer from './Slices/reportSlice';
 import viewModeReducer from './Slices/viewModeSlice';
 import demoUserReducer from './Slices/demoUserSlice';
-import settingsReducer from './Slices/settingsSlice'
+import settingsReducer from './Slices/settingsSlice';
+import notificationsReducer from './Slices/notificationsSlice';
 
 const rootReducer = {
   users: userReducer,
@@ -15,6 +16,7 @@ const rootReducer = {
   viewMode: viewModeReducer,
   demoUser: demoUserReducer,
   settings: settingsReducer,
+  notifications: notificationsReducer,
 }
 
 const store = configureStore({

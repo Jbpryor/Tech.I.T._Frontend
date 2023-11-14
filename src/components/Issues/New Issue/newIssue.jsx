@@ -4,6 +4,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { addIssue } from "../../../Store/Slices/issueSlice";
 import { issueDetails } from "../../../Constants/issueDetails";
+import { addNotification } from "../../../Store/Slices/notificationsSlice";
 
 function NewIssue() {
   const dispatch = useDispatch();
@@ -67,6 +68,7 @@ function NewIssue() {
     event.preventDefault();
 
     dispatch(addIssue(newIssue));
+    dispatch(addNotification({ message: 'New issue created', title: newIssue.title}));
 
     alert("New issue was created!");
 

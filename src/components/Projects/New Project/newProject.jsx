@@ -3,6 +3,7 @@ import "./newProject.scss";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { addProject } from "../../../Store/Slices/projectSlice";
+import { addNotification } from "../../../Store/Slices/notificationsSlice";
 
 function NewProject() {
   const dispatch = useDispatch();
@@ -82,6 +83,7 @@ function NewProject() {
     event.preventDefault();
 
     dispatch(addProject(newProject));
+    dispatch(addNotification({ message: "New project added", title: newProject.title }))
 
     alert("New project was created!");
 

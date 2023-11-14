@@ -3,6 +3,7 @@ import "./newReport.scss";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { addReport } from "../../../Store/Slices/reportSlice";
+import { addNotification } from "../../../Store/Slices/notificationsSlice";
 
 function NewReport() {
   const dispatch = useDispatch();
@@ -78,6 +79,7 @@ function NewReport() {
     event.preventDefault();
 
     dispatch(addReport(newReport));
+    dispatch(addNotification({ message: "New report added", title: newReport.subject }))
 
     alert("New report was created!");
 

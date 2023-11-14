@@ -3,6 +3,7 @@ import "./newUser.scss";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { addUser } from "../../../../Store/Slices/userSlice";
+import { addNotification } from "../../../../Store/Slices/notificationsSlice";
 
 function NewUser() {
   const dispatch = useDispatch();
@@ -69,6 +70,7 @@ function NewUser() {
     };
 
     dispatch(addUser(newUser));
+    dispatch(addNotification({ message: 'New user created', title: newUser.name.first + " " + newUser.name.last}));
 
     alert("New user was created!");
 

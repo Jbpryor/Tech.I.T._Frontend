@@ -5,7 +5,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { toggleViewMode } from "../../Store/Slices/viewModeSlice";
 import useWindowSize from "../../Hooks/useWindowSize";
 import SearchBar from "./Search Bar/searchBar";
-import { setViewMode } from '../../Store/Slices/viewModeSlice';
+import { setViewMode } from "../../Store/Slices/viewModeSlice";
+import { markNotificationsAsRead } from "../../Store/Slices/notificationsSlice";
 
 function Header() {
   const [isSearchIconVisible, setSearchIconVisible] = useState(true);
@@ -16,6 +17,9 @@ function Header() {
   const demoUser = useSelector((state) => state.demoUser);
   const theme = useSelector(
     (state) => state.settings.themes[state.settings.theme]
+  );
+  const newNotificationsCount = useSelector(
+    (state) => state.notifications.newNotificationsCount
   );
 
   const handleGridIconClick = () => {
@@ -28,7 +32,9 @@ function Header() {
     dispatch(toggleViewMode());
   };
 
-  const handleNotificationClick = () => {};
+  const handleNotificationClick = () => {
+    dispatch(markNotificationsAsRead());
+  };
 
   const handleNewMenuVisibility = () => {
     setIsNewMenuVisible(!isNewMenuVisible);
@@ -39,18 +45,26 @@ function Header() {
 
   useEffect(() => {
     if (width < 1000) {
-      dispatch(setViewMode('tile'));
+      dispatch(setViewMode("tile"));
     }
   }, [dispatch, width]);
 
   return (
     <section
       className="header"
-      style={{ background: theme.primary_color, color: theme.font_color, borderBottom: `1px solid ${theme.border}` }}
+      style={{
+        background: theme.primary_color,
+        color: theme.font_color,
+        borderBottom: `1px solid ${theme.border}`,
+      }}
     >
       <div className="header-links">
-
-        <SearchBar isSearchIconVisible={isSearchIconVisible} setSearchIconVisible={setSearchIconVisible} theme={theme} smallerScreen={smallerScreen} />
+        <SearchBar
+          isSearchIconVisible={isSearchIconVisible}
+          setSearchIconVisible={setSearchIconVisible}
+          theme={theme}
+          smallerScreen={smallerScreen}
+        />
 
         {smallerScreen ? (
           isSearchIconVisible ? (
@@ -64,8 +78,9 @@ function Header() {
                   New +
                 </button>
 
-
-                <div className={`menu-overlay ${isNewMenuVisible ? "active" : ""}`} >
+                <div
+                  className={`menu-overlay ${isNewMenuVisible ? "active" : ""}`}
+                >
                   <div
                     className={`new-menu-container ${
                       isNewMenuVisible ? "active" : ""
@@ -121,14 +136,24 @@ function Header() {
                     </NavLink>
                   </div>
                 </div>
-
-
               </div>
               <div className="notification-container">
                 <i
                   className="bx bxs-bell notification-icon"
                   onClick={handleNotificationClick}
                 ></i>
+                <div
+                  className={`notification-count ${
+                    newNotificationsCount !== 0 ? "active" : ""
+                  }`}
+                  style={{
+                    color: theme.font_color,
+                    border: `1px solid ${theme.border}`,
+                    background: theme.primary_color,
+                  }}
+                >
+                  {newNotificationsCount}
+                </div>
               </div>
               <div className="view-container">
                 {isGridVisible ? (
@@ -215,6 +240,18 @@ function Header() {
                 className="bx bxs-bell notification-icon"
                 onClick={handleNotificationClick}
               ></i>
+              <div
+                className={`notification-count ${
+                  newNotificationsCount !== 0 ? "active" : ""
+                }`}
+                style={{
+                  color: theme.font_color,
+                  border: `1px solid ${theme.border}`,
+                  background: theme.primary_color,
+                }}
+              >
+                {newNotificationsCount}
+              </div>
             </div>
             <div className="view-container">
               {isGridVisible ? (

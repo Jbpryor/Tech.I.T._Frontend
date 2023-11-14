@@ -207,7 +207,7 @@ function Issue() {
             >
               <i
                 className="bx bx-left-arrow issue-icon"
-                onClick={() => navigate("/issues")}
+                onClick={() => navigate(-1)}
               ></i>
               <div>Issue</div>
             </div>

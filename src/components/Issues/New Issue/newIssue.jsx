@@ -68,7 +68,7 @@ function NewIssue() {
     event.preventDefault();
 
     dispatch(addIssue(newIssue));
-    dispatch(addNotification({ message: 'New issue created', title: newIssue.title}));
+    dispatch(addNotification({ message: 'New issue created', title: newIssue.title, currentDate: currentDate}));
 
     alert("New issue was created!");
 

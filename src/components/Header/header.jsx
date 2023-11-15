@@ -139,7 +139,9 @@ function Header() {
               </div>
               <div className="notification-container">
                 <i
-                  className="bx bxs-bell notification-icon"
+                  className={`bx bxs-bell notification-icon ${
+                    newNotificationsCount !== 0 ? "active" : ""
+                  }`}
                   onClick={handleNotificationClick}
                 ></i>
                 <div
@@ -237,7 +239,9 @@ function Header() {
             </div>
             <div className="notification-container">
               <i
-                className="bx bxs-bell notification-icon"
+                className={`bx bxs-bell notification-icon ${
+                  newNotificationsCount !== 0 ? "active" : ""
+                }`}
                 onClick={handleNotificationClick}
               ></i>
               <div

@@ -70,7 +70,13 @@ function NewUser() {
     };
 
     dispatch(addUser(newUser));
-    dispatch(addNotification({ message: 'New user created', title: newUser.name.first + " " + newUser.name.last}));
+    dispatch(
+      addNotification({
+        message: "New user created",
+        title: newUser.name.first + " " + newUser.name.last,
+        currentDate: Date.now(),
+      })
+    );
 
     alert("New user was created!");
 

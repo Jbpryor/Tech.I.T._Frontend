@@ -83,7 +83,7 @@ function NewProject() {
     event.preventDefault();
 
     dispatch(addProject(newProject));
-    dispatch(addNotification({ message: "New project added", title: newProject.title }))
+    dispatch(addNotification({ message: "New project added", title: newProject.title, currentDate: currentDate }))
 
     alert("New project was created!");
 

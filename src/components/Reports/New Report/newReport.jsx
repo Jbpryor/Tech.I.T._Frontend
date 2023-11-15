@@ -79,7 +79,7 @@ function NewReport() {
     event.preventDefault();
 
     dispatch(addReport(newReport));
-    dispatch(addNotification({ message: "New report added", title: newReport.subject }))
+    dispatch(addNotification({ message: "New report added", title: newReport.subject, currentDate: currentDate }))
 
     alert("New report was created!");
 

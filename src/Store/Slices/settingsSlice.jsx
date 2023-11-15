@@ -1,8 +1,8 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
 
-const settingsSlice = createSlice({
-  name: 'settings',
-  initialState: {
+export const LOCAL_STORAGE_KEY = 'settings';
+
+const initialState = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY)) || {
     theme: 'light-mode',
     themes: {
       'light-mode': {
@@ -20,10 +20,15 @@ const settingsSlice = createSlice({
         border: 'rgba(255, 255, 255, 0.143)',
       },
     },
-  },
+  };
+
+const settingsSlice = createSlice({
+  name: 'settings',
+  initialState,
   reducers: {
     setTheme: (state, action) => {
       state.theme = action.payload;
+      localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(state));
     },
   },
 });

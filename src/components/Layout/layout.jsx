@@ -20,6 +20,7 @@ import NewUser from "../Users/User/New User/newUser";
 import Report from "../Reports/Report/report";
 import NewReport from "../Reports/New Report/newReport";
 import Settings from "../Settings/settings";
+import Notifications from "../Notifications/notifications";
 import { useSelector } from "react-redux";
 
 function Layout() {
@@ -50,6 +51,7 @@ function Layout() {
                         <Route path='/reports/:reportId' element={<Report />} />
                         <Route path='/reports/newReport' element={<NewReport />} />
                         <Route path='/settings' element={<Settings />} />
+                        <Route path='/notifications' element={<Notifications />} />
                     </Routes>
 
                 </div>

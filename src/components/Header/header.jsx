@@ -1,6 +1,6 @@
 import "./header.scss";
 import React, { useState, useEffect } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleViewMode } from "../../Store/Slices/viewModeSlice";
 import useWindowSize from "../../Hooks/useWindowSize";
@@ -12,6 +12,7 @@ function Header() {
   const [isSearchIconVisible, setSearchIconVisible] = useState(true);
   const [isGridVisible, setGridVisible] = useState(true);
   const [isNewMenuVisible, setIsNewMenuVisible] = useState(false);
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const viewMode = useSelector((state) => state.viewMode);
   const demoUser = useSelector((state) => state.demoUser);
@@ -34,6 +35,7 @@ function Header() {
 
   const handleNotificationClick = () => {
     dispatch(markNotificationsAsRead());
+    navigate('/notifications');
   };
 
   const handleNewMenuVisibility = () => {

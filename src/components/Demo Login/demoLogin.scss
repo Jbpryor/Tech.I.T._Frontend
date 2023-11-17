@@ -8,7 +8,7 @@
 }
 
 .demo-user-container {
-    height: 100vh;
+    height: 100dvh;
     width: 100%;
     display: flex;
     align-items: center;
@@ -111,7 +111,7 @@ header {
 @media screen and (max-width: 500px) {
     .demo-user-content {
         padding: 15px;
-        height: 100vh;
+        height: 100dvh;
     }
 
     .demo-user-content {

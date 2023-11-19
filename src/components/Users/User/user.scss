@@ -420,7 +420,6 @@
 
     .user {
         height: 90dvh;
-        border: 2px solid red;
     }
 
     .user-buttons-container,
@@ -451,6 +450,7 @@
 
     .user-image-content {
         justify-content: center !important;
+        border: 2px solid red;
     }
 
     .user-image {

@@ -419,7 +419,11 @@
 @media (max-width: 500px) {
 
     .user {
-        height: 90dvh;
+        height: 90svh !important;
+    }
+
+    .user-container {
+        height: 90svh !important;
     }
 
     .user-buttons-container,
@@ -446,11 +450,11 @@
 
     .user-img-container {
         display: flex !important;
+        border: 2px solid green;
     }
 
     .user-image-content {
         justify-content: center !important;
-        border: 2px solid red;
     }
 
     .user-image {

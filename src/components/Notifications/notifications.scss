@@ -11,17 +11,29 @@
             text-decoration: none;
             width: auto;
             height: auto;
+        }
 
-            .notification-container {
-                padding: 10px;
+        .notification-container {
+            padding: 5px !important;
+            padding-left: 15px !important;
+        }
 
-                .notification-message {
-                }
+        .notification-message {
+            // padding: 1px;
+        }
 
-                .notifications-contents {
-                    font-size: 14px;
-                    padding: 5px;
-                }
+        .notifications-contents {
+            font-size: 14px;
+            padding: 5px;
+     
+            .notification-title {
+
+            }
+
+            .notification-date {
+                padding-left: 10px;
+                padding-top: 5px;
+                font-size: 12px;
             }
         }
     }

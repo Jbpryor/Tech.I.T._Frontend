@@ -418,18 +418,21 @@
 
 @media (max-width: 500px) {
 
+    .user {
+        height: 90svh !important;
+    }
+
     .user-buttons-container,
     .user-account-container,
     .user-notifications-container,
     .user-password-container {
         width: 100vw !important;
         font-size: 14px;
-        height: 90svh !important;
+        height: 100% !important;
     }
 
     .user-account-container {
         grid-template-rows: 15% 85% !important;
-        height: 100% !important;
     }
 
     .account-settings,
@@ -448,7 +451,7 @@
 
     .user-image-content {
         justify-content: center !important;
-        border: 2px solid green;
+        border: 2px solid yellow;
     }
 
     .user-image {
@@ -566,7 +569,7 @@
     }
 
     .user-password-container {
-        height: 90svh !important;
+        height: 90vh !important;
     }
 
     .user-password-content {

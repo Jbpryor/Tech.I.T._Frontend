@@ -7,7 +7,7 @@ import UsersTable from "./Users Table/usersTable";
 import TablePagination from "../../Charts & Tables/Table Pagination/tablePagination";
 import { useSelector } from "react-redux";
 import { addUser, changeUserRole, removeUser } from '../../Store/Slices/userSlice'
-import { sortByProperty } from "../../main";
+import { sortByProperty } from "../../utils";
 import UsersSort from "./Users Sort/usersSort";
 
 

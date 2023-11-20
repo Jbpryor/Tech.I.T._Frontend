@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { addIssue } from "../../../Store/Slices/issueSlice";
 import { issueDetails } from "../../../Constants/issueDetails";
 import { addNotification } from "../../../Store/Slices/notificationsSlice";
+import { formatTimestamp } from "../../../utils";
 
 function NewIssue() {
   const dispatch = useDispatch();
@@ -16,7 +17,6 @@ function NewIssue() {
   const [newId, setNewId] = useState(0);
   const users = useSelector((state) => state.users);
   const [inputValues, setInputValues] = useState({});
-  const [currentDate, setCurrentDate] = useState("");
   const issues = useSelector((state) => state.issues);
   const projects = useSelector((state) => state.projects);
 
@@ -27,7 +27,7 @@ function NewIssue() {
   });
 
   newIssue.id = newId;
-  newIssue.created = currentDate;
+  newIssue.created = formatTimestamp(Date.now());
 
   const handleInputChange = (event, detail) => {
     const { value } = event.target;
@@ -37,38 +37,11 @@ function NewIssue() {
     }));
   };
 
-  const handleCurrentDate = () => {
-    const date = new Date();
-    const hours = date.getHours();
-    const minutes = date.getMinutes();
-    const meridiem = hours >= 12 ? "PM" : "AM";
-    const formattedHours = hours % 12 || 12;
-
-    const formattedDate = `${(date.getMonth() + 1)
-      .toString()
-      .padStart(2, "0")}/${date
-      .getDate()
-      .toString()
-      .padStart(
-        2,
-        "0"
-      )}/${date.getFullYear()} ${formattedHours
-      .toString()
-      .padStart(2, "0")}:${minutes
-      .toString()
-      .padStart(2, "0")}:${date
-      .getSeconds()
-      .toString()
-      .padStart(2, "0")} ${meridiem}`.trim();
-
-    setCurrentDate(formattedDate);
-  };
-
   const handleSaveNewIssue = (event) => {
     event.preventDefault();
 
     dispatch(addIssue(newIssue));
-    dispatch(addNotification({ message: 'New issue created', title: newIssue.title, currentDate: currentDate}));
+    dispatch(addNotification({ message: 'New issue created', title: newIssue.title, currentDate: formatTimestamp(Date.now()) }));
 
     alert("New issue was created!");
 
@@ -77,7 +50,7 @@ function NewIssue() {
   };
 
   useEffect(() => {
-    handleCurrentDate();
+    formatTimestamp(Date.now());
     if (issues && issues.length > 0) {
       const highestId = Math.max(...issues.map((issue) => issue.id), 0);
       setNewId(highestId + 1);

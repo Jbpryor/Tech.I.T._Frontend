@@ -2,6 +2,7 @@ import './sideBar.scss';
 import React, { useState } from 'react';
 import { NavLink, useParams } from 'react-router-dom';
 import { useSelector } from "react-redux";
+import { capitalizeFirstLetter } from '../../utils';
 
 
 function SideBar() {

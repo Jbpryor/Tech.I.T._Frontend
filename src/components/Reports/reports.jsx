@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./reports.scss";
 import { useLocation, Link } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { sortByProperty } from "../../main";
+import { sortByProperty } from "../../utils";
 import ReportsSort from "./Reports Sort/reportsSort";
 import ReportsTable from "./Reports Table/reportsTable";
 import TablePagination from "../../Charts & Tables/Table Pagination/tablePagination";

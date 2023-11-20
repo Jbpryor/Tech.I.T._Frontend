@@ -35,7 +35,7 @@ function Header() {
 
   const handleNotificationClick = () => {
     dispatch(markNotificationsAsRead());
-    navigate('/notifications');
+    navigate("/notifications");
   };
 
   const handleNewMenuVisibility = () => {
@@ -90,10 +90,9 @@ function Header() {
                     onMouseEnter={() => setIsNewMenuVisible(true)}
                     onMouseLeave={() => setIsNewMenuVisible(false)}
                     style={{
-                      background: theme.primary_color,
-                      borderTop: isNewMenuVisible
-                        ? `2px solid ${theme.primary_color}`
-                        : "none",
+                      background: theme.background_color,
+                      border: `1px solid ${theme.border}`,
+                      color: theme.font_color,
                     }}
                   >
                     {(demoUser === "admin" || demoUser === "manager") && (

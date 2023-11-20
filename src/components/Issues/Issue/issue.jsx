@@ -10,6 +10,7 @@ import {
 import IssueModifications from "./Modificatons/issueModifications";
 import Comments from "./Comments/comments";
 import useWindowSize from "../../../Hooks/useWindowSize";
+import { capitalizeFirstLetter } from "../../../utils";
 
 function Issue() {
   const navigate = useNavigate();

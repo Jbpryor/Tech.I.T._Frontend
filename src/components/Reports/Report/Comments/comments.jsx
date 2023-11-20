@@ -4,7 +4,7 @@ import {
   deleteComment,
 } from "../../../../Store/Slices/reportSlice";
 import { useDispatch } from "react-redux";
-import { formatTimestamp } from "../../../../main";
+import { formatTimestamp } from "../../../../utils";
 
 function Comments({ report, timeStamp, theme, smallerScreen }) {
   const dispatch = useDispatch();

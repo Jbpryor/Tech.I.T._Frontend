@@ -1,5 +1,5 @@
 import React from "react";
-import "./notifications.scss";
+import './notifications.scss';
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
@@ -12,20 +12,6 @@ function Notifications() {
   );
   const viewMode = useSelector((state) => state.viewMode);
   const isNotificationsActive = location.pathname === '/notifications';
-
-
-  //   return notifications.map((notification, index) => (
-  //     <div
-  //       className="notification-container"
-  //       key={index}
-  //       style={{ color: theme.font_color, background: theme.background_color }}
-  //     >
-  //       <div className="notification-message">{notification.message}</div>
-  //       <div className="notification-title">{notification.title}</div>
-  //       <div className="notification-date">{notification.currentDate}</div>
-  //     </div>
-
-  // <>
 
   return (
     <>
@@ -100,7 +86,7 @@ function Notifications() {
                 className={`notifications-link ${
                   isNotificationsActive ? "active" : ""
                 }`}
-                to={`/notifications/${notification.id}`}
+                to={notification.notificationLink}
                 key={index}
               >
                 <div
@@ -113,7 +99,7 @@ function Notifications() {
                   }}
                 >
                   <div className="notification-message">
-                    {notification.message}
+                    {notification.message}:
                   </div>
 
                   <div className="notifications-contents">

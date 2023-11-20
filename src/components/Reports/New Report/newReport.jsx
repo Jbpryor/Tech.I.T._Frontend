@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { addReport } from "../../../Store/Slices/reportSlice";
 import { addNotification } from "../../../Store/Slices/notificationsSlice";
+import { formatTimestamp } from "../../../utils";
 
 function NewReport() {
   const dispatch = useDispatch();
@@ -48,38 +49,18 @@ function NewReport() {
     }));
   };
 
-  const handleCurrentDate = () => {
-    const date = new Date();
-    const hours = date.getHours();
-    const minutes = date.getMinutes();
-    const meridiem = hours >= 12 ? "PM" : "AM";
-    const formattedHours = hours % 12 || 12;
-
-    const formattedDate = `${(date.getMonth() + 1)
-      .toString()
-      .padStart(2, "0")}/${date
-      .getDate()
-      .toString()
-      .padStart(
-        2,
-        "0"
-      )}/${date.getFullYear()} ${formattedHours
-      .toString()
-      .padStart(2, "0")}:${minutes
-      .toString()
-      .padStart(2, "0")}:${date
-      .getSeconds()
-      .toString()
-      .padStart(2, "0")} ${meridiem}`.trim();
-
-    setCurrentDate(formattedDate);
-  };
-
   const handleSaveNewReport = (event) => {
     event.preventDefault();
 
     dispatch(addReport(newReport));
-    dispatch(addNotification({ message: "New report added", title: newReport.subject, currentDate: currentDate }))
+    dispatch(
+      addNotification({
+        message: "New report added",
+        title: newReport.subject,
+        notificationLink: `/reports/${newReport.id}`,
+        currentDate: formatTimestamp(Date.now()),
+      })
+    );
 
     alert("New report was created!");
 
@@ -88,7 +69,7 @@ function NewReport() {
   };
 
   useEffect(() => {
-    handleCurrentDate();
+    formatTimestamp(Date.now());
     if (reports && reports.length > 0) {
       const highestId = Math.max(...reports.map((report) => report.id), 0);
       setNewId(highestId + 1);

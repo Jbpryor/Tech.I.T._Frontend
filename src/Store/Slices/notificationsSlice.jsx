@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { formatTimestamp } from "../../main";
 
 export const LOCAL_STORAGE_KEY = "notifications";
 export const LOCAL_STORAGE_KEY_COUNTS = "newNotificationsCount";

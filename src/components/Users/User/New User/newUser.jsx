@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { addUser } from "../../../../Store/Slices/userSlice";
 import { addNotification } from "../../../../Store/Slices/notificationsSlice";
+import { formatTimestamp } from "../../../../utils";
 
 function NewUser() {
   const dispatch = useDispatch();
@@ -74,7 +75,8 @@ function NewUser() {
       addNotification({
         message: "New user created",
         title: newUser.name.first + " " + newUser.name.last,
-        currentDate: Date.now(),
+        notificationLink: `/users/${newUser.id}`,
+        currentDate: formatTimestamp(Date.now()),        
       })
     );
 

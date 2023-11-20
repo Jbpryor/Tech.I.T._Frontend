@@ -3,7 +3,7 @@ import './issues.scss'
 import { useLocation, Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import 'boxicons/css/boxicons.min.css';
-import { sortByProperty } from '../../main';
+import { sortByProperty } from '../../utils';
 import IssuesSort from './Issues Sort/issuesSort';
 import IssuesTable from './Issues Table/issuesTable';
 import TablePagination from '../../Charts & Tables/Table Pagination/tablePagination';

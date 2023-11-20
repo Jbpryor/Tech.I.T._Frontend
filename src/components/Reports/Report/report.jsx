@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { deleteReport } from "../../../Store/Slices/reportSlice";
 import Comments from "./Comments/comments";
 import useWindowSize from "../../../Hooks/useWindowSize";
+import { capitalizeFirstLetter } from "../../../utils";
 
 function Report() {
   const navigate = useNavigate();

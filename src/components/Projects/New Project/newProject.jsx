@@ -4,6 +4,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { addProject } from "../../../Store/Slices/projectSlice";
 import { addNotification } from "../../../Store/Slices/notificationsSlice";
+import { formatTimestamp } from "../../../utils";
 
 function NewProject() {
   const dispatch = useDispatch();
@@ -83,7 +84,14 @@ function NewProject() {
     event.preventDefault();
 
     dispatch(addProject(newProject));
-    dispatch(addNotification({ message: "New project added", title: newProject.title, currentDate: currentDate }))
+    dispatch(
+      addNotification({
+        message: "New project added",
+        title: newProject.title,
+        notificationLink: `/projects/${newProject.id}`,
+        currentDate: formatTimestamp(Date.now()),
+      })
+    );
 
     alert("New project was created!");
 
@@ -92,7 +100,7 @@ function NewProject() {
   };
 
   useEffect(() => {
-    handleCurrentDate();
+    formatTimestamp(Date.now());
     if (projects && projects.length > 0) {
       const highestId = Math.max(...projects.map((project) => project.id), 0);
       setNewId(highestId + 1);

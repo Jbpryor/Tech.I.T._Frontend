@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { addComment, deleteComment } from "../../../../Store/Slices/issueSlice";
 import { useDispatch } from "react-redux";
-import { formatTimestamp } from "../../../../main";
+import { formatTimestamp } from "../../../../utils";
 
 function Comments({ issue, timeStamp, theme, smallerScreen }) {
 

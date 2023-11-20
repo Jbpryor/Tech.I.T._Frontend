@@ -1,0 +1,28 @@
+.notifications-tile {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+    
+    .notifications-container {
+        justify-content: center;
+        margin: 1%;
+
+        .notifications-link {
+            text-decoration: none;
+            width: auto;
+            height: auto;
+
+            .notification-container {
+                padding: 10px;
+
+                .notification-message {
+                }
+
+                .notifications-contents {
+                    font-size: 14px;
+                    padding: 5px;
+                }
+            }
+        }
+    }
+}

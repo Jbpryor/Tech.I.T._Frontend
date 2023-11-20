@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useSelector, useDispatch } from 'react-redux';
 import { setTheme } from "../../Store/Slices/settingsSlice";
 import './settings.scss';
+import { capitalizeFirstLetter } from "../../utils";
 
 
 function Settings() {

@@ -429,6 +429,7 @@
 
     .user-account-container {
         grid-template-rows: 15% 85% !important;
+        height: 100% !important;
     }
 
     .account-settings,
@@ -565,7 +566,7 @@
     }
 
     .user-password-container {
-        height: 90vh !important;
+        height: 90svh !important;
     }
 
     .user-password-content {

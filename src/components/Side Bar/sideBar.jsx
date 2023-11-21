@@ -49,13 +49,14 @@ function SideBar() {
           <span className='reports-link icon' style={{ fontSize: '30px', color: theme.font_color}} ><i className='bx bxs-report reports-link' /></span>
         </NavLink>
       </div>
-      <div className="settings-container">
+      <div className="settings-icon-container">
         <NavLink to='/settings' className="nav-link settings-link" >
             <i className="bx bx-cog settings-icon" style={{color: theme.font_color}}></i>
         </NavLink>        
       </div>
       <div className="user-icon-container">
-        <NavLink to='users/user-1697405766098-499' className="nav-link user-link" >
+        {/* change this to logout function */}
+        <NavLink to='/' className="nav-link user-link" >
             <i className="bx bxs-user-rectangle user-icon" style={{ color: getIconColor() }}></i>
         </NavLink>
         <div className="user-name-welcome">Hello, <br />{userName}</div>

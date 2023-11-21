@@ -3,6 +3,7 @@ import "./user.scss";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import UserButtons from "./User Buttons/userButtons";
+import GeneralSettings from "./Settings/settings"
 import UserAccount from "./User Account/userAccount";
 import UserNotifications from "./Notifications/userNotification";
 import UserPassword from "./Password/userPassword";
@@ -26,6 +27,7 @@ function User() {
 
   const { width } = useWindowSize();
 
+  const [generalActive, setGeneralActive] = useState(false);
   const [accountActive, setAccountActive] = useState(false);
   const [notificationsActive, setNotificationsActive] = useState(false);
   const [passwordActive, setPasswordActive] = useState(false);
@@ -47,6 +49,7 @@ function User() {
       <div className="user-container">
         <UserButtons
           user={user}
+          setGeneralActive={setGeneralActive}
           setAccountActive={setAccountActive}
           setNotificationsActive={setNotificationsActive}
           setPasswordActive={setPasswordActive}
@@ -54,6 +57,8 @@ function User() {
           setViewUserButtons={setViewUserButtons}
           theme={theme}
         />
+
+        <GeneralSettings generalActive={generalActive} />
 
         <UserAccount user={user} theme={theme} accountActive={accountActive} />
 

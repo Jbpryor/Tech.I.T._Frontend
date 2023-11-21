@@ -20,6 +20,7 @@
                 display: flex;
                 flex-direction: column;
 
+                .general-settings,
                 .account-settings,
                 .notification-settings,
                 .password-settings,
@@ -46,11 +47,6 @@
                         font-size: 16px;
                         font-weight: 800;
                         padding: 2%;
-                    }
-
-                    .button-details {
-                        font-size: 13px;
-                        font-weight: 200;
                     }
                 }
             }
@@ -435,6 +431,7 @@
         grid-template-rows: 15% 85% !important;
     }
 
+    .general-settings,
     .account-settings,
     .notification-settings,
     .password-settings,
@@ -553,16 +550,16 @@
     }
 
     .notifications-content {
-        height: 100% !important;
+        height: 100svh !important;
         grid-template-rows: 15% 85% !important;
     }
 
-    .notifications-global,
     .notifications-local {
-        padding: 5% 1% !important;
+        padding: 0 5% !important;
         font-size: 13px !important;
         justify-content: flex-start !important;
     }
+
 
     .notifications-local {
         margin: 0 !important;
@@ -574,7 +571,8 @@
 
     .notification-header {
         font-size: 15px !important;
-        padding: 10% 0;
+        padding-top: 5%;
+        padding-bottom: 10%;
     }
 
     .notification-save-button-container {

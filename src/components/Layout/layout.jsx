@@ -19,7 +19,7 @@ import NewProject from "../Projects/New Project/newProject";
 import NewUser from "../Users/User/New User/newUser";
 import Report from "../Reports/Report/report";
 import NewReport from "../Reports/New Report/newReport";
-import Settings from "../Settings/settings";
+import Settings from "../Users/User/Settings/settings";
 import Notifications from "../Notifications/notifications";
 import { useSelector } from "react-redux";
 

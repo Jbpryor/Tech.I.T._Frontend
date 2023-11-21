@@ -46,7 +46,7 @@
         }
     }
 
-    .settings-container {
+    .settings-icon-container {
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -132,7 +132,7 @@
     }
 
     .sideBar-links,
-    .settings-container,
+    .settings-icon-container,
     .user-icon {
         display: flex;
         padding: 0 !important;

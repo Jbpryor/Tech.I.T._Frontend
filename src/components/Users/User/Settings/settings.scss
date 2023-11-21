@@ -1,18 +1,10 @@
-.settings {
-    min-height: 100%;
-    width: 100%;
-    align-items: center;
-    padding: 1% 0.5%;
-
-    .settings-title {
-        font-size: 15px;
-        font-weight: 900;
-        padding: 1%;
-    }
-
     .settings-container {
-        display: flex;
+        display: none;
         justify-content: space-around;
+
+        &.active {
+            display: flex;
+        }
 
         .theme-settings {
 
@@ -50,12 +42,11 @@
             }
         }
     }
-}
 
 @media (max-width: 500px) {
-    
-    .settings-title {
-        display: none;
+
+    .settings-container {
+        width: 100vw;
     }
 
     button {

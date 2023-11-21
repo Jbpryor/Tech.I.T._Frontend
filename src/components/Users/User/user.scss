@@ -451,7 +451,6 @@
 
     .user-image-content {
         justify-content: center !important;
-        border: 2px solid yellow;
     }
 
     .user-image {
@@ -491,29 +490,25 @@
     } 
     
     .user-info-container {
+        display: flex;
+        flex-direction: column !important;
         margin: 0 !important;
         // height: 76svh !important;
         padding: 2% !important;
-        width: 100vw;
-        justify-content: space-evenly !important;
-
-        .user-full-name-container,
-        .city-state-container,
-        .zip-country-container,
-        .address-container {
-            display: flex !important;
-            flex-direction: column !important;
-            font-size: 14px;
-            padding: 0 !important;
-
-            input,
-            select,
-            .space {
-                width: 100% !important;
-                margin: 0 !important;
-            }
-        }
+        width: 100vw !important;
+        justify-content: flex-start !important;
     }
+
+    .user-full-name-container,
+    .city-state-container,
+    .zip-country-container,
+    .address-container {
+        display: flex !important;
+        flex-direction: column !important;
+        font-size: 14px;
+        padding: 0 !important;
+        width: 100% !important;
+   }
 
     .user-full-name-content,
     .user-email-content,
@@ -523,17 +518,38 @@
     .zip-content,
     .country-content {
         padding: 3%;
-    }
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center !important;
 
-    .save-info-button,
-    .cancel-edit-info-button {
-        margin-top: 4% !important;
+        .title {
+            width: auto !important;
+            padding-right: 5px;
+        }
+
+        .input {
+            margin: 0 !important;
+            width: 100% !important;
+            max-width: 220px !important;
+            text-align: right;
+            padding-right: 5px;
+        }
+
+        .space {
+            flex-direction: column;
+            width: auto !important;
+            margin: 0 !important;
+            align-items: flex-end !important;
+        }
+
     }
 
     .save-info-button,
     .cancel-edit-info-button,
     .edit-info-button {
         box-shadow: none !important;
+        margin-top: 10% !important;
     }
 
     .notifications-content {

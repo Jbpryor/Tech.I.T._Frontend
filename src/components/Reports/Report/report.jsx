@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./report.scss";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { deleteReport } from "../../../Store/Slices/reportSlice";
+import { deleteReport } from "../reportSlice";
 import Comments from "./Comments/comments";
 import useWindowSize from "../../../Hooks/useWindowSize";
 import { capitalizeFirstLetter } from "../../../utils";

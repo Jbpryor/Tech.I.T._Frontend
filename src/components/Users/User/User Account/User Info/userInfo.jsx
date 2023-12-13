@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import CountryMenu from "../../Country Menu/countryMenu";
-import { modifyUser } from "../../../../../Store/Slices/userSlice";
+import { modifyUser } from "../../../userSlice";
 
 
 function UserInfo({ user, theme }) {

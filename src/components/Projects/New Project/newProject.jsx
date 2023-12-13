@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import "./newProject.scss";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { addProject } from "../../../Store/Slices/projectSlice";
-import { addNotification } from "../../../Store/Slices/notificationsSlice";
+import { addProject } from "../projectSlice";
+import { addNotification } from "../../Notifications/notificationsSlice";
 import { formatTimestamp } from "../../../utils";
 
 function NewProject() {
@@ -16,8 +16,11 @@ function NewProject() {
   const [newId, setNewId] = useState(0);
   const users = useSelector((state) => state.users);
   const [inputValues, setInputValues] = useState({});
-  const [currentDate, setCurrentDate] = useState("");
   const projects = useSelector((state) => state.projects);
+
+  const currentDate = formatTimestamp(Date.now())
+
+  const date = new Date().toISOString();
 
   const location = useLocation();
 
@@ -53,33 +56,6 @@ function NewProject() {
     }));
   };
 
-  const handleCurrentDate = () => {
-    const date = new Date();
-    const hours = date.getHours();
-    const minutes = date.getMinutes();
-    const meridiem = hours >= 12 ? "PM" : "AM";
-    const formattedHours = hours % 12 || 12;
-
-    const formattedDate = `${(date.getMonth() + 1)
-      .toString()
-      .padStart(2, "0")}/${date
-      .getDate()
-      .toString()
-      .padStart(
-        2,
-        "0"
-      )}/${date.getFullYear()} ${formattedHours
-      .toString()
-      .padStart(2, "0")}:${minutes
-      .toString()
-      .padStart(2, "0")}:${date
-      .getSeconds()
-      .toString()
-      .padStart(2, "0")} ${meridiem}`.trim();
-
-    setCurrentDate(formattedDate);
-  };
-
   const handleSaveNewProject = (event) => {
     event.preventDefault();
 
@@ -89,7 +65,7 @@ function NewProject() {
         message: "New project added",
         title: newProject.title,
         notificationLink: `/projects/${newProject.id}`,
-        currentDate: formatTimestamp(Date.now()),
+        date: date,
       })
     );
 
@@ -100,7 +76,7 @@ function NewProject() {
   };
 
   useEffect(() => {
-    formatTimestamp(Date.now());
+    currentDate;
     if (projects && projects.length > 0) {
       const highestId = Math.max(...projects.map((project) => project.id), 0);
       setNewId(highestId + 1);

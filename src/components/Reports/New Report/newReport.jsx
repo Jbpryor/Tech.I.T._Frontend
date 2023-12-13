@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import "./newReport.scss";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { addReport } from "../../../Store/Slices/reportSlice";
-import { addNotification } from "../../../Store/Slices/notificationsSlice";
+import { addReport } from "../reportSlice";
+import { addNotification } from "../../Notifications/notificationsSlice";
 import { formatTimestamp } from "../../../utils";
 
 function NewReport() {
@@ -13,12 +13,13 @@ function NewReport() {
   const [newId, setNewId] = useState(0);
   const users = useSelector((state) => state.users);
   const [inputValues, setInputValues] = useState({});
-  const [currentDate, setCurrentDate] = useState("");
   const reports = useSelector((state) => state.reports);
   const projects = useSelector((state) => state.projects);
   const theme = useSelector(
     (state) => state.settings.themes[state.settings.theme]
   );
+  const currentDate = formatTimestamp(Date.now())
+  const date = new Date().toISOString();
 
   const reportDetails = [
     "Created",
@@ -58,7 +59,7 @@ function NewReport() {
         message: "New report added",
         title: newReport.subject,
         notificationLink: `/reports/${newReport.id}`,
-        currentDate: formatTimestamp(Date.now()),
+        date: date,
       })
     );
 
@@ -69,7 +70,7 @@ function NewReport() {
   };
 
   useEffect(() => {
-    formatTimestamp(Date.now());
+    currentDate;
     if (reports && reports.length > 0) {
       const highestId = Math.max(...reports.map((report) => report.id), 0);
       setNewId(highestId + 1);

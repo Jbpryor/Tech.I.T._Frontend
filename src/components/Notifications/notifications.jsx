@@ -2,6 +2,7 @@ import React from "react";
 import './notifications.scss';
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { parseISO, formatDistanceToNow } from "date-fns";
 
 function Notifications() {
   const notifications = useSelector(
@@ -107,7 +108,7 @@ function Notifications() {
                       {notification.title}
                     </div>
                     <div className="notification-date">
-                      {notification.currentDate}
+                      {formatDistanceToNow(parseISO(notification.date))} ago
                     </div>
                   </div>
                 </div>

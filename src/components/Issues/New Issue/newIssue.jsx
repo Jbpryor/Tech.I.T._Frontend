@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import "./newIssue.scss";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { addIssue } from "../../../Store/Slices/issueSlice";
-import { issueDetails } from "../../../Constants/issueDetails";
-import { addNotification } from "../../../Store/Slices/notificationsSlice";
+import { addIssue } from "../issueSlice";
+import { issueDetails } from "../../../Config/issueDetails";
+import { addNotification } from "../../Notifications/notificationsSlice";
 import { formatTimestamp } from "../../../utils";
 
 function NewIssue() {
@@ -19,6 +19,8 @@ function NewIssue() {
   const [inputValues, setInputValues] = useState({});
   const issues = useSelector((state) => state.issues);
   const projects = useSelector((state) => state.projects);
+  const currentDate = formatTimestamp(Date.now());
+  const date = new Date().toISOString();
 
   const newIssue = {};
 
@@ -41,7 +43,7 @@ function NewIssue() {
     event.preventDefault();
 
     dispatch(addIssue(newIssue));
-    dispatch(addNotification({ message: 'New issue created', title: newIssue.title, currentDate: formatTimestamp(Date.now()) }));
+    dispatch(addNotification({ message: 'New issue created', title: newIssue.title, date: date }));
 
     alert("New issue was created!");
 
@@ -50,7 +52,7 @@ function NewIssue() {
   };
 
   useEffect(() => {
-    formatTimestamp(Date.now());
+    currentDate;
     if (issues && issues.length > 0) {
       const highestId = Math.max(...issues.map((issue) => issue.id), 0);
       setNewId(highestId + 1);

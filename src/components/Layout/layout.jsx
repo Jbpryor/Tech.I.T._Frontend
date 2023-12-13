@@ -1,10 +1,10 @@
 import React from "react";
 import { Routes, Route } from 'react-router-dom';
-import PrivateRoutes from "../../privateRoute";
+import PrivateRoutes from "../Auth/privateRoute";
 import './layout.scss';
-import Logo from "../Logo/logo";
+import Logo from "./Logo/logo";
 import Header from "../Header/header";
-import SideBar from "../Side Bar/sideBar";
+import SideBar from "./Side Bar/sideBar";
 // import { Outlet } from 'react-router-dom';
 import Dashboard from "../Dashboard/dashboard";
 import Issues from "../Issues/issues";

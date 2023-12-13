@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import {
   addComment,
   deleteComment,
-} from "../../../../Store/Slices/reportSlice";
+} from "../../reportSlice";
 import { useDispatch } from "react-redux";
 import { formatTimestamp } from "../../../../utils";
 

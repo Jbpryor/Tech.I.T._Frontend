@@ -6,7 +6,7 @@ import {
   deleteIssue,
   modifyIssue,
   addModifications,
-} from "../../../Store/Slices/issueSlice";
+} from "../issueSlice";
 import IssueModifications from "./Modificatons/issueModifications";
 import Comments from "./Comments/comments";
 import useWindowSize from "../../../Hooks/useWindowSize";

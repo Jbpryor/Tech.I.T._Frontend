@@ -6,7 +6,7 @@ import 'boxicons/css/boxicons.min.css';
 import UsersTable from "./Users Table/usersTable";
 import TablePagination from "../../Charts & Tables/Table Pagination/tablePagination";
 import { useSelector } from "react-redux";
-import { addUser, changeUserRole, removeUser } from '../../Store/Slices/userSlice'
+import { addUser, changeUserRole, removeUser } from './userSlice'
 import { sortByProperty } from "../../utils";
 import UsersSort from "./Users Sort/usersSort";
 

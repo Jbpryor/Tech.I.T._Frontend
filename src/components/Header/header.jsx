@@ -2,11 +2,10 @@ import "./header.scss";
 import React, { useState, useEffect } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { toggleViewMode } from "../../Store/Slices/viewModeSlice";
 import useWindowSize from "../../Hooks/useWindowSize";
 import SearchBar from "./Search Bar/searchBar";
-import { setViewMode } from "../../Store/Slices/viewModeSlice";
-import { markNotificationsAsRead } from "../../Store/Slices/notificationsSlice";
+import { setViewMode, toggleViewMode } from "../Layout/viewModeSlice";
+import { markNotificationsAsRead } from "../Notifications/notificationsSlice";
 
 function Header() {
   const [isSearchIconVisible, setSearchIconVisible] = useState(true);

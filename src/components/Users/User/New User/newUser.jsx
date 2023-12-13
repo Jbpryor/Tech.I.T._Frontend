@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import "./newUser.scss";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { addUser } from "../../../../Store/Slices/userSlice";
-import { addNotification } from "../../../../Store/Slices/notificationsSlice";
+import { addUser } from "../../userSlice";
+import { addNotification } from "../../../Notifications/notificationsSlice";
 import { formatTimestamp } from "../../../../utils";
 
 function NewUser() {
@@ -12,6 +12,8 @@ function NewUser() {
   const theme = useSelector(
     (state) => state.settings.themes[state.settings.theme]
   );
+
+  const date = new Date().toISOString();
 
   const [user, setUser] = useState({
     name: {
@@ -76,7 +78,7 @@ function NewUser() {
         message: "New user created",
         title: newUser.name.first + " " + newUser.name.last,
         notificationLink: `/users/${newUser.id}`,
-        currentDate: formatTimestamp(Date.now()),        
+        date: date,        
       })
     );
 

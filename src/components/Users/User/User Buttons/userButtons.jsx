@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from "react-router-dom";
-import { removeUser } from "../../../../Store/Slices/userSlice";
+import { removeUser } from "../../userSlice";
 import useWindowSize from "../../../../Hooks/useWindowSize";
 
 

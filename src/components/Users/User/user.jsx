@@ -8,14 +8,15 @@ import UserAccount from "./User Account/userAccount";
 import UserNotifications from "./Notifications/userNotification";
 import UserPassword from "./Password/userPassword";
 import useWindowSize from "../../../Hooks/useWindowSize";
+import { selectAllUsers } from "../userSlice";
+import { selectTheme } from "./Settings/settingsSlice";
 
 function User() {
   const { userId } = useParams();
 
-  const theme = useSelector(
-    (state) => state.settings.themes[state.settings.theme]
-  );
-  const users = useSelector((state) => state.users);
+  const theme = useSelector(selectTheme);
+
+  const users = useSelector(selectAllUsers);
 
   const user = users.find((user) => {
     if (typeof user.id === "string") {

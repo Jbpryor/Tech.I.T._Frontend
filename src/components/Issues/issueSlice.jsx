@@ -79,6 +79,8 @@ const issueSlice = createSlice({
     },
 });
 
+export const selectAllIssues = (state) => state.issues
+
 export const { addIssue, deleteIssue, modifyIssue, addModifications, addComment, deleteComment, issueAttachments } = issueSlice.actions;
 
 export default issueSlice.reducer;

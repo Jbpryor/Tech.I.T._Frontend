@@ -22,10 +22,11 @@ import NewReport from "../Reports/New Report/newReport";
 import Settings from "../Users/User/Settings/settings";
 import Notifications from "../Notifications/notifications";
 import { useSelector } from "react-redux";
+import { selectTheme } from "../Users/User/Settings/settingsSlice";
 
 function Layout() {
 
-    const theme = useSelector((state) => state.settings.themes[state.settings.theme]);
+    const theme = useSelector(selectTheme);
 
     return (
         <PrivateRoutes>

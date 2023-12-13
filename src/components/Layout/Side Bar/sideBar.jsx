@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { NavLink, useParams } from 'react-router-dom';
 import { useSelector } from "react-redux";
 import { capitalizeFirstLetter } from '../../../utils';
+import { selectTheme } from '../../Users/User/Settings/settingsSlice';
 
 
 function SideBar() {
@@ -11,7 +12,7 @@ function SideBar() {
 
   const userName = `Demo-User ${capitalizeFirstLetter(demoUser)}`;
 
-  const theme = useSelector((state) => state.settings.themes[state.settings.theme]);
+  const theme = useSelector(selectTheme);
 
   const getIconColor = () => {
     if (demoUser === 'admin') {

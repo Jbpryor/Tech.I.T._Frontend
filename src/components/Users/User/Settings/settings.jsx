@@ -3,12 +3,12 @@ import { useSelector, useDispatch } from "react-redux";
 import { setTheme } from "../Settings/settingsSlice";
 import "./settings.scss";
 import { capitalizeFirstLetter } from "../../../../utils";
+import { selectTheme } from "../Settings/settingsSlice";
 
 function Settings({ generalActive }) {
   const currentTheme = useSelector((state) => state.settings.theme);
-  const theme = useSelector(
-    (state) => state.settings.themes[state.settings.theme]
-  );
+      const theme = useSelector(selectTheme);
+;
 
   const dispatch = useDispatch();
 

@@ -6,19 +6,20 @@ import { addIssue } from "../issueSlice";
 import { issueDetails } from "../../../Config/issueDetails";
 import { addNotification } from "../../Notifications/notificationsSlice";
 import { formatTimestamp } from "../../../utils";
+import { selectAllUsers } from "../../Users/userSlice";
+import { selectAllProjects } from "../../Projects/projectSlice";
+import { selectTheme } from "../../Users/User/Settings/settingsSlice";
 
 function NewIssue() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const theme = useSelector(
-    (state) => state.settings.themes[state.settings.theme]
-  );
+  const theme = useSelector(selectTheme);
 
   const [newId, setNewId] = useState(0);
-  const users = useSelector((state) => state.users);
+  const users = useSelector(selectAllUsers);
   const [inputValues, setInputValues] = useState({});
   const issues = useSelector((state) => state.issues);
-  const projects = useSelector((state) => state.projects);
+  const projects = useSelector(selectAllProjects);
   const currentDate = formatTimestamp(Date.now());
   const date = new Date().toISOString();
 

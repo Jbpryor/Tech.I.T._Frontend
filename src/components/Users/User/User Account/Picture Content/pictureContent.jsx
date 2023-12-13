@@ -2,7 +2,9 @@ import React, { useState, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { userRoles } from "../../../../../Config/userRoles";
-import { changeUserRole } from "../../../userSlice";
+import { changeUserRole, selectAllUsers } from "../../../userSlice";
+import { selectTheme } from "../../Settings/settingsSlice";
+import { selectDemoUser } from "../../../../Auth/Demo Login/demoUserSlice";
 
 const PictureContent = ({ onFileSelected }) => {
   const [selectedFile, setSelectedFile] = useState(null);
@@ -11,11 +13,9 @@ const PictureContent = ({ onFileSelected }) => {
   // const [ userImage, setUserImage ] = useState('/images/default-profile.jpg');
   const inputRef = useRef(null);
   const dispatch = useDispatch();
-  const theme = useSelector(
-    (state) => state.settings.themes[state.settings.theme]
-  );
+  const theme = useSelector(selectTheme);
 
-  const demoUser = useSelector((state) => state.demoUser);
+  const demoUser = useSelector(selectDemoUser);
 
   const handleFileChange = (event) => {
     const file = event.target.files[0];
@@ -38,7 +38,7 @@ const PictureContent = ({ onFileSelected }) => {
   //   }
   // };
 
-  const users = useSelector((state) => state.users);
+  const users = useSelector(selectAllUsers);
   const { userId } = useParams();
 
   const user = users.find((user) => {

@@ -9,15 +9,18 @@ import { useSelector } from "react-redux";
 import { addUser, changeUserRole, removeUser } from './userSlice'
 import { sortByProperty } from "../../utils";
 import UsersSort from "./Users Sort/usersSort";
+import { selectAllUsers } from "./userSlice";
+import { selectViewMode } from "../Layout/viewModeSlice";
+import { selectTheme } from "./User/Settings/settingsSlice";
 
 
 function Users({ projectUsers }) {
 
-    const viewMode = useSelector((state) => state.viewMode);
+    const viewMode = useSelector(selectViewMode);
     const location = useLocation();    
     const isUsersActive = location.pathname === '/users';
-    const users = useSelector((state) => state.users);
-    const theme = useSelector((state) => state.settings.themes[state.settings.theme]);
+    const users = useSelector(selectAllUsers);
+    const theme = useSelector(selectTheme);
     const isProjectsActive = /^\/projects\//.test(location.pathname);
 
     const filteredUsers = isProjectsActive ? projectUsers : users;

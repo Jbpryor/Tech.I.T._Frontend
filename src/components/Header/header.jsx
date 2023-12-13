@@ -6,6 +6,9 @@ import useWindowSize from "../../Hooks/useWindowSize";
 import SearchBar from "./Search Bar/searchBar";
 import { setViewMode, toggleViewMode } from "../Layout/viewModeSlice";
 import { markNotificationsAsRead } from "../Notifications/notificationsSlice";
+import { selectViewMode } from "../Layout/viewModeSlice";
+import { selectDemoUser } from "../Auth/Demo Login/demoUserSlice";
+import { selectTheme } from "../Users/User/Settings/settingsSlice";
 
 function Header() {
   const [isSearchIconVisible, setSearchIconVisible] = useState(true);
@@ -13,11 +16,9 @@ function Header() {
   const [isNewMenuVisible, setIsNewMenuVisible] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const viewMode = useSelector((state) => state.viewMode);
-  const demoUser = useSelector((state) => state.demoUser);
-  const theme = useSelector(
-    (state) => state.settings.themes[state.settings.theme]
-  );
+  const viewMode = useSelector(selectViewMode);
+  const demoUser = useSelector(selectDemoUser);
+  const theme = useSelector(selectTheme);
   const newNotificationsCount = useSelector(
     (state) => state.notifications.newNotificationsCount
   );

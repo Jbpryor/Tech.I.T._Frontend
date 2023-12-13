@@ -12,7 +12,7 @@ const projectSlice = createSlice({
             state.push(action.payload);
             localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(state));
         },
-        deletProject: (state, action) => {
+        deleteProject: (state, action) => {
             const projectIdToDelete = action.payload;
             const updatedState = state.filter((project) => project.id !== projectIdToDelete);
             localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(updatedState));
@@ -40,7 +40,9 @@ const projectSlice = createSlice({
     },
 });
 
-export const { addProject, deletProject, modifyProject } = projectSlice.actions;
+export const selectAllProjects = (state) => state.projects
+
+export const { addProject, deleteProject, modifyProject } = projectSlice.actions;
 
 export default projectSlice.reducer;
 

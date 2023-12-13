@@ -5,19 +5,22 @@ import { useSelector, useDispatch } from "react-redux";
 import { addReport } from "../reportSlice";
 import { addNotification } from "../../Notifications/notificationsSlice";
 import { formatTimestamp } from "../../../utils";
+import { selectAllUsers } from "../../Users/userSlice";
+import { selectAllProjects } from "../../Projects/projectSlice";
+import { selectAllReports } from "../reportSlice";
+import { selectTheme } from "../../Users/User/Settings/settingsSlice";
 
 function NewReport() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const [newId, setNewId] = useState(0);
-  const users = useSelector((state) => state.users);
+  const users = useSelector(selectAllUsers);
   const [inputValues, setInputValues] = useState({});
-  const reports = useSelector((state) => state.reports);
-  const projects = useSelector((state) => state.projects);
-  const theme = useSelector(
-    (state) => state.settings.themes[state.settings.theme]
-  );
+  const reports = useSelector(selectAllReports);
+  const projects = useSelector(selectAllProjects);
+  const theme = useSelector(selectTheme);
+
   const currentDate = formatTimestamp(Date.now())
   const date = new Date().toISOString();
 

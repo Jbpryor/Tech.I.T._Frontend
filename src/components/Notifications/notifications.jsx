@@ -3,15 +3,14 @@ import './notifications.scss';
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { parseISO, formatDistanceToNow } from "date-fns";
+import { selectViewMode } from "../Layout/viewModeSlice";
+import { selectAllNotifications } from "./notificationsSlice";
+import { selectTheme } from "../Users/User/Settings/settingsSlice";
 
 function Notifications() {
-  const notifications = useSelector(
-    (state) => state.notifications.notifications
-  );
-  const theme = useSelector(
-    (state) => state.settings.themes[state.settings.theme]
-  );
-  const viewMode = useSelector((state) => state.viewMode);
+  const notifications = useSelector(selectAllNotifications);
+  const theme = useSelector(selectTheme);
+  const viewMode = useSelector(selectViewMode);
   const isNotificationsActive = location.pathname === '/notifications';
 
   return (

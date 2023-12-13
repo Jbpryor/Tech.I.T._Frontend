@@ -11,17 +11,18 @@ import IssueModifications from "./Modificatons/issueModifications";
 import Comments from "./Comments/comments";
 import useWindowSize from "../../../Hooks/useWindowSize";
 import { capitalizeFirstLetter } from "../../../utils";
+import { selectAllIssues } from "../issueSlice";
+import { selectAllProjects } from "../../Projects/projectSlice";
+import { selectTheme } from "../../Users/User/Settings/settingsSlice";
 
 function Issue() {
   const navigate = useNavigate();
 
   const dispatch = useDispatch();
 
-  const issues = useSelector((state) => state.issues);
-  const projects = useSelector((state) => state.projects);
-  const theme = useSelector(
-    (state) => state.settings.themes[state.settings.theme]
-  );
+  const issues = useSelector(selectAllIssues);
+  const projects = useSelector(selectAllProjects);
+  const theme = useSelector(selectTheme);
 
   const { issueId } = useParams();
   const [isEditMode, setEditMode] = useState({});

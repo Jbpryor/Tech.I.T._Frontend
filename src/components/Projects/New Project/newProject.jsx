@@ -5,18 +5,20 @@ import { useSelector, useDispatch } from "react-redux";
 import { addProject } from "../projectSlice";
 import { addNotification } from "../../Notifications/notificationsSlice";
 import { formatTimestamp } from "../../../utils";
+import { selectAllUsers } from "../../Users/userSlice";
+import { selectAllProjects } from "../projectSlice";
+import { selectTheme } from "../../Users/User/Settings/settingsSlice";
 
 function NewProject() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const theme = useSelector(
-    (state) => state.settings.themes[state.settings.theme]
-  );
+  const theme = useSelector(selectTheme);
+
 
   const [newId, setNewId] = useState(0);
-  const users = useSelector((state) => state.users);
+  const users = useSelector(selectAllUsers);
   const [inputValues, setInputValues] = useState({});
-  const projects = useSelector((state) => state.projects);
+  const projects = useSelector(selectAllProjects);
 
   const currentDate = formatTimestamp(Date.now())
 

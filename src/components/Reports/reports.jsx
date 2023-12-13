@@ -6,15 +6,17 @@ import { sortByProperty } from "../../utils";
 import ReportsSort from "./Reports Sort/reportsSort";
 import ReportsTable from "./Reports Table/reportsTable";
 import TablePagination from "../../Charts & Tables/Table Pagination/tablePagination";
+import { selectAllReports } from "./reportSlice";
+import { selectViewMode } from "../Layout/viewModeSlice";
+import { selectTheme } from "../Users/User/Settings/settingsSlice";
 
 function Reports() {
-  const viewMode = useSelector((state) => state.viewMode);
+  const viewMode = useSelector(selectViewMode);
   const location = useLocation();
   const isReportsActive = location.pathname === "/reports";
-  const reports = useSelector((state) => state.reports);
-  const theme = useSelector(
-    (state) => state.settings.themes[state.settings.theme]
-  );
+  const reports = useSelector(selectAllReports);
+  const theme = useSelector(selectTheme);
+
 
   const sortedReportsByCreated = [...reports].sort(
     sortByProperty("created", null, true)

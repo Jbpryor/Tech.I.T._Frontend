@@ -6,14 +6,17 @@ import { sortByProperty } from '../../utils';
 import ProjectsSort from './Projects Sort/projectsSort';
 import ProjectsTable from './Projects Table/projectsTable';
 import TablePagination from '../../Charts & Tables/Table Pagination/tablePagination';
+import { selectAllProjects } from './projectSlice';
+import { selectViewMode } from '../Layout/viewModeSlice';
+import { selectTheme } from '../Users/User/Settings/settingsSlice';
 
 
 function Projects() {
-    const viewMode = useSelector((state) => state.viewMode);
+    const viewMode = useSelector(selectViewMode);
     const location = useLocation();
     const isProjectsActive = location.pathname === '/projects';
-    const projects = useSelector((state) => state.projects);
-    const theme = useSelector((state) => state.settings.themes[state.settings.theme]);
+    const projects = useSelector(selectAllProjects);
+    const theme = useSelector(selectTheme);
 
     const sortedProjectsByBackend = [...projects].sort(sortByProperty('backend', null, true));
     const sortedProjectsByClientName = [...projects].sort(sortByProperty('clientName', null, true));

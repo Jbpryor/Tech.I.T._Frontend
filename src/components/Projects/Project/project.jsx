@@ -5,14 +5,18 @@ import Issues from "../../Issues/issues";
 import { useSelector } from "react-redux";
 import { useParams, Link, useLocation } from "react-router-dom";
 import { PieChart, Pie, Sector, Cell, ResponsiveContainer, Tooltip } from 'recharts';
+import { selectAllUsers } from "../../Users/userSlice";
+import { selectAllIssues } from "../../Issues/issueSlice";
+import { selectAllProjects } from "../projectSlice";
+import { selectTheme } from "../../Users/User/Settings/settingsSlice";
 
 
 function Project() {
 
-    const projects = useSelector((state) => state.projects);
-    const issues = useSelector((state) => state.issues);
-    const users = useSelector((state) => state.users);
-    const theme = useSelector((state) => state.settings.themes[state.settings.theme]);
+    const projects = useSelector(selectAllProjects);
+    const issues = useSelector(selectAllIssues);
+    const users = useSelector(selectAllUsers);
+    const theme = useSelector(selectTheme);
 
     const { projectId } = useParams();
     const project = projects.find((project) => project.id.toString() === projectId)

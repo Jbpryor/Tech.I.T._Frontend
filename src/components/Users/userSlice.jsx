@@ -40,6 +40,12 @@ const userSlice = createSlice({
     },
 });
 
-export const { addUser, modifyUser, changeUserRole, removeUser } = userSlice.actions;
+export const selectAllUsers = (state) => state.users
 
-export default userSlice.reducer;
+export const { 
+    addUser,
+    modifyUser,
+    changeUserRole,
+    removeUser } = userSlice.actions
+
+export default userSlice.reducer

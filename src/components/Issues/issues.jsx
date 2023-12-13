@@ -7,17 +7,20 @@ import { sortByProperty } from '../../utils';
 import IssuesSort from './Issues Sort/issuesSort';
 import IssuesTable from './Issues Table/issuesTable';
 import TablePagination from '../../Charts & Tables/Table Pagination/tablePagination';
+import { selectAllIssues } from './issueSlice';
+import { selectViewMode } from '../Layout/viewModeSlice';
 // import useWindowSize from '../../Hooks/useWindowSize';
+import { selectTheme } from '../Users/User/Settings/settingsSlice';
 
 function Issues({ projectIssues }) {
 
-    const viewMode = useSelector((state) => state.viewMode);
+    const viewMode = useSelector(selectViewMode);
     // const dispatch = useDispatch();
 
     const location = useLocation();
     const isIssuesActive = location.pathname === '/issues';
-    const issues = useSelector((state) => state.issues)
-    const theme = useSelector((state) => state.settings.themes[state.settings.theme]);
+    const issues = useSelector(selectAllIssues)
+    const theme = useSelector(selectTheme);
 
     const priorityOrder = ['Critical', 'High', 'Medium', 'Low'];
     const statusOrder = ['Open', 'In Progress', 'Under Review', 'Resolved', 'Postponed', 'Closed'];

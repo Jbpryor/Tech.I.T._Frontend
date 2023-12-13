@@ -21,5 +21,8 @@ const viewModeSlice = createSlice({
   },
 });
 
+export const selectViewMode = (state) => state.viewMode
+
 export const { setViewMode, toggleViewMode } = viewModeSlice.actions;
+
 export default viewModeSlice.reducer;

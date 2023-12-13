@@ -11,4 +11,7 @@ const demoUserSlice = createSlice({
 });
 
 export const { setDemoUserMode } = demoUserSlice.actions;
+
+export const selectDemoUser = (state) => state.demoUser
+
 export default demoUserSlice.reducer;

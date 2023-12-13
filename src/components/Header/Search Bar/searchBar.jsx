@@ -2,6 +2,10 @@ import React, { useState } from "react";
 import SearchSelect from "./Search Select/searchSelect";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { selectAllUsers } from "../../Users/userSlice";
+import { selectAllIssues } from "../../Issues/issueSlice";
+import { selectAllProjects } from "../../Projects/projectSlice";
+import { selectAllReports } from "../../Reports/reportSlice";
 
 function SearchBar({
   isSearchIconVisible,
@@ -13,10 +17,10 @@ function SearchBar({
   const [resultsActive, setResultsActive] = useState(false);
   const [selectedData, setSelectedData] = useState("all");
 
-  const reports = useSelector((state) => state.reports);
-  const projects = useSelector((state) => state.projects);
-  const users = useSelector((state) => state.users);
-  const issues = useSelector((state) => state.issues);
+  const reports = useSelector(selectAllReports);
+  const projects = useSelector(selectAllProjects);
+  const users = useSelector(selectAllUsers);
+  const issues = useSelector(selectAllIssues);
 
   const allData = {
     reports,

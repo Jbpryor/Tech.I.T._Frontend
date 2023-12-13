@@ -4,10 +4,11 @@ import Issues from '../Issues/issues';
 import Projects from '../Projects/projects';
 import Reports from '../Reports/reports';
 import { useSelector } from 'react-redux';
+import { selectDemoUser } from '../Auth/Demo Login/demoUserSlice';
 
 function Dashboard() {
 
-    const demoUser = useSelector((state) => state.demoUser);
+    const demoUser = useSelector(selectDemoUser);
     const [ user, setUser ] = useState(false);
  
     useEffect(() => {

@@ -1,11 +1,12 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import './logo.scss';
+import { selectTheme } from "../../Users/User/Settings/settingsSlice";
 
 function Logo() {
 
     const demoUser = useSelector((state) => state.demoUser);
-    const theme = useSelector((state) => state.settings.themes[state.settings.theme]);
+    const theme = useSelector(selectTheme);
 
     const getLogoColor = () => {
         if (demoUser === 'admin') {

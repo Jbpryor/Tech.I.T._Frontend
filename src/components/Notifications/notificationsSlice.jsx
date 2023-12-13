@@ -29,6 +29,8 @@ const notificationsSlice = createSlice({
   },
 });
 
+export const selectAllNotifications = (state) => state.notifications.notifications
+
 export const {
   addNotification,
   markNotificationsAsRead,

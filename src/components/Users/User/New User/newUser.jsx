@@ -4,14 +4,12 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { addUser } from "../../userSlice";
 import { addNotification } from "../../../Notifications/notificationsSlice";
-import { formatTimestamp } from "../../../../utils";
+import { selectTheme } from "../Settings/settingsSlice";
 
 function NewUser() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const theme = useSelector(
-    (state) => state.settings.themes[state.settings.theme]
-  );
+  const theme = useSelector(selectTheme);
 
   const date = new Date().toISOString();
 

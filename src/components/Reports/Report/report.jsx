@@ -6,16 +6,17 @@ import { deleteReport } from "../reportSlice";
 import Comments from "./Comments/comments";
 import useWindowSize from "../../../Hooks/useWindowSize";
 import { capitalizeFirstLetter } from "../../../utils";
+import { selectAllReports } from "../reportSlice";
+import { selectTheme } from "../../Users/User/Settings/settingsSlice";
 
 function Report() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const reports = useSelector((state) => state.reports);
+  const reports = useSelector(selectAllReports);
   const { reportId } = useParams();
   const report = reports.find((report) => report.id.toString() === reportId);
-  const theme = useSelector(
-    (state) => state.settings.themes[state.settings.theme]
-  );
+  const theme = useSelector(selectTheme);
+
 
   const handleDeleteReport = () => {
     dispatch(deleteReport(report.id));

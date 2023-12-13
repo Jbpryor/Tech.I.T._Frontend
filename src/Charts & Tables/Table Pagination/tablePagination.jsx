@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import './tablePagination.scss'
 import { useSelector } from 'react-redux';
+import { selectTheme } from '../../components/Users/User/Settings/settingsSlice';
 
 function TablePagination({ currentPage, setCurrentPage, onPageChange, items, itemsPerPage, setItemsPerPage }) {
 
-  const theme = useSelector((state) => state.settings.themes[state.settings.theme]);
+  const theme = useSelector(selectTheme);
 
   const [pageNumber, setPageNumber] = useState(currentPage);
   const totalItems = Math.ceil(items.length);

@@ -9,6 +9,7 @@ import { markNotificationsAsRead } from "../Notifications/notificationsSlice";
 import { selectViewMode } from "../Layout/viewModeSlice";
 import { selectDemoUser } from "../Auth/Demo Login/demoUserSlice";
 import { selectTheme } from "../Users/User/Settings/settingsSlice";
+import { selectNewNotificationsCount } from "../Notifications/notificationsSlice";
 
 function Header() {
   const [isSearchIconVisible, setSearchIconVisible] = useState(true);
@@ -19,9 +20,7 @@ function Header() {
   const viewMode = useSelector(selectViewMode);
   const demoUser = useSelector(selectDemoUser);
   const theme = useSelector(selectTheme);
-  const newNotificationsCount = useSelector(
-    (state) => state.notifications.newNotificationsCount
-  );
+  const newNotificationsCount = useSelector(selectNewNotificationsCount);
 
   const handleGridIconClick = () => {
     setGridVisible(false);

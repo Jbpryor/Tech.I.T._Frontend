@@ -4,11 +4,12 @@ import { NavLink, useParams } from 'react-router-dom';
 import { useSelector } from "react-redux";
 import { capitalizeFirstLetter } from '../../../utils';
 import { selectTheme } from '../../Users/User/Settings/settingsSlice';
+import { selectDemoUser } from '../../Auth/Demo Login/demoUserSlice';
 
 
 function SideBar() {
 
-  const demoUser = useSelector((state) => state.demoUser);
+  const demoUser = useSelector(selectDemoUser);
 
   const userName = `Demo-User ${capitalizeFirstLetter(demoUser)}`;
 

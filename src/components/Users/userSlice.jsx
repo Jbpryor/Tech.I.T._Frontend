@@ -2,8 +2,6 @@ import { createSlice } from "@reduxjs/toolkit";
 
 export const LOCAL_STORAGE_KEY = 'users';
 
-const userFullName = (user) => `${user.name.first} ${user.name.last}`;
-
 const initialState = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY)) || [];
 
 const userSlice = createSlice({

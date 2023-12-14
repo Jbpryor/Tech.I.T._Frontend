@@ -30,6 +30,7 @@ const notificationsSlice = createSlice({
 });
 
 export const selectAllNotifications = (state) => state.notifications.notifications
+export const selectNewNotificationsCount = (state) => state.newNotificationsCount
 
 export const {
   addNotification,

@@ -1,5 +1,3 @@
-
-
 function UserPassword({ theme, passwordActive }) {
     return (
         <div className={`user-password-container ${passwordActive ? 'active' : ''}`} >

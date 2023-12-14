@@ -1,5 +1,3 @@
-
-
 function UserNotifications({ theme, notificationsActive}) {
     return (
         <div className={`user-notifications-container ${notificationsActive ? 'active' : ''}`}>

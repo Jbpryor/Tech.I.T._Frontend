@@ -3,11 +3,11 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from "react-router-dom";
 import { removeUser } from "../../userSlice";
 import useWindowSize from "../../../../Hooks/useWindowSize";
-
+import { selectDemoUser } from "../../../Auth/Demo Login/demoUserSlice";
 
 function UserButtons({ user, setGeneralActive, setAccountActive, setNotificationsActive, setPasswordActive, viewUserButtons, setViewUserButtons, theme }) {
 
-    const demoUser = useSelector((state) => state.demoUser);
+    const demoUser = useSelector(selectDemoUser);
 
     const dispatch = useDispatch();
     const navigate = useNavigate();

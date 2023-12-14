@@ -4,11 +4,10 @@ import { setTheme } from "../Settings/settingsSlice";
 import "./settings.scss";
 import { capitalizeFirstLetter } from "../../../../utils";
 import { selectTheme } from "../Settings/settingsSlice";
+import { selectCurrentTheme } from "../Settings/settingsSlice";
 
 function Settings({ generalActive }) {
-  const currentTheme = useSelector((state) => state.settings.theme);
-      const theme = useSelector(selectTheme);
-;
+  const currentTheme = useSelector(selectCurrentTheme);
 
   const dispatch = useDispatch();
 

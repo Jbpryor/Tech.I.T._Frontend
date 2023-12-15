@@ -5,7 +5,6 @@ import './layout.scss';
 import Logo from "./Logo/logo";
 import Header from "../Header/header";
 import SideBar from "./Side Bar/sideBar";
-// import { Outlet } from 'react-router-dom';
 import Dashboard from "../Dashboard/dashboard";
 import Issues from "../Issues/issues";
 import Projects from "../Projects/projects";

@@ -7,6 +7,13 @@
         display: grid;
         grid-template-columns: 30% 70%;
 
+        .user-null {
+            width: 93vw;
+            text-align: center;
+            font-size: 35px;
+            padding: 25px;
+        }
+
         .user-buttons-container {
             display: none;
             align-items: center;

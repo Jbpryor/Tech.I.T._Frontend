@@ -5,17 +5,17 @@ import './users.scss';
 import 'boxicons/css/boxicons.min.css';
 import UsersTable from "./Users Table/usersTable";
 import TablePagination from "../../Charts & Tables/Table Pagination/tablePagination";
-import { useSelector } from "react-redux";
-import { addUser, changeUserRole, removeUser } from './userSlice'
+import { useSelector, useDispatch } from "react-redux";
 import { sortByProperty } from "../../utils";
 import UsersSort from "./Users Sort/usersSort";
-import { selectAllUsers } from "./userSlice";
+import { fetchUsers, selectAllUsers } from "./userSlice";
 import { selectViewMode } from "../Layout/viewModeSlice";
 import { selectTheme } from "./User/Settings/settingsSlice";
 
 
 function Users({ projectUsers }) {
 
+    const dispatch = useDispatch();
     const viewMode = useSelector(selectViewMode);
     const location = useLocation();    
     const isUsersActive = location.pathname === '/users';
@@ -56,7 +56,7 @@ function Users({ projectUsers }) {
     const sortedUsers = getSortingFunction();
 
 
-    /* this the break from grid into list table */
+    /* this is the break from grid into list table */
 
 
     const [ userRotate, setUserRotate ] = useState(false);
@@ -111,7 +111,11 @@ function Users({ projectUsers }) {
             return user;
         }
         return null;
-    }).filter(Boolean); 
+    }).filter(Boolean);
+
+    // useEffect(() => {
+    //     dispatch(fetchUsers())
+    // }, [dispatch])
 
     return (
         <>
@@ -151,7 +155,7 @@ function Users({ projectUsers }) {
                           
                     <div className={`users-container ${isUsersActive ? 'active' : ''}`}>                
                     {sortedUsers.map((user) => (
-                        <Link className={`user-link ${isUsersActive ? 'active' : ''}`} to={`/users/${user.id}`} key={user.id} >
+                        <Link className={`user-link ${isUsersActive ? 'active' : ''}`} to={`/users/${user._id}`} key={user._id} >
                             <div className='user-container' style={{ background: theme.primary_color, border: `1px solid ${theme.border}`, color: theme.font_color}} >       
                                 <div className="user-name">{user.name.first} {user.name.last}</div>
                                 <div className="user-contents">

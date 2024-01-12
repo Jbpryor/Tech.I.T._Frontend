@@ -43,10 +43,10 @@ function IssueModifications({ issue, theme, smallerScreen }) {
               className="mods"
               style={{ borderBottom: `1px solid ${theme.border}` }}
             >
-              <div className="mod-title">{key}</div>
-              <div className="mod-value">{value.previousState}</div>
-              <div className="mod-value">{value.currentState}</div>
-              <div className="mod-value">{formatTimestamp(value.modified)}</div>
+              <div className="mod-title">{modification.type}</div>
+              <div className="mod-value">{modification.previousState}</div>
+              <div className="mod-value">{modification.currentState}</div>
+              <div className="mod-value">{formatTimestamp(modification.modified)}</div>
             </div>
           ))}
         </div>

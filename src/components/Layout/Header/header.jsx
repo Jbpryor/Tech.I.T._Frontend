@@ -2,14 +2,13 @@ import "./header.scss";
 import React, { useState, useEffect } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import useWindowSize from "../../Hooks/useWindowSize";
+import useWindowSize from "../../../Hooks/useWindowSize";
 import SearchBar from "./Search Bar/searchBar";
-import { setViewMode, toggleViewMode } from "../Layout/viewModeSlice";
-import { markNotificationsAsRead } from "../Notifications/notificationsSlice";
-import { selectViewMode } from "../Layout/viewModeSlice";
-import { selectDemoUser } from "../Auth/Demo Login/demoUserSlice";
-import { selectTheme } from "../Users/User/Settings/settingsSlice";
-import { selectNewNotificationsCount } from "../Notifications/notificationsSlice";
+import { markNotificationsAsRead } from "../../Notifications/notificationsSlice";
+import { selectViewMode, setViewMode, toggleViewMode } from "../viewModeSlice";
+import { selectDemoUser } from "../../Auth/Demo Login/demoUserSlice";
+import { selectTheme } from "../../Users/User/Settings/settingsSlice";
+import { selectNewNotificationsCount } from "../../Notifications/notificationsSlice";
 
 function Header() {
   const [isSearchIconVisible, setSearchIconVisible] = useState(true);

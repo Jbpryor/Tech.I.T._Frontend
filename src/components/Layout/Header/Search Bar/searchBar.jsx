@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import SearchSelect from "./Search Select/searchSelect";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { selectAllUsers } from "../../Users/userSlice";
-import { selectAllIssues } from "../../Issues/issueSlice";
-import { selectAllProjects } from "../../Projects/projectSlice";
-import { selectAllReports } from "../../Reports/reportSlice";
+import { selectAllUsers } from "../../../Users/userSlice";
+import { selectAllIssues } from "../../../Issues/issueSlice";
+import { selectAllProjects } from "../../../Projects/projectSlice";
+import { selectAllReports } from "../../../Reports/reportSlice";
 
 function SearchBar({
   isSearchIconVisible,
@@ -53,13 +53,13 @@ function SearchBar({
         allDataValues.push({ id: value.id, value: value.title, field: field });
       } else if (
         field === "users" &&
-        (value.name.first + " " + value.name.last)
+        (value.name?.first + " " + value.name?.last)
           .toLowerCase()
           .includes(search.toLowerCase())
       ) {
         allDataValues.push({
-          id: value.id,
-          value: value.name.first + " " + value.name.last,
+          id: value._id,
+          value: value.name?.first + " " + value.name?.last,
           field: field,
         });
       }

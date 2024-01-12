@@ -2,11 +2,11 @@ import React, { useEffect, useState } from "react";
 import "./newProject.scss";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { addProject } from "../projectSlice";
+// import { addProject } from "../projectSlice";
 import { addNotification } from "../../Notifications/notificationsSlice";
 import { formatTimestamp } from "../../../utils";
 import { selectAllUsers } from "../../Users/userSlice";
-import { selectAllProjects } from "../projectSlice";
+import { selectAllProjects, fetchProjects, addNewProject } from "../projectSlice";
 import { selectTheme } from "../../Users/User/Settings/settingsSlice";
 
 function NewProject() {
@@ -19,6 +19,7 @@ function NewProject() {
   const users = useSelector(selectAllUsers);
   const [inputValues, setInputValues] = useState({});
   const projects = useSelector(selectAllProjects);
+  const [requestStatus, setRequestStatus] = useState("idle")
 
   const currentDate = formatTimestamp(Date.now())
 
@@ -58,23 +59,63 @@ function NewProject() {
     }));
   };
 
-  const handleSaveNewProject = (event) => {
+  // const handleSaveNewProject = (event) => {
+  //   event.preventDefault();
+
+  //   dispatch(addProject(newProject));
+  //   dispatch(
+  //     addNotification({
+  //       message: "New project added",
+  //       title: newProject.title,
+  //       notificationLink: `/projects/${newProject.id}`,
+  //       date: date,
+  //     })
+  //   );
+
+  //   alert("New project was created!");
+
+  //   setInputValues({});
+  //   navigate(`/projects/${newProject.id}`);
+  // };
+
+  const handleSaveNewProject = async (event) => {
     event.preventDefault();
 
-    dispatch(addProject(newProject));
-    dispatch(
-      addNotification({
-        message: "New project added",
-        title: newProject.title,
-        notificationLink: `/projects/${newProject.id}`,
-        date: date,
-      })
-    );
+    try {
+      setRequestStatus('pending')
+      const response = await dispatch(addNewProject(newProject));
 
-    alert("New project was created!");
+      if (addNewProject.fulfilled.match(response)) {
+        const {
+          title,
+          message,
+          projectId,
+        } = response.payload;
 
-    setInputValues({});
-    navigate(`/projects/${newProject.id}`);
+        await dispatch(fetchProjects());
+
+        dispatch(
+          addNotification({
+            message: message,
+            title: title,
+            notificationLink: `/projects/${projectId}`,
+            date: date,
+          })
+        );
+
+        alert(message);
+
+        setInputValues({});
+
+        navigate(`/projects/${projectId}`);
+      } else {
+        alert("Project creation failed: " + response.error.message);
+      }
+    } catch (error) {
+      console.error("An unexpected error occurred: " + error.message);
+    } finally {
+      setRequestStatus('idle')
+    }
   };
 
   useEffect(() => {

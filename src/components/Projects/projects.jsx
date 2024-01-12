@@ -255,7 +255,7 @@ function Projects() {
 
                     <div className={`projects-container ${isProjectsActive ? 'active' : ''}`} >                
                     {sortedProjects.map((project) => (
-                        <Link className={`project-link ${isProjectsActive ? 'active' : ''}`} to={`/projects/${project.id}`} key={project.id}>
+                        <Link className={`project-link ${isProjectsActive ? 'active' : ''}`} to={`/projects/${project._id}`} key={project._id}>
                             <div className='project-container' style={{ border: `1px solid ${theme.border}`, background: theme.primary_color, color: theme.font_color }}>       
                                 <div className="project-title">{project.title}</div>
                                 <div className="project-contents">

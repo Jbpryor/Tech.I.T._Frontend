@@ -1,5 +1,4 @@
 export const issueDetails = [
-    'Id',
     'Title',
     'Type',
     'Status',

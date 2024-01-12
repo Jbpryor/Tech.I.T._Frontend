@@ -7,7 +7,7 @@ import { useParams, Link, useLocation } from "react-router-dom";
 import { PieChart, Pie, Sector, Cell, ResponsiveContainer, Tooltip } from 'recharts';
 import { selectAllUsers } from "../../Users/userSlice";
 import { selectAllIssues } from "../../Issues/issueSlice";
-import { selectAllProjects } from "../projectSlice";
+import { selectAllProjects, selectProjectById } from "../projectSlice";
 import { selectTheme } from "../../Users/User/Settings/settingsSlice";
 
 
@@ -19,12 +19,25 @@ function Project() {
     const theme = useSelector(selectTheme);
 
     const { projectId } = useParams();
-    const project = projects.find((project) => project.id.toString() === projectId)
+    const project = useSelector((state) => selectProjectById(state, projectId));
     const projectIssues = issues.filter((issue) => issue.project === project.title)
     const developers = projectIssues.map((issue) => issue.developer)
     const projectUsers = users.filter((user) => developers.includes(`${user.name.first} ${user.name.last}`));
 
     const projectIssueStatus = projectIssues.map((issue) => issue.status);
+
+    if (!project) {
+        return (
+          <section
+            className="project"
+            style={{ color: theme.font_color, background: theme.background_color }}
+          >
+            <div className="project-container">
+              <div className="project-null">Project not found</div>
+            </div>
+          </section>
+        );
+      }
 
     const statusCounts = {
         'Open': 0,

@@ -3,7 +3,7 @@ import "./user.scss";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import UserButtons from "./User Buttons/userButtons";
-import GeneralSettings from "./Settings/settings"
+import GeneralSettings from "./Settings/settings";
 import UserAccount from "./User Account/userAccount";
 import UserNotifications from "./Notifications/userNotification";
 import UserPassword from "./Password/userPassword";
@@ -19,11 +19,7 @@ function User() {
   const users = useSelector(selectAllUsers);
 
   const user = users.find((user) => {
-    if (typeof user.id === "string") {
-      return user.id === userId;
-    } else {
-      return user.id.toString() === userId;
-    }
+    return user._id === userId;
   });
 
   const { width } = useWindowSize();
@@ -42,36 +38,53 @@ function User() {
     }
   }, [width]);
 
-  return (
-    <section
-      className="user"
-      style={{ color: theme.font_color, background: theme.background_color }}
-    >
-      <div className="user-container">
-        <UserButtons
-          user={user}
-          setGeneralActive={setGeneralActive}
-          setAccountActive={setAccountActive}
-          setNotificationsActive={setNotificationsActive}
-          setPasswordActive={setPasswordActive}
-          viewUserButtons={viewUserButtons}
-          setViewUserButtons={setViewUserButtons}
-          theme={theme}
-        />
+  if (user) {
+    return (
+      <section
+        className="user"
+        style={{ color: theme.font_color, background: theme.background_color }}
+      >
+        <div className="user-container">
+          <UserButtons
+            user={user}
+            setGeneralActive={setGeneralActive}
+            setAccountActive={setAccountActive}
+            setNotificationsActive={setNotificationsActive}
+            setPasswordActive={setPasswordActive}
+            viewUserButtons={viewUserButtons}
+            setViewUserButtons={setViewUserButtons}
+            theme={theme}
+          />
 
-        <GeneralSettings generalActive={generalActive} />
+          <GeneralSettings generalActive={generalActive} />
 
-        <UserAccount user={user} theme={theme} accountActive={accountActive} />
+          <UserAccount
+            user={user}
+            theme={theme}
+            accountActive={accountActive}
+          />
 
-        <UserNotifications
-          theme={theme}
-          notificationsActive={notificationsActive}
-        />
+          <UserNotifications
+            theme={theme}
+            notificationsActive={notificationsActive}
+          />
 
-        <UserPassword theme={theme} passwordActive={passwordActive} />
-      </div>
-    </section>
-  );
+          <UserPassword theme={theme} passwordActive={passwordActive} />
+        </div>
+      </section>
+    );
+  } else {
+    return (
+      <section
+        className="user"
+        style={{ color: theme.font_color, background: theme.background_color }}
+      >
+        <div className="user-container">
+          <div className="user-null">User not found</div>
+        </div>
+      </section>
+    );
+  }
 }
 
 export default User;

@@ -14,7 +14,7 @@ function UserAccount({ user, theme, accountActive }) {
     return (
         <div className={`user-account-container ${accountActive ? 'active' : ''}`}>
 
-            <PictureContent onFileSelected={handleFileSelected} theme={theme} />
+            <PictureContent user={user} theme={theme} />
             <UserInfo user={user} theme={theme} />
 
         </div>

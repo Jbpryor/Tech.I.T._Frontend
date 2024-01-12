@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./newUser.scss";
 import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { addUser } from "../../userSlice";
+import { createDispatchHook, useDispatch, useSelector } from "react-redux";
+import { addNewUser, fetchUsers } from "../../userSlice";
 import { addNotification } from "../../../Notifications/notificationsSlice";
 import { selectTheme } from "../Settings/settingsSlice";
 
@@ -24,6 +24,8 @@ function NewUser() {
 
   const roles = ["Admin", "Project Manager", "Developer", "Submitter"];
 
+  const [requestStatus, setRequestStatus] = useState('idle')
+
   const handleInputChange = (event) => {
     const { name, value } = event.target;
 
@@ -41,57 +43,52 @@ function NewUser() {
         }));
   };
 
-  function generateUserId() {
-    const timestamp = Date.now();
-    const randomNumber = Math.floor(Math.random() * 1000) + 1;
-    const userId = `user-${timestamp}-${randomNumber}`;
-    return userId;
-  }
-
-  function generateTemporaryPassword(length) {
-    const charset =
-      "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-    let temporaryPassword = "";
-
-    for (let i = 0; i < length; i++) {
-      const randomIndex = Math.floor(Math.random() * charset.length);
-      temporaryPassword += charset.charAt(randomIndex);
-    }
-
-    return temporaryPassword;
-  }
-
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
-    const newUser = {
-      ...user,
-      id: generateUserId(),
-      password: generateTemporaryPassword(8),
-    };
+    try {
+      setRequestStatus('pending')
+      const response = await dispatch(addNewUser(user));
 
-    dispatch(addUser(newUser));
-    dispatch(
-      addNotification({
-        message: "New user created",
-        title: newUser.name.first + " " + newUser.name.last,
-        notificationLink: `/users/${newUser.id}`,
-        date: date,        
-      })
-    );
+      if (addNewUser.fulfilled.match(response)) {
+        const {
+          userName,
+          userId,
+          temporaryPassword,
+          message,
+        } = response.payload;
 
-    alert("New user was created!");
+        await dispatch(fetchUsers());
 
-    navigate(`/users/${newUser.id}`);
+        dispatch(
+          addNotification({
+            message: message,
+            title: userName,
+            notificationLink: `/users/${userId}`,
+            date: date,
+          })
+        );
 
-    setUser({
-      name: {
-        first: "",
-        last: "",
-      },
-      email: "",
-      role: "",
-    });
+        alert(message);
+
+        navigate(`/users/${userId}`);
+
+        setUser({
+          name: {
+            first: "",
+            last: "",
+          },
+          email: "",
+          role: "",
+        });
+      } else {
+        alert("User creation failed: " + response.error.message);
+      }
+    } catch (error) {
+      console.error("An unexpected error occurred: " + error.message);
+    } finally {
+      setRequestStatus('idle')
+    }
   };
 
   return (

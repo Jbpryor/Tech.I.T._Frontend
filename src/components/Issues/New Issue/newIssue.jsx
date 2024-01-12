@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./newIssue.scss";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { addIssue } from "../issueSlice";
+import { addNewIssue, fetchIssues, selectAllIssues } from "../issueSlice";
 import { issueDetails } from "../../../Config/issueDetails";
 import { addNotification } from "../../Notifications/notificationsSlice";
 import { formatTimestamp } from "../../../utils";
@@ -18,10 +18,11 @@ function NewIssue() {
   const [newId, setNewId] = useState(0);
   const users = useSelector(selectAllUsers);
   const [inputValues, setInputValues] = useState({});
-  const issues = useSelector((state) => state.issues);
+  const issues = useSelector(selectAllIssues);
   const projects = useSelector(selectAllProjects);
   const currentDate = formatTimestamp(Date.now());
   const date = new Date().toISOString();
+  const [requestStatus, setRequestStatus] = useState('idle')
 
   const newIssue = {};
 
@@ -40,22 +41,50 @@ function NewIssue() {
     }));
   };
 
-  const handleSaveNewIssue = (event) => {
+  const handleSaveNewIssue = async (event) => {
     event.preventDefault();
 
-    dispatch(addIssue(newIssue));
-    dispatch(addNotification({ message: 'New issue created', title: newIssue.title, date: date }));
+    try {
+      setRequestStatus('pending')
+      const response = await dispatch(addNewIssue(newIssue));
 
-    alert("New issue was created!");
+      if (addNewIssue.fulfilled.match(response)) {
+        const {
+          title,
+          message,
+          issueId,
+        } = response.payload;
 
-    setInputValues({});
-    navigate(`/issues/${newIssue.id}`);
+        await dispatch(fetchIssues());
+
+        dispatch(
+          addNotification({
+            message: message,
+            title: title,
+            notificationLink: `/issues/${issueId}`,
+            date: date,
+          })
+        );
+
+        alert(message);
+
+        setInputValues({});
+
+        navigate(`/issues/${issueId}`);
+      } else {
+        alert("Issue creation failed: " + response.error.message);
+      }
+    } catch (error) {
+      console.error("An unexpected error occurred: " + error.message);
+    } finally {
+      setRequestStatus('idle')
+    }
   };
 
   useEffect(() => {
     currentDate;
     if (issues && issues.length > 0) {
-      const highestId = Math.max(...issues.map((issue) => issue.id), 0);
+      const highestId = Math.random(...issues.map((issue) => issue._id), 0);
       setNewId(highestId + 1);
     } else {
       setNewId(1);

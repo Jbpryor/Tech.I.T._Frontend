@@ -13,6 +13,14 @@ function Notifications() {
   const viewMode = useSelector(selectViewMode);
   const isNotificationsActive = location.pathname === '/notifications';
 
+  // const filteredNotifications = (notifications.map(notification => {
+  //   if (user === 'Admin' || user === 'Manager') {
+  //     return notifications;
+  //   } else if (user === 'Developer') {
+  //     return notifications !== ''
+  //   } else return notification !== ''
+  // }))
+
   return (
     <>
       {viewMode === "list" ? (
@@ -86,7 +94,7 @@ function Notifications() {
                 className={`notifications-link ${
                   isNotificationsActive ? "active" : ""
                 }`}
-                to={notification.notificationLink}
+                to={notification.notificationLink || "/dashboard"}
                 key={index}
               >
                 <div

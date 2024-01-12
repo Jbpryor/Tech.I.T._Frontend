@@ -1,88 +1,25 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { userRoles } from "../../../../../Config/userRoles";
-import { changeUserRole, selectAllUsers } from "../../../userSlice";
+import { updateUser, viewImage, selectAllUsers, fetchUsers } from "../../../userSlice";
 import { selectTheme } from "../../Settings/settingsSlice";
 import { selectDemoUser } from "../../../../Auth/Demo Login/demoUserSlice";
 
-const PictureContent = ({ onFileSelected }) => {
+const PictureContent = ({ user, theme }) => {
   const [selectedFile, setSelectedFile] = useState(null);
   const [editMode, setEditMode] = useState(false);
-  // const [ showSaveButton, setShowSaveButton ] = useState(false);
-  // const [ userImage, setUserImage ] = useState('/images/default-profile.jpg');
-  const inputRef = useRef(null);
   const dispatch = useDispatch();
-  const theme = useSelector(selectTheme);
 
   const demoUser = useSelector(selectDemoUser);
 
-  const handleFileChange = (event) => {
-    const file = event.target.files[0];
-
-    if (file) {
-      const reader = new FileReader();
-
-      reader.onload = (event) => {
-        const baseImg = event.target.result;
-        setSelectedFile(baseImg);
-      };
-
-      reader.readAsDataURL(file);
-    }
-  };
-
-  // const openExplorer = () => {
-  //   if (inputRef.current) {
-  //     inputRef.current.click();
-  //   }
-  // };
-
-  const users = useSelector(selectAllUsers);
-  const { userId } = useParams();
-
-  const user = users.find((user) => {
-    if (typeof user.id === "string") {
-      return user.id === userId;
-    } else {
-      return user.id.toString() === userId;
-    }
-  });
-
-  // const generateUniqueFilename = (file, user) => {
-  //   const fileName = file.name;
-  //   const fileExtension = fileName.split('.').pop();
-  //   const uniqueFilename = `${user}-${Date.now()}.${fileExtension}`;
-  //   return uniqueFilename;
-  // };
-
-  // const handleFileSelected = (file) => {
-  //   const uniqueFilename = generateUniqueFilename(file, user);
-  //   dispatch(updateProfilePicture(user, uniqueFilename));
-  //   storeProfilePicture(file, uniqueFilename);
-  // };
-
-  // const storeProfilePicture = (file) => {
-  //   const imagesDirectory = `${process.env.PUBLIC_URL}/images`;
-  //   const filePath = `${imagesDirectory}/${uniqueFilename}`;
-  //   localStorage.setItem(filePath, file);
-  // };
+  const [requestStatus, setRequestStatus] = useState("idle")
 
   const [userRole, setUserRole] = useState();
   const [editedRole, setEditedRole] = useState({});
 
   const handleChangeUserRole = () => {
     setEditMode(true);
-  };
-
-  const handleSaveUserRole = () => {
-    dispatch(
-      changeUserRole({
-        selectedUser: user.id,
-        selectedRole: userRole,
-      })
-    );
-    setEditMode(false);
   };
 
   const handleRoleChange = (event, userRole) => {
@@ -95,6 +32,96 @@ const PictureContent = ({ onFileSelected }) => {
 
   };
 
+  const handleSaveUserRole = async () => {
+
+    const updatedRole = {
+      _id: user._id,
+      role: userRole,
+    }
+
+    const response = await dispatch(updateUser(updatedRole));
+
+    if (updateUser.fulfilled.match(response)) {
+      console.log(response.message)
+      const { message, updatedUser } = response.payload;
+
+      setEditMode(false);
+      alert(message);
+    } else {
+      alert("User role update failed: " + response.error.message);
+    }
+  };
+
+
+  const handleSaveUserImage = async (event) => {
+    const file = event.target.files[0];
+    setSelectedFile(file)
+    const formData = new FormData();
+    formData.append("_id", user._id);
+    formData.append("file", file);
+    formData.append("userName", user.name.first + ' ' + user.name.last);
+
+    try {
+      setRequestStatus("pending");
+
+      const response = await dispatch(updateUser(formData));
+
+      if (updateUser.fulfilled.match(response)) {
+
+        const { imageId } = response.payload.updatedUser.userImage[0]
+        handleViewImage(imageId)
+
+        await fetchUsers();
+
+        setSelectedFile(null);
+      } else {
+        const { message } = response.error;
+        alert("Image not added: " + message);
+        console.log(response)
+      }
+    } catch (error) {
+      console.error("Failed to save the image", error);
+    } finally {
+      setRequestStatus("idle");
+    }
+  };
+
+  const imageId = user.userImage?.[0].imageId
+
+  const [fileContent, setFileContent] = useState();
+
+  const handleViewImage = async (imageId) => {
+
+    try {
+      setRequestStatus("pending");
+
+      const response = await dispatch(
+        viewImage({ userId: user._id, imageId: imageId })
+      );
+
+      const { contentType, data } = response.payload;
+      const isImage = contentType.startsWith("image/");
+
+      if (isImage) {
+        setFileContent(
+          <img className="user-image" src={`data:${contentType};base64,${data}`} alt="Attachment" />
+        );
+      } else {
+        setFileContent();
+      }
+    } catch (error) {
+      console.error("Error fetching file data URL", error);
+    } finally {
+      setRequestStatus("idle");
+    }
+  };
+
+  useEffect(() => {
+    if (user.userImage?.length > 0) {
+      handleViewImage(imageId);
+    }
+  }, [user.userImage]);
+
   return (
     <div
       className={`user-img-container ${
@@ -106,21 +133,17 @@ const PictureContent = ({ onFileSelected }) => {
       }}
     >
       <div className="user-image-content">
-        <div
-          ref={inputRef}
-          onClick={() => {
-            inputRef.current.click();
-          }}
-        >
+        <label htmlFor="file">
           <input
             type="file"
-            accept="image/*"
-            onChange={handleFileChange}
+            id='file'
+            name="file"
+            accept=".jpg, .jpeg, .png"
+            onChange={handleSaveUserImage}
             style={{ display: "none" }}
-            ref={inputRef}
           />
-          {selectedFile ? (
-            <img className="user-image" src={selectedFile} alt="Profile" />
+          {fileContent ? (
+            fileContent
           ) : (
             <img
               className="user-image"
@@ -128,11 +151,11 @@ const PictureContent = ({ onFileSelected }) => {
               alt="Generic Profile"
             />
           )}
-        </div>
+        </label>
       </div>
       <div className="user-name-content">
         <div className="user-name">
-          {user.name.first} {user.name.last}
+          {user?.name.first} {user?.name.last}
         </div>
         <div className="user-role-container">
           {editMode ? (
@@ -157,7 +180,7 @@ const PictureContent = ({ onFileSelected }) => {
               )}
             </select>
           ) : (
-            <div className="user-role">{user.role}</div>
+            <div className="user-role">{user?.role}</div>
           )}
         </div>
         <div className="change-role-buttons-container">

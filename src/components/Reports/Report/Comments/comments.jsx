@@ -1,15 +1,12 @@
 import React, { useState } from "react";
-import {
-  addComment,
-  deleteComment,
-} from "../../reportSlice";
+import { updateReport, deleteComment } from "../../reportSlice";
 import { useDispatch } from "react-redux";
 import { formatTimestamp } from "../../../../utils";
 
-function Comments({ report, timeStamp, theme, smallerScreen }) {
+function Comments({ report, timeStamp, theme, smallerScreen, requestStatus, setRequestStatus }) {
   const dispatch = useDispatch();
 
-  const comments = report.comments || [];
+  const comments = report.comments;
 
   const [comment, setComment] = useState("");
 
@@ -18,20 +15,62 @@ function Comments({ report, timeStamp, theme, smallerScreen }) {
     setComment(value);
   };
 
-  const handleSaveComment = () => {
+  const handleSaveComment = async () => {
     const newComment = {
       userName: "John Test",
       comment: comment,
-      timeStamp: formatTimestamp(timeStamp),
     };
 
-    dispatch(addComment({ reportId: report.id, comments: newComment }));
+    try {
+      setRequestStatus("pending");
 
-    setComment("");
+      const response = await dispatch(
+        updateReport({ _id: report._id, comments: newComment })
+      );
+
+      if (updateReport.fulfilled.match(response)) {
+
+        await dispatch(fetchReports());
+
+        setComment("");
+      } else {
+        const { message } = error.response
+        alert("Comment not added: " + message);
+      }
+    } catch (error) {
+      console.error("Failed to save the comment", error);
+    } finally {
+      setRequestStatus("idle");
+    }
   };
 
-  const handleDeleteComment = (index) => {
-    dispatch(deleteComment({ reportId: report.id, commentIndex: index }));
+  const handleDeleteComment = async (index, commentId) => {
+    if (window.confirm(`Are you sure you want to delete this comment?`)) {
+      try {
+        setRequestStatus("pending");
+
+        const response = await dispatch(
+          deleteComment({ reportId: report._id, commentIndex: index, commentId: commentId })
+        );
+
+        if (deleteComment.fulfilled.match(response)) {
+          const { message } = response.payload;
+          console.log("CommentRes:", response)
+
+          alert(message);
+
+          await dispatch(fetchReports());
+
+        } else {
+            const { message } = response.error
+          console.log("Error deleting comment:", message);
+        }
+      } catch (error) {
+        console.error("Failed to delete the comment", error);
+      } finally {
+        setRequestStatus("idle");
+      }
+    }
   };
 
   return (

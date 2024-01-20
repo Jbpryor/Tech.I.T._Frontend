@@ -58,6 +58,9 @@ function NewUser() {
           message,
         } = response.payload;
 
+        console.log("userId", userId)
+        console.log("pswd", temporaryPassword)
+
         await dispatch(fetchUsers());
 
         dispatch(

@@ -19,6 +19,7 @@ import Report from "./components/Reports/Report/report";
 import NewReport from "./components/Reports/New Report/newReport";
 import Settings from "./components/Users/User/Settings/settings";
 import Notifications from "./components/Notifications/notifications";
+import Prefetch from "./components/Auth/Login/prefetch";
 
 function App() {
   return (
@@ -28,39 +29,41 @@ function App() {
       <Route path="/login" element={<Login />} />
       <Route path="/demoLogin" element={<DemoLogin />} />
 
-      <Route path="/*" element={<Layout />}>
+      <Route element={<Prefetch />}>
+        <Route path="/*" element={<Layout />}>
 
-        <Route index element={<Dashboard />} />
-        <Route path="dashboard" element={<Dashboard />} />
+          <Route index element={<Dashboard />} />
+          <Route path="dashboard" element={<Dashboard />} />
 
-        <Route path="users">
-          <Route index element={<Users />} />
-          <Route path=":userId" element={<User />} />
-          <Route path="newUser" element={<NewUser />} />
+          <Route path="users">
+            <Route index element={<Users />} />
+            <Route path=":userId" element={<User />} />
+            <Route path="newUser" element={<NewUser />} />
+          </Route>
+
+          <Route path="projects">
+            <Route index element={<Projects />} />
+            <Route path=":projectId" element={<Project />} />
+            <Route path="newProject" element={<NewProject />} />
+          </Route>
+
+          <Route path="issues">
+            <Route index element={<Issues />} />
+            <Route path=":issueId" element={<Issue />} />
+            <Route path="newIssue" element={<NewIssue />} />
+          </Route>
+
+          <Route path="reports">
+            <Route index element={<Reports />} />
+            <Route path=":reportId" element={<Report />} />
+            <Route path="newReport" element={<NewReport />} />
+          </Route>
+
+          <Route path="settings" element={<Settings />} />
+
+          <Route path="notifications" element={<Notifications />} />
+          
         </Route>
-
-        <Route path="projects">
-          <Route index element={<Projects />} />
-          <Route path=":projectId" element={<Project />} />
-          <Route path="newProject" element={<NewProject />} />
-        </Route>
-
-        <Route path="issues">
-          <Route index element={<Issues />} />
-          <Route path=":issueId" element={<Issue />} />
-          <Route path="newIssue" element={<NewIssue />} />
-        </Route>
-
-        <Route path="reports">
-          <Route index element={<Reports />} />
-          <Route path=":reportId" element={<Report />} />
-          <Route path="newReport" element={<NewReport />} />
-        </Route>
-
-        <Route path="settings" element={<Settings />} />
-
-        <Route path="notifications" element={<Notifications />} />
-        
       </Route>
 
     </Routes>

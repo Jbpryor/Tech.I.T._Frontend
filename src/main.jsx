@@ -5,13 +5,15 @@ import "./index.css";
 import store from "../src/App/store.jsx";
 import { Provider } from "react-redux";
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { fetchUsers } from "./components/Users/userSlice.jsx";
-import { fetchIssues } from "./components/Issues/issueSlice.jsx";
-import { fetchProjects } from "./components/Projects/projectSlice.jsx";
+// import { fetchUsers } from "./components/Users/userSlice.jsx";
+// import { fetchIssues } from "./components/Issues/issueSlice.jsx";
+// import { fetchProjects } from "./components/Projects/projectSlice.jsx";
+// import { fetchReports } from "./components/Reports/reportSlice.jsx";
 
-store.dispatch(fetchUsers());
-store.dispatch(fetchIssues());
-store.dispatch(fetchProjects());
+// store.dispatch(fetchUsers());
+// store.dispatch(fetchIssues());
+// store.dispatch(fetchProjects());
+// store.dispatch(fetchReports());
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>

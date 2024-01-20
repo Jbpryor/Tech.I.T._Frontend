@@ -339,8 +339,8 @@ function Reports() {
             {sortedReports.map((report) => (
               <Link
                 className={`report-link ${isReportsActive ? "active" : ""}`}
-                to={`/reports/${report.id}`}
-                key={report.id}
+                to={`/reports/${report._id}`}
+                key={report._id}
               >
                 <div
                   className="report-container"
@@ -354,7 +354,7 @@ function Reports() {
                   <div className="report-contents">
                     {Object.entries(report)
                       .filter(
-                        ([key]) => !["id", "description", "type", "comments"].includes(key)
+                        ([key]) => !["attachments", "_id", "description", "type", "comments", "__v"].includes(key)
                       )
                       .map(([key, value]) => (
                         <div className="report-name" key={key}>

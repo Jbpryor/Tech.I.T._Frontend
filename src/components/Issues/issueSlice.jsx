@@ -1,17 +1,15 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
+import apiSlice from "../../App/Api/apiSlice";
 
-const ISSUES_URL = "http://localhost:3500/issues";
-
-export const fetchIssues = createAsyncThunk("issues/fetchIssues", async () => {
-  const response = await axios.get(ISSUES_URL);
+export const fetchIssues = createAsyncThunk('issues/fetchIssues', async () => {
+  const response = await apiSlice.get('/issues');
   return response.data;
 });
 
 export const addNewIssue = createAsyncThunk(
   "issues/addNewIssue",
   async (issueData) => {
-    const response = await axios.post(ISSUES_URL, issueData);
+    const response = await apiSlice.post('/issues', issueData);
     return response.data;
   }
 );
@@ -19,31 +17,18 @@ export const addNewIssue = createAsyncThunk(
 export const updateIssue = createAsyncThunk(
   "issues/updateIssue",
   async (issueUpdates) => {
-    const response = await axios.patch(ISSUES_URL, issueUpdates);
+    const response = await apiSlice.patch('/issues', issueUpdates);
     return response.data;
   }
 );
-
-// export const updateIssue = createAsyncThunk(
-//   "issues/updateIssue",
-//   async (issueUpdates) => {
-//     try {
-//       const response = await axios.patch(ISSUES_URL, issueUpdates);
-//       return response.data;
-//     } catch (error) {
-//       console.error("Error updating issue:", error);
-//       throw error;
-//     }
-//   }
-// );
 
 export const deleteComment = createAsyncThunk(
   "issues/deleteComment",
   async (comment) => {
     const { issueId, commentId } = comment;
 
-    const response = await axios.delete(
-      `${ISSUES_URL}/${issueId}/comments/${commentId}`
+    const response = await apiSlice.delete(
+      `/issues/${issueId}/comments/${commentId}`
     );
     return response.data;
   }
@@ -54,8 +39,8 @@ export const downloadAttachment = createAsyncThunk(
   async (attachment) => {
     const { issueId, fileId } = attachment;
 
-    const response = await axios.get(
-      `${ISSUES_URL}/${issueId}/attachments/${fileId}`
+    const response = await apiSlice.get(
+      `/issues/${issueId}/attachments/${fileId}`
     );
     return response.data;
   }
@@ -66,8 +51,8 @@ export const deleteAttachment = createAsyncThunk(
   async (attachment) => {
     const { issueId, fileId } = attachment;
 
-    const response = await axios.delete(
-      `${ISSUES_URL}/${issueId}/attachments/${fileId}`
+    const response = await apiSlice.delete(
+      `/issues/${issueId}/attachments/${fileId}`
     );
     return response.data;
   }
@@ -76,7 +61,7 @@ export const deleteAttachment = createAsyncThunk(
 export const deleteIssue = createAsyncThunk(
   "issues/deleteIssue",
   async (issueId) => {
-    const response = await axios.delete(ISSUES_URL, { data: issueId });
+    const response = await apiSlice.delete('/issues', { data: issueId });
     if (response?.status === 200) {
       const { _id } = issueId;
       const message = response.data.message;

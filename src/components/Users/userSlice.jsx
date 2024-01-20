@@ -1,17 +1,15 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
-
-const USERS_URL = "http://localhost:3500/users";
+import apiSlice from "../../App/Api/apiSlice";
 
 export const fetchUsers = createAsyncThunk("users/fetchUsers", async () => {
-  const response = await axios.get(USERS_URL);
+  const response = await apiSlice.get('/users');
   return response.data;
 });
 
 export const addNewUser = createAsyncThunk(
   "users/addNewUser",
   async (userInfo) => {
-    const response = await axios.post(USERS_URL, userInfo);
+    const response = await apiSlice.post('/users', userInfo);
     return response.data;
   }
 );
@@ -19,7 +17,7 @@ export const addNewUser = createAsyncThunk(
 export const updateUser = createAsyncThunk(
   "users/updateUser",
   async (userUpdates) => {
-    const response = await axios.patch(USERS_URL, userUpdates);
+    const response = await apiSlice.patch('/users', userUpdates);
     return response.data;
   }
 );
@@ -29,8 +27,8 @@ export const viewImage = createAsyncThunk(
   async (userImage) => {
     const { userId, imageId } = userImage;
 
-    const response = await axios.get(
-      `${USERS_URL}/${userId}/${imageId}`
+    const response = await apiSlice.get(
+      `/users/${userId}/${imageId}`
     );
     return response.data;
   }
@@ -39,7 +37,7 @@ export const viewImage = createAsyncThunk(
 export const deleteUser = createAsyncThunk(
     "users/deleteUser",
     async (userId) => {
-      const response = await axios.delete(USERS_URL, { data: userId });
+      const response = await apiSlice.delete('/users', { data: userId });
       if (response?.status === 200) {
         const { id } = userId;
         const message = response.data.message;

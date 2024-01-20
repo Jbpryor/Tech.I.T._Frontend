@@ -86,7 +86,7 @@ const PictureContent = ({ user, theme }) => {
     }
   };
 
-  const imageId = user.userImage?.[0].imageId
+  const imageId = user.userImage[0]?.imageId
 
   const [fileContent, setFileContent] = useState();
 

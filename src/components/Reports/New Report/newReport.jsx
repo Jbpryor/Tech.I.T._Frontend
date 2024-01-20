@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./newReport.scss";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { addReport } from "../reportSlice";
+import { addNewReport, fetchReports } from "../reportSlice";
 import { addNotification } from "../../Notifications/notificationsSlice";
 import { formatTimestamp } from "../../../utils";
 import { selectAllUsers } from "../../Users/userSlice";
@@ -20,6 +20,7 @@ function NewReport() {
   const reports = useSelector(selectAllReports);
   const projects = useSelector(selectAllProjects);
   const theme = useSelector(selectTheme);
+  const [requestStatus, setRequestStatus] = useState('idle');
 
   const currentDate = formatTimestamp(Date.now())
   const date = new Date().toISOString();
@@ -53,23 +54,44 @@ function NewReport() {
     }));
   };
 
-  const handleSaveNewReport = (event) => {
+  const handleSaveNewReport = async (event) => {
     event.preventDefault();
 
-    dispatch(addReport(newReport));
-    dispatch(
-      addNotification({
-        message: "New report added",
-        title: newReport.subject,
-        notificationLink: `/reports/${newReport.id}`,
-        date: date,
-      })
-    );
+    try {
+      setRequestStatus('pending')
+      const response = await dispatch(addNewReport(newReport));
 
-    alert("New report was created!");
+      if (addNewReport.fulfilled.match(response)) {
+        const {
+          title,
+          message,
+          reportId,
+        } = response.payload;
 
-    setInputValues({});
-    navigate(`/reports/${newReport.id}`);
+        await dispatch(fetchReports());
+
+        dispatch(
+          addNotification({
+            message: message,
+            title: title,
+            notificationLink: `/reports/${reportId}`,
+            date: date,
+          })
+        );
+
+        alert(message);
+
+        setInputValues({});
+
+        navigate(`/reports/${reportId}`);
+      } else {
+        alert("Report creation failed: " + response.error.message);
+      }
+    } catch (error) {
+      console.error("An unexpected error occurred: " + error.message);
+    } finally {
+      setRequestStatus('idle')
+    }
   };
 
   useEffect(() => {

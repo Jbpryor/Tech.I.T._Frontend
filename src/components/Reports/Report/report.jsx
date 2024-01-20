@@ -2,11 +2,11 @@ import React, { useState, useEffect } from "react";
 import "./report.scss";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { deleteReport } from "../reportSlice";
+import { deleteReport, selectReportById, selectAllReports, fetchReports } from "../reportSlice";
 import Comments from "./Comments/comments";
+import ReportAttachments from "./Attachments/attachments";
 import useWindowSize from "../../../Hooks/useWindowSize";
 import { capitalizeFirstLetter } from "../../../utils";
-import { selectAllReports } from "../reportSlice";
 import { selectTheme } from "../../Users/User/Settings/settingsSlice";
 
 function Report() {
@@ -14,13 +14,51 @@ function Report() {
   const dispatch = useDispatch();
   const reports = useSelector(selectAllReports);
   const { reportId } = useParams();
-  const report = reports.find((report) => report.id.toString() === reportId);
+  // const report = reports.find((report) => report.id.toString() === reportId);
+  const report = useSelector((state) => selectReportById(state, reportId));
   const theme = useSelector(selectTheme);
+  const [requestStatus, setRequestStatus] = useState('idle')
 
+  if (!report) {
+    return (
+      <section
+        className="report"
+        style={{ color: theme.font_color, background: theme.background_color }}
+      >
+        <div className="report-container">
+          <div className="report-null">Report not found</div>
+        </div>
+      </section>
+    );
+  }
 
-  const handleDeleteReport = () => {
-    dispatch(deleteReport(report.id));
-    navigate("/reports");
+  const handleDeleteReport = async () => {
+    if (window.confirm(`Are you sure you want to delete ${report.title}?`)) {
+      try {
+        setRequestStatus("pending");
+
+        const reportId = {
+          _id: report._id,
+        };
+        const response = await dispatch(deleteReport(reportId));
+
+        if (deleteReport.fulfilled.match(response)) {
+          const { message } = response.payload;
+
+          alert(message);
+
+          await dispatch(fetchReports());
+
+          navigate("/reports");
+        } else {
+          console.log("Error deleting report:", response.payload);
+        }
+      } catch (error) {
+        console.error("Failed to delete the report", error);
+      } finally {
+        setRequestStatus("idle");
+      }
+    }
   };
 
   const timeStamp = new Date().toISOString();
@@ -31,14 +69,14 @@ function Report() {
   const [isDragging, setIsDragging] = useState(false);
   const [savedFiles, setSavedFiles] = useState([]);
 
-  const handleDragOver = (event) => {
-    event.preventDefault();
-    setIsDragging(true);
-  };
+  // const handleDragOver = (event) => {
+  //   event.preventDefault();
+  //   setIsDragging(true);
+  // };
 
-  const handleDragLeave = () => {
-    setIsDragging(false);
-  };
+  // const handleDragLeave = () => {
+  //   setIsDragging(false);
+  // };
 
   const handlePageDragOver = (event) => {
     event.preventDefault();
@@ -49,32 +87,32 @@ function Report() {
     setIsDraggingPage(false);
   };
 
-  const handleDrop = (event) => {
-    event.preventDefault();
-    setIsDragging(false);
-    setIsDraggingPage(false);
-    const files = Array.from(event.dataTransfer.files);
-    setDroppedFiles(files);
-  };
+  // const handleDrop = (event) => {
+  //   event.preventDefault();
+  //   setIsDragging(false);
+  //   setIsDraggingPage(false);
+  //   const files = Array.from(event.dataTransfer.files);
+  //   setDroppedFiles(files);
+  // };
 
-  const handleFileInputChange = (event) => {
-    const files = Array.from(event.target.files);
-    setDroppedFiles(files);
-    setDroppedFile(true);
-  };
+  // const handleFileInputChange = (event) => {
+  //   const files = Array.from(event.target.files);
+  //   setDroppedFiles(files);
+  //   setDroppedFile(true);
+  // };
 
-  const handleSaveUpload = () => {
-    if (droppedFiles.length > 0) {
-      setSavedFiles([...savedFiles, ...droppedFiles]);
-      setDroppedFiles([]);
-    }
-  };
+  // const handleSaveUpload = () => {
+  //   if (droppedFiles.length > 0) {
+  //     setSavedFiles([...savedFiles, ...droppedFiles]);
+  //     setDroppedFiles([]);
+  //   }
+  // };
 
-  const handleDeleteFile = (index) => {
-    const updatedFiles = [...savedFiles];
-    updatedFiles.splice(index, 1);
-    setSavedFiles(updatedFiles);
-  };
+  // const handleDeleteFile = (index) => {
+  //   const updatedFiles = [...savedFiles];
+  //   updatedFiles.splice(index, 1);
+  //   setSavedFiles(updatedFiles);
+  // };
 
   const { width } = useWindowSize();
   const smallerScreen = width < 500;
@@ -110,8 +148,10 @@ function Report() {
         >
           {Object.keys(report).map(
             (detail) =>
-              detail !== "id" &&
-              detail !== "comments" && (
+              detail !== "_id" &&
+              detail !== "comments" &&
+              detail !== "__v" &&
+              detail !== "attachments" && (
                 <div
                   className="report-details"
                   key={detail}
@@ -129,7 +169,7 @@ function Report() {
               className="report-delete-button"
               onClick={handleDeleteReport}
               style={{
-                border: smallerScreen ? 'none' : `2px solid ${theme.border}`,
+                border: smallerScreen ? "none" : `2px solid ${theme.border}`,
                 background: theme.background_color,
                 color: theme.font_color,
               }}
@@ -147,7 +187,17 @@ function Report() {
         smallerScreen={smallerScreen}
       />
 
-      <div
+      <ReportAttachments
+        report={report}
+        theme={theme}
+        smallerScreen={smallerScreen}
+        isDraggingPage={isDraggingPage}
+        setIsDraggingPage={setIsDraggingPage}
+        requestStatus={requestStatus}
+        setRequestStatus={setRequestStatus}
+      />
+
+      {/* <div
         className="report-attachments-container"
         style={{
           background: theme.primary_color,
@@ -262,7 +312,7 @@ function Report() {
             )}
           </div>
         </div>
-      </div>
+      </div> */}
     </section>
   );
 }

@@ -1,12 +1,7 @@
-import React, { useState, useEffect } from "react";
+import { useState } from "react";
 import "./issue.scss";
 import { useParams, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-// import {
-//   deleteIssue,
-//   modifyIssue,
-//   addModifications,
-// } from "../issueSlice";
 import IssueModifications from "./Modificatons/issueModifications";
 import Attachments from "./Attachments/attachments";
 import Comments from "./Comments/comments";
@@ -14,11 +9,11 @@ import useWindowSize from "../../../Hooks/useWindowSize";
 import { capitalizeFirstLetter, formatTimestamp } from "../../../utils";
 import {
   fetchIssues,
-  selectAllIssues,
+  // selectAllIssues,
   updateIssue,
   deleteIssue,
-  getIssuesStatus,
-  getIssuesError,
+  // getIssuesStatus,
+  // getIssuesError,
   selectIssueById,
 } from "../issueSlice";
 import { selectAllProjects } from "../../Projects/projectSlice";
@@ -29,7 +24,6 @@ function Issue() {
 
   const dispatch = useDispatch();
 
-  const issues = useSelector(selectAllIssues);
   const projects = useSelector(selectAllProjects);
   const theme = useSelector(selectTheme);
 
@@ -40,10 +34,16 @@ function Issue() {
   const [, setShowUpdatedField] = useState(false);
   const [previousState, setPreviousState] = useState({});
   const [requestStatus, setRequestStatus] = useState("idle");
-  const issuesStatus = useSelector(getIssuesStatus);
-  const error = useSelector(getIssuesError);
+  const [isDraggingPage, setIsDraggingPage] = useState(false);
+  const [isModificationsViewActive, setModificationsViewActive] = useState(false);
+  // const error = useSelector(getIssuesError);
 
   const issue = useSelector((state) => selectIssueById(state, issueId));
+
+  const { width } = useWindowSize();
+
+  const smallerScreen = width < 500;
+  const midSizeScreen = width < 1000;
 
   // const [created, setCreated] = useState(issue?.created)
   // const [description, setDescription] = useState(issue?.description)
@@ -56,18 +56,6 @@ function Issue() {
   // const [type, setType] = useState(issue?.type)
   // const [modified, setModified] = useState(issue?.modified)
 
-  if (!issue) {
-    return (
-      <section
-        className="issue"
-        style={{ color: theme.font_color, background: theme.background_color }}
-      >
-        <div className="issue-container">
-          <div className="issue-null">Issue not found</div>
-        </div>
-      </section>
-    );
-  }
 
   const timeStamp = new Date().toISOString();
 
@@ -153,9 +141,9 @@ function Issue() {
 
           alert(message);
 
-          await dispatch(fetchIssues());
+          dispatch(fetchIssues());
 
-          navigate("/issues");
+          navigate(-1)
         } else {
           console.log("Error deleting issue:", response.payload);
         }
@@ -166,9 +154,6 @@ function Issue() {
       }
     }
   };
-
-  const [isDraggingPage, setIsDraggingPage] = useState(false);
-  const [isModificationsViewActive, setModificationsViewActive] = useState(false);
 
   const handlePageDragOver = (event) => {
     event.preventDefault();
@@ -182,11 +167,19 @@ function Issue() {
   const toggleModificationView = () => {
     setModificationsViewActive(!isModificationsViewActive);
   };
-
-  const { width } = useWindowSize();
-
-  const smallerScreen = width < 500;
-  const midSizeScreen = width < 1000;
+  
+  if (!issue) {
+    return (
+      <section
+        className="issue"
+        style={{ color: theme.font_color, background: theme.background_color }}
+      >
+        <div className="issue-container">
+          <div className="issue-null">Issue not found</div>
+        </div>
+      </section>
+    );
+  }
 
   if (issue) {
     return (

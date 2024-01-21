@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { login } from "../authApiSlice";
 import { setCredentials } from "../authSlice";
+// import useAuth from "../../../Hooks/useAuth";
 // import { PulseLoader } from 'react-spinners'
 
 function Login() {
@@ -35,18 +36,24 @@ function Login() {
 
   const handleLogin = async (e) => {
     e.preventDefault();
+
     try {
       const response = await dispatch(login({ email, password }));
 
       if (login.fulfilled.match(response)) {
-        const { accessToken } = response.payload
+        const { accessToken, role } = response.payload;
         dispatch(setCredentials({ accessToken }));
         setEmail("");
         setPassword("");
+
         if (demoUser) {
           navigate("/demoLogin");
+        } else if (window.innerWidth > 850) {
+          navigate("/dashboard");
+        } else if (role === "Admin" || role === "Manager") {
+          navigate("/projects");
         } else {
-          navigate("/");
+          navigate("/issues");
         }
       }
     } catch (error) {

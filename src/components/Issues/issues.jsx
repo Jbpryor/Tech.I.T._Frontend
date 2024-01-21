@@ -9,13 +9,11 @@ import IssuesTable from './Issues Table/issuesTable';
 import TablePagination from '../../Charts & Tables/Table Pagination/tablePagination';
 import { selectAllIssues } from './issueSlice';
 import { selectViewMode } from '../Layout/viewModeSlice';
-// import useWindowSize from '../../Hooks/useWindowSize';
 import { selectTheme } from '../Users/User/Settings/settingsSlice';
 
 function Issues({ projectIssues }) {
 
     const viewMode = useSelector(selectViewMode);
-    // const dispatch = useDispatch();
 
     const location = useLocation();
     const isIssuesActive = location.pathname === '/issues';

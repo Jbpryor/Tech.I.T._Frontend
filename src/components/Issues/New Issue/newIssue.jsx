@@ -9,16 +9,18 @@ import { formatTimestamp } from "../../../utils";
 import { selectAllUsers } from "../../Users/userSlice";
 import { selectAllProjects } from "../../Projects/projectSlice";
 import { selectTheme } from "../../Users/User/Settings/settingsSlice";
+import useAuth from "../../../Hooks/useAuth";
 
 function NewIssue() {
+
+  console.log('newIssue')
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const theme = useSelector(selectTheme);
+  const { userName } = useAuth();
 
-  const [newId, setNewId] = useState(0);
   const users = useSelector(selectAllUsers);
   const [inputValues, setInputValues] = useState({});
-  const issues = useSelector(selectAllIssues);
   const projects = useSelector(selectAllProjects);
   const currentDate = formatTimestamp(Date.now());
   const date = new Date().toISOString();
@@ -30,8 +32,8 @@ function NewIssue() {
     newIssue[detail.toLowerCase()] = inputValues[detail] || "";
   });
 
-  newIssue.id = newId;
   newIssue.created = formatTimestamp(Date.now());
+  newIssue.submitter = userName
 
   const handleInputChange = (event, detail) => {
     const { value } = event.target;
@@ -83,12 +85,6 @@ function NewIssue() {
 
   useEffect(() => {
     currentDate;
-    if (issues && issues.length > 0) {
-      const highestId = Math.random(...issues.map((issue) => issue._id), 0);
-      setNewId(highestId + 1);
-    } else {
-      setNewId(1);
-    }
   }, []);
 
   return (
@@ -110,9 +106,7 @@ function NewIssue() {
               style={{ borderBottom: `1px solid ${theme.border}` }}
             >
               <div className="new-issue-detail">{detail}:</div>
-              {detail === "Id" ? (
-                <div className="new-issue-input id">Issue-{newId}</div>
-              ) : detail === "Type" ? (
+              {detail === "Type" ? (
                 <select
                   className="new-issue-input"
                   value={issueDetails[detail]}
@@ -185,26 +179,7 @@ function NewIssue() {
                   ))}
                 </select>
               ) : detail === "Submitter" ? (
-                <select
-                  className="new-issue-input"
-                  value={issueDetails[detail]}
-                  onChange={(event) => handleInputChange(event, detail)}
-                  style={{
-                    background: theme.background_color,
-                    border: `0.5px solid ${theme.border}`,
-                    color: theme.font_color,
-                  }}
-                >
-                  <option value="">Select a Submitter...</option>
-                  {users.map((user, index) => (
-                    <option
-                      key={index}
-                      value={`${user.name.first} ${user.name.last}`}
-                    >
-                      {user.name.first} {user.name.last}
-                    </option>
-                  ))}
-                </select>
+                <div className="new-issue-input submitter">{userName}</div>
               ) : detail === "Developer" ? (
                 <select
                   className="new-issue-input"

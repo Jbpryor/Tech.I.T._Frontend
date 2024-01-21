@@ -34,7 +34,7 @@ function Comments({ issue, timeStamp, theme, smallerScreen, requestStatus, setRe
 
         setComment("");
       } else {
-        const { message } = error.response
+        const { message } = response.error
         alert("Comment not added: " + message);
       }
     } catch (error) {

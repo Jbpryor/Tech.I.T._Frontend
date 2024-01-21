@@ -9,15 +9,14 @@ import { selectAllUsers } from "../../Users/userSlice";
 import { selectAllProjects } from "../../Projects/projectSlice";
 import { selectAllReports } from "../reportSlice";
 import { selectTheme } from "../../Users/User/Settings/settingsSlice";
+import useAuth from '../../../Hooks/useAuth';
 
 function NewReport() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { userName } = useAuth();
 
-  const [newId, setNewId] = useState(0);
-  const users = useSelector(selectAllUsers);
   const [inputValues, setInputValues] = useState({});
-  const reports = useSelector(selectAllReports);
   const projects = useSelector(selectAllProjects);
   const theme = useSelector(selectTheme);
   const [requestStatus, setRequestStatus] = useState('idle');
@@ -27,20 +26,17 @@ function NewReport() {
 
   const reportDetails = [
     "Created",
-    "Subject",
-    "Type",
     "Submitter",
+    "Subject",
+    "Type",    
     "Project",
     "Description",
   ];
 
   const newReport = {
-    id: newId,
     subject: inputValues["Subject"] || "",
     type: inputValues["Type"] || "",
-    submitter:
-      inputValues["Submitter"] ||
-      "" /* this needs to be set to the logged in user */,
+    submitter: userName,
     project: inputValues["Project"] || "",
     created: currentDate,
     description: inputValues["Description"] || "",
@@ -96,12 +92,6 @@ function NewReport() {
 
   useEffect(() => {
     currentDate;
-    if (reports && reports.length > 0) {
-      const highestId = Math.max(...reports.map((report) => report.id), 0);
-      setNewId(highestId + 1);
-    } else {
-      setNewId(1);
-    }
   }, []);
 
   return (
@@ -159,26 +149,15 @@ function NewReport() {
                   ))}
                 </select>
               ) : detail === "Submitter" ? (
-                <select
-                  className="new-report-input"
-                  value={reportDetails[detail]}
-                  onChange={(event) => handleInputChange(event, detail)}
+                <div
+                  className="new-report-input submitter"
                   style={{
-                    border: `0.5px solid ${theme.border}`,
-                    background: theme.background_color,
+                    background: theme.primary_color,
                     color: theme.font_color,
                   }}
                 >
-                  <option value="">Submitter...</option>
-                  {users.map((user, index) => (
-                    <option
-                      key={index}
-                      value={`${user.name.first} ${user.name.last}`}
-                    >
-                      {user.name.first} {user.name.last}
-                    </option>
-                  ))}
-                </select>
+                  {userName}
+                </div>
               ) : detail === "Created" ? (
                 <div
                   className="new-report-input date"

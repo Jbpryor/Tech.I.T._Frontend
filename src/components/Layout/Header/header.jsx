@@ -16,7 +16,7 @@ function Header() {
   const [isNewMenuVisible, setIsNewMenuVisible] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const viewMode = useSelector(selectViewMode);
+  // const viewMode = useSelector(selectViewMode);
   const demoUser = useSelector(selectDemoUser);
   const theme = useSelector(selectTheme);
   const newNotificationsCount = useSelector(selectNewNotificationsCount);

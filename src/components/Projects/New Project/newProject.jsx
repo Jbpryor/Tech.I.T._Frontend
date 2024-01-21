@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./newProject.scss";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 // import { addProject } from "../projectSlice";
 import { addNotification } from "../../Notifications/notificationsSlice";
@@ -25,10 +25,7 @@ function NewProject() {
 
   const date = new Date().toISOString();
 
-  const location = useLocation();
-
   const projectDetails = [
-    "Id",
     "Title",
     "Type",
     "Manager",
@@ -40,7 +37,6 @@ function NewProject() {
   ];
 
   const newProject = {
-    id: newId,
     title: inputValues["Title"] || "",
     type: inputValues["Type"] || "",
     manager: inputValues["Manager"] || "",
@@ -58,25 +54,6 @@ function NewProject() {
       [detail]: value,
     }));
   };
-
-  // const handleSaveNewProject = (event) => {
-  //   event.preventDefault();
-
-  //   dispatch(addProject(newProject));
-  //   dispatch(
-  //     addNotification({
-  //       message: "New project added",
-  //       title: newProject.title,
-  //       notificationLink: `/projects/${newProject.id}`,
-  //       date: date,
-  //     })
-  //   );
-
-  //   alert("New project was created!");
-
-  //   setInputValues({});
-  //   navigate(`/projects/${newProject.id}`);
-  // };
 
   const handleSaveNewProject = async (event) => {
     event.preventDefault();
@@ -147,9 +124,7 @@ function NewProject() {
               style={{ borderBottom: `1px solid ${theme.border}` }}
             >
               <div className="new-project-detail">{detail}:</div>
-              {detail === "Id" ? (
-                <div className="new-project-input id">Project-{newId}</div>
-              ) : detail === "Manager" ? (
+              {detail === "Manager" ? (
                 <select
                   className="new-project-input"
                   value={projectDetails[detail]}

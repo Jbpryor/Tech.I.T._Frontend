@@ -62,9 +62,8 @@ export const deleteIssue = createAsyncThunk(
   "issues/deleteIssue",
   async (issueId) => {
     const response = await apiSlice.delete('/issues', { data: issueId });
-    if (response?.status === 200) {
-      const { _id } = issueId;
-      const message = response.data.message;
+    if (response.status === 200) {
+      const { message, _id } = response.data;
       return { _id, message };
     }
   }
@@ -150,8 +149,7 @@ const issueSlice = createSlice({
           console.log(deletedIssue);
           return;
         }
-        const { _id } = deletedIssue;
-        state.issues = state.issues.filter((issue) => issue._id !== _id);
+        state.issues = state.issues.filter((issue) => issue._id !== deletedIssue._id);
       });
   },
 });
@@ -161,6 +159,6 @@ export const getIssuesStatus = (state) => state.issues.status;
 export const getIssuesError = (state) => state.issues.error;
 
 export const selectIssueById = (state, issueId) =>
-  state.issues.issues.find((issue) => issue._id === issueId);
+  state.issues.issues.find((issue) => issue?._id === issueId);
 
 export default issueSlice.reducer;

@@ -2,12 +2,11 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { userRoles } from "../../../../../Config/userRoles";
-import { updateUser, viewImage, selectAllUsers, fetchUsers } from "../../../userSlice";
+import { updateUser, viewImage, fetchUsers } from "../../../userSlice";
 import { selectTheme } from "../../Settings/settingsSlice";
 import { selectDemoUser } from "../../../../Auth/Demo Login/demoUserSlice";
 
 const PictureContent = ({ user, theme }) => {
-  const [selectedFile, setSelectedFile] = useState(null);
   const [editMode, setEditMode] = useState(false);
   const dispatch = useDispatch();
 
@@ -17,6 +16,8 @@ const PictureContent = ({ user, theme }) => {
 
   const [userRole, setUserRole] = useState();
   const [editedRole, setEditedRole] = useState({});
+  const [fileContent, setFileContent] = useState();
+
 
   const handleChangeUserRole = () => {
     setEditMode(true);
@@ -55,7 +56,6 @@ const PictureContent = ({ user, theme }) => {
 
   const handleSaveUserImage = async (event) => {
     const file = event.target.files[0];
-    setSelectedFile(file)
     const formData = new FormData();
     formData.append("_id", user._id);
     formData.append("file", file);
@@ -73,7 +73,6 @@ const PictureContent = ({ user, theme }) => {
 
         await fetchUsers();
 
-        setSelectedFile(null);
       } else {
         const { message } = response.error;
         alert("Image not added: " + message);
@@ -87,8 +86,6 @@ const PictureContent = ({ user, theme }) => {
   };
 
   const imageId = user.userImage[0]?.imageId
-
-  const [fileContent, setFileContent] = useState();
 
   const handleViewImage = async (imageId) => {
 

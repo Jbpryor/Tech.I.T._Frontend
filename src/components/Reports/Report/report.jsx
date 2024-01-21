@@ -14,23 +14,14 @@ function Report() {
   const dispatch = useDispatch();
   const reports = useSelector(selectAllReports);
   const { reportId } = useParams();
-  // const report = reports.find((report) => report.id.toString() === reportId);
   const report = useSelector((state) => selectReportById(state, reportId));
   const theme = useSelector(selectTheme);
   const [requestStatus, setRequestStatus] = useState('idle')
+  const [isDraggingPage, setIsDraggingPage] = useState(false);
 
-  if (!report) {
-    return (
-      <section
-        className="report"
-        style={{ color: theme.font_color, background: theme.background_color }}
-      >
-        <div className="report-container">
-          <div className="report-null">Report not found</div>
-        </div>
-      </section>
-    );
-  }
+
+  const { width } = useWindowSize();
+  const smallerScreen = width < 500;
 
   const handleDeleteReport = async () => {
     if (window.confirm(`Are you sure you want to delete ${report.title}?`)) {
@@ -63,21 +54,6 @@ function Report() {
 
   const timeStamp = new Date().toISOString();
 
-  const [droppedFiles, setDroppedFiles] = useState([]);
-  const [droppedFile, setDroppedFile] = useState(false);
-  const [isDraggingPage, setIsDraggingPage] = useState(false);
-  const [isDragging, setIsDragging] = useState(false);
-  const [savedFiles, setSavedFiles] = useState([]);
-
-  // const handleDragOver = (event) => {
-  //   event.preventDefault();
-  //   setIsDragging(true);
-  // };
-
-  // const handleDragLeave = () => {
-  //   setIsDragging(false);
-  // };
-
   const handlePageDragOver = (event) => {
     event.preventDefault();
     setIsDraggingPage(true);
@@ -87,35 +63,18 @@ function Report() {
     setIsDraggingPage(false);
   };
 
-  // const handleDrop = (event) => {
-  //   event.preventDefault();
-  //   setIsDragging(false);
-  //   setIsDraggingPage(false);
-  //   const files = Array.from(event.dataTransfer.files);
-  //   setDroppedFiles(files);
-  // };
-
-  // const handleFileInputChange = (event) => {
-  //   const files = Array.from(event.target.files);
-  //   setDroppedFiles(files);
-  //   setDroppedFile(true);
-  // };
-
-  // const handleSaveUpload = () => {
-  //   if (droppedFiles.length > 0) {
-  //     setSavedFiles([...savedFiles, ...droppedFiles]);
-  //     setDroppedFiles([]);
-  //   }
-  // };
-
-  // const handleDeleteFile = (index) => {
-  //   const updatedFiles = [...savedFiles];
-  //   updatedFiles.splice(index, 1);
-  //   setSavedFiles(updatedFiles);
-  // };
-
-  const { width } = useWindowSize();
-  const smallerScreen = width < 500;
+  if (!report) {
+    return (
+      <section
+        className="report"
+        style={{ color: theme.font_color, background: theme.background_color }}
+      >
+        <div className="report-container">
+          <div className="report-null">Report not found</div>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section

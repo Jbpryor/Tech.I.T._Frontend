@@ -63,9 +63,6 @@ import store from "../store";
 const apiSlice = axios.create({
   baseURL: "http://localhost:3500",
   withCredentials: true,
-  headers: {
-    "Content-Type": "application/json",
-  },
 });
 
 apiSlice.interceptors.request.use(async (config) => {
@@ -74,6 +71,7 @@ apiSlice.interceptors.request.use(async (config) => {
   if (token) {
     config.headers["Authorization"] = `Bearer ${token}`;
   }
+
   return config;
 });
 

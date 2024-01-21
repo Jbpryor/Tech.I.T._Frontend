@@ -3,25 +3,30 @@ import { selectCurrentToken } from "../components/Auth/authSlice";
 import { jwtDecode } from "jwt-decode";
 
 const useAuth = () => {
-    const token = useSelector(selectCurrentToken)
-    let isManager = false
-    let isAdmin = false
-    let status = "Submitter"
+    const token = useSelector(selectCurrentToken);
+    let isManager = false;
+    let isAdmin = false;
+    let status = "Submitter";
+    let email = "";
+    let userName = "";
+    let role = ""
 
     if (token) {
-        const decoded = jwtDecode(token)
-        const { email, roles } = decoded.UserInfo
+        const decoded = jwtDecode(token);
+        const { email: decodedEmail, role: decodedRole, userName: decodedUserName } = decoded.UserInfo;
 
-        isManager = roles.includes('Manager')
-        isAdmin = roles.includes('Admin')
+        email = decodedEmail;
+        userName = decodedUserName;
+        role = decodedRole
 
-        if (isManager) status = "Manager"
-        if (isAdmin) status = "Admin"
+        isManager = role.includes('Manager');
+        isAdmin = role.includes('Admin');
 
-        return { email, roles, status, isManager, isAdmin }
+        if (isManager) status = "Manager";
+        if (isAdmin) status = "Admin";
     }
 
-    return { username: '', roles: [], isManager, isAdmin, status }
-}
+    return { email, role, status, isManager, isAdmin, userName };
+};
 
-export default useAuth
+export default useAuth;

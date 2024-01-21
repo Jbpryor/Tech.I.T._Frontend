@@ -1,44 +1,51 @@
 import './sideBar.scss';
-import React, { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { NavLink, useParams } from 'react-router-dom';
 import { useSelector } from "react-redux";
 import { capitalizeFirstLetter } from '../../../utils';
 import { selectTheme } from '../../Users/User/Settings/settingsSlice';
 import { selectDemoUser } from '../../Auth/Demo Login/demoUserSlice';
+import useAuth from '../../../Hooks/useAuth'
 
 
 function SideBar() {
 
   const demoUser = useSelector(selectDemoUser);
 
-  const userName = `Demo-User ${capitalizeFirstLetter(demoUser)}`;
+  const { userName, role } = useAuth();
+  const [ userRole, setUserRole ] = useState()
+
+  useEffect(() => {
+    const updatedUserRole = userName === 'Demo User' ? demoUser : role.toLowerCase();
+    setUserRole(updatedUserRole);
+  }, [demoUser, role, userName]);
 
   const theme = useSelector(selectTheme);
 
   const getIconColor = () => {
-    if (demoUser === 'admin') {
+    if (userRole === 'admin') {
         return 'rgb(1, 182, 1)';
-    } else if (demoUser === 'manager') {
+    } else if (userRole === 'manager') {
         return 'rgb(255, 165, 0)';
-    } else if (demoUser === 'developer') {
+    } else if (userRole === 'developer') {
         return 'rgb(232, 232, 15)';
-    } else if (demoUser === 'submitter') {
+    } else if (userRole === 'submitter') {
         return 'rgb(224, 1, 1)';
     }
   };
 
   return (
-    <section className={`sideBar ${demoUser === 'admin' || demoUser === 'manager' ? 'grid-1' : 'grid-2'}`} style={{ background: theme.primary_color, color: theme.font_color }}>
+    <section className={`sideBar ${userRole === 'admin' || userRole === 'manager' ? 'grid-1' : 'grid-2'}`} style={{ background: theme.primary_color, color: theme.font_color }}>
       <div className="sideBar-links">
         <NavLink to="/dashboard" activeclassname='active' className="nav-link dashboard-link" style={{color: theme.font_color}}>
           <span className='dashboard-link text'>Dashboard</span>
           <span className='dashboard-link icon' style={{ fontSize: '30px', color: theme.font_color}} ><i className='bx bxs-dashboard dashboard-link' /></span>
         </NavLink>
-        {(demoUser === 'admin' || demoUser === 'manager') && <NavLink to="/users" activeclassname='active' className="nav-link users-link" style={{color: theme.font_color}}>
+        {(userRole === 'admin' || userRole === 'manager') && <NavLink to="/users" activeclassname='active' className="nav-link users-link" style={{color: theme.font_color}}>
           <span className='users-link text'>Users</span>
           <span className='users-link icon' style={{ fontSize: '30px', color: theme.font_color}} ><i className='bx bxs-group users-link' /></span>
         </NavLink>}
-        {(demoUser === 'admin' || demoUser === 'manager') && <NavLink to="/projects" activeclassname='active' className="nav-link projects-link" style={{color: theme.font_color}}>
+        {(userRole === 'admin' || userRole === 'manager') && <NavLink to="/projects" activeclassname='active' className="nav-link projects-link" style={{color: theme.font_color}}>
           <span className='projects-link text'>Projects</span>
           <span className='projects-link icon' style={{ fontSize: '30px', color: theme.font_color}} ><i className='bx bx-task projects-link' /></span>
         </NavLink>}

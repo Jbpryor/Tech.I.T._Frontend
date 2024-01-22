@@ -77,7 +77,7 @@ function Login() {
       <div className="login-form">
         <div className="login-content">
           <div className="login-title">Login</div>
-          <form className="login-form-container">
+          <form className="login-form-container" onSubmit={event => event.preventDefault()}>
             <div className="field input-field">
               <input
                 type="email"

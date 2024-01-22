@@ -1,9 +1,11 @@
 import { useSelector } from "react-redux";
 import { selectCurrentToken } from "../components/Auth/authSlice";
+import { selectDemoUser } from "../components/Auth/Demo Login/demoUserSlice";
 import { jwtDecode } from "jwt-decode";
 
 const useAuth = () => {
     const token = useSelector(selectCurrentToken);
+    const demoUser = useSelector(selectDemoUser);
     let isManager = false;
     let isAdmin = false;
     let status = "Submitter";
@@ -17,7 +19,7 @@ const useAuth = () => {
 
         email = decodedEmail;
         userName = decodedUserName;
-        role = decodedRole
+        role = userName === 'Demo User' ? demoUser : decodedRole
 
         isManager = role.includes('Manager');
         isAdmin = role.includes('Admin');
@@ -30,3 +32,4 @@ const useAuth = () => {
 };
 
 export default useAuth;
+

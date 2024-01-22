@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import CountryMenu from "../../Country Menu/countryMenu";
-import { updateUser, getUsersStatus, getUsersError } from "../../../userSlice";
+import { updateUser, getUsersStatus, getUsersError, fetchUsers } from "../../../userSlice";
 
 function UserInfo({ user, theme }) {
   const dispatch = useDispatch();
@@ -54,7 +54,7 @@ function UserInfo({ user, theme }) {
       };
 
       const updatedUser = {
-        id: user._id,
+        _id: user._id,
         email: email,
         address: updatedAddress,
       };
@@ -63,6 +63,8 @@ function UserInfo({ user, theme }) {
 
       if (updateUser.fulfilled.match(response)) {
         const { userName, message } = response.payload;
+
+        await dispatch(fetchUsers())
 
         setEditMode(false);
         alert(message);
@@ -75,12 +77,6 @@ function UserInfo({ user, theme }) {
       setRequestStatus("idle");
     }
   };
-
-  useEffect(() => {
-    if (usersStatus === "idle") {
-      dispatch(fetchUsers());
-    }
-  }, [usersStatus, dispatch]);
 
   return (
     <div

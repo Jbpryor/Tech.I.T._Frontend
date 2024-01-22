@@ -13,7 +13,6 @@ import useAuth from "../../../Hooks/useAuth";
 
 function NewIssue() {
 
-  console.log('newIssue')
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const theme = useSelector(selectTheme);

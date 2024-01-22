@@ -5,12 +5,12 @@ import { userRoles } from "../../../../../Config/userRoles";
 import { updateUser, viewImage, fetchUsers } from "../../../userSlice";
 import { selectTheme } from "../../Settings/settingsSlice";
 import { selectDemoUser } from "../../../../Auth/Demo Login/demoUserSlice";
+import useAuth from "../../../../../Hooks/useAuth";
 
 const PictureContent = ({ user, theme }) => {
   const [editMode, setEditMode] = useState(false);
   const dispatch = useDispatch();
-
-  const demoUser = useSelector(selectDemoUser);
+  const { role, userName } = useAuth();
 
   const [requestStatus, setRequestStatus] = useState("idle")
 
@@ -43,7 +43,6 @@ const PictureContent = ({ user, theme }) => {
     const response = await dispatch(updateUser(updatedRole));
 
     if (updateUser.fulfilled.match(response)) {
-      console.log(response.message)
       const { message, updatedUser } = response.payload;
 
       setEditMode(false);
@@ -122,7 +121,7 @@ const PictureContent = ({ user, theme }) => {
   return (
     <div
       className={`user-img-container ${
-        demoUser === "admin" || demoUser === "manager" ? "admin" : ""
+        role === "Admin" || role === "Manager" ? "admin" : ""
       }`}
       style={{
         background: theme.primary_color,
@@ -152,7 +151,7 @@ const PictureContent = ({ user, theme }) => {
       </div>
       <div className="user-name-content">
         <div className="user-name">
-          {user?.name.first} {user?.name.last}
+          {userName}
         </div>
         <div className="user-role-container">
           {editMode ? (
@@ -181,7 +180,7 @@ const PictureContent = ({ user, theme }) => {
           )}
         </div>
         <div className="change-role-buttons-container">
-          {(demoUser === "admin" || demoUser === "manager") && (
+          {(role === "Admin" || role === "Manager") && (
             <>
               {editMode ? (
                 <button

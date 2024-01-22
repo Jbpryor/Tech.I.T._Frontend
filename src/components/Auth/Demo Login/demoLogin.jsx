@@ -10,11 +10,12 @@ function DemoLogin() {
     const navigate = useNavigate();
 
     const handleDemoLogin = (user) => {
+        console.log(user)
         dispatch(setDemoUserMode(user));
         if (window.innerWidth > 850) {
             navigate('/dashboard');
         } else {
-            if (user === 'admin' || user === 'manager') {
+            if (user === 'Admin' || user === 'Manager') {
                 navigate('/projects');
             } else {
                 navigate('/issues');
@@ -31,29 +32,29 @@ function DemoLogin() {
                 <div className="demo-users">
                     <div className="demo-user" >
                         <div value='admin' className="field admin">
-                            <i className='bx bxs-user-rectangle admin-icon' onClick={() => handleDemoLogin('admin')}></i>
-                            <span onClick={() => handleDemoLogin('admin')}>Admin</span>
+                            <i className='bx bxs-user-rectangle admin-icon' onClick={() => handleDemoLogin('Admin')}></i>
+                            <span onClick={() => handleDemoLogin('Admin')}>Admin</span>
                         </div>
                     </div>
 
                     <div className="demo-user">
                         <div className="field manager">
-                            <i className='bx bxs-user-rectangle manager-icon' onClick={() => handleDemoLogin('manager')}></i>
-                            <span onClick={() => handleDemoLogin('manager')}>Project Manager</span>
+                            <i className='bx bxs-user-rectangle manager-icon' onClick={() => handleDemoLogin('Manager')}></i>
+                            <span onClick={() => handleDemoLogin('Manager')}>Project Manager</span>
                         </div>
                     </div>
 
                     <div className="demo-user">
                         <div className="field developer">
-                            <i className='bx bxs-user-rectangle developer-icon' onClick={() => handleDemoLogin('developer')}></i>
-                            <span onClick={() => handleDemoLogin('developer')}>Developer</span>
+                            <i className='bx bxs-user-rectangle developer-icon' onClick={() => handleDemoLogin('Developer')}></i>
+                            <span onClick={() => handleDemoLogin('Developer')}>Developer</span>
                         </div>
                     </div>
 
                     <div className="demo-user">
                         <div className="field submitter">
-                            <i className='bx bxs-user-rectangle submitter-icon' onClick={() => handleDemoLogin('submitter')}></i>
-                            <span onClick={() => handleDemoLogin('submitter')}>Submitter</span>
+                            <i className='bx bxs-user-rectangle submitter-icon' onClick={() => handleDemoLogin('Submitter')}></i>
+                            <span onClick={() => handleDemoLogin('Submitter')}>Submitter</span>
                         </div>
                     </div>
                 </div>

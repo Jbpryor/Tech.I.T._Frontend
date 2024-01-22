@@ -77,7 +77,7 @@ function UserButtons({
             setRequestStatus("pending");
 
             const userId = {
-                id: user._id
+                _id: user._id
             }
 
             const response = await dispatch(deleteUser(userId))

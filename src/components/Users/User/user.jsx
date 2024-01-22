@@ -69,7 +69,7 @@ function User() {
             notificationsActive={notificationsActive}
           />
 
-          <UserPassword theme={theme} passwordActive={passwordActive} />
+          <UserPassword theme={theme} passwordActive={passwordActive} user={user} />
         </div>
       </section>
     );

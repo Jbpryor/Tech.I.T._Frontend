@@ -10,42 +10,34 @@ import useAuth from '../../../Hooks/useAuth'
 
 function SideBar() {
 
-  const demoUser = useSelector(selectDemoUser);
-
   const { userName, role } = useAuth();
-  const [ userRole, setUserRole ] = useState()
-
-  useEffect(() => {
-    const updatedUserRole = userName === 'Demo User' ? demoUser : role.toLowerCase();
-    setUserRole(updatedUserRole);
-  }, [demoUser, role, userName]);
 
   const theme = useSelector(selectTheme);
 
   const getIconColor = () => {
-    if (userRole === 'admin') {
+    if (role === 'Admin') {
         return 'rgb(1, 182, 1)';
-    } else if (userRole === 'manager') {
+    } else if (role === 'Manager') {
         return 'rgb(255, 165, 0)';
-    } else if (userRole === 'developer') {
+    } else if (role === 'Developer') {
         return 'rgb(232, 232, 15)';
-    } else if (userRole === 'submitter') {
+    } else if (role === 'Submitter') {
         return 'rgb(224, 1, 1)';
     }
   };
 
   return (
-    <section className={`sideBar ${userRole === 'admin' || userRole === 'manager' ? 'grid-1' : 'grid-2'}`} style={{ background: theme.primary_color, color: theme.font_color }}>
+    <section className={`sideBar ${role === 'Admin' || role === 'Manager' ? 'grid-1' : 'grid-2'}`} style={{ background: theme.primary_color, color: theme.font_color }}>
       <div className="sideBar-links">
         <NavLink to="/dashboard" activeclassname='active' className="nav-link dashboard-link" style={{color: theme.font_color}}>
           <span className='dashboard-link text'>Dashboard</span>
           <span className='dashboard-link icon' style={{ fontSize: '30px', color: theme.font_color}} ><i className='bx bxs-dashboard dashboard-link' /></span>
         </NavLink>
-        {(userRole === 'admin' || userRole === 'manager') && <NavLink to="/users" activeclassname='active' className="nav-link users-link" style={{color: theme.font_color}}>
+        {(role === 'Admin' || role === 'Manager') && <NavLink to="/users" activeclassname='active' className="nav-link users-link" style={{color: theme.font_color}}>
           <span className='users-link text'>Users</span>
           <span className='users-link icon' style={{ fontSize: '30px', color: theme.font_color}} ><i className='bx bxs-group users-link' /></span>
         </NavLink>}
-        {(userRole === 'admin' || userRole === 'manager') && <NavLink to="/projects" activeclassname='active' className="nav-link projects-link" style={{color: theme.font_color}}>
+        {(role === 'Admin' || role === 'Manager') && <NavLink to="/projects" activeclassname='active' className="nav-link projects-link" style={{color: theme.font_color}}>
           <span className='projects-link text'>Projects</span>
           <span className='projects-link icon' style={{ fontSize: '30px', color: theme.font_color}} ><i className='bx bx-task projects-link' /></span>
         </NavLink>}

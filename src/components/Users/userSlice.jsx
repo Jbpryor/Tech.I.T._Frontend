@@ -18,6 +18,7 @@ export const updateUser = createAsyncThunk(
   "users/updateUser",
   async (userUpdates) => {
     const response = await apiSlice.patch('/users', userUpdates);
+    console.log(response)
     return response.data;
   }
 );
@@ -39,9 +40,9 @@ export const deleteUser = createAsyncThunk(
     async (userId) => {
       const response = await apiSlice.delete('/users', { data: userId });
       if (response?.status === 200) {
-        const { id } = userId;
+        const { _id } = userId;
         const message = response.data.message;
-        return { id, message };
+        return { _id, message };
     }
   }
 );
@@ -89,13 +90,13 @@ const userSlice = createSlice({
       })
       .addCase(deleteUser.fulfilled, (state, action) => {
         const deletedUser = action.payload;
-        if (!deletedUser.id) {
+        if (!deletedUser._id) {
           console.log("Delete could not complete");
           console.log(deletedUser);
           return;
         }
-        const { id } = deletedUser;
-        state.users = state.users.filter((user) => user._id !== id);
+        const { _id } = deletedUser;
+        state.users = state.users.filter((user) => user._id !== _id);
       });
   },
 });

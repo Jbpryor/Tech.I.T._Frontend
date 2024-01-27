@@ -11,7 +11,6 @@ const Prefetch = () => {
 
   useEffect(() => {
     if (isUserLoggedIn) {
-      // Only fetch data if the user is logged in
       store.dispatch(fetchUsers());
       store.dispatch(fetchIssues());
       store.dispatch(fetchReports());

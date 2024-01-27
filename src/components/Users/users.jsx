@@ -25,7 +25,7 @@ function Users({ projectUsers }) {
 
     const filteredUsers = isProjectsActive ? projectUsers : users;
 
-    const sortUsersByName = [...filteredUsers].sort(sortByProperty('name', null, false));
+    const sortUsersByName = [...filteredUsers].sort(sortByProperty('name', null, false)).reverse();
     const sortUsersByRole = [...filteredUsers].sort(sortByProperty('role', null, false));
     const sortUsersByEmail = [...filteredUsers].sort(sortByProperty('email', null, false));
 
@@ -37,18 +37,18 @@ function Users({ projectUsers }) {
         setSortOrder(sortOrder === 'ascending' ? 'descending' : 'ascending')
     }
 
-    const [sortOrder, setSortOrder] = useState('ascending');
+    const [sortOrder, setSortOrder] = useState('descending');
 
     const getSortingFunction = () => {
         switch (selectedSort) {
             case 'Name':
-                return sortOrder === 'ascending' ? sortUsersByName : sortUsersByName.reverse();
+                return sortOrder === 'descending' ? sortUsersByName : sortUsersByName.reverse();
             case 'Role':
-                return sortOrder === 'ascending' ? sortUsersByRole : sortUsersByRole.reverse();
+                return sortOrder === 'descending' ? sortUsersByRole : sortUsersByRole.reverse();
             case 'Email':
-                return sortOrder === 'ascending' ? sortUsersByEmail : sortUsersByEmail.reverse();
+                return sortOrder === 'descending' ? sortUsersByEmail : sortUsersByEmail.reverse();
             default:
-                return sortOrder === 'ascending' ? sortUsersByName : sortUsersByName.reverse();
+                return sortOrder === 'descending' ? sortUsersByName : sortUsersByName.reverse();
         }
       };
       

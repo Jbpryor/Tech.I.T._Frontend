@@ -2,7 +2,7 @@ import "./login.scss";
 import "boxicons/css/boxicons.min.css";
 import { useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, NavLink } from "react-router-dom";
 import { login } from "../authApiSlice";
 import { setCredentials } from "../authSlice";
 // import useAuth from "../../../Hooks/useAuth";
@@ -28,14 +28,14 @@ function Login() {
 
   const handleGoogleLogin = () => {};
 
-  const handleForgotPassword = () => {};
+  // const handleForgotPassword = () => {};
 
   // const handleLogin = () => {
   //   demoUser ? navigate("/demoLogin") : navigate("/");
   // };
 
-  const handleLogin = async (e) => {
-    e.preventDefault();
+  const handleLogin = async (event) => {
+    event.preventDefault();
 
     try {
       const response = await dispatch(login({ email, password }));
@@ -50,7 +50,7 @@ function Login() {
           navigate("/demoLogin");
         } else if (window.innerWidth > 850) {
           navigate("/dashboard");
-        } else if (role === "Admin" || role === "Manager") {
+        } else if (role === "Admin" || role === "Project Manager") {
           navigate("/projects");
         } else {
           navigate("/issues");
@@ -104,13 +104,13 @@ function Login() {
             </div>
 
             <div className="form-link">
-              <a
-                href="#"
+              <NavLink
+                to={"/passwordReset"}
                 className="forgot-pass"
-                onClick={handleForgotPassword}
+                // onClick={handleForgotPassword}
               >
                 Forgot password?
-              </a>
+              </NavLink>
             </div>
 
             <div className="field login-button">

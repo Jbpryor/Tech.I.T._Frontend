@@ -10,12 +10,11 @@ function DemoLogin() {
     const navigate = useNavigate();
 
     const handleDemoLogin = (user) => {
-        console.log(user)
         dispatch(setDemoUserMode(user));
         if (window.innerWidth > 850) {
             navigate('/dashboard');
         } else {
-            if (user === 'Admin' || user === 'Manager') {
+            if (user === 'Admin' || user === 'Project Manager') {
                 navigate('/projects');
             } else {
                 navigate('/issues');
@@ -40,7 +39,7 @@ function DemoLogin() {
                     <div className="demo-user">
                         <div className="field manager">
                             <i className='bx bxs-user-rectangle manager-icon' onClick={() => handleDemoLogin('Manager')}></i>
-                            <span onClick={() => handleDemoLogin('Manager')}>Project Manager</span>
+                            <span onClick={() => handleDemoLogin('Project Manager')}>Project Manager</span>
                         </div>
                     </div>
 

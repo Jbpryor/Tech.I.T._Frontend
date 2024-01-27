@@ -3,6 +3,7 @@ import "./newIssue.scss";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { addNewIssue, fetchIssues, selectAllIssues } from "../issueSlice";
+import { fetchUsers } from "../../Users/userSlice";
 import { issueDetails } from "../../../Config/issueDetails";
 import { addNotification } from "../../Notifications/notificationsSlice";
 import { formatTimestamp } from "../../../utils";
@@ -57,15 +58,16 @@ function NewIssue() {
         } = response.payload;
 
         await dispatch(fetchIssues());
+        await dispatch(fetchUsers());
 
-        dispatch(
-          addNotification({
-            message: message,
-            title: title,
-            notificationLink: `/issues/${issueId}`,
-            date: date,
-          })
-        );
+        // dispatch(
+        //   addNotification({
+        //     message: message,
+        //     title: title,
+        //     notificationLink: `/issues/${issueId}`,
+        //     date: date,
+        //   })
+        // );
 
         alert(message);
 

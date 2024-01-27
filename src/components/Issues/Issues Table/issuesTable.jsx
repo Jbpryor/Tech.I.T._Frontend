@@ -3,10 +3,10 @@ import { Link } from "react-router-dom";
 
 function IssuesTable({ issue, theme, isIssuesActive }) {
     return (
-        <tr className='issues-table-row' key={issue.id}>
+        <tr className='issues-table-row' key={issue._id}>
 
             <td  className="issue-title"  style={{ borderTop: `1px solid ${theme.border}`, borderBottom: `1px solid ${theme.border}`}} >
-                <Link className='issue-link' to={`/issues/${issue.id}`} key={issue.id}>{issue.title}</Link>
+                <Link className='issue-link' to={`/issues/${issue._id}`} key={issue._id}>{issue.title}</Link>
             </td>
             
             {isIssuesActive && <td style={{ borderTop: `1px solid ${theme.border}`, borderBottom: `1px solid ${theme.border}`}} >{issue.type}</td>}

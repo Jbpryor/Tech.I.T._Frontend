@@ -6,13 +6,13 @@ export const login = createAsyncThunk('auth', async (credentials) => {
   return response.data;
 });
 
-export const sendLogout = createAsyncThunk('auth/logout', async () => {
-  const response = await apiSlice.post('/logout');
+export const sendLogout = createAsyncThunk('logout', async () => {
+  const response = await apiSlice.post('/auth/logout');
   return response.data;
 });
 
-export const refresh = createAsyncThunk('auth/refresh', async () => {
-  const response = await apiSlice.get('/refresh');
+export const refresh = createAsyncThunk('refresh', async () => {
+  const response = await apiSlice.get('/auth/refresh');
   return response.data;
 });
 

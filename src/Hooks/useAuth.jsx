@@ -8,27 +8,29 @@ const useAuth = () => {
     const demoUser = useSelector(selectDemoUser);
     let isManager = false;
     let isAdmin = false;
-    let status = "Submitter";
+    let isDeveloper = false;
+    let isSubmitter = false;
     let email = "";
     let userName = "";
-    let role = ""
+    let role = "";
+    let userId
 
     if (token) {
         const decoded = jwtDecode(token);
-        const { email: decodedEmail, role: decodedRole, userName: decodedUserName } = decoded.UserInfo;
+        const { email: decodedEmail, role: decodedRole, userName: decodedUserName, userId: decodedUserId } = decoded.UserInfo;
 
         email = decodedEmail;
         userName = decodedUserName;
         role = userName === 'Demo User' ? demoUser : decodedRole
+        userId = decodedUserId
 
-        isManager = role.includes('Manager');
-        isAdmin = role.includes('Admin');
-
-        if (isManager) status = "Manager";
-        if (isAdmin) status = "Admin";
+        isManager = role === 'Project Manager';
+        isAdmin = role === 'Admin';
+        isDeveloper = role === "Developer";
+        isSubmitter = role === "Submitter"
     }
 
-    return { email, role, status, isManager, isAdmin, userName };
+    return { email, role, isManager, isAdmin, isDeveloper, isSubmitter, userName, userId };
 };
 
 export default useAuth;

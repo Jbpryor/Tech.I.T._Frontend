@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { updateIssue, fetchIssues, deleteComment } from "../../issueSlice";
 import { useDispatch } from "react-redux";
 import { formatTimestamp } from "../../../../utils";
+import useAuth from "../../../../Hooks/useAuth";
 
 function Comments({ issue, timeStamp, theme, smallerScreen, requestStatus, setRequestStatus }) {
   const dispatch = useDispatch();
@@ -10,6 +11,8 @@ function Comments({ issue, timeStamp, theme, smallerScreen, requestStatus, setRe
 
   const [comment, setComment] = useState("");
 
+  const { userName } = useAuth()
+
   const handleInputChange = (event) => {
     const { value } = event.target;
     setComment(value);
@@ -17,7 +20,7 @@ function Comments({ issue, timeStamp, theme, smallerScreen, requestStatus, setRe
 
   const handleSaveComment = async () => {
     const newComment = {
-      userName: "John Test",
+      userName: userName,
       comment: comment,
     };
 
@@ -55,7 +58,6 @@ function Comments({ issue, timeStamp, theme, smallerScreen, requestStatus, setRe
 
         if (deleteComment.fulfilled.match(response)) {
           const { message } = response.payload;
-          console.log("CommentRes:", response)
 
           alert(message);
 

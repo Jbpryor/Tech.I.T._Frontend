@@ -7,6 +7,7 @@ import {
 } from "../../issueSlice";
 import { useDispatch } from "react-redux";
 import { formatTimestamp } from "../../../../utils";
+import useAuth from "../../../../Hooks/useAuth";
 
 function Attachments({
   theme,
@@ -19,6 +20,7 @@ function Attachments({
 }) {
   const dispatch = useDispatch();
   const attachments = issue.attachments;
+  const { userName } = useAuth();
 
   if (!attachments) {
     return (
@@ -65,7 +67,7 @@ function Attachments({
     const formData = new FormData();
     formData.append("_id", issue._id);
     formData.append("file", file);
-    formData.append("userName", "Jamie Smith"); // need to make this the current user
+    formData.append("userName", userName); // need to make this the current user
 
     try {
       setRequestStatus("pending");

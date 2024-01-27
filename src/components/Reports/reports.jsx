@@ -26,7 +26,7 @@ function Reports() {
   );
   const sortedReportsBySubmitter = [...reports].sort(
     sortByProperty("subject", null, true)
-  );
+  ).reverse();
   const sortedReportsByType = [...reports].sort(
     sortByProperty("type", null, true)
   );
@@ -44,23 +44,23 @@ function Reports() {
   const getSortingFunction = () => {
     switch (selectedSort) {
       case "Created":
-        return sortOrder === "ascending"
+        return sortOrder === "descending"
           ? sortedReportsByCreated
           : sortedReportsByCreated.reverse();
       case "Project":
-        return sortOrder === "ascending"
+        return sortOrder === "descending"
           ? sortedReportsByProject
           : sortedReportsByProject.reverse();
       case "Submitter":
-        return sortOrder === "ascending"
+        return sortOrder === "descending"
           ? sortedReportsBySubmitter
           : sortedReportsBySubmitter.reverse();
       case "Type":
-        return sortOrder === "ascending"
+        return sortOrder === "descending"
           ? sortedReportsByType
           : sortedReportsByType.reverse();
       default:
-        return sortOrder === "ascending"
+        return sortOrder === "descending"
           ? sortedReportsByCreated
           : sortedReportsByCreated.reverse();
     }
@@ -350,11 +350,11 @@ function Reports() {
                     color: theme.font_color,
                   }}
                 >
-                  <div className="report-title">{report.type}</div>
+                  <div className="report-title">{report.subject}</div>
                   <div className="report-contents">
                     {Object.entries(report)
                       .filter(
-                        ([key]) => !["attachments", "_id", "description", "type", "comments", "__v"].includes(key)
+                        ([key]) => !["attachments", "_id", "description", "subject", "comments", "__v"].includes(key)
                       )
                       .map(([key, value]) => (
                         <div className="report-name" key={key}>

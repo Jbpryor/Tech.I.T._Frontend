@@ -12,12 +12,11 @@ const PictureContent = ({ user, theme }) => {
   const dispatch = useDispatch();
   const { role, userName } = useAuth();
 
-  const [requestStatus, setRequestStatus] = useState("idle")
+  const [requestStatus, setRequestStatus] = useState("idle");
 
   const [userRole, setUserRole] = useState();
   const [editedRole, setEditedRole] = useState({});
   const [fileContent, setFileContent] = useState();
-
 
   const handleChangeUserRole = () => {
     setEditMode(true);
@@ -30,15 +29,13 @@ const PictureContent = ({ user, theme }) => {
       [userRole]: value,
     }));
     setUserRole(value);
-
   };
 
   const handleSaveUserRole = async () => {
-
     const updatedRole = {
       _id: user._id,
       role: userRole,
-    }
+    };
 
     const response = await dispatch(updateUser(updatedRole));
 
@@ -52,13 +49,12 @@ const PictureContent = ({ user, theme }) => {
     }
   };
 
-
   const handleSaveUserImage = async (event) => {
     const file = event.target.files[0];
     const formData = new FormData();
     formData.append("_id", user._id);
     formData.append("file", file);
-    formData.append("userName", user.name.first + ' ' + user.name.last);
+    formData.append("userName", user.name.first + " " + user.name.last);
 
     try {
       setRequestStatus("pending");
@@ -66,16 +62,14 @@ const PictureContent = ({ user, theme }) => {
       const response = await dispatch(updateUser(formData));
 
       if (updateUser.fulfilled.match(response)) {
-
-        const { imageId } = response.payload.updatedUser.userImage[0]
-        handleViewImage(imageId)
+        const { imageId } = response.payload.updatedUser.userImage[0];
+        handleViewImage(imageId);
 
         await fetchUsers();
-
       } else {
         const { message } = response.error;
         alert("Image not added: " + message);
-        console.log(response)
+        console.log(response);
       }
     } catch (error) {
       console.error("Failed to save the image", error);
@@ -84,10 +78,9 @@ const PictureContent = ({ user, theme }) => {
     }
   };
 
-  const imageId = user.userImage[0]?.imageId
+  const imageId = user.userImage[0]?.imageId;
 
   const handleViewImage = async (imageId) => {
-
     try {
       setRequestStatus("pending");
 
@@ -100,7 +93,11 @@ const PictureContent = ({ user, theme }) => {
 
       if (isImage) {
         setFileContent(
-          <img className="user-image" src={`data:${contentType};base64,${data}`} alt="Attachment" />
+          <img
+            className="user-image"
+            src={`data:${contentType};base64,${data}`}
+            alt="Attachment"
+          />
         );
       } else {
         setFileContent();
@@ -121,7 +118,7 @@ const PictureContent = ({ user, theme }) => {
   return (
     <div
       className={`user-img-container ${
-        role === "Admin" || role === "Manager" ? "admin" : ""
+        role === "Admin" || role === "Project Manager" ? "admin" : ""
       }`}
       style={{
         background: theme.primary_color,
@@ -132,7 +129,7 @@ const PictureContent = ({ user, theme }) => {
         <label htmlFor="file">
           <input
             type="file"
-            id='file'
+            id="file"
             name="file"
             accept=".jpg, .jpeg, .png"
             onChange={handleSaveUserImage}
@@ -151,7 +148,7 @@ const PictureContent = ({ user, theme }) => {
       </div>
       <div className="user-name-content">
         <div className="user-name">
-          {userName}
+          {user?.name.first} {user?.name.last}
         </div>
         <div className="user-role-container">
           {editMode ? (
@@ -180,7 +177,7 @@ const PictureContent = ({ user, theme }) => {
           )}
         </div>
         <div className="change-role-buttons-container">
-          {(role === "Admin" || role === "Manager") && (
+          {(role === "Admin" || role === "Project Manager") && (
             <>
               {editMode ? (
                 <button

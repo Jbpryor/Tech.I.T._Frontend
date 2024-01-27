@@ -2,9 +2,9 @@ import { Link } from "react-router-dom";
 
 function ProjectsTable({ project, isProjectsActive, theme }) {
     return (
-        <tr className='projects-table-row' key={project.id}>
+        <tr className='projects-table-row' key={project._id}>
             <td  className="project-title"  style={{ borderTop: `1px solid ${theme.border}`, borderBottom: `1px solid ${theme.border}`}} >
-                <Link className='project-link' to={`/projects/${project.id}`} key={project.id}>{project.title}</Link>
+                <Link className='project-link' to={`/projects/${project._id}`} key={project._id}>{project.title}</Link>
             </td>
             <td style={{ borderTop: `1px solid ${theme.border}`, borderBottom: `1px solid ${theme.border}`}} >{project.type}</td>
             {isProjectsActive && <td style={{ borderTop: `1px solid ${theme.border}`, borderBottom: `1px solid ${theme.border}`}} >{project.description}</td>}

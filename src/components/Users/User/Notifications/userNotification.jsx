@@ -22,63 +22,63 @@ function UserNotifications({ theme, notificationsActive}) {
                     <div className="notification-header">Notify me when:</div>
                     <div className="notifications">
                         <div className="notification-content">
-                            <div className="notification-title">new project added</div>
+                            <div className="notification-title">A new project is created</div>
                             <div className="notification-button-container">
                                 <button className="enable" style={{ border: `1px solid ${theme.border}`}}>Enable</button>
                                 <button className="disable" style={{ border: `1px solid ${theme.border}`}}>Disable</button>
                             </div>
                         </div>
                         <div className="notification-content">
-                            <div className="notification-title">new issue added</div>
+                            <div className="notification-title">A new issue is created</div>
                             <div className="notification-button-container">
                                 <button className="enable" style={{ border: `1px solid ${theme.border}`}}>Enable</button>
                                 <button className="disable" style={{ border: `1px solid ${theme.border}`}}>Disable</button>
                             </div>
                         </div>
                         <div className="notification-content">
-                            <div className="notification-title">new user added</div>
+                            <div className="notification-title">A new user is created</div>
                             <div className="notification-button-container">
                                 <button className="enable" style={{ border: `1px solid ${theme.border}`}}>Enable</button>
                                 <button className="disable" style={{ border: `1px solid ${theme.border}`}}>Disable</button>
                             </div>
                         </div>
                         <div className="notification-content">
-                            <div className="notification-title">new report added</div>
+                            <div className="notification-title">A new report is created</div>
                             <div className="notification-button-container">
                                 <button className="enable" style={{ border: `1px solid ${theme.border}`}}>Enable</button>
                                 <button className="disable" style={{ border: `1px solid ${theme.border}`}}>Disable</button>
                             </div>
                         </div>
                         <div className="notification-content">
-                            <div className="notification-title">issue closed</div>
+                            <div className="notification-title">My issue is closed</div>
                             <div className="notification-button-container">
                                 <button className="enable" style={{ border: `1px solid ${theme.border}`}}>Enable</button>
                                 <button className="disable" style={{ border: `1px solid ${theme.border}`}}>Disable</button>
                             </div>
                         </div>
                         <div className="notification-content">
-                            <div className="notification-title">issue status change</div>
+                            <div className="notification-title">My issues status changes</div>
                             <div className="notification-button-container">
                                 <button className="enable" style={{ border: `1px solid ${theme.border}`}}>Enable</button>
                                 <button className="disable" style={{ border: `1px solid ${theme.border}`}}>Disable</button>
                             </div>
                         </div>
                         <div className="notification-content">
-                            <div className="notification-title">issue is commented</div>
+                            <div className="notification-title">My issue is commented on</div>
                             <div className="notification-button-container">
                                 <button className="enable" style={{ border: `1px solid ${theme.border}`}}>Enable</button>
                                 <button className="disable" style={{ border: `1px solid ${theme.border}`}}>Disable</button>
                             </div>
                         </div>
                         <div className="notification-content">
-                            <div className="notification-title">issue attachment is added</div>
+                            <div className="notification-title">Attachment is added to my issue</div>
                             <div className="notification-button-container">
                                 <button className="enable" style={{ border: `1px solid ${theme.border}`}}>Enable</button>
                                 <button className="disable" style={{ border: `1px solid ${theme.border}`}}>Disable</button>
                             </div>
                         </div>
                         <div className="notification-content">
-                            <div className="notification-title">user role change</div>
+                            <div className="notification-title">A users role changes</div>
                             <div className="notification-button-container">
                                 <button className="enable" style={{ border: `1px solid ${theme.border}`}}>Enable</button>
                                 <button className="disable" style={{ border: `1px solid ${theme.border}`}}>Disable</button>

@@ -49,23 +49,23 @@ function Issues({ projectIssues }) {
     const getSortingFunction = () => {
         switch (selectedSort) {
             case 'Created':
-                return sortOrder === 'ascending' ? sortedIssuesByDate : sortedIssuesByDate.reverse();
+                return sortOrder === 'descending' ? sortedIssuesByDate : sortedIssuesByDate.reverse();
             case 'Developer':
-                return sortOrder === 'ascending' ? sortedIssuesByDeveloper : sortedIssuesByDeveloper.reverse();
+                return sortOrder === 'descending' ? sortedIssuesByDeveloper : sortedIssuesByDeveloper.reverse();
             case 'Priority':
-                return sortOrder === 'ascending' ? sortedIssuesByPriority : sortedIssuesByPriority.reverse();
+                return sortOrder === 'descending' ? sortedIssuesByPriority : sortedIssuesByPriority.reverse();
             case 'Project':
-                return sortOrder === 'ascending' ? sortedIssuesByProject : sortedIssuesByProject.reverse();
+                return sortOrder === 'descending' ? sortedIssuesByProject : sortedIssuesByProject.reverse();
             case 'Status':
-                return sortOrder === 'ascending' ? sortedIssuesByStatus : sortedIssuesByStatus.reverse();
+                return sortOrder === 'descending' ? sortedIssuesByStatus : sortedIssuesByStatus.reverse();
             case 'Submitter':
-                return sortOrder === 'ascending' ? sortedIssuesBySubmitter : sortedIssuesBySubmitter.reverse();
+                return sortOrder === 'descending' ? sortedIssuesBySubmitter : sortedIssuesBySubmitter.reverse();
             case 'Title':
-                return sortOrder === 'ascending' ? sortedIssuesByTitle : sortedIssuesByTitle.reverse();
+                return sortOrder === 'descending' ? sortedIssuesByTitle : sortedIssuesByTitle.reverse();
             case 'Type':
-                return sortOrder === 'ascending' ? sortedIssuesByType : sortedIssuesByType.reverse();
+                return sortOrder === 'descending' ? sortedIssuesByType : sortedIssuesByType.reverse();
             default:
-                return sortOrder === 'ascending' ? sortedIssuesByDate : sortedIssuesByDate.reverse();
+                return sortOrder === 'descending' ? sortedIssuesByDate : sortedIssuesByDate.reverse();
         }
       };
       

@@ -1,5 +1,5 @@
 import "./header.scss";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import useWindowSize from "../../../Hooks/useWindowSize";
@@ -9,6 +9,8 @@ import { selectViewMode, setViewMode, toggleViewMode } from "../viewModeSlice";
 import { selectDemoUser } from "../../Auth/Demo Login/demoUserSlice";
 import { selectTheme } from "../../Users/User/Settings/settingsSlice";
 import { selectNewNotificationsCount } from "../../Notifications/notificationsSlice";
+import { selectUserById } from "../../Users/userSlice";
+import useAuth from "../../../Hooks/useAuth";
 
 function Header() {
   const [isSearchIconVisible, setSearchIconVisible] = useState(true);
@@ -16,10 +18,22 @@ function Header() {
   const [isNewMenuVisible, setIsNewMenuVisible] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  // const viewMode = useSelector(selectViewMode);
-  const demoUser = useSelector(selectDemoUser);
+  const newMenuRef = useRef(null)
   const theme = useSelector(selectTheme);
-  const newNotificationsCount = useSelector(selectNewNotificationsCount);
+  const { role, userId } = useAuth();
+
+  const user = useSelector((state) => selectUserById(state, userId));
+
+  const notifications = user?.notifications
+
+  let newNotificationsCount;
+
+  if (!notifications) {
+    newNotificationsCount = 0;
+  } else {
+    newNotificationsCount = notifications.filter(notification => notification.isNewNotification).length
+  }
+
 
   const handleGridIconClick = () => {
     setGridVisible(false);
@@ -39,6 +53,20 @@ function Header() {
   const handleNewMenuVisibility = () => {
     setIsNewMenuVisible(!isNewMenuVisible);
   };
+
+  const handleClickOutside = (event) => {
+    if (newMenuRef.current && !newMenuRef.current.contains(event.target)) {
+      setIsNewMenuVisible(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener('click', handleClickOutside);
+
+    return () => {
+      document.removeEventListener('click', handleClickOutside);
+    };
+  }, []);
 
   const { width } = useWindowSize();
   const smallerScreen = width < 500;
@@ -74,6 +102,7 @@ function Header() {
                   className="new-button"
                   onClick={handleNewMenuVisibility}
                   onMouseLeave={() => setIsNewMenuVisible(false)}
+                  ref={newMenuRef}
                 >
                   New +
                 </button>
@@ -84,16 +113,16 @@ function Header() {
                   <div
                     className={`new-menu-container ${
                       isNewMenuVisible ? "active" : ""
-                    } ${demoUser}`}
+                    } ${role}`}
                     onMouseEnter={() => setIsNewMenuVisible(true)}
                     onMouseLeave={() => setIsNewMenuVisible(false)}
                     style={{
                       background: theme.background_color,
-                      border: `1px solid ${theme.border}`,
+                      border: isNewMenuVisible ? `1px solid ${theme.border}` : "",
                       color: theme.font_color,
                     }}
                   >
-                    {(demoUser === "admin" || demoUser === "manager") && (
+                    {(role === "Admin" || role === "Project Manager") && (
                       <NavLink
                         className="nav-link"
                         onClick={() => setIsNewMenuVisible(false)}
@@ -103,7 +132,7 @@ function Header() {
                         New User
                       </NavLink>
                     )}
-                    {(demoUser === "admin" || demoUser === "manager") && (
+                    {(role === "Admin" || role === "Project Manager") && (
                       <NavLink
                         className="nav-link"
                         onClick={() => setIsNewMenuVisible(false)}
@@ -113,9 +142,9 @@ function Header() {
                         New Project
                       </NavLink>
                     )}
-                    {(demoUser === "admin" ||
-                      demoUser === "manager" ||
-                      demoUser === "developer") && (
+                    {(role === "Admin" ||
+                      role === "Project Manager" ||
+                      role === "Developer") && (
                       <NavLink
                         className="nav-link"
                         onClick={() => setIsNewMenuVisible(false)}
@@ -188,7 +217,7 @@ function Header() {
               <div
                 className={`new-menu-container ${
                   isNewMenuVisible ? "active" : ""
-                } ${demoUser}`}
+                } ${role}`}
                 onMouseEnter={() => setIsNewMenuVisible(true)}
                 onMouseLeave={() => setIsNewMenuVisible(false)}
                 style={{
@@ -198,7 +227,7 @@ function Header() {
                     : "none",
                 }}
               >
-                {(demoUser === "admin" || demoUser === "manager") && (
+                {(role === "Admin" || role === "Project Manager") && (
                   <NavLink
                     className="nav-link"
                     to="/users/newUser"
@@ -207,7 +236,7 @@ function Header() {
                     New User
                   </NavLink>
                 )}
-                {(demoUser === "admin" || demoUser === "manager") && (
+                {(role === "Admin" || role === "Project Manager") && (
                   <NavLink
                     className="nav-link"
                     to="/projects/newProject"
@@ -216,9 +245,9 @@ function Header() {
                     New Project
                   </NavLink>
                 )}
-                {(demoUser === "admin" ||
-                  demoUser === "manager" ||
-                  demoUser === "developer") && (
+                {(role === "Admin" ||
+                  role === "Project Manager" ||
+                  role === "Developer") && (
                   <NavLink
                     className="nav-link"
                     to="/issues/newIssue"

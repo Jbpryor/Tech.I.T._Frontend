@@ -6,21 +6,19 @@ import { selectAllUsers } from "../../../Users/userSlice";
 import { selectAllIssues } from "../../../Issues/issueSlice";
 import { selectAllProjects } from "../../../Projects/projectSlice";
 import { selectAllReports } from "../../../Reports/reportSlice";
+import useAuth from "../../../../Hooks/useAuth";
 
-function SearchBar({
-  isSearchIconVisible,
-  setSearchIconVisible,
-  theme,
-  smallerScreen,
-}) {
+function SearchBar({ isSearchIconVisible, setSearchIconVisible, theme, smallerScreen }) {
+
   const [search, setSearch] = useState("");
   const [resultsActive, setResultsActive] = useState(false);
   const [selectedData, setSelectedData] = useState("all");
+  const { isAdmin, isManager, isSubmitter } = useAuth();
 
   const reports = useSelector(selectAllReports);
-  const projects = useSelector(selectAllProjects);
-  const users = useSelector(selectAllUsers);
-  const issues = useSelector(selectAllIssues);
+  const projects = (isAdmin || isManager) && useSelector(selectAllProjects);
+  const users = (isAdmin || isManager) && useSelector(selectAllUsers);
+  const issues = (!isSubmitter) && useSelector(selectAllIssues);
 
   const allData = {
     reports,
@@ -42,7 +40,7 @@ function SearchBar({
         value.subject.toLowerCase().includes(search.toLowerCase())
       ) {
         allDataValues.push({
-          id: value.id,
+          _id: value._id,
           value: value.subject,
           field: field,
         });
@@ -50,7 +48,7 @@ function SearchBar({
         (field === "projects" || field === "issues") &&
         value.title.toLowerCase().includes(search.toLowerCase())
       ) {
-        allDataValues.push({ id: value.id, value: value.title, field: field });
+        allDataValues.push({ _id: value._id, value: value.title, field: field });
       } else if (
         field === "users" &&
         (value.name?.first + " " + value.name?.last)
@@ -58,7 +56,7 @@ function SearchBar({
           .includes(search.toLowerCase())
       ) {
         allDataValues.push({
-          id: value._id,
+          _id: value._id,
           value: value.name?.first + " " + value.name?.last,
           field: field,
         });
@@ -117,18 +115,18 @@ function SearchBar({
                 }}
               >
                 {/* this needs to be set as the key of the map */}
-                <option className="search-option" value="all">
+                {!isSubmitter && <option className="search-option" value="all">
                   All
-                </option>
-                <option className="search-option" value="users">
+                </option>}
+                {(isAdmin || isManager) && <option className="search-option" value="users">
                   Users
-                </option>
-                <option className="search-option" value="projects">
+                </option>}
+                {(isAdmin || isManager) && <option className="search-option" value="projects">
                   Projects
-                </option>
-                <option className="search-option" value="issues">
+                </option>}
+                {!isSubmitter && <option className="search-option" value="issues">
                   Issues
-                </option>
+                </option>}
                 <option className="search-option" value="reports">
                   Reports
                 </option>
@@ -178,7 +176,7 @@ function SearchBar({
           })
           .map((result, index) => (
             <Link
-              to={`/${result.field}/${result.id}`}
+              to={`/${result.field}/${result._id}`}
               key={index}
               className="search-link"
               onClick={handleCancelSearch}

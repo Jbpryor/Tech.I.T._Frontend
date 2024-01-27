@@ -63,14 +63,14 @@ function NewUser() {
 
         await dispatch(fetchUsers());
 
-        dispatch(
-          addNotification({
-            message: message,
-            title: userName,
-            notificationLink: `/users/${userId}`,
-            date: date,
-          })
-        );
+        // dispatch(
+        //   addNotification({
+        //     message: message,
+        //     title: userName,
+        //     notificationLink: `/users/${userId}`,
+        //     date: date,
+        //   })
+        // );
 
         alert(message);
 

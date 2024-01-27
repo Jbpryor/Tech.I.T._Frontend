@@ -8,7 +8,7 @@ import UserAccount from "./User Account/userAccount";
 import UserNotifications from "./Notifications/userNotification";
 import UserPassword from "./Password/userPassword";
 import useWindowSize from "../../../Hooks/useWindowSize";
-import { selectAllUsers } from "../userSlice";
+import { selectUserById } from "../userSlice";
 import { selectTheme } from "./Settings/settingsSlice";
 
 function User() {
@@ -16,11 +16,8 @@ function User() {
 
   const theme = useSelector(selectTheme);
 
-  const users = useSelector(selectAllUsers);
+  const user = useSelector((state) => selectUserById(state, userId));
 
-  const user = users.find((user) => {
-    return user._id === userId;
-  });
 
   const { width } = useWindowSize();
 
@@ -47,9 +44,13 @@ function User() {
         <div className="user-container">
           <UserButtons
             user={user}
+            generalActive={generalActive}
             setGeneralActive={setGeneralActive}
+            accountActive={accountActive}
             setAccountActive={setAccountActive}
+            notificationsActive={notificationsActive}
             setNotificationsActive={setNotificationsActive}
+            passwordActive={passwordActive}
             setPasswordActive={setPasswordActive}
             viewUserButtons={viewUserButtons}
             setViewUserButtons={setViewUserButtons}

@@ -134,17 +134,17 @@
                 transition: 
                 height 0.5s ease-in-out,
                 padding 0.5s ease-in-out;  
-                border-radius: 0 0 3px 3px;              ;
+                border-radius: 0 0 3px 3px;
 
                 &.active {
                     height: 150px;
                     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.2), 0px 6px 4px 0px rgba(0, 0, 0, 0.2);
 
-                    &.developer {
+                    &.Developer {
                         height: 75px;
                     }
 
-                    &.submitter {
+                    &.Submitter {
                         height: 25px;
                     }                
                 }
@@ -316,16 +316,16 @@
 
         &.active {
             display: flex !important;
-            border-top: none !important;
+            // border-top: none !important;
             max-height: 150px !important;
             box-shadow: none !important;
             padding: 5% !important;
 
-            &.developer {
+            &.Developer {
                 height: 75px;
             }
 
-            &.submitter {
+            &.Submitter {
                 height: 25px;
             }                
         }

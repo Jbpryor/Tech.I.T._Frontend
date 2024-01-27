@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import "./newProject.scss";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-// import { addProject } from "../projectSlice";
 import { addNotification } from "../../Notifications/notificationsSlice";
 import { formatTimestamp } from "../../../utils";
 import { selectAllUsers } from "../../Users/userSlice";
 import { selectAllProjects, fetchProjects, addNewProject } from "../projectSlice";
+import { fetchUsers } from "../../Users/userSlice";
 import { selectTheme } from "../../Users/User/Settings/settingsSlice";
 
 function NewProject() {
@@ -70,15 +70,16 @@ function NewProject() {
         } = response.payload;
 
         await dispatch(fetchProjects());
+        await dispatch(fetchUsers());
 
-        dispatch(
-          addNotification({
-            message: message,
-            title: title,
-            notificationLink: `/projects/${projectId}`,
-            date: date,
-          })
-        );
+        // dispatch(
+        //   addNotification({
+        //     message: message,
+        //     title: title,
+        //     notificationLink: `/projects/${projectId}`,
+        //     date: date,
+        //   })
+        // );
 
         alert(message);
 

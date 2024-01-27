@@ -20,6 +20,7 @@ import NewReport from "./components/Reports/New Report/newReport";
 import Settings from "./components/Users/User/Settings/settings";
 import Notifications from "./components/Notifications/notifications";
 import Prefetch from "./components/Auth/Login/prefetch";
+import ForgotPassword from "./components/Auth/Forgot Password/forgotPassword";
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
       <Route index element={<Login />} />
 
       <Route path="/login" element={<Login />} />
+      <Route path="/passwordReset" element={<ForgotPassword />} />
       <Route path="/demoLogin" element={<DemoLogin />} />
 
       <Route element={<Prefetch />}>

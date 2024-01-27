@@ -1,13 +1,13 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import apiSlice from "../../App/Api/apiSlice";
 
-export const fetchUsers = createAsyncThunk("users/fetchUsers", async () => {
+export const fetchUsers = createAsyncThunk("fetchUsers", async () => {
   const response = await apiSlice.get('/users');
   return response.data;
 });
 
 export const addNewUser = createAsyncThunk(
-  "users/addNewUser",
+  "addNewUser",
   async (userInfo) => {
     const response = await apiSlice.post('/users', userInfo);
     return response.data;
@@ -15,16 +15,15 @@ export const addNewUser = createAsyncThunk(
 );
 
 export const updateUser = createAsyncThunk(
-  "users/updateUser",
+  "updateUser",
   async (userUpdates) => {
     const response = await apiSlice.patch('/users', userUpdates);
-    console.log(response)
     return response.data;
   }
 );
 
 export const viewImage = createAsyncThunk(
-  "users/viewImage",
+  "viewImage",
   async (userImage) => {
     const { userId, imageId } = userImage;
 
@@ -36,7 +35,7 @@ export const viewImage = createAsyncThunk(
 );
 
 export const deleteUser = createAsyncThunk(
-    "users/deleteUser",
+    "deleteUser",
     async (userId) => {
       const response = await apiSlice.delete('/users', { data: userId });
       if (response?.status === 200) {
@@ -104,5 +103,8 @@ const userSlice = createSlice({
 export const selectAllUsers = (state) => state.users.users;
 export const getUsersStatus = (state) => state.users.status;
 export const getUsersError = (state) => state.users.error;
+
+export const selectUserById = (state, userId) =>
+  state.users.users.find((user) => user?._id === userId);
 
 export default userSlice.reducer;

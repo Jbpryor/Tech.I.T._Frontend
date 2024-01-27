@@ -3,20 +3,24 @@ import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { deleteUser, fetchUsers } from "../../userSlice";
 import useWindowSize from "../../../../Hooks/useWindowSize";
-import { selectDemoUser } from "../../../Auth/Demo Login/demoUserSlice";
+import useAuth from "../../../../Hooks/useAuth";
 
 function UserButtons({
   user,
+  generalActive,
   setGeneralActive,
+  accountActive,
   setAccountActive,
+  notificationsActive,
   setNotificationsActive,
+  passwordActive,
   setPasswordActive,
   viewUserButtons,
   setViewUserButtons,
   theme,
 }) {
-  const demoUser = useSelector(selectDemoUser);
 
+  const { role } = useAuth();
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -24,9 +28,9 @@ function UserButtons({
 
   const [requestStatus, setRequestStatus] = useState("idle");
 
-  const handleGeneralActive = () => {
-    setGeneralActive(true);
-    setAccountActive(false);
+  const handleAccountActive = () => {
+    setGeneralActive(false);
+    setAccountActive(true);
     setNotificationsActive(false);
     setPasswordActive(false);
 
@@ -35,9 +39,9 @@ function UserButtons({
     }
   };
 
-  const handleAccountActive = () => {
-    setGeneralActive(false);
-    setAccountActive(true);
+  const handleGeneralActive = () => {
+    setGeneralActive(true);
+    setAccountActive(false);
     setNotificationsActive(false);
     setPasswordActive(false);
 
@@ -72,7 +76,7 @@ function UserButtons({
   const handleRemoveUser = async () => {
     // this needs a nav to enter password to delete
     const userName = `${user.name.first} ${user.name.last}`
-    if (window.confirm(`Are you sure you want to delete ${userName}?`)) {
+    if (window.confirm(`\nAre you sure you want to delete\n\nUser: ${userName}?`)) {
         try {
             setRequestStatus("pending");
 
@@ -105,17 +109,7 @@ function UserButtons({
     >
       <div className="user-buttons-content">
         <div
-          className="general-settings"
-          onClick={handleGeneralActive}
-          style={{
-            background: theme.primary_color,
-            border: `1px solid ${theme.border}`,
-          }}
-        >
-          <div className="button-title">General</div>
-        </div>
-        <div
-          className="account-settings"
+          className={`account-settings ${accountActive ? "active": ""}`}
           onClick={handleAccountActive}
           style={{
             background: theme.primary_color,
@@ -125,7 +119,17 @@ function UserButtons({
           <div className="button-title">Account</div>
         </div>
         <div
-          className="notification-settings"
+          className={`general-settings ${generalActive ? "active" : ""}`}
+          onClick={handleGeneralActive}
+          style={{
+            background: theme.primary_color,
+            border: `1px solid ${theme.border}`,
+          }}
+        >
+          <div className="button-title">General</div>
+        </div>
+        <div
+          className={`notification-settings ${notificationsActive ? "active" : ""}`}
           onClick={handleNotificationsActive}
           style={{
             background: theme.primary_color,
@@ -135,7 +139,7 @@ function UserButtons({
           <div className="button-title">Notifications</div>
         </div>
         <div
-          className="password-settings"
+          className={`password-settings ${passwordActive ? "active" : ""}`}
           onClick={handlePasswordActive}
           style={{
             background: theme.primary_color,
@@ -144,7 +148,7 @@ function UserButtons({
         >
           <div className="button-title">Password & Security</div>
         </div>
-        {demoUser === "admin" && (
+        {role === "Admin" && (
           <div
             className="remove-user"
             onClick={handleRemoveUser}

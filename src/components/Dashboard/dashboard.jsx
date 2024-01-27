@@ -11,8 +11,8 @@ function Dashboard() {
 
   return (
     <section className="dashboard">
-      <div className={`dashboard-container ${role === 'Admin' || role === 'Manager' ? '' : 'active'}`}>
-        {(role === 'Admin' || role === 'Manager') && <Projects />}
+      <div className={`dashboard-container ${role === 'Admin' || role === 'Project Manager' ? '' : 'active'}`}>
+        {(role === 'Admin' || role === 'Project Manager') && <Projects />}
         <Issues />
         <Reports />
       </div>

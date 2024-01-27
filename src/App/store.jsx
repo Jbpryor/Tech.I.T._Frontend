@@ -8,7 +8,6 @@ import demoUserReducer from '../components/Auth/Demo Login/demoUserSlice';
 import settingsReducer from '../components/Users/User/Settings/settingsSlice';
 import notificationsReducer from '../components/Notifications/notificationsSlice';
 import authReducer from '../components/Auth/authSlice'
-// import { apiSlice } from './Api/apiSlice'
 
 const rootReducer = {
   users: userReducer,
@@ -20,12 +19,10 @@ const rootReducer = {
   settings: settingsReducer,
   notifications: notificationsReducer,
   auth: authReducer,
-  // [apiSlice.reducerPath]: apiSlice.reducer,
 }
 
 const store = configureStore({
   reducer: rootReducer,
-  // middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(apiSlice.middleware)
 });
 
 export default store;

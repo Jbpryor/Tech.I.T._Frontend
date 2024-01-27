@@ -18,6 +18,7 @@ import {
 } from "../issueSlice";
 import { selectAllProjects } from "../../Projects/projectSlice";
 import { selectTheme } from "../../Users/User/Settings/settingsSlice";
+import useAuth from "../../../Hooks/useAuth";
 
 function Issue() {
   const navigate = useNavigate();
@@ -27,6 +28,8 @@ function Issue() {
   const projects = useSelector(selectAllProjects);
   const theme = useSelector(selectTheme);
 
+  const { role } = useAuth();
+
   const { issueId } = useParams();
   const [isEditMode, setEditMode] = useState({});
   const [showSaveButton, setShowSaveButton] = useState(false);
@@ -35,7 +38,9 @@ function Issue() {
   const [previousState, setPreviousState] = useState({});
   const [requestStatus, setRequestStatus] = useState("idle");
   const [isDraggingPage, setIsDraggingPage] = useState(false);
-  const [isModificationsViewActive, setModificationsViewActive] = useState(false);
+  const [isModificationsViewActive, setModificationsViewActive] = useState(
+    false
+  );
   // const error = useSelector(getIssuesError);
 
   const issue = useSelector((state) => selectIssueById(state, issueId));
@@ -55,7 +60,6 @@ function Issue() {
   // const [title, setTitle] = useState(issue?.title)
   // const [type, setType] = useState(issue?.type)
   // const [modified, setModified] = useState(issue?.modified)
-
 
   const timeStamp = new Date().toISOString();
 
@@ -127,7 +131,11 @@ function Issue() {
   };
 
   const handleDeleteIssue = async () => {
-    if (window.confirm(`Are you sure you want to delete ${issue.title}?`)) {
+    if (
+      window.confirm(
+        `\nAre you sure you want to delete\n\nIssue: ${issue.title}?`
+      )
+    ) {
       try {
         setRequestStatus("pending");
 
@@ -143,7 +151,7 @@ function Issue() {
 
           dispatch(fetchIssues());
 
-          navigate(-1)
+          navigate(-1);
         } else {
           console.log("Error deleting issue:", response.payload);
         }
@@ -159,7 +167,7 @@ function Issue() {
     event.preventDefault();
     setIsDraggingPage(true);
   };
-  
+
   const handlePageDragLeave = () => {
     setIsDraggingPage(false);
   };
@@ -167,7 +175,7 @@ function Issue() {
   const toggleModificationView = () => {
     setModificationsViewActive(!isModificationsViewActive);
   };
-  
+
   if (!issue) {
     return (
       <section
@@ -441,38 +449,40 @@ function Issue() {
                     </div>
                   )
               )}
-              <div className="issue-buttons-container">
-                {!showSaveButton && (
-                  <button
-                    className="issue-delete-button"
-                    onClick={handleDeleteIssue}
-                    style={{
-                      background: theme.background_color,
-                      color: theme.font_color,
-                      border: smallerScreen
-                        ? "none"
-                        : `2px solid ${theme.border}`,
-                    }}
-                  >
-                    Delete
-                  </button>
-                )}
-                {showSaveButton && (
-                  <button
-                    className="issue-save-button"
-                    onClick={saveEditedIssue}
-                    style={{
-                      background: theme.background_color,
-                      color: theme.font_color,
-                      border: smallerScreen
-                        ? "none"
-                        : `2px solid ${theme.border}`,
-                    }}
-                  >
-                    Save
-                  </button>
-                )}
-              </div>
+              {role !== "Submitter" && (
+                <div className="issue-buttons-container">
+                  {!showSaveButton && (
+                    <button
+                      className="issue-delete-button"
+                      onClick={handleDeleteIssue}
+                      style={{
+                        background: theme.background_color,
+                        color: theme.font_color,
+                        border: smallerScreen
+                          ? "none"
+                          : `2px solid ${theme.border}`,
+                      }}
+                    >
+                      Delete
+                    </button>
+                  )}
+                  {showSaveButton && (
+                    <button
+                      className="issue-save-button"
+                      onClick={saveEditedIssue}
+                      style={{
+                        background: theme.background_color,
+                        color: theme.font_color,
+                        border: smallerScreen
+                          ? "none"
+                          : `2px solid ${theme.border}`,
+                      }}
+                    >
+                      Save
+                    </button>
+                  )}
+                </div>
+              )}
             </div>
           </div>
         )}

@@ -40,21 +40,21 @@ function Projects() {
     const getSortingFunction = () => {
         switch (selectedSort) {
             case 'Backend':
-                return sortOrder === 'ascending' ? sortedProjectsByBackend : sortedProjectsByBackend.reverse();
+                return sortOrder === 'descending' ? sortedProjectsByBackend : sortedProjectsByBackend.reverse();
             case 'Client Name':
-                return sortOrder === 'ascending' ? sortedProjectsByClientName : sortedProjectsByClientName.reverse();
+                return sortOrder === 'descending' ? sortedProjectsByClientName : sortedProjectsByClientName.reverse();
             case 'Created':
-                return sortOrder === 'ascending' ? sortedProjectsByDate : sortedProjectsByDate.reverse();
+                return sortOrder === 'descending' ? sortedProjectsByDate : sortedProjectsByDate.reverse();
             case 'Frontend':
-                return sortOrder === 'ascending' ? sortedProjectsByFrontend : sortedProjectsByFrontend.reverse();
+                return sortOrder === 'descending' ? sortedProjectsByFrontend : sortedProjectsByFrontend.reverse();
             case 'Manager':
-                return sortOrder === 'ascending' ? sortedProjectsByManager : sortedProjectsByManager.reverse();
+                return sortOrder === 'descending' ? sortedProjectsByManager : sortedProjectsByManager.reverse();
             case 'Title':
-                return sortOrder === 'ascending' ? sortedProjectsByTitle : sortedProjectsByTitle.reverse();
+                return sortOrder === 'descending' ? sortedProjectsByTitle : sortedProjectsByTitle.reverse();
             case 'Type':
-                return sortOrder === 'ascending' ? sortedProjectsByType : sortedProjectsByType.reverse();
+                return sortOrder === 'descending' ? sortedProjectsByType : sortedProjectsByType.reverse();
             default:
-                return sortOrder === 'ascending' ? sortedProjectsByDate : sortedProjectsByDate.reverse();
+                return sortOrder === 'descending' ? sortedProjectsByDate : sortedProjectsByDate.reverse();
         }
       };
       

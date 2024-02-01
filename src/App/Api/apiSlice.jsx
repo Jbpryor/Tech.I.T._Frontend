@@ -3,7 +3,7 @@ import { selectCurrentToken } from "../../components/Auth/authSlice";
 import store from "../store";
 
 const apiSlice = axios.create({
-  baseURL: "http://localHost",
+  baseURL: "https://tech-i-t-api.onrender.com",
   withCredentials: true,
 });
 

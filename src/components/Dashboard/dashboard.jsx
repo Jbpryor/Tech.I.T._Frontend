@@ -8,7 +8,6 @@ function Dashboard() {
 
   const { role } = useAuth();
 
-
   return (
     <section className="dashboard">
       <div className={`dashboard-container ${role === 'Admin' || role === 'Project Manager' ? '' : 'active'}`}>

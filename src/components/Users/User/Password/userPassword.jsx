@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { updateUser, fetchUsers } from "../../userSlice";
+import { useState, useEffect } from "react";
+import { updateUser } from "../../userSlice";
 import { useDispatch } from "react-redux";
 
 function UserPassword({ theme, passwordActive, user }) {
@@ -44,7 +44,6 @@ function UserPassword({ theme, passwordActive, user }) {
       const response = await dispatch(updateUser(passwordData));
 
       if (updateUser.fulfilled.match(response)) {
-        console.log(response);
         const { message } = response.payload;
 
         alert(message);

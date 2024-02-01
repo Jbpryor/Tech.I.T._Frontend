@@ -1,22 +1,28 @@
 import "./login.scss";
 import "boxicons/css/boxicons.min.css";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, NavLink } from "react-router-dom";
-import { login } from "../authApiSlice";
+import { login, getAuthStatus, getAuthError } from "../authApiSlice";
 import { setCredentials } from "../authSlice";
-// import useAuth from "../../../Hooks/useAuth";
-// import { PulseLoader } from 'react-spinners'
+import { PulseLoader } from "react-spinners";
+
+const EMAIL_REGEX = /^[\w.-]+@[a-zA-Z\d.-]+\.[a-zA-Z]{2,}$/;
+const PWD_REGEX = /^[A-z0-9!@#$%]{4,12}$/;
 
 function Login() {
-  const userRef = useRef();
+  const emailRef = useRef();
   const errRef = useRef();
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [demoUser, setDemoUser] = useState(false);
-  // const [errMsg, setErrMsg] = useState("");
+  const err = useSelector(getAuthError);
+  const [errMsg, setErrMsg] = useState("");
+  const status = useSelector(getAuthStatus);
+  const [validEmail, setValidEmail] = useState(false);
+  const [validPassword, setValidPassword] = useState(false);
 
   const handleDemoUser = () => {
     setEmail("demo@example.com");
@@ -24,65 +30,77 @@ function Login() {
     setDemoUser(true);
   };
 
-  const handleFacebookLogin = () => {};
+  const isLoading = status === "loading";
 
-  const handleGoogleLogin = () => {};
+  useEffect(() => {
+    setErrMsg("");
+  }, [email, password]);
 
-  // const handleForgotPassword = () => {};
+  useEffect(() => {
+    setValidEmail(EMAIL_REGEX.test(email));
+  }, [email]);
 
-  // const handleLogin = () => {
-  //   demoUser ? navigate("/demoLogin") : navigate("/");
-  // };
+  useEffect(() => {
+    setValidPassword(PWD_REGEX.test(password));
+  }, [password]);
+
+  const canContinue = [validEmail, validPassword].every(Boolean) && !isLoading;
 
   const handleLogin = async (event) => {
     event.preventDefault();
 
-    try {
-      const response = await dispatch(login({ email, password }));
+    const response = await dispatch(login({ email, password }));
 
-      if (login.fulfilled.match(response)) {
-        const { accessToken, role } = response.payload;
-        dispatch(setCredentials({ accessToken }));
-        setEmail("");
-        setPassword("");
+    if (login.fulfilled.match(response)) {
+      const { accessToken, role } = response.payload;
+      dispatch(setCredentials({ accessToken }));
+      setEmail("");
+      setPassword("");
 
-        if (demoUser) {
-          navigate("/demoLogin");
-        } else if (window.innerWidth > 850) {
-          navigate("/dashboard");
-        } else if (role === "Admin" || role === "Project Manager") {
-          navigate("/projects");
-        } else {
-          navigate("/issues");
+      if (demoUser) {
+        navigate("/demoLogin");
+      } else if (window.innerWidth > 850) {
+        navigate("/dashboard");
+      } else if (role === "Admin" || role === "Project Manager") {
+        navigate("/projects");
+      } else {
+        navigate("/issues");
+      }
+    } else if (login.rejected.match(response)) {
+      if (
+        !response &&
+        response.payload === "Request failed with status code 401"
+      ) {
+        setErrMsg("Missing email or password");
+      } else if (response.error.message === "Network Error") {
+        setErrMsg(response.error.message);
+      } else {
+        const { message } = response.error;
+        if (message === "Request failed with status code 401") {
+          setErrMsg("Incorrect email or password");
+        } else if (message === "Request failed with status code 400") {
+          setErrMsg("Missing email or password");
         }
       }
-    } catch (error) {
-      console.log(error);
-      // if (!error.status) {
-      //     setErrMsg("No Server Response");
-      //   } else if (error.status === 400) {
-      //     setErrMsg("Missing Email or Password");
-      //   } else if (error.status === 401) {
-      //     setErrMsg("Unauthorized");
-      //   } else {
-      //     setErrMsg(error.data?.message);
-      //   }
     }
   };
 
-  // if (isLoading) return <div>... Loading</div>;
+  if (isLoading) return <PulseLoader color={"#FFF"} />;
 
   return (
     <section className="login-container">
       <div className="login-form">
         <div className="login-content">
-          <div className="login-title">Login</div>
-          <form className="login-form-container" onSubmit={event => event.preventDefault()}>
+          <h1 className="login-title">Login</h1>
+          <form
+            className="login-form-container"
+            onSubmit={(event) => event.preventDefault()}
+          >
             <div className="field input-field">
               <input
                 type="email"
                 id="email"
-                ref={userRef}
+                ref={emailRef}
                 placeholder="Email"
                 className="email"
                 value={email}
@@ -104,17 +122,18 @@ function Login() {
             </div>
 
             <div className="form-link">
-              <NavLink
-                to={"/passwordReset"}
-                className="forgot-pass"
-                // onClick={handleForgotPassword}
-              >
+              <NavLink to={"/passwordReset"} className="forgot-pass">
                 Forgot password?
               </NavLink>
             </div>
 
             <div className="field login-button">
-              <button type="button" onClick={handleLogin}>
+              <button
+                type="button"
+                onClick={handleLogin}
+                disabled={!canContinue}
+                style={{ filter: !canContinue && "brightness(0.5)" }}
+              >
                 Login
               </button>
             </div>
@@ -123,26 +142,15 @@ function Login() {
 
         <div className="line"></div>
 
-        <div className="media-options">
-          <a href="#" className="field facebook" onClick={handleFacebookLogin}>
-            <i className="bx bxl-facebook facebook-icon"></i>
-            <span>Login with Facebook</span>
-          </a>
-        </div>
-
-        <div className="media-options">
-          <a href="#" className="field google" onClick={handleGoogleLogin}>
-            <img src="images/google.png" alt="" className="google-img"></img>
-            <span>Login with Google</span>
-          </a>
-        </div>
-
-        <div className="media-options">
-          <a href="#" className="field demo" onClick={handleDemoUser}>
+        <div className="demo-button">
+          <button className="field demo" onClick={handleDemoUser}>
             <i className="bx bxs-user-circle demo-icon"></i>
             <span>Login as Demo User</span>
-          </a>
+          </button>
         </div>
+        <p className={`${errMsg ? "errMsg" : "offscreen"}`} ref={errRef}>
+          {errMsg}
+        </p>
       </div>
     </section>
   );

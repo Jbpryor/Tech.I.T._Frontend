@@ -6,8 +6,8 @@ import reportReducer from '../components/Reports/reportSlice';
 import viewModeReducer from '../components/Layout/viewModeSlice';
 import demoUserReducer from '../components/Auth/Demo Login/demoUserSlice';
 import settingsReducer from '../components/Users/User/Settings/settingsSlice';
-import notificationsReducer from '../components/Notifications/notificationsSlice';
 import authReducer from '../components/Auth/authSlice'
+import notificationReducer from '../components/Notifications/notificationsSlice'
 
 const rootReducer = {
   users: userReducer,
@@ -17,8 +17,8 @@ const rootReducer = {
   viewMode: viewModeReducer,
   demoUser: demoUserReducer,
   settings: settingsReducer,
-  notifications: notificationsReducer,
   auth: authReducer,
+  notifications: notificationReducer,
 }
 
 const store = configureStore({

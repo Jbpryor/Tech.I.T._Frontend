@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import SearchSelect from "./Search Select/searchSelect";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";

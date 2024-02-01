@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { updateReport, deleteComment } from "../../reportSlice";
 import { useDispatch } from "react-redux";
-import { formatTimestamp } from "../../../../utils";
+import { formatTimestamp } from "../../../../../Utils/utils";
 
 function Comments({ report, timeStamp, theme, smallerScreen, requestStatus, setRequestStatus }) {
   const dispatch = useDispatch();

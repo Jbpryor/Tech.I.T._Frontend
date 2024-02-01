@@ -6,7 +6,7 @@ import {
   deleteAttachment,
 } from "../../issueSlice";
 import { useDispatch } from "react-redux";
-import { formatTimestamp } from "../../../../utils";
+import { formatTimestamp } from "../../../../../Utils/utils";
 import useAuth from "../../../../Hooks/useAuth";
 
 function Attachments({

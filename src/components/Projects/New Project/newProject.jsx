@@ -1,11 +1,10 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import "./newProject.scss";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { addNotification } from "../../Notifications/notificationsSlice";
-import { formatTimestamp } from "../../../utils";
+import { formatTimestamp } from "../../../../Utils/utils";
 import { selectAllUsers } from "../../Users/userSlice";
-import { selectAllProjects, fetchProjects, addNewProject } from "../projectSlice";
+import { fetchProjects, addNewProject } from "../projectSlice";
 import { fetchUsers } from "../../Users/userSlice";
 import { selectTheme } from "../../Users/User/Settings/settingsSlice";
 
@@ -13,17 +12,12 @@ function NewProject() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const theme = useSelector(selectTheme);
-
-
-  const [newId, setNewId] = useState(0);
   const users = useSelector(selectAllUsers);
+
   const [inputValues, setInputValues] = useState({});
-  const projects = useSelector(selectAllProjects);
   const [requestStatus, setRequestStatus] = useState("idle")
 
   const currentDate = formatTimestamp(Date.now())
-
-  const date = new Date().toISOString();
 
   const projectDetails = [
     "Title",
@@ -64,22 +58,12 @@ function NewProject() {
 
       if (addNewProject.fulfilled.match(response)) {
         const {
-          title,
           message,
           projectId,
         } = response.payload;
 
         await dispatch(fetchProjects());
         await dispatch(fetchUsers());
-
-        // dispatch(
-        //   addNotification({
-        //     message: message,
-        //     title: title,
-        //     notificationLink: `/projects/${projectId}`,
-        //     date: date,
-        //   })
-        // );
 
         alert(message);
 
@@ -95,16 +79,6 @@ function NewProject() {
       setRequestStatus('idle')
     }
   };
-
-  useEffect(() => {
-    currentDate;
-    if (projects && projects.length > 0) {
-      const highestId = Math.max(...projects.map((project) => project.id), 0);
-      setNewId(highestId + 1);
-    } else {
-      setNewId(1);
-    }
-  }, []);
 
   return (
     <section className="new-project" style={{ color: theme.font_color }}>

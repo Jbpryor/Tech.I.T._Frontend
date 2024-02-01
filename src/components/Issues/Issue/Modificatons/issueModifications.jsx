@@ -1,6 +1,6 @@
 import React from "react";
 import "./issueModifications.scss";
-import { formatTimestamp } from "../../../../utils";
+import { formatTimestamp } from "../../../../../Utils/utils";
 
 function IssueModifications({ issue, theme, smallerScreen }) {
   const modifications = issue.modifications;

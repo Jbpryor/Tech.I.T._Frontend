@@ -1,6 +1,5 @@
 import './demoLogin.scss';
 import 'boxicons/css/boxicons.min.css';
-import React from 'react';
 import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux';
 import { setDemoUserMode } from './demoUserSlice';
@@ -38,7 +37,7 @@ function DemoLogin() {
 
                     <div className="demo-user">
                         <div className="field manager">
-                            <i className='bx bxs-user-rectangle manager-icon' onClick={() => handleDemoLogin('Manager')}></i>
+                            <i className='bx bxs-user-rectangle manager-icon' onClick={() => handleDemoLogin('Project Manager')}></i>
                             <span onClick={() => handleDemoLogin('Project Manager')}>Project Manager</span>
                         </div>
                     </div>

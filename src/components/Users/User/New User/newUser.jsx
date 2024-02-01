@@ -1,17 +1,14 @@
-import React, { useState, useEffect } from "react";
+import { useState } from "react";
 import "./newUser.scss";
 import { useNavigate } from "react-router-dom";
-import { createDispatchHook, useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addNewUser, fetchUsers } from "../../userSlice";
-import { addNotification } from "../../../Notifications/notificationsSlice";
 import { selectTheme } from "../Settings/settingsSlice";
 
 function NewUser() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const theme = useSelector(selectTheme);
-
-  const date = new Date().toISOString();
 
   const [user, setUser] = useState({
     name: {
@@ -52,25 +49,11 @@ function NewUser() {
 
       if (addNewUser.fulfilled.match(response)) {
         const {
-          userName,
           userId,
-          temporaryPassword,
           message,
         } = response.payload;
 
-        console.log("userId", userId)
-        console.log("pswd", temporaryPassword)
-
         await dispatch(fetchUsers());
-
-        // dispatch(
-        //   addNotification({
-        //     message: message,
-        //     title: userName,
-        //     notificationLink: `/users/${userId}`,
-        //     date: date,
-        //   })
-        // );
 
         alert(message);
 

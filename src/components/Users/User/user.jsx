@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import "./user.scss";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import UserButtons from "./User Buttons/userButtons";
 import GeneralSettings from "./Settings/settings";
 import UserAccount from "./User Account/userAccount";
-import UserNotifications from "./Notifications/userNotification";
+import UserNotifications from "./User Notifications/userNotification";
 import UserPassword from "./Password/userPassword";
 import useWindowSize from "../../../Hooks/useWindowSize";
 import { selectUserById } from "../userSlice";
@@ -57,7 +57,7 @@ function User() {
             theme={theme}
           />
 
-          <GeneralSettings generalActive={generalActive} />
+          <GeneralSettings generalActive={generalActive} theme={theme} />
 
           <UserAccount
             user={user}

@@ -5,13 +5,12 @@ import { useSelector, useDispatch } from "react-redux";
 import {
   deleteReport,
   selectReportById,
-  selectAllReports,
   fetchReports,
 } from "../reportSlice";
 import Comments from "./Comments/comments";
 import ReportAttachments from "./Attachments/attachments";
 import useWindowSize from "../../../Hooks/useWindowSize";
-import { capitalizeFirstLetter } from "../../../utils";
+import { capitalizeFirstLetter } from "../../../../Utils/utils";
 import { selectTheme } from "../../Users/User/Settings/settingsSlice";
 import useAuth from "../../../Hooks/useAuth";
 

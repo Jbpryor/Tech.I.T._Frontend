@@ -3,22 +3,25 @@ import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { parseISO, formatDistanceToNow } from "date-fns";
-import { selectViewMode } from "../Layout/viewModeSlice";
 import { selectTheme } from "../Users/User/Settings/settingsSlice";
 import { selectUserById, updateUser, fetchUsers } from "../Users/userSlice";
 import useAuth from "../../Hooks/useAuth";
+import { NotificationFilter } from "./notificationFilter";
 
 function Notifications() {
   const theme = useSelector(selectTheme);
-  const viewMode = useSelector(selectViewMode);
   const isNotificationsActive = location.pathname === "/notifications";
   const [requestStatus, setRequestStatus] = useState("idle");
   const dispatch = useDispatch();
   const { userId } = useAuth();
 
+  const toggleNotififications = useSelector((state) => state.notifications);
+
   const user = useSelector((state) => selectUserById(state, userId));
 
   const notifications = user.notifications;
+
+  const filteredNotifications = NotificationFilter({ notifications })
     
   const handleNotificationClick = async (notificationId) => {
     try {
@@ -43,10 +46,10 @@ function Notifications() {
     }
   };
 
-  if (!notifications) {
+  if (!filteredNotifications.length) {
     return (
       <section className="notifications notifications-tile">
-        No Notifications
+        <h1 className="no-notifications" style={{ color: theme.font_color }}>No Notifications</h1>
       </section>
     );
   }
@@ -58,7 +61,7 @@ function Notifications() {
           isNotificationsActive ? "active" : ""
         }`}
       >
-        {notifications.map((notification, index) => (
+        {filteredNotifications.map((notification, index) => (
           <Link
             className={`notifications-link ${
               isNotificationsActive ? "active" : ""

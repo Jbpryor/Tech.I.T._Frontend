@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import { useState } from 'react';
 import './projects.scss'
 import { useLocation, Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { sortByProperty } from '../../utils';
+import { sortByProperty } from '../../../Utils/utils';
 import ProjectsSort from './Projects Sort/projectsSort';
 import ProjectsTable from './Projects Table/projectsTable';
 import TablePagination from '../../Charts & Tables/Table Pagination/tablePagination';

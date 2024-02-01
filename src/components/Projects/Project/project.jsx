@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import "./project.scss";
 import Users from "../../Users/users";
 import Issues from "../../Issues/issues";

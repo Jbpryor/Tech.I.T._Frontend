@@ -6,7 +6,7 @@ import IssueModifications from "./Modificatons/issueModifications";
 import Attachments from "./Attachments/attachments";
 import Comments from "./Comments/comments";
 import useWindowSize from "../../../Hooks/useWindowSize";
-import { capitalizeFirstLetter, formatTimestamp } from "../../../utils";
+import { capitalizeFirstLetter, formatTimestamp } from "../../../../Utils/utils";
 import {
   fetchIssues,
   // selectAllIssues,

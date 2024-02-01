@@ -6,8 +6,8 @@ import { jwtDecode } from "jwt-decode";
 const useAuth = () => {
     const token = useSelector(selectCurrentToken);
     const demoUser = useSelector(selectDemoUser);
-    let isManager = false;
     let isAdmin = false;
+    let isManager = false;
     let isDeveloper = false;
     let isSubmitter = false;
     let email = "";
@@ -24,13 +24,13 @@ const useAuth = () => {
         role = userName === 'Demo User' ? demoUser : decodedRole
         userId = decodedUserId
 
-        isManager = role === 'Project Manager';
         isAdmin = role === 'Admin';
+        isManager = role === 'Project Manager';
         isDeveloper = role === "Developer";
         isSubmitter = role === "Submitter"
     }
 
-    return { email, role, isManager, isAdmin, isDeveloper, isSubmitter, userName, userId };
+    return { email, role, isAdmin, isManager, isDeveloper, isSubmitter, userName, userId };
 };
 
 export default useAuth;

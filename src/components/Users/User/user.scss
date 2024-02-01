@@ -270,6 +270,11 @@
                         grid-template-columns: 50% 50%;
                         padding: 0.5%;
 
+                        .notification-title {
+                            display: flex;
+                            align-items: center;
+                        }
+
                         .notification-button-container {
                             display: flex;
                             justify-content: flex-end;
@@ -283,48 +288,19 @@
                     
                     .notification-save-button-container {
                         padding: 2% 0;
-                    }
-     
+                    }     
                 }
 
                 .notifications-local {
                     margin-top: 2%;
-                }
+                    justify-content: flex-start;
 
-                .enable,
-                .disable {
-                    border-radius: 3px;
-                    padding: 0.5% 7%;
-                    height: 25px;
-                    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 4px 6px 0 rgba(0, 0, 0, 0.19);
-                    cursor: pointer;
-                    z-index: 1;
-        
-                    &:hover {
-                        color: rgb(86, 86, 2) !important;
-                        border: 1px solid rgb(86, 86, 2, 0.05) !important;
+                    .notification-header {
+                        padding: 2% 0;
                     }
-                }
 
-                .enable {
-                    background-color: red;
-                }
-
-                .disable {
-                    color: wheat;
-                    background-color: green;
-                }
-
-                .notifications-save-button {
-                    border-radius: 3px;
-                    padding: 1% 5%;
-                    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 4px 6px 0 rgba(0, 0, 0, 0.19);
-                    cursor: pointer;
-                    z-index: 1;
-        
-                    &:hover {
-                        color: rgb(86, 86, 2) !important;
-                        border: 1px solid rgb(86, 86, 2, 0.05) !important;
+                    .notification-content {
+                        padding: 1.5%;
                     }
                 }
             }            
@@ -501,7 +477,6 @@
         display: flex;
         flex-direction: column !important;
         margin: 0 !important;
-        // height: 76svh !important;
         padding: 2% !important;
         width: 100vw !important;
         justify-content: flex-start !important;
@@ -577,7 +552,7 @@
     }
 
     .notification-content {
-        padding: 1% 0 !important;
+        padding: 2.5% 0 !important;
     }
 
     .notification-header {

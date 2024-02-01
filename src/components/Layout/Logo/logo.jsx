@@ -1,4 +1,3 @@
-import React from "react";
 import { useSelector } from "react-redux";
 import './logo.scss';
 import { selectTheme } from "../../Users/User/Settings/settingsSlice";

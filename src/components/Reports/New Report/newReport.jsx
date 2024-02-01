@@ -1,14 +1,11 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import "./newReport.scss";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { addNewReport, fetchReports } from "../reportSlice";
 import { fetchUsers } from "../../Users/userSlice";
-import { addNotification } from "../../Notifications/notificationsSlice";
-import { formatTimestamp } from "../../../utils";
-import { selectAllUsers } from "../../Users/userSlice";
+import { formatTimestamp } from "../../../../Utils/utils";
 import { selectAllProjects } from "../../Projects/projectSlice";
-import { selectAllReports } from "../reportSlice";
 import { selectTheme } from "../../Users/User/Settings/settingsSlice";
 import useAuth from '../../../Hooks/useAuth';
 
@@ -23,7 +20,6 @@ function NewReport() {
   const [requestStatus, setRequestStatus] = useState('idle');
 
   const currentDate = formatTimestamp(Date.now())
-  const date = new Date().toISOString();
 
   const reportDetails = [
     "Created",
@@ -60,22 +56,12 @@ function NewReport() {
 
       if (addNewReport.fulfilled.match(response)) {
         const {
-          title,
           message,
           reportId,
         } = response.payload;
 
         await dispatch(fetchReports());
         await dispatch(fetchUsers())
-
-        // dispatch(
-        //   addNotification({
-        //     message: message,
-        //     title: title,
-        //     notificationLink: `/reports/${reportId}`,
-        //     date: date,
-        //   })
-        // );
 
         alert(message);
 

@@ -8,7 +8,7 @@ import { sendLogout } from "../../Auth/authApiSlice";
 import { logOut } from "../../Auth/authSlice";
 
 function SideBar() {
-  const { userName, role, userId } = useAuth();
+  const { userName, isAdmin, isManager, isDeveloper, isSubmitter, userId } = useAuth();
 
   const theme = useSelector(selectTheme);
 
@@ -17,13 +17,13 @@ function SideBar() {
   const logoutMenuRef = useRef(null);
 
   const getIconColor = () => {
-    if (role === "Admin") {
+    if (isAdmin) {
       return "rgb(1, 182, 1)";
-    } else if (role === "Project Manager") {
+    } else if (isManager) {
       return "rgb(255, 165, 0)";
-    } else if (role === "Developer") {
+    } else if (isDeveloper) {
       return "rgb(232, 232, 15)";
-    } else if (role === "Submitter") {
+    } else if (isSubmitter) {
       return "rgb(224, 1, 1)";
     }
   };
@@ -65,7 +65,7 @@ function SideBar() {
   return (
     <section
       className={`sideBar ${
-        role === "Admin" || role === "Project Manager" ? "grid-1" : "grid-2"
+        isAdmin || isManager ? "grid-1" : "grid-2"
       }`}
       style={{ background: theme.primary_color, color: theme.font_color }}
     >
@@ -84,7 +84,7 @@ function SideBar() {
             <i className="bx bxs-dashboard dashboard-link" />
           </span>
         </NavLink>
-        {(role === "Admin" || role === "Project Manager") && (
+        {(isAdmin || isManager) && (
           <NavLink
             to="/users"
             activeclassname="active"
@@ -100,7 +100,7 @@ function SideBar() {
             </span>
           </NavLink>
         )}
-        {(role === "Admin" || role === "Project Manager") && (
+        {(isAdmin || isManager) && (
           <NavLink
             to="/projects"
             activeclassname="active"

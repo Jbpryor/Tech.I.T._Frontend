@@ -1,16 +1,13 @@
-import React, { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
 import { userRoles } from "../../../../../Config/userRoles";
 import { updateUser, viewImage, fetchUsers } from "../../../userSlice";
-import { selectTheme } from "../../Settings/settingsSlice";
-import { selectDemoUser } from "../../../../Auth/Demo Login/demoUserSlice";
 import useAuth from "../../../../../Hooks/useAuth";
 
 const PictureContent = ({ user, theme }) => {
   const [editMode, setEditMode] = useState(false);
   const dispatch = useDispatch();
-  const { role, userName } = useAuth();
+  const { role } = useAuth();
 
   const [requestStatus, setRequestStatus] = useState("idle");
 
@@ -40,7 +37,7 @@ const PictureContent = ({ user, theme }) => {
     const response = await dispatch(updateUser(updatedRole));
 
     if (updateUser.fulfilled.match(response)) {
-      const { message, updatedUser } = response.payload;
+      const { message } = response.payload;
 
       setEditMode(false);
       alert(message);

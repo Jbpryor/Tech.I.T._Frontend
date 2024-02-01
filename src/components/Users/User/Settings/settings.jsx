@@ -1,12 +1,11 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { setTheme } from "../Settings/settingsSlice";
 import "./settings.scss";
-import { capitalizeFirstLetter } from "../../../../utils";
-import { selectTheme } from "../Settings/settingsSlice";
+import { capitalizeFirstLetter } from "../../../../../Utils/utils";
 import { selectCurrentTheme } from "../Settings/settingsSlice";
 
-function Settings({ generalActive }) {
+function Settings({ generalActive, theme }) {
   const currentTheme = useSelector(selectCurrentTheme);
 
   const dispatch = useDispatch();
@@ -27,8 +26,15 @@ function Settings({ generalActive }) {
   };
 
   return (
-    <div className={`settings-container ${generalActive ? 'active' : ''}`}>
-      <div className="theme-settings">
+    <div
+      className={`settings-container ${generalActive ? "active" : ""}`}
+      style={{
+        background: theme.primary_color,
+        color: theme.font_color,
+        border: `2px solid ${theme.border}`,
+      }}
+    >
+      <div className="theme-settings-content">
         <div className="theme-settings-title">
           Current Theme: {capitalizeFirstLetter(currentTheme)}
         </div>

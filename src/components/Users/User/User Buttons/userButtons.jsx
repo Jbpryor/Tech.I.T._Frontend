@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { deleteUser, fetchUsers } from "../../userSlice";
+import { deleteUser } from "../../userSlice";
 import useWindowSize from "../../../../Hooks/useWindowSize";
 import useAuth from "../../../../Hooks/useAuth";
 

@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from "react";
 import "./newIssue.scss";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { addNewIssue, fetchIssues, selectAllIssues } from "../issueSlice";
+import { addNewIssue, fetchIssues } from "../issueSlice";
 import { fetchUsers } from "../../Users/userSlice";
 import { issueDetails } from "../../../Config/issueDetails";
-import { addNotification } from "../../Notifications/notificationsSlice";
-import { formatTimestamp } from "../../../utils";
+import { formatTimestamp } from "../../../../Utils/utils";
 import { selectAllUsers } from "../../Users/userSlice";
 import { selectAllProjects } from "../../Projects/projectSlice";
 import { selectTheme } from "../../Users/User/Settings/settingsSlice";
@@ -23,7 +22,6 @@ function NewIssue() {
   const [inputValues, setInputValues] = useState({});
   const projects = useSelector(selectAllProjects);
   const currentDate = formatTimestamp(Date.now());
-  const date = new Date().toISOString();
   const [requestStatus, setRequestStatus] = useState('idle')
 
   const newIssue = {};
@@ -59,15 +57,6 @@ function NewIssue() {
 
         await dispatch(fetchIssues());
         await dispatch(fetchUsers());
-
-        // dispatch(
-        //   addNotification({
-        //     message: message,
-        //     title: title,
-        //     notificationLink: `/issues/${issueId}`,
-        //     date: date,
-        //   })
-        // );
 
         alert(message);
 

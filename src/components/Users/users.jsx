@@ -1,21 +1,19 @@
-import React, { useEffect, useState } from "react";
-// import DataTable from "react-data-table-component";
+import { useState } from "react";
 import { useLocation, Link } from "react-router-dom";
 import './users.scss';
 import 'boxicons/css/boxicons.min.css';
 import UsersTable from "./Users Table/usersTable";
 import TablePagination from "../../Charts & Tables/Table Pagination/tablePagination";
-import { useSelector, useDispatch } from "react-redux";
-import { sortByProperty } from "../../utils";
+import { useSelector } from "react-redux";
+import { sortByProperty } from "../../../Utils/utils";
 import UsersSort from "./Users Sort/usersSort";
-import { fetchUsers, selectAllUsers } from "./userSlice";
+import { selectAllUsers } from "./userSlice";
 import { selectViewMode } from "../Layout/viewModeSlice";
 import { selectTheme } from "./User/Settings/settingsSlice";
 
 
 function Users({ projectUsers }) {
 
-    const dispatch = useDispatch();
     const viewMode = useSelector(selectViewMode);
     const location = useLocation();    
     const isUsersActive = location.pathname === '/users';
@@ -112,10 +110,6 @@ function Users({ projectUsers }) {
         }
         return null;
     }).filter(Boolean);
-
-    // useEffect(() => {
-    //     dispatch(fetchUsers())
-    // }, [dispatch])
 
     return (
         <>

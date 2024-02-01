@@ -1,16 +1,14 @@
 import "./header.scss";
-import React, { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import useWindowSize from "../../../Hooks/useWindowSize";
 import SearchBar from "./Search Bar/searchBar";
-import { markNotificationsAsRead } from "../../Notifications/notificationsSlice";
-import { selectViewMode, setViewMode, toggleViewMode } from "../viewModeSlice";
-import { selectDemoUser } from "../../Auth/Demo Login/demoUserSlice";
+import { setViewMode, toggleViewMode } from "../viewModeSlice";
 import { selectTheme } from "../../Users/User/Settings/settingsSlice";
-import { selectNewNotificationsCount } from "../../Notifications/notificationsSlice";
 import { selectUserById } from "../../Users/userSlice";
 import useAuth from "../../../Hooks/useAuth";
+import { NotificationFilter } from "../../Notifications/notificationFilter";
 
 function Header() {
   const [isSearchIconVisible, setSearchIconVisible] = useState(true);
@@ -23,15 +21,18 @@ function Header() {
   const { role, userId } = useAuth();
 
   const user = useSelector((state) => selectUserById(state, userId));
+  const notificationBellIcon = useSelector((state) => state.notifications.notificationBellIcon)
 
-  const notifications = user?.notifications
+  const notifications = user?.notifications || []
+
+  const filteredNotifications = NotificationFilter({ notifications })
 
   let newNotificationsCount;
 
-  if (!notifications) {
+  if (!filteredNotifications) {
     newNotificationsCount = 0;
   } else {
-    newNotificationsCount = notifications.filter(notification => notification.isNewNotification).length
+    newNotificationsCount = filteredNotifications.filter(notification => notification?.isNewNotification).length
   }
 
 
@@ -46,7 +47,6 @@ function Header() {
   };
 
   const handleNotificationClick = () => {
-    dispatch(markNotificationsAsRead());
     navigate("/notifications");
   };
 
@@ -165,7 +165,7 @@ function Header() {
                   </div>
                 </div>
               </div>
-              <div className="notification-container">
+              {notificationBellIcon && <div className="notification-container">
                 <i
                   className={`bx bxs-bell notification-icon ${
                     newNotificationsCount !== 0 ? "active" : ""
@@ -184,7 +184,7 @@ function Header() {
                 >
                   {newNotificationsCount}
                 </div>
-              </div>
+              </div>}
               <div className="view-container">
                 {isGridVisible ? (
                   <div className="grid-container">
@@ -265,7 +265,7 @@ function Header() {
                 </NavLink>
               </div>
             </div>
-            <div className="notification-container">
+            {notificationBellIcon && <div className="notification-container">
               <i
                 className={`bx bxs-bell notification-icon ${
                   newNotificationsCount !== 0 ? "active" : ""
@@ -284,7 +284,7 @@ function Header() {
               >
                 {newNotificationsCount}
               </div>
-            </div>
+            </div>}
             <div className="view-container">
               {isGridVisible ? (
                 <div className="grid-container">

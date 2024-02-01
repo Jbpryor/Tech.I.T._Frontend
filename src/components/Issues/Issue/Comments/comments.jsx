@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { updateIssue, fetchIssues, deleteComment } from "../../issueSlice";
 import { useDispatch } from "react-redux";
-import { formatTimestamp } from "../../../../utils";
+import { formatTimestamp } from "../../../../../Utils/utils";
 import useAuth from "../../../../Hooks/useAuth";
 
 function Comments({ issue, timeStamp, theme, smallerScreen, requestStatus, setRequestStatus }) {

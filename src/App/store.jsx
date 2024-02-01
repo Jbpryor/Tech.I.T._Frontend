@@ -22,7 +22,8 @@ const rootReducer = {
 }
 
 const store = configureStore({
-  reducer: rootReducer,
+  reducer: {rootReducer},
+  devTools: false
 });
 
 export default store;

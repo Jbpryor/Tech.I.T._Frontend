@@ -7,5 +7,6 @@ export default defineConfig({
   base: "/Tech.I.T._Frontend",
   build: {
     outDir: 'docs',
+    chunkSizeWarningLimit: 1000,
   },
 })

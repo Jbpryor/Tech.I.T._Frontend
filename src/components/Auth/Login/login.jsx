@@ -3,7 +3,7 @@ import "boxicons/css/boxicons.min.css";
 import { useState, useRef, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, NavLink } from "react-router-dom";
-import { login, getAuthStatus, getAuthError } from "../authApiSlice";
+import { login } from "../authApiSlice";
 import { setCredentials } from "../authSlice";
 import { PulseLoader } from "react-spinners";
 
@@ -18,9 +18,7 @@ function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [demoUser, setDemoUser] = useState(false);
-  const err = useSelector(getAuthError);
   const [errMsg, setErrMsg] = useState("");
-  const status = useSelector(getAuthStatus);
   const [validEmail, setValidEmail] = useState(false);
   const [validPassword, setValidPassword] = useState(false);
 
@@ -30,7 +28,7 @@ function Login() {
     setDemoUser(true);
   };
 
-  const isLoading = status === "loading";
+  const [isLoading, setIsLoading] = useState(false)
 
   useEffect(() => {
     setErrMsg("");
@@ -49,9 +47,12 @@ function Login() {
   const handleLogin = async (event) => {
     event.preventDefault();
 
+    setIsLoading(true)
+
     const response = await dispatch(login({ email, password }));
 
     if (login.fulfilled.match(response)) {
+      setIsLoading(false)
       const { accessToken, role } = response.payload;
       dispatch(setCredentials({ accessToken }));
       setEmail("");
@@ -67,6 +68,7 @@ function Login() {
         navigate("/issues");
       }
     } else if (login.rejected.match(response)) {
+      setIsLoading(false)
       if (
         !response &&
         response.payload === "Request failed with status code 401"
@@ -85,7 +87,7 @@ function Login() {
     }
   };
 
-  if (isLoading) return <PulseLoader color={"#FFF"} />;
+  if (isLoading) return <section className="login-container"><PulseLoader color={"#FFF"} /></section>;
 
   return (
     <section className="login-container">

@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { setTheme } from "../Settings/settingsSlice";
-import "./settings.scss";
 import { capitalizeFirstLetter } from "../../../../../Utils/utils";
 import { selectCurrentTheme } from "../Settings/settingsSlice";
 

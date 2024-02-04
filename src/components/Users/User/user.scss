@@ -241,6 +241,57 @@
             } 
         }
 
+        .settings-container {
+            height: 80vh;
+            margin: 5%;
+            display: none;
+            box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 12px 0 rgba(0, 0, 0, 0.19);
+            justify-content: center;
+            text-align: center;
+            padding: 5%;
+    
+            &.active {
+                display: flex;
+            }
+    
+            .theme-settings-content {
+    
+                .theme-settings-title {
+                    padding: 15px 0;
+                    font-size: 15px;
+                }
+    
+                .theme-buttons-container {
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    justify-content: center;
+                    padding: 25px;
+    
+                    button {
+                        border-radius: 3px;
+                        padding: 0.5% 7%;
+                        border: 1px solid rgba(0, 0, 0, 0.143);
+                        box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 4px 6px 0 rgba(0, 0, 0, 0.19);
+                        background-color: white;
+                        cursor: pointer;
+                        z-index: 1;
+                        width: 120px;
+        
+                        &.active {
+                            background-color: rgb(31, 31, 36);
+                            color: white;
+                        }
+            
+                        &:hover {
+                            color: rgb(86, 86, 2) !important;
+                            border: 1px solid rgb(86, 86, 2, 0.05) !important;
+                        }
+                    }
+                }
+            }
+        }
+
         .user-notifications-container {
             height: 95vh;
             padding: 2% 5%;
@@ -325,7 +376,7 @@
                     grid-template-columns: 80% 20%;
                     padding: 2%;
     
-                    .passwordz {
+                    .passwords {
                         font-size: 17px;
                         font-weight: 800;
                         padding: 1%;
@@ -360,6 +411,7 @@
     
                     input {
                         width: 100%;
+                        padding-left: 1.5%;
                     }
                 }
     
@@ -406,6 +458,7 @@
     }
 
     .user-buttons-container,
+    .settings-container,
     .user-account-container,
     .user-notifications-container,
     .user-password-container {
@@ -420,6 +473,7 @@
 
     .general-settings,
     .account-settings,
+    .settings-container,
     .notification-settings,
     .password-settings,
     .remove-user {
@@ -573,13 +627,18 @@
     }
 
     .user-password-content {
-        grid-template-rows: 35% 40% 25% !important;
+        grid-template-rows: 30% 40% 30% !important;
+    }
+
+    .new-password-button-container {
+        align-items: flex-start !important;
     }
 
     .account-settings,
     .notification-settings,
     .password-settings,
     .remove-user,
+    .settings-container,
     .user-img-container,
     .change-role-button,
     .save-role-button,

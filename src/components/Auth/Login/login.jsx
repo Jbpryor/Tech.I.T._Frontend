@@ -28,7 +28,7 @@ function Login() {
     setDemoUser(true);
   };
 
-  const [isLoading, setIsLoading] = useState(false)
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     setErrMsg("");
@@ -47,12 +47,12 @@ function Login() {
   const handleLogin = async (event) => {
     event.preventDefault();
 
-    setIsLoading(true)
+    setIsLoading(true);
 
     const response = await dispatch(login({ email, password }));
 
     if (login.fulfilled.match(response)) {
-      setIsLoading(false)
+      setIsLoading(false);
       const { accessToken, role } = response.payload;
       dispatch(setCredentials({ accessToken }));
       setEmail("");
@@ -68,7 +68,7 @@ function Login() {
         navigate("/issues");
       }
     } else if (login.rejected.match(response)) {
-      setIsLoading(false)
+      setIsLoading(false);
       if (
         !response &&
         response.payload === "Request failed with status code 401"
@@ -87,75 +87,82 @@ function Login() {
     }
   };
 
-  if (isLoading) return <section className="login-container"><PulseLoader color={"#FFF"} /></section>;
+  if (isLoading)
+    return (
+      <section className="login-container">
+        ...Loading
+        <PulseLoader color={"#FFF"} />
+      </section>
+    );
 
-  return (
-    <section className="login-container">
-      <div className="login-form">
-        <div className="login-content">
-          <h1 className="login-title">Login</h1>
-          <form
-            className="login-form-container"
-            onSubmit={(event) => event.preventDefault()}
-          >
-            <div className="field input-field">
-              <input
-                type="email"
-                id="email"
-                ref={emailRef}
-                placeholder="Email"
-                className="email"
-                value={email}
-                autoComplete="off"
-                required
-                onChange={(event) => setEmail(event.target.value)}
-              ></input>
-            </div>
+  if (!isLoading)
+    return (
+      <section className="login-container">
+        <div className="login-form">
+          <div className="login-content">
+            <h1 className="login-title">Login</h1>
+            <form
+              className="login-form-container"
+              onSubmit={(event) => event.preventDefault()}
+            >
+              <div className="field input-field">
+                <input
+                  type="email"
+                  id="email"
+                  ref={emailRef}
+                  placeholder="Email"
+                  className="email"
+                  value={email}
+                  autoComplete="off"
+                  required
+                  onChange={(event) => setEmail(event.target.value)}
+                ></input>
+              </div>
 
-            <div className="field input-field">
-              <input
-                type="password"
-                placeholder="Password"
-                className="password"
-                value={password}
-                required
-                onChange={(event) => setPassword(event.target.value)}
-              ></input>
-            </div>
+              <div className="field input-field">
+                <input
+                  type="password"
+                  placeholder="Password"
+                  className="password"
+                  value={password}
+                  required
+                  onChange={(event) => setPassword(event.target.value)}
+                ></input>
+              </div>
 
-            <div className="form-link">
-              <NavLink to={"/passwordReset"} className="forgot-pass">
-                Forgot password?
-              </NavLink>
-            </div>
+              <div className="form-link">
+                <NavLink to={"/passwordReset"} className="forgot-pass">
+                  Forgot password?
+                </NavLink>
+              </div>
 
-            <div className="field login-button">
-              <button
-                type="button"
-                onClick={handleLogin}
-                disabled={!canContinue}
-                style={{ filter: !canContinue && "brightness(0.5)" }}
-              >
-                Login
-              </button>
-            </div>
-          </form>
+              <div className="field login-button">
+                <button
+                  type="button"
+                  onClick={handleLogin}
+                  disabled={!canContinue}
+                  style={{ filter: !canContinue && "brightness(0.5)" }}
+                >
+                  Login
+                </button>
+              </div>
+            </form>
+          </div>
+
+          <div className="line"></div>
+
+          <div className="demo-button">
+            <button className="field demo" onClick={handleDemoUser}>
+              <i className="bx bxs-user-circle demo-icon"></i>
+              <span>Login as Demo User</span>
+            </button>
+          </div>
+          <p className={`${errMsg ? "errMsg" : "offscreen"}`} ref={errRef}>
+            {errMsg}
+          </p>
         </div>
-
-        <div className="line"></div>
-
-        <div className="demo-button">
-          <button className="field demo" onClick={handleDemoUser}>
-            <i className="bx bxs-user-circle demo-icon"></i>
-            <span>Login as Demo User</span>
-          </button>
-        </div>
-        <p className={`${errMsg ? "errMsg" : "offscreen"}`} ref={errRef}>
-          {errMsg}
-        </p>
-      </div>
-    </section>
-  );
+      </section>
+    );
 }
 
 export default Login;

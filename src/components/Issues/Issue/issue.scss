@@ -275,6 +275,9 @@
                     .attachment-user,
                     .attachment-name,
                     .attachment-date {
+                        white-space: nowrap;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
                         padding: 1%;
                         width: 200px;
                     }
@@ -326,26 +329,26 @@
                 }
 
                 .attachments-menu {
-                    position: fixed !important;
-                    display: none !important;
-                    top: 50% !important;
-                    left: 50% !important;
-                    transform: translate(-50%, -50%) !important;
-                    z-index: 1000 !important;
-                    overflow-y: auto !important;
-                    width: 50% !important;
+                    position: fixed;
+                    display: none;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    z-index: 1000;
+                    overflow-y: auto;
+                    width: 50%;
                     max-width: 500px;
                     height: 250px;
-                    border-radius: 3px !important;
-                    padding: 1% !important;
-                    overflow: hidden !important;
+                    border-radius: 3px;
+                    padding: 1%;
+                    overflow: hidden;
             
                     &.active {
-                        display: flex !important;
+                        display: flex;
                         flex-direction: column;
                         align-items: center;
-                        box-shadow: none !important;
-                        padding: 2% !important;
+                        box-shadow: none;
+                        padding: 2%;
                     }
 
                     .attachment-label {
@@ -530,7 +533,8 @@
         color: rgb(86, 86, 2) !important;
     }
 
-    .issue-comments-content {
+    .issue-comments-content,
+    .issue-attachments-content {
         margin: 0 !important;
     }
 
@@ -547,6 +551,14 @@
         grid-template-columns: 18% 45% 24% 13% !important;
         width: 97vw;
     }
+
+    .issue-attachments-container {
+        grid-template-columns: 18% 45% 24% 13% !important;
+
+        .issue-attachments-saved {
+            grid-template-columns: 92% 8% !important;
+        }
+    }
     
     .issue-comments-button,
     .issue-attachments-button {
@@ -558,12 +570,39 @@
         background: none !important;
     }
 
-    .issue-comments-date {
+    .issue-comments-date,
+    .attachment-date {
         font-size: 8px;
     }
 
+    .attachment-user,
+    .attachment-name,
+    .attachment-date {
+        margin: 0 1% !important;
+        width: auto !important;
+    }
+
+
+
     .delete-button {
         width: 20px;
+    }
+
+    .attachments-menu {
+
+        &.active {
+            max-height: 150px !important;
+            padding: 2% !important;            
+        }
+
+        .attachment-label {
+            font-size: 16px !important;
+        }
+
+        .attachment-button-container {
+            flex-direction: column;
+            padding: 8% !important;
+        }
     }
 
     .issue-content,
@@ -572,7 +611,6 @@
     .issue-comments-button,
     .delete-button,
     .issue-attachments-container,
-    .delete-button,
     .issue-attachments-box,
     .issue-attachments-button,
     .issue-save-button,

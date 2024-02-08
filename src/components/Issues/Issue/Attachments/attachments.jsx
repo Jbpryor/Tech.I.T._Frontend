@@ -38,9 +38,7 @@ function Attachments({
   }
 
   const [file, setFile] = useState();
-  const [droppedFile, setDroppedFile] = useState(false);
   const [isDragging, setIsDragging] = useState(false);
-  const [savedFiles, setSavedFiles] = useState([]);
 
   const handleDragOver = (event) => {
     event.preventDefault();
@@ -60,7 +58,6 @@ function Attachments({
 
   const handleFileInputChange = (event) => {
     setFile(event.target.files[0]);
-    setDroppedFile(true);
   };
 
   const handleSaveAttachment = async () => {
@@ -78,7 +75,6 @@ function Attachments({
         await dispatch(fetchIssues());
 
         setFile(null);
-        setDroppedFile(false);
       } else {
         const { message } = response.error;
         alert("Attachment not added: " + message);
@@ -146,8 +142,7 @@ function Attachments({
           <img src={`data:${contentType};base64,${data}`} alt="Attachment" />
         );
       } else if (isPDF) {
-        setFileContent(
-          <iframe src={`data:${contentType};base64,${data}`} />);
+        setFileContent(<iframe src={`data:${contentType};base64,${data}`} />);
       } else {
         setFileContent();
       }
@@ -232,9 +227,10 @@ function Attachments({
                       className="delete-button"
                       onClick={() => handleDeleteAttachment(attachment)}
                       style={{
-                        border: `1px solid ${theme.border}`,
-                        background: theme.background_color,
+                        background: "none",
                         color: theme.font_color,
+                        border: "none",
+                        boxShadow: "none",
                       }}
                     >
                       X

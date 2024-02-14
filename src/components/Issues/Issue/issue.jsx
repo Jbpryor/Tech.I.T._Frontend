@@ -19,6 +19,7 @@ import {
 import { selectAllProjects } from "../../Projects/projectSlice";
 import { selectTheme } from "../../Users/User/Settings/settingsSlice";
 import useAuth from "../../../Hooks/useAuth";
+import { fetchUsers } from "../../Users/userSlice";
 
 function Issue() {
   const navigate = useNavigate();
@@ -150,6 +151,7 @@ function Issue() {
           alert(message);
 
           dispatch(fetchIssues());
+          await dispatch(fetchUsers());
 
           navigate(-1);
         } else {

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { deleteUser } from "../../userSlice";
+import { deleteUser, fetchUsers } from "../../userSlice";
 import useWindowSize from "../../../../Hooks/useWindowSize";
 import useAuth from "../../../../Hooks/useAuth";
 
@@ -90,6 +90,8 @@ function UserButtons({
               const { message } = response.payload;
       
               alert(message);
+
+              await dispatch(fetchUsers());
       
               navigate("/users");
             } else {

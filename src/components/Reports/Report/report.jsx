@@ -13,6 +13,7 @@ import useWindowSize from "../../../Hooks/useWindowSize";
 import { capitalizeFirstLetter } from "../../../../Utils/utils";
 import { selectTheme } from "../../Users/User/Settings/settingsSlice";
 import useAuth from "../../../Hooks/useAuth";
+import { fetchUsers } from "../../Users/userSlice";
 
 function Report() {
   const navigate = useNavigate();
@@ -48,6 +49,7 @@ function Report() {
           alert(message);
 
           await dispatch(fetchReports());
+          await dispatch(fetchUsers());
 
           navigate("/reports");
         } else {

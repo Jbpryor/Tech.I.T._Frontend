@@ -8,7 +8,7 @@ function useCountdownTimer(initialSeconds) {
       setSeconds(prevSeconds => {
         if (prevSeconds === 0) {
           clearInterval(interval);
-          return 0;
+          return initialSeconds;
         }
         return prevSeconds - 1;
       });

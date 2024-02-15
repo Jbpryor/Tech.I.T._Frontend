@@ -92,7 +92,7 @@ function Login() {
   if (isLoading)
     return (
       <section className="login-container">
-        ...Loading {conuntdown}
+        ...Loading ({conuntdown} seconds)
         <PulseLoader color={"#FFF"} />
       </section>
     );

@@ -25,12 +25,12 @@
     grid-area: main;
     overflow-x: hidden;
     overflow-y: auto;
-}
+    scrollbar-width: thin !important;
+    scrollbar-color: transparent transparent !important;
 
-@media  (max-width: 1000px) {
-    .main-content {
-        overflow: hidden;
-    }
+    .main-content::-webkit-scrollbar {
+        display: none !important;
+      }
 }
 
 @media (max-width: 500px) {

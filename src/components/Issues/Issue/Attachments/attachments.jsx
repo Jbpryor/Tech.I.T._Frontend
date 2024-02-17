@@ -363,12 +363,21 @@ function Attachments({
             background: theme.primary_color,
           }}
         >
-          <div className="attachment-header">
+          <div
+            className="attachment-header"
+            style={{
+              borderBottom: `${smallerScreen ? "none" : `2px solid ${theme.border}`}`,
+              color: theme.font_color,
+              background: theme.primary_color,
+            }}
+          >
             <button
               className="close-attachment-button"
               onClick={() => setDisplayAttachment(false)}
               style={{
-                border: `2px solid ${theme.border}`,
+                border: `${
+                  smallerScreen ? "none" : `2px solid ${theme.border}`
+                }`,
                 color: theme.font_color,
                 background: theme.primary_color,
               }}

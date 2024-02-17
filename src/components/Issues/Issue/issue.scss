@@ -647,13 +647,19 @@
 
         .attachment-content {
             height: auto !important;
-            overflow: auto !important;
+            overflow-y: auto !important;
+            scrollbar-width: thin !important;
+            scrollbar-color: transparent transparent !important;
 
             img {
                 height: auto !important;
                 width: 100%;
             }
-        }   
+        }
+        
+        .attachment-content::-webkit-scrollbar {
+            display: none !important;
+          }
     }
 
     .delete-button {

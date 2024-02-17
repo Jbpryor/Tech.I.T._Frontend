@@ -447,6 +447,55 @@
                 }
             }
         }
+
+        .attachment-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+
+            &.active {
+                display: flex;
+                flex-direction: column;
+            }
+
+            .attachment-container {
+                height: 100vh;
+                width: auto;
+
+                .attachment-header {
+                    height: 5%;
+                    text-align: right;
+    
+                    .close-attachment-button {
+                        width: 40px;
+                        height: 100%;
+                        font-size: 25px;
+                        box-shadow: 0 6px 8px 0 rgba(0, 0, 0, 0.2), 0 8px 12px 0 rgba(0, 0, 0, 0.19);
+                        cursor: pointer;                        
+
+                        &:hover {
+                            color: rgb(86, 86, 2) !important;
+                            border: 2px solid rgb(86, 86, 2, 0.05) !important;
+                        }
+                    }
+                }
+
+                .attachment-content {
+                    height: 95%;
+
+                    img {
+                        height: 95%;
+                    }
+                }   
+            }
+        }
     }
 }
 
@@ -582,7 +631,30 @@
         width: auto !important;
     }
 
+    .attachment-container {
+        width: 100vw !important;
 
+        .attachment-header {
+            height: 35px !important;
+
+            .close-attachment-button {
+                width: 30px !important;
+                height: 30px !important;
+                font-size: 18px !important;
+                box-shadow: none !important;
+            }
+        }
+
+        .attachment-content {
+            height: auto !important;
+            overflow: auto !important;
+
+            img {
+                height: auto !important;
+                width: 100%;
+            }
+        }   
+    }
 
     .delete-button {
         width: 20px;

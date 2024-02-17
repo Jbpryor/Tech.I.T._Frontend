@@ -116,6 +116,7 @@ function Attachments({
   const [isAttachmentMenuVisible, setIsAttachmentMenuVisible] = useState(false);
   const [selectedAttachment, setSelectedAttachment] = useState(null);
   const [fileContent, setFileContent] = useState();
+  const [displayAttachment, setDisplayAttachment] = useState(false);
 
   const handleAttachmentClick = (attachment) => {
     setIsAttachmentMenuVisible(true);
@@ -125,6 +126,7 @@ function Attachments({
   const handleViewAttachment = async (attachment) => {
     const { fileId } = attachment;
     setIsAttachmentMenuVisible(false);
+    setDisplayAttachment(true);
 
     try {
       setRequestStatus("pending");
@@ -350,8 +352,33 @@ function Attachments({
           )}
         </div>
       </div>
-
-      {fileContent}
+      <div
+        className={`attachment-overlay ${displayAttachment ? "active" : ""}`}
+      >
+        <div
+          className="attachment-container"
+          style={{
+            border: `${smallerScreen ? "none" : `2px solid ${theme.border}`}`,
+            color: theme.font_color,
+            background: theme.primary_color,
+          }}
+        >
+          <div className="attachment-header">
+            <button
+              className="close-attachment-button"
+              onClick={() => setDisplayAttachment(false)}
+              style={{
+                border: `2px solid ${theme.border}`,
+                color: theme.font_color,
+                background: theme.primary_color,
+              }}
+            >
+              X
+            </button>
+          </div>
+          <div className="attachment-content">{fileContent}</div>
+        </div>
+      </div>
     </div>
   );
 }

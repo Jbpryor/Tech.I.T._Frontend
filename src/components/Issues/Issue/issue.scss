@@ -11,6 +11,13 @@
     align-items: center;
     font-size: 14px;
 
+    .loading-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
     .modifications-container {
         grid-area: issue;
 

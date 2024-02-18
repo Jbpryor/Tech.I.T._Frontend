@@ -6,7 +6,10 @@ import IssueModifications from "./Modificatons/issueModifications";
 import Attachments from "./Attachments/attachments";
 import Comments from "./Comments/comments";
 import useWindowSize from "../../../Hooks/useWindowSize";
-import { capitalizeFirstLetter, formatTimestamp } from "../../../../Utils/utils";
+import {
+  capitalizeFirstLetter,
+  formatTimestamp,
+} from "../../../../Utils/utils";
 import {
   fetchIssues,
   updateIssue,
@@ -44,7 +47,21 @@ function Issue() {
 
   const issue = useSelector((state) => selectIssueById(state, issueId));
 
-  const issueOrder = ['title', 'created', 'project', 'status', 'priority', 'submitter', 'developer', '_id', 'description', 'modifications', 'comments', '__v', 'attachments' ];
+  const issueOrder = [
+    "title",
+    "created",
+    "project",
+    "status",
+    "priority",
+    "submitter",
+    "developer",
+    "_id",
+    "description",
+    "modifications",
+    "comments",
+    "__v",
+    "attachments",
+  ];
 
   const { width } = useWindowSize();
 
@@ -194,15 +211,18 @@ function Issue() {
   }
 
   if (isLoading)
-  return (
-    <section className="login-container">
-      <div className="loading-content">
-        <img src="/images/it.png" alt="Loading Icon" />
-        {`...Loading (${countdown} seconds)`}
-        <PulseLoader color={"#FFF"} />
-      </div>
-    </section>
-  );
+    return (
+      <section
+        className="issue"
+        style={{ background: theme.primary_color, color: theme.font_color }}
+      >
+        <div className="loading-content">
+          <img src="/images/it.png" alt="Loading Icon" />
+          {`...Loading (${countdown} seconds)`}
+          <PulseLoader color={theme.font_color} />
+        </div>
+      </section>
+    );
 
   if (issue) {
     return (

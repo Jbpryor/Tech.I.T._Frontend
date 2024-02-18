@@ -66,7 +66,7 @@ function Attachments({
     formData.append("userName", userName); // need to make this the current user
 
     try {
-      setIsLoadin(true);
+      setIsLoading(true);
 
       const response = await dispatch(updateIssue(formData));
 

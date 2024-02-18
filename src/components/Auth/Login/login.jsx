@@ -6,6 +6,7 @@ import { useNavigate, NavLink } from "react-router-dom";
 import { login } from "../authApiSlice";
 import { setCredentials } from "../authSlice";
 import { PulseLoader } from "react-spinners";
+import useCountdown from "../../../Hooks/useCountdown";
 
 const EMAIL_REGEX = /^[\w.-]+@[a-zA-Z\d.-]+\.[a-zA-Z]{2,}$/;
 const PWD_REGEX = /^[A-z0-9!@#$%]{4,12}$/;
@@ -22,7 +23,6 @@ function Login() {
   const [validEmail, setValidEmail] = useState(false);
   const [validPassword, setValidPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [countdown, setCountdown] = useState(60);
 
   const handleDemoUser = () => {
     setEmail("demo@example.com");
@@ -30,17 +30,26 @@ function Login() {
     setDemoUser(true);
   };
 
-  const startCountdown = () => {
-    const countdownInterval = setInterval(() => {
-      setCountdown((prevCountdown) => {
-        if (prevCountdown === 0) {
-          clearInterval(countdownInterval);
-          return 0;
-        }
-        return prevCountdown - 1;
-      });
-    }, 1000);
-  };
+  const { startCountdown, setCountdown, countdown } = useCountdown();
+
+  useEffect(() => {
+    if (!isLoading) {
+      setCountdown(60);
+    }
+  }, [countdown])
+
+  useEffect(() => {
+    let countdownInterval;
+  
+    if (isLoading) {
+      setCountdown(60);
+      startCountdown();
+    } else {
+      clearInterval(countdownInterval);
+    }
+  
+    return () => clearInterval(countdownInterval);
+  }, [isLoading]);
 
   useEffect(() => {
     setErrMsg("");
@@ -60,7 +69,6 @@ function Login() {
     event.preventDefault();
 
     setIsLoading(true);
-    startCountdown();
 
     const response = await dispatch(login({ email, password }));
 

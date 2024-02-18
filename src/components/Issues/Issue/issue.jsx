@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./issue.scss";
 import { useParams, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
@@ -21,6 +21,7 @@ import { selectTheme } from "../../Users/User/Settings/settingsSlice";
 import useAuth from "../../../Hooks/useAuth";
 import { fetchUsers } from "../../Users/userSlice";
 import { PulseLoader } from "react-spinners";
+import useCountdown from "../../../Hooks/useCountdown";
 
 function Issue() {
   const navigate = useNavigate();
@@ -40,9 +41,9 @@ function Issue() {
   const [previousState, setPreviousState] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const [isDraggingPage, setIsDraggingPage] = useState(false);
-  const [isModificationsViewActive, setModificationsViewActive] = useState(
-    false
-  );
+  const [isModificationsViewActive, setModificationsViewActive] = useState(false);
+  const [displayAttachment, setDisplayAttachment] = useState(false);
+  const [fileContent, setFileContent] = useState();
   // const error = useSelector(getIssuesError);
 
   const issue = useSelector((state) => selectIssueById(state, issueId));
@@ -67,6 +68,27 @@ function Issue() {
 
   const smallerScreen = width < 500;
   const midSizeScreen = width < 1000;
+
+  const { startCountdown, setCountdown, countdown } = useCountdown();
+
+  useEffect(() => {
+    if (!isLoading) {
+      setCountdown(60);
+    }
+  }, [countdown])
+
+  useEffect(() => {
+    let countdownInterval;
+  
+    if (isLoading) {
+      setCountdown(60);
+      startCountdown();
+    } else {
+      clearInterval(countdownInterval);
+    }
+  
+    return () => clearInterval(countdownInterval);
+  }, [isLoading]);
 
   // const [created, setCreated] = useState(issue?.created)
   // const [description, setDescription] = useState(issue?.description)
@@ -537,6 +559,10 @@ function Issue() {
           isDraggingPage={isDraggingPage}
           setIsDraggingPage={setIsDraggingPage}
           setIsLoading={setIsLoading}
+          displayAttachment={displayAttachment}
+          setDisplayAttachment={setDisplayAttachment}
+          fileContent={fileContent}
+          setFileContent={setFileContent}
         />
       </section>
     );

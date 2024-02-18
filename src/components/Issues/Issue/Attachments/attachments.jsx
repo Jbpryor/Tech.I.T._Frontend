@@ -15,7 +15,11 @@ function Attachments({
   issue,
   isDraggingPage,
   setIsDraggingPage,
-  setIsLoading
+  setIsLoading,
+  displayAttachment,
+  setDisplayAttachment,
+  fileContent,
+  setFileContent
 }) {
   const dispatch = useDispatch();
   const attachments = issue.attachments;
@@ -116,8 +120,6 @@ function Attachments({
 
   const [isAttachmentMenuVisible, setIsAttachmentMenuVisible] = useState(false);
   const [selectedAttachment, setSelectedAttachment] = useState(null);
-  const [fileContent, setFileContent] = useState();
-  const [displayAttachment, setDisplayAttachment] = useState(false);
 
   const handleAttachmentClick = (attachment) => {
     setIsAttachmentMenuVisible(true);
@@ -127,20 +129,19 @@ function Attachments({
   const handleViewAttachment = async (attachment) => {
     const { fileId } = attachment;
     setIsAttachmentMenuVisible(false);
-    setDisplayAttachment(true);
+    setIsLoading(true);
 
     try {
-      setIsLoading(true);
 
       const response = await dispatch(
         downloadAttachment({ issueId: issue._id, fileId: fileId })
       );
+      setIsLoading(false);
+      setDisplayAttachment(true);
 
       const { contentType, data } = response.payload;
       const isImage = contentType.startsWith("image/");
       const isPDF = contentType === "application/pdf";
-
-      setIsLoading(false);
 
       if (isImage) {
         setFileContent(
@@ -161,9 +162,9 @@ function Attachments({
   const handleDownloadAttachment = async (attachment) => {
     const { fileId } = attachment;
     setIsAttachmentMenuVisible(false);
+    setIsLoading(true);
 
-    try {
-      setIsLoading(true);
+    try {     
 
       const response = await dispatch(
         downloadAttachment({ issueId: issue._id, fileId: fileId })
@@ -194,6 +195,8 @@ function Attachments({
     } catch (error) {
       setIsLoading(false);
       console.error("Error downloading attachment", error);
+    } finally {
+      setIsLoading(false);
     }
   };
 

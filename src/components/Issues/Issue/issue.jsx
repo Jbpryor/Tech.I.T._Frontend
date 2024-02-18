@@ -46,6 +46,8 @@ function Issue() {
 
   const issue = useSelector((state) => selectIssueById(state, issueId));
 
+  const issueOrder = ['title', 'created', 'project', 'status', 'priority', 'submitter', 'developer', '_id', 'description', 'modifications', 'comments', '__v', 'attachments' ];
+
   const { width } = useWindowSize();
 
   const smallerScreen = width < 500;
@@ -259,7 +261,7 @@ function Issue() {
                 border: `2px solid ${theme.border}`,
               }}
             >
-              {Object.keys(issue).map(
+              {issueOrder.map(
                 (detail) =>
                   detail !== "modifications" &&
                   detail !== "comments" &&

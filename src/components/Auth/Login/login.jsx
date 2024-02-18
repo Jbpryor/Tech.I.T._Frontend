@@ -103,8 +103,11 @@ function Login() {
   if (isLoading)
     return (
       <section className="login-container">
-        {`...Loading (${countdown} seconds)`}
-        <PulseLoader color={"#FFF"} />
+        <div className="loading-content">
+          <img src="/images/it.png" alt="Loading Icon" />
+          {`...Loading (${countdown} seconds)`}
+          <PulseLoader color={"#FFF"} />
+        </div>
       </section>
     );
 

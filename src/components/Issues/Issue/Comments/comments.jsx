@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { formatTimestamp } from "../../../../../Utils/utils";
 import useAuth from "../../../../Hooks/useAuth";
 
-function Comments({ issue, timeStamp, theme, smallerScreen, requestStatus, setRequestStatus }) {
+function Comments({ issue, theme, smallerScreen, setIsLoading }) {
   const dispatch = useDispatch();
 
   const comments = issue.comments;
@@ -25,13 +25,14 @@ function Comments({ issue, timeStamp, theme, smallerScreen, requestStatus, setRe
     };
 
     try {
-      setRequestStatus("pending");
+      setIsLoading(true);
 
       const response = await dispatch(
         updateIssue({ _id: issue._id, comments: newComment })
       );
 
       if (updateIssue.fulfilled.match(response)) {
+        setIsLoading(false);
 
         await dispatch(fetchIssues());
 
@@ -43,20 +44,21 @@ function Comments({ issue, timeStamp, theme, smallerScreen, requestStatus, setRe
     } catch (error) {
       console.error("Failed to save the comment", error);
     } finally {
-      setRequestStatus("idle");
+      setIsLoading(false);
     }
   };
 
   const handleDeleteComment = async (index, commentId) => {
     if (window.confirm(`Are you sure you want to delete this comment?`)) {
       try {
-        setRequestStatus("pending");
+        setIsLoading(true);
 
         const response = await dispatch(
           deleteComment({ issueId: issue._id, commentIndex: index, commentId: commentId })
         );
 
         if (deleteComment.fulfilled.match(response)) {
+          setIsLoading(false);
           const { message } = response.payload;
 
           alert(message);
@@ -70,7 +72,7 @@ function Comments({ issue, timeStamp, theme, smallerScreen, requestStatus, setRe
       } catch (error) {
         console.error("Failed to delete the comment", error);
       } finally {
-        setRequestStatus("idle");
+        setIsLoading(false);
       }
     }
   };

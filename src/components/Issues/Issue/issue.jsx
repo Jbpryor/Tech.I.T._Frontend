@@ -9,17 +9,15 @@ import useWindowSize from "../../../Hooks/useWindowSize";
 import { capitalizeFirstLetter, formatTimestamp } from "../../../../Utils/utils";
 import {
   fetchIssues,
-  // selectAllIssues,
   updateIssue,
   deleteIssue,
-  // getIssuesStatus,
-  // getIssuesError,
   selectIssueById,
 } from "../issueSlice";
 import { selectAllProjects } from "../../Projects/projectSlice";
 import { selectTheme } from "../../Users/User/Settings/settingsSlice";
 import useAuth from "../../../Hooks/useAuth";
 import { fetchUsers } from "../../Users/userSlice";
+import { PulseLoader } from "react-spinners";
 
 function Issue() {
   const navigate = useNavigate();
@@ -37,7 +35,7 @@ function Issue() {
   const [editedDetail, setEditedDetail] = useState({});
   const [, setShowUpdatedField] = useState(false);
   const [previousState, setPreviousState] = useState({});
-  const [requestStatus, setRequestStatus] = useState("idle");
+  const [isLoading, setIsLoading] = useState(false);
   const [isDraggingPage, setIsDraggingPage] = useState(false);
   const [isModificationsViewActive, setModificationsViewActive] = useState(
     false
@@ -110,11 +108,12 @@ function Issue() {
     };
 
     try {
-      setRequestStatus("pending");
+      setIsLoading(true);
 
       const response = await dispatch(updateIssue(updatedIssue));
 
       if (updateIssue.fulfilled.match(response)) {
+        setIsLoading(false);
         const { message, title, updatedIssue } = response.payload;
         alert(message);
 
@@ -129,7 +128,7 @@ function Issue() {
     } catch (error) {
       console.error("Failed to save the edited issue", error);
     } finally {
-      setRequestStatus("idle");
+      setIsLoading(false);
     }
   };
 
@@ -140,7 +139,7 @@ function Issue() {
       )
     ) {
       try {
-        setRequestStatus("pending");
+        setIsLoading(true);
 
         const issueId = {
           _id: issue._id,
@@ -148,6 +147,7 @@ function Issue() {
         const response = await dispatch(deleteIssue(issueId));
 
         if (deleteIssue.fulfilled.match(response)) {
+          setIsLoading(false);
           const { message } = response.payload;
 
           alert(message);
@@ -162,7 +162,7 @@ function Issue() {
       } catch (error) {
         console.error("Failed to delete the issue", error);
       } finally {
-        setRequestStatus("idle");
+        setIsLoading(false);
       }
     }
   };
@@ -192,6 +192,17 @@ function Issue() {
       </section>
     );
   }
+
+  if (isLoading)
+  return (
+    <section className="login-container">
+      <div className="loading-content">
+        <img src="/images/it.png" alt="Loading Icon" />
+        {`...Loading (${countdown} seconds)`}
+        <PulseLoader color={"#FFF"} />
+      </div>
+    </section>
+  );
 
   if (issue) {
     return (
@@ -497,7 +508,7 @@ function Issue() {
           theme={theme}
           smallerScreen={smallerScreen}
           requestStatus={requestStatus}
-          setRequestStatus={setRequestStatus}
+          setIsLoading={setIsLoading}
         />
 
         <Attachments
@@ -507,7 +518,7 @@ function Issue() {
           isDraggingPage={isDraggingPage}
           setIsDraggingPage={setIsDraggingPage}
           requestStatus={requestStatus}
-          setRequestStatus={setRequestStatus}
+          setIsLoading={setIsLoading}
         />
       </section>
     );

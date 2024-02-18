@@ -15,8 +15,7 @@ function Attachments({
   issue,
   isDraggingPage,
   setIsDraggingPage,
-  requestStatus,
-  setRequestStatus,
+  setIsLoading
 }) {
   const dispatch = useDispatch();
   const attachments = issue.attachments;
@@ -67,11 +66,12 @@ function Attachments({
     formData.append("userName", userName); // need to make this the current user
 
     try {
-      setRequestStatus("pending");
+      setIsLoadin(true);
 
       const response = await dispatch(updateIssue(formData));
 
       if (updateIssue.fulfilled.match(response)) {
+        setIsLoading(false);
         await dispatch(fetchIssues());
 
         setFile(null);
@@ -82,7 +82,7 @@ function Attachments({
     } catch (error) {
       console.error("Failed to save the attachment", error);
     } finally {
-      setRequestStatus("idle");
+      setIsLoading(false);
     }
   };
 
@@ -90,13 +90,14 @@ function Attachments({
     const { fileId } = attachment;
     if (window.confirm(`Are you sure you want to delete this attachment?`)) {
       try {
-        setRequestStatus("pending");
+        setIsLoading(true);
 
         const response = await dispatch(
           deleteAttachment({ issueId: issue._id, fileId: fileId })
         );
 
         if (deleteAttachment.fulfilled.match(response)) {
+          setIsLoading(false);
           const { message } = response.payload;
 
           alert(message);
@@ -108,7 +109,7 @@ function Attachments({
       } catch (error) {
         console.error("Failed to delete the attachment", error);
       } finally {
-        setRequestStatus("idle");
+        setIsLoading(false);
       }
     }
   };
@@ -129,7 +130,7 @@ function Attachments({
     setDisplayAttachment(true);
 
     try {
-      setRequestStatus("pending");
+      setIsLoading(true);
 
       const response = await dispatch(
         downloadAttachment({ issueId: issue._id, fileId: fileId })
@@ -138,6 +139,8 @@ function Attachments({
       const { contentType, data } = response.payload;
       const isImage = contentType.startsWith("image/");
       const isPDF = contentType === "application/pdf";
+
+      setIsLoading(false);
 
       if (isImage) {
         setFileContent(
@@ -151,7 +154,7 @@ function Attachments({
     } catch (error) {
       console.error("Error fetching file data URL", error);
     } finally {
-      setRequestStatus("idle");
+      setIsLoading(false);
     }
   };
 
@@ -160,11 +163,13 @@ function Attachments({
     setIsAttachmentMenuVisible(false);
 
     try {
-      setRequestStatus("pending");
+      setIsLoading(true);
 
       const response = await dispatch(
         downloadAttachment({ issueId: issue._id, fileId: fileId })
       );
+
+      setIsLoading(false);
 
       const { data, contentType } = response.payload;
 
@@ -187,6 +192,7 @@ function Attachments({
 
       document.body.removeChild(link);
     } catch (error) {
+      setIsLoading(false);
       console.error("Error downloading attachment", error);
     }
   };

@@ -527,7 +527,6 @@ function Issue() {
           timeStamp={timeStamp}
           theme={theme}
           smallerScreen={smallerScreen}
-          requestStatus={requestStatus}
           setIsLoading={setIsLoading}
         />
 
@@ -537,7 +536,6 @@ function Issue() {
           smallerScreen={smallerScreen}
           isDraggingPage={isDraggingPage}
           setIsDraggingPage={setIsDraggingPage}
-          requestStatus={requestStatus}
           setIsLoading={setIsLoading}
         />
       </section>

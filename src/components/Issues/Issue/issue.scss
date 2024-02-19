@@ -520,6 +520,7 @@
         display: flex;
         flex-direction: column;
         overflow: auto;
+        scroll-behavior: smooth;
     };
 
     .modifications-container,
